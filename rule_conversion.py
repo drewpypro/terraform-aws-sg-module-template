@@ -17,10 +17,12 @@ def csv_to_json(csv_file, output_folder):
             if name not in security_groups:
                 security_groups[name] = []
             
-            # Convert 'null' values to None
+            # Convert 'null' values to None or handle variable references
             for key, value in row.items():
                 if value.lower() == 'null':
                     row[key] = None
+                elif value.startswith("var."):
+                    row[key] = f"${{{value}}}"
 
             # Handle ip_protocol = -1 (all traffic)
             from_port = None
