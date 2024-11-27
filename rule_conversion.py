@@ -22,12 +22,19 @@ def csv_to_json(csv_file, output_folder):
                 if value.lower() == 'null':
                     row[key] = None
 
+            # Handle ip_protocol = -1 (all traffic)
+            from_port = None
+            to_port = None
+            if row["ip_protocol"] != "-1":
+                from_port = int(row["from_port"]) if row["from_port"] else None
+                to_port = int(row["to_port"]) if row["to_port"] else None
+
             security_groups[name].append({
                 "security_group_id": row["security_group_id"],
                 "self_rule": row["self_rule"].lower() == 'yes' if row["self_rule"] else False,
                 "direction": row["direction"],
-                "from_port": int(row["from_port"]) if row["from_port"] else None,
-                "to_port": int(row["to_port"]) if row["to_port"] else None,
+                "from_port": from_port,
+                "to_port": to_port,
                 "ip_protocol": row["ip_protocol"],
                 "referenced_security_group_id": row["referenced_security_group_id"],
                 "cidr_ipv4": row["cidr_ipv4"],
