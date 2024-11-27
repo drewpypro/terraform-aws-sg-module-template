@@ -1,0 +1,26 @@
+{
+    "aws_security_group": "dms",
+    "security_group_id": "dms",
+    "rules": [
+        {
+            "self_rule": null,
+            "direction": "egress",
+            "from_port": 443,
+            "to_port": 443,
+            "ip_protocol": "tcp",
+            "referenced_security_group_id": "var.services{kms}",
+            "cidr_ipv4": null,
+            "cidr_ipv6": null
+        },
+        {
+            "self_rule": null,
+            "direction": "egress",
+            "from_port": 443,
+            "to_port": 443,
+            "ip_protocol": "tcp",
+            "referenced_security_group_id": "var.services{sts}",
+            "cidr_ipv4": null,
+            "cidr_ipv6": null
+        }
+    ]
+}
