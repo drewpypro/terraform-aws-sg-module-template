@@ -1,36 +1,49 @@
-# Use a local block for dynamic fileset loading
-locals {
-  security_group_files = fileset("${path.module}/security_groups", "*.json")
+provider "aws" {
+  region = "us-east-1"
 }
 
-# Loop through JSON files to create security groups
-resource "aws_security_group" "security_groups" {
-  for_each = { for file in local.security_group_files : file => jsondecode(file("${path.module}/security_groups/${file}")) }
+locals {
+  security_groups_path = "${path.module}/security-groups"
+}
 
-  name        = each.value.aws_security_group
+# Read JSON files for each security group
+data "local_file" "security_groups" {
+  for_each = fileset(local.security_groups_path, "*.json")
+
+  filename = "${local.security_groups_path}/${each.value}"
+}
+
+# Create security groups and rules based on JSON files
+resource "aws_security_group" "sg" {
+  for_each = data.local_file.security_groups
+
+  name        = each.key
   description = "Security group for ${each.key}"
   vpc_id      = module.vpc.vpc_id
-}
 
-# Loop through rules in each security group and create them
-resource "aws_security_group_rule" "rules" {
-  for_each = flatten([
-    for sg_file in local.security_group_files : [
-      for rule in jsondecode(file("${path.module}/security_groups/${sg_file}")).rules : {
-        sg_id = aws_security_group.security_groups[sg_file].id
-        rule  = rule
-      }
-    ]
-  ])
+  dynamic "ingress" {
+    for_each = [for rule in jsondecode(each.value.content) : rule if rule.direction == "ingress"]
+    content {
+      from_port                = ingress.value.from_port
+      to_port                  = ingress.value.to_port
+      protocol                 = ingress.value.ip_protocol
+      cidr_blocks              = ingress.value.cidr_ipv4 != null ? [ingress.value.cidr_ipv4] : []
+      ipv6_cidr_blocks         = ingress.value.cidr_ipv6 != null ? [ingress.value.cidr_ipv6] : []
+      security_groups          = ingress.value.referenced_security_group_id != null ? [ingress.value.referenced_security_group_id] : []
+      self                     = ingress.value.self_rule
+    }
+  }
 
-  security_group_id = each.value.sg_id
-  type              = each.value.rule.direction
-  from_port         = each.value.rule.from_port
-  to_port           = each.value.rule.to_port
-  protocol          = each.value.rule.ip_protocol
-
-  # Dynamically assign CIDR blocks or referenced security groups
-  cidr_blocks              = each.value.rule.cidr_ipv4 != null ? [each.value.rule.cidr_ipv4] : []
-  ipv6_cidr_blocks         = each.value.rule.cidr_ipv6 != null ? [each.value.rule.cidr_ipv6] : []
-  source_security_group_id = each.value.rule.referenced_security_group_id != null ? aws_security_group.security_groups[each.value.rule.referenced_security_group_id].id : null
+  dynamic "egress" {
+    for_each = [for rule in jsondecode(each.value.content) : rule if rule.direction == "egress"]
+    content {
+      from_port                = egress.value.from_port
+      to_port                  = egress.value.to_port
+      protocol                 = egress.value.ip_protocol
+      cidr_blocks              = egress.value.cidr_ipv4 != null ? [egress.value.cidr_ipv4] : []
+      ipv6_cidr_blocks         = egress.value.cidr_ipv6 != null ? [egress.value.cidr_ipv6] : []
+      security_groups          = egress.value.referenced_security_group_id != null ? [egress.value.referenced_security_group_id] : []
+      self                     = egress.value.self_rule
+    }
+  }
 }
