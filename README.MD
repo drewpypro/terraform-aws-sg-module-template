@@ -32,7 +32,6 @@ terraform-aws-sg-module-template/
 └── README.md
 ```
 
-
 # Usage
 - Define firewall rules in firewall_rules.csv
 - Run rule_conversion.py (for first time or after making changes to firewall_rules.csv)
