@@ -55,7 +55,6 @@ BUCKET_SECRET_ACCESS_KEY
 - Incorporate cidr_ipv4 and cidr_ipv6 leveraging list variables. 
 - Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
 
-
 # Test Cases
 
 ## Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074651948/job/33673022659) 
