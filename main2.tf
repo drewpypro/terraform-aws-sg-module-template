@@ -3,22 +3,23 @@ provider "aws" {
 }
 
 locals {
-  # Define security groups
-  security_groups = [
-    "app1-lambda",
-    "app2-lambda",
-    "cluster-endpoint",
-    "dms",
-    "efs-mount-endpoint",
-    "elasti-cache",
-    "internet-istio-nodes",
-    "internet-nlb",
-    "istio-nodes",
-    "msk",
-    "nlb",
-    "opensearch",
-    "rds"
-  ]
+  # Define security groups as a map
+  security_groups = {
+    "app1-lambda"         = "app1-lambda"
+    "app2-lambda"         = "app2-lambda"
+    "cluster-endpoint"    = "cluster-endpoint"
+    "dms"                 = "dms"
+    "efs-mount-endpoint"  = "efs-mount-endpoint"
+    "elasti-cache"        = "elasti-cache"
+    "internet-istio-nodes" = "internet-istio-nodes"
+    "internet-nlb"        = "internet-nlb"
+    "istio-nodes"         = "istio-nodes"
+    "msk"                 = "msk"
+    "nlb"                 = "nlb"
+    "opensearch"          = "opensearch"
+    "rds"                 = "rds"
+    "worker-nodes"        = "worker-nodes"
+  }
 
   # Load ingress rules from JSON files
   ingress_rule_files = fileset(path.module, "sg_rules/ingress/*.json")
@@ -35,7 +36,7 @@ locals {
 
 # Create security groups
 resource "aws_security_group" "sgs" {
-  for_each = toset(local.security_groups)
+  for_each = local.security_groups
 
   name        = each.value
   description = "Managed by Terraform"
@@ -55,7 +56,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress" {
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[lookup(local.security_groups, each.value.referenced_security_group_id)].id : null
 
   depends_on = [aws_security_group.sgs]
 }
@@ -68,7 +69,7 @@ resource "aws_vpc_security_group_egress_rule" "egress" {
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[lookup(local.security_groups, each.value.referenced_security_group_id)].id : null
 
   depends_on = [aws_security_group.sgs]
 }
