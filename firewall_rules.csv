@@ -49,8 +49,6 @@ opensearch,opensearch,ingress,443,443,tcp,worker_nodes
 rds,rds,ingress,3306,3306,tcp,internet_istio_nodes
 rds,rds,ingress,3306,3306,tcp,istio_nodes
 rds,rds,ingress,3306,3306,tcp,worker_nodes
-var.services{*},var.services{*},ingress,443,443,tcp,istio_nodes
-var.services{*},var.services{*},ingress,443,443,tcp,worker_nodes
 worker_nodes,worker_nodes,ingress,443,443,tcp,app1_lambda
 worker_nodes,worker_nodes,egress,443,443,tcp,cluster_endpoint
 worker_nodes,worker_nodes,egress,2049,2049,tcp,efs_mount_endpoint
