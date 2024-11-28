@@ -19,7 +19,6 @@ locals {
     "opensearch"           = "opensearch"
     "rds"                  = "rds"
     "worker_nodes"         = "worker_nodes"
-    "sg1"                  = "sg1"
   }
 
   # Get all ingress rule files and decode them
