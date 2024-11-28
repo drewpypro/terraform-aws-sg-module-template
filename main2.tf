@@ -38,7 +38,7 @@ resource "aws_security_group" "sgs" {
 
 # Create ingress rules
 resource "aws_vpc_security_group_ingress_rule" "ingress" {
-  for_each = { for rule in local.ingress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-ingress" => rule }
+  for_each = { for i, rule in local.ingress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-ingress-${i}" => rule }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
   from_port                    = tonumber(each.value.from_port)
@@ -49,7 +49,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress" {
 
 # Create egress rules
 resource "aws_vpc_security_group_egress_rule" "egress" {
-  for_each = { for rule in local.egress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-egress" => rule }
+  for_each = { for i, rule in local.egress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-egress-${i}" => rule }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
   from_port                    = tonumber(each.value.from_port)
