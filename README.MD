@@ -65,6 +65,8 @@ terraform-aws-sg-module-template/
   Updated: ./sg_rules/egress/worker_nodes_egress.json
   JSON files have been synchronized in ./sg_rules
   ```
+
+  - Submitted [PR#6](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/6)
 - Adding new SG and new SG rules
 - Removing SG 
 - Removing SG rules
