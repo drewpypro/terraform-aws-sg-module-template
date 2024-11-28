@@ -1,4 +1,15 @@
 # terraform-aws-security-group-eks-module
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+  - [Prerequisites](#prerequisites)
+- [TO DO](#to-do)
+- [Test Cases](#test-cases)
+- [Mermaid](#mermaid)
+
+  - [Contributing](#contributing)
+  - [Disclaimer](#disclaimer)
+  - [License](#license)
 
 ![Success](./img/successful_test1.png)
 
@@ -6,12 +17,7 @@
 - Generate AWS security-group configuration in a single module using json files converted from traditional csv dataflow templates. 
 - Python manages state of json files used for Terraform to build rules. 
 
-
-# Requirements
-- Define firewall rules in firewall_rules.csv
-- Run rule_conversion.py (for first time or after making changes to firewall_rules.csv)
-- Terraform apply
-
+# Project Structure
 ```
 terraform-aws-sg-module-template/
 ├── main.tf
@@ -27,6 +33,23 @@ terraform-aws-sg-module-template/
 └── README.md
 ```
 
+
+# Usage
+- Define firewall rules in firewall_rules.csv
+- Run rule_conversion.py (for first time or after making changes to firewall_rules.csv)
+- Terraform apply
+
+## Prerequisites
+    ```
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+    BUCKET_ACCESS_KEY_ID
+    BUCKET_ENDPOINT
+    BUCKET_KEY
+    BUCKET_NAME
+    BUCKET_SECRET_ACCESS_KEY
+    ```
+
 # TO DO
 
 - Incorporate per service [vpce-sg-module](https://github.com/drewpypro/aws-vpce-policy-tester/tree/main/modulev2)
@@ -34,10 +57,11 @@ terraform-aws-sg-module-template/
 - Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
 
 
-# Tests
+# Test Cases
 
-- Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074651948/job/33673022659) 
-- Adding new rules to existing sg
+## Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074651948/job/33673022659) 
+
+## Adding new rules to existing sg
   - appended these lines to firewall_rules.csv
     ```
     worker_nodes,worker_nodes,egress,1433,1433,tcp,rds
@@ -68,7 +92,8 @@ terraform-aws-sg-module-template/
     ```
   - Submitted [PR#14](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/14)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074673918/job/33673086770)
-- Adding new SG and new SG rules
+
+## Adding new SG and new SG rules
   - Updated main.tf, firewall_rules.csv and rule_conversion.py as indicated in [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
   - Generated new rules and diagrams
     ```
@@ -95,13 +120,38 @@ terraform-aws-sg-module-template/
     ```
   - Submitted [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074774216/job/33673381627)
-- Removing SG 
+
+## Removing SG 
   - Manually deleted ./sg_rules/egress/sg1_egress.json (need conversion script to delete files)
   - Removed sg1 from rule_conversion.py (mermaid section)
   - Removed sg1 firewall rules from firewall_rules.csv
+  - Generated new rules and updated diagram
+    ```
+    python3 rule_conversion.py 
+    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/msk_ingress.json
+    No changes: ./sg_rules/ingress/opensearch_ingress.json
+    No changes: ./sg_rules/ingress/rds_ingress.json
+    Updated: ./sg_rules/ingress/worker_nodes_ingress.json
+    No changes: ./sg_rules/egress/app1_lambda_egress.json
+    No changes: ./sg_rules/egress/app2_lambda_egress.json
+    No changes: ./sg_rules/egress/dms_egress.json
+    No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
+    No changes: ./sg_rules/egress/internet_nlb_egress.json
+    No changes: ./sg_rules/egress/istio_nodes_egress.json
+    No changes: ./sg_rules/egress/nlb_egress.json
+    No changes: ./sg_rules/egress/worker_nodes_egress.json
+    JSON files have been synchronized in ./sg_rules
+    Successfully updated README.md with new security group diagram!
+    ```
   - Submitted [PR#17](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/17)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074861670/job/33673634957)
-- Removing SG rules
+
+## Removing SG rules
   - Remove Bad rule in firewall_rules.csv
     ```
     name,security_group_id,direction,from_port,to_port,ip_protocol,referenced_security_group_id
@@ -130,10 +180,11 @@ terraform-aws-sg-module-template/
     JSON files have been synchronized in ./sg_rules
     Successfully updated README.md with new security group diagram!
     ```
-  - Submitted [PR#18]
+  - Submitted [PR#18](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/18)
+  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074918889/job/33673794002)
 
 
-# Mermaid (generated by mermaid_creator.py)
+# Mermaid (generated by rule_conversion.py)
 <!-- SECURITY_GROUP_DIAGRAM_START -->
 ```mermaid
 flowchart LR
