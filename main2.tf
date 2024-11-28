@@ -3,6 +3,23 @@ provider "aws" {
 }
 
 locals {
+  # Define security groups
+  security_groups = [
+    "app1-lambda",
+    "app2-lambda",
+    "cluster-endpoint",
+    "dms",
+    "efs-mount-endpoint",
+    "elasti-cache",
+    "internet-istio-nodes",
+    "internet-nlb",
+    "istio-nodes",
+    "msk",
+    "nlb",
+    "opensearch",
+    "rds"
+  ]
+
   # Load ingress rules from JSON files
   ingress_rule_files = fileset(path.module, "sg_rules/ingress/*.json")
   ingress_rules = flatten([
@@ -14,17 +31,11 @@ locals {
   egress_rules = flatten([
     for file in local.egress_rule_files : jsondecode(file("${path.module}/${file}"))
   ])
-
-  # Collect all unique security group names from ingress and egress rules
-  security_group_names = distinct(concat(
-    [for rule in local.ingress_rules : rule.name],
-    [for rule in local.egress_rules : rule.name]
-  ))
 }
 
 # Create security groups
 resource "aws_security_group" "sgs" {
-  for_each = toset(local.security_group_names)
+  for_each = toset(local.security_groups)
 
   name        = each.value
   description = "Managed by Terraform"
@@ -32,7 +43,7 @@ resource "aws_security_group" "sgs" {
 
   tags = {
     Name = each.value
-      }
+  }
 }
 
 
