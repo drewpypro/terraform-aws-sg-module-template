@@ -1,0 +1,74 @@
+[
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "cluster_endpoint"
+    },
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "2049",
+        "to_port": "2049",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "efs_mount_endpoint"
+    },
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "11211",
+        "to_port": "11211",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "elasti_cache"
+    },
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "6379",
+        "to_port": "6379",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "elasti_cache"
+    },
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "9096",
+        "to_port": "9096",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "msk"
+    },
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "3306",
+        "to_port": "3306",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "rds"
+    },
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes"
+    },
+    {
+        "name": "internet-istio-nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "opensearch"
+    }
+]

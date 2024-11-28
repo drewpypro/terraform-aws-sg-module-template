@@ -1,0 +1,11 @@
+[
+    {
+        "name": "app2-lambda",
+        "security_group_id": "app2_lambda",
+        "direction": "egress",
+        "from_port": "3306",
+        "to_port": "3306",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "rds"
+    }
+]
