@@ -84,7 +84,7 @@ if changes_detected:
     def get_subnet_mapping():
         """Define which components belong to which subnet."""
         return {
-            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms', 'sg1'],
+            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms',],
             'paas_subnet': ['istio_nodes', 'internet_istio_nodes', 'worker_nodes', 'cluster_endpoint'],
             'lambda_subnet': ['app1_lambda', 'app2_lambda'],
             'nlb_subnet': ['nlb'],
@@ -122,7 +122,7 @@ if changes_detected:
         diagram.append("    class internet_nlb,nlb lb")
         diagram.append("    class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes")
         diagram.append("    class rds,msk,opensearch,elasti_cache data")
-        diagram.append("    class cluster_endpoint,efs_mount_endpoint,dms,sg1 infra")
+        diagram.append("    class cluster_endpoint,efs_mount_endpoint,dms infra")
         diagram.append("```")
 
         return "\n".join(diagram)
