@@ -59,5 +59,3 @@ worker_nodes,worker_nodes,egress,443,443,tcp,istio_nodes
 worker_nodes,worker_nodes,egress,9096,9096,tcp,msk
 worker_nodes,worker_nodes,egress,443,443,tcp,opensearch
 worker_nodes,worker_nodes,egress,3306,3306,tcp,rds
-worker_nodes,worker_nodes,egress,1433,1433,tcp,rds
-rds,rds,ingress,1433,1433,tcp,worker_nodes
