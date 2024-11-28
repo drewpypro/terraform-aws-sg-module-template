@@ -45,6 +45,8 @@ resource "aws_vpc_security_group_ingress_rule" "ingress" {
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
   referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
+
+  depends_on = [aws_security_group.sgs]
 }
 
 # Create egress rules
@@ -56,4 +58,6 @@ resource "aws_vpc_security_group_egress_rule" "egress" {
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
   referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
+
+  depends_on = [aws_security_group.sgs]
 }
