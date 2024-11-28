@@ -39,35 +39,33 @@ terraform-aws-sg-module-template/
 - Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074651948/job/33673022659) 
 - Adding new rules to existing sg
   - appended these lines to firewall_rules.csv
-  ```
-  worker_nodes,worker_nodes,egress,1433,1433,tcp,rds
-  rds,rds,ingress,1433,1433,tcp,worker_nodes
-  ```
-
+    ```
+    worker_nodes,worker_nodes,egress,1433,1433,tcp,rds
+    rds,rds,ingress,1433,1433,tcp,worker_nodes
+    ```
   - reran python script to update rule state
-  ```
-  python3 rule_conversion.py 
-  No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-  No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-  No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-  No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-  No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-  No changes: ./sg_rules/ingress/msk_ingress.json
-  No changes: ./sg_rules/ingress/opensearch_ingress.json
-  Updated: ./sg_rules/ingress/rds_ingress.json
-  No changes: ./sg_rules/ingress/worker_nodes_ingress.json
-  No changes: ./sg_rules/egress/app1_lambda_egress.json
-  No changes: ./sg_rules/egress/app2_lambda_egress.json
-  No changes: ./sg_rules/egress/dms_egress.json
-  No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
-  No changes: ./sg_rules/egress/internet_nlb_egress.json
-  No changes: ./sg_rules/egress/istio_nodes_egress.json
-  No changes: ./sg_rules/egress/nlb_egress.json
-  Updated: ./sg_rules/egress/worker_nodes_egress.json
-  JSON files have been synchronized in ./sg_rules
-  Successfully updated README.md with new security group diagram!
-  ```
-
+    ```
+    python3 rule_conversion.py 
+    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/msk_ingress.json
+    No changes: ./sg_rules/ingress/opensearch_ingress.json
+    Updated: ./sg_rules/ingress/rds_ingress.json
+    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
+    No changes: ./sg_rules/egress/app1_lambda_egress.json
+    No changes: ./sg_rules/egress/app2_lambda_egress.json
+    No changes: ./sg_rules/egress/dms_egress.json
+    No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
+    No changes: ./sg_rules/egress/internet_nlb_egress.json
+    No changes: ./sg_rules/egress/istio_nodes_egress.json
+    No changes: ./sg_rules/egress/nlb_egress.json
+    Updated: ./sg_rules/egress/worker_nodes_egress.json
+    JSON files have been synchronized in ./sg_rules
+    Successfully updated README.md with new security group diagram!
+    ```
   - Submitted [PR#14](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/14)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074673918/job/33673086770)
 - Adding new SG and new SG rules
@@ -93,13 +91,14 @@ flowchart LR
         elasti_cache[Elasti Cache<br>11211,6379]
         efs_mount_endpoint[Efs Mount Endpoint<br>2049]
         dms[Dms<br>3306]
+        sg1[Sg1<br>6969]
     end
 
     %% Paas Subnet
     subgraph paas_subnet [Paas Subnet]
         istio_nodes[Istio Nodes<br>11211,2049,30000-40000,3306,443,6379,9096]
         internet_istio_nodes[Internet Istio Nodes<br>11211,2049,30000-40000,3306,443,6379,9096]
-        worker_nodes[Worker Nodes<br>11211,1433,2049,3306,443,6379,9096]
+        worker_nodes[Worker Nodes<br>11211,1433,2049,3306,443,6379,6969,9096]
         cluster_endpoint[Cluster Endpoint<br>443]
     end
 
@@ -179,11 +178,13 @@ flowchart LR
     worker_nodes --> |3306| rds
     worker_nodes --> |1433| rds
     rds --> |1433| worker_nodes
+    sg1 --> |6969| worker_nodes
+    worker_nodes --> |6969| sg1
 
     %% Apply styles
     class internet_nlb,nlb lb
     class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes
     class rds,msk,opensearch,elasti_cache data
-    class cluster_endpoint,efs_mount_endpoint,dms infra
+    class cluster_endpoint,efs_mount_endpoint,dms,sg1 infra
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->
