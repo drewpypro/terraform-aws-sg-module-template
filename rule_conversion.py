@@ -1,52 +1,26 @@
 import csv
 import json
-import os
 
-# Input CSV file
-csv_file = "firewall_rules.csv"
+# Read the CSV and convert each rule to a JSON file
+def csv_to_json(csv_filepath):
+    with open(csv_filepath, mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        rules_by_group = {}
 
-# Output directory for JSON files
-output_dir = "./security_groups/"
-os.makedirs(output_dir, exist_ok=True)
+        # Group rules by their security group name
+        for row in csv_reader:
+            group_name = row['name']
+            if group_name not in rules_by_group:
+                rules_by_group[group_name] = []
 
-# Dictionary to hold security group data
-security_groups = {}
+            # Remove fields with 'null' values for Terraform compatibility
+            filtered_row = {key: value for key, value in row.items() if value.lower() != 'null'}
+            rules_by_group[group_name].append(filtered_row)
 
-# Process the CSV
-with open(csv_file, "r") as file:
-    reader = csv.DictReader(file)
-    
-    for row in reader:
-        sg_name = row["name"]  # Security group name
-        sg_id = row["security_group_id"]  # Security group ID
+        # Write each group's rules to a separate JSON file
+        for group_name, rules in rules_by_group.items():
+            with open(f"{group_name}.json", mode='w') as json_file:
+                json.dump(rules, json_file, indent=4)
 
-        # Initialize security group entry if not already present
-        if sg_name not in security_groups:
-            security_groups[sg_name] = {
-                "aws_security_group": sg_name,
-                "security_group_id": sg_id,
-                "rules": []
-            }
-
-        # Prepare the rule
-        rule = {
-            "self_rule": None if row["self_rule"] == "null" else row["self_rule"],
-            "direction": row["direction"],
-            "from_port": None if row["from_port"] == "null" else int(row["from_port"]),
-            "to_port": None if row["to_port"] == "null" else int(row["to_port"]),
-            "ip_protocol": None if row["ip_protocol"] == "null" else row["ip_protocol"],
-            "referenced_security_group_id": None if row["referenced_security_group_id"] == "null" else row["referenced_security_group_id"],
-            "cidr_ipv4": None if row["cidr_ipv4"] == "null" else row["cidr_ipv4"],
-            "cidr_ipv6": None if row["cidr_ipv6"] == "null" else row["cidr_ipv6"]
-        }
-
-        # Add rule to the security group
-        security_groups[sg_name]["rules"].append(rule)
-
-# Write JSON files
-for sg_name, sg_data in security_groups.items():
-    json_file = os.path.join(output_dir, f"{sg_name}.json")
-    with open(json_file, "w") as outfile:
-        json.dump(sg_data, outfile, indent=4)
-
-print(f"JSON files have been generated in: {output_dir}")
+if __name__ == "__main__":
+    csv_to_json('referenced_sg_rules.csv')
