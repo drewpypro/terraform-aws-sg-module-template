@@ -2,6 +2,16 @@ provider "aws" {
   region = var.aws_region
 }
 
+data "local_file" "ingress_files" {
+  for_each = fileset(path.module, "sg_rules/ingress/*.json")
+  filename = each.value
+}
+
+data "local_file" "egress_files" {
+  for_each = fileset(path.module, "sg_rules/egress/*.json")
+  filename = each.value
+}
+
 locals {
   # Define security groups as a map
   security_groups = {
@@ -21,17 +31,13 @@ locals {
     "worker_nodes"         = "worker_nodes"
   }
 
-  # Load ingress rules from JSON files
-  ingress_rule_files = fileset(path.module, "sg_rules/ingress/*.json")
   ingress_rules = flatten([
-    for file in local.ingress_rule_files : jsondecode(file("${path.module}/${file}"))
+    for file in data.local_file.ingress_files : jsondecode(file.content)
+  ])
+  egress_rules = flatten([
+    for file in data.local_file.egress_files : jsondecode(file.content)
   ])
 
-  # Load egress rules from JSON files
-  egress_rule_files = fileset(path.module, "sg_rules/egress/*.json")
-  egress_rules = flatten([
-    for file in local.egress_rule_files : jsondecode(file("${path.module}/${file}"))
-  ])
 }
 
 # Create security groups
