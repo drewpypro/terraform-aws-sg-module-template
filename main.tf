@@ -49,7 +49,7 @@ resource "aws_vpc_security_group_ingress_rule" "this" {
         for rule in try(sg_config.rules.ingress, []) : {
           sg_name     = sg_name
           rule        = rule
-          unique_key  = "${sg_name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}"
+          unique_key  = "${sg_name}-${try(rule.ip_protocol, "all")}-${coalesce(try(rule.from_port, ""), "0")}-${coalesce(try(rule.to_port, ""), "0")}"
         }
       ]
     ]) : entry.unique_key => entry
@@ -78,7 +78,7 @@ resource "aws_vpc_security_group_egress_rule" "this" {
         for rule in try(sg_config.rules.egress, []) : {
           sg_name     = sg_name
           rule        = rule
-          unique_key  = "${sg_name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}"
+          unique_key  = "${sg_name}-${try(rule.ip_protocol, "all")}-${coalesce(try(rule.from_port, ""), "0")}-${coalesce(try(rule.to_port, ""), "0")}"
         }
       ]
     ]) : entry.unique_key => entry
