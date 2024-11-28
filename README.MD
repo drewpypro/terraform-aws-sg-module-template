@@ -36,7 +36,7 @@ terraform-aws-sg-module-template/
 
 # Tests
 
-- Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074566351/job/33672778056) 
+- Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074651948/job/33673022659) 
 - Adding new rules to existing sg
   - appended these lines to firewall_rules.csv
   ```
@@ -65,6 +65,7 @@ terraform-aws-sg-module-template/
   No changes: ./sg_rules/egress/nlb_egress.json
   Updated: ./sg_rules/egress/worker_nodes_egress.json
   JSON files have been synchronized in ./sg_rules
+  Successfully updated README.md with new security group diagram!
   ```
 
   - Submitted [PR#8](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/8)
@@ -85,7 +86,7 @@ flowchart LR
 
     %% General Subnet
     subgraph general_subnet [General Subnet]
-        rds[Rds<br>3306]
+        rds[Rds<br>1433,3306]
         msk[Msk<br>9096]
         opensearch[Opensearch<br>443]
         elasti_cache[Elasti Cache<br>11211,6379]
@@ -97,7 +98,7 @@ flowchart LR
     subgraph paas_subnet [Paas Subnet]
         istio_nodes[Istio Nodes<br>11211,2049,30000-40000,3306,443,6379,9096]
         internet_istio_nodes[Internet Istio Nodes<br>11211,2049,30000-40000,3306,443,6379,9096]
-        worker_nodes[Worker Nodes<br>11211,2049,3306,443,6379,9096]
+        worker_nodes[Worker Nodes<br>11211,1433,2049,3306,443,6379,9096]
         cluster_endpoint[Cluster Endpoint<br>443]
     end
 
@@ -175,6 +176,8 @@ flowchart LR
     worker_nodes --> |9096| msk
     worker_nodes --> |443| opensearch
     worker_nodes --> |3306| rds
+    worker_nodes --> |1433| rds
+    rds --> |1433| worker_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb
