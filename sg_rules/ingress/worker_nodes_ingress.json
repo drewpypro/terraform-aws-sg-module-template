@@ -16,14 +16,5 @@
         "to_port": "443",
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes"
-    },
-    {
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "6969",
-        "to_port": "6969",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "sg1"
     }
 ]

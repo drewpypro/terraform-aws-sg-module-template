@@ -72,7 +72,7 @@ terraform-aws-sg-module-template/
   - Updated main.tf, firewall_rules.csv and rule_conversion.py as indicated in [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
   - Generated new rules and diagrams
     ```
-    python3 rule_conversion.py
+    python3 rule_conversion.py 
     No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
     No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
     No changes: ./sg_rules/ingress/elasti_cache_ingress.json
@@ -90,7 +90,6 @@ terraform-aws-sg-module-template/
     No changes: ./sg_rules/egress/istio_nodes_egress.json
     No changes: ./sg_rules/egress/nlb_egress.json
     No changes: ./sg_rules/egress/worker_nodes_egress.json
-    Updated: ./sg_rules/egress/sg1_egress.json
     JSON files have been synchronized in ./sg_rules
     Successfully updated README.md with new security group diagram!
     ```
