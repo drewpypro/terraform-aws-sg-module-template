@@ -5,20 +5,20 @@ provider "aws" {
 locals {
   # Define security groups as a map
   security_groups = {
-    "app1-lambda"         = "app1-lambda"
-    "app2-lambda"         = "app2-lambda"
-    "cluster-endpoint"    = "cluster-endpoint"
-    "dms"                 = "dms"
-    "efs-mount-endpoint"  = "efs-mount-endpoint"
-    "elasti-cache"        = "elasti-cache"
-    "internet-istio-nodes" = "internet-istio-nodes"
-    "internet-nlb"        = "internet-nlb"
-    "istio-nodes"         = "istio-nodes"
-    "msk"                 = "msk"
-    "nlb"                 = "nlb"
-    "opensearch"          = "opensearch"
-    "rds"                 = "rds"
-    "worker-nodes"        = "worker-nodes"
+    "app1_lambda"          = "app1_lambda"
+    "app2_lambda"          = "app2_lambda"
+    "cluster_endpoint"     = "cluster_endpoint"
+    "dms"                  = "dms"
+    "efs_mount_endpoint"   = "efs_mount_endpoint"
+    "elasti_cache"         = "elasti_cache"
+    "internet_istio_nodes" = "internet_istio_nodes"
+    "internet_nlb"         = "internet_nlb"
+    "istio_nodes"          = "istio_nodes"
+    "msk"                  = "msk"
+    "nlb"                  = "nlb"
+    "opensearch"           = "opensearch"
+    "rds"                  = "rds"
+    "worker_nodes"         = "worker_nodes"
   }
 
   # Load ingress rules from JSON files
