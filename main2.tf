@@ -1,3 +1,7 @@
+provider "aws" {
+  region = var.aws_region
+}
+
 locals {
   # Load ingress rules from JSON files
   ingress_rule_files = fileset(path.module, "sg_rules/ingress/*.json")
