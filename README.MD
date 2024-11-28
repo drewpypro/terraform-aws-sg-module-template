@@ -5,10 +5,11 @@
 - [Prerequisites](#prerequisites)
 - [TO DO](#to-do)
 - [Test Cases](#test-cases)
-- [Mermaid](#mermaid)
 - [Contributing](#contributing)
 - [Disclaimer](#disclaimer)
 - [License](#license)
+- [Mermaid](#mermaid)
+
 
 ![Success](./img/successful_test1.png)
 
@@ -180,6 +181,34 @@ BUCKET_SECRET_ACCESS_KEY
   - Submitted [PR#18](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/18)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074918889/job/33673794002)
 
+# Contributing
+
+- Fork the repository.
+- Create a new branch for your feature or bugfix.
+- Make your changes and test them thoroughly.
+- Submit a pull request for review.
+
+# Disclaimer
+
+This project is provided "as is" without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. Use this project at your own risk. The maintainers of this repository are not responsible for any damage or issues arising from its use.
+
+# License
+
+This project is licensed under the MIT License. This means you are free to use, modify, and distribute the code as long as credit is given to the original author.
+
+```
+Copyright (c) 2024 drewpypro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+```
 
 # Mermaid 
 <!-- SECURITY_GROUP_DIAGRAM_START -->
