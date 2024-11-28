@@ -15,7 +15,6 @@ elasti_cache,elasti_cache,ingress,11211,11211,tcp,worker_nodes
 elasti_cache,elasti_cache,ingress,6379,6379,tcp,worker_nodes
 internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,app1_lambda
 internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,cluster_endpoint
-internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint
 internet_istio_nodes,internet_istio_nodes,egress,11211,11211,tcp,elasti_cache
 internet_istio_nodes,internet_istio_nodes,egress,6379,6379,tcp,elasti_cache
 internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,internet_nlb
