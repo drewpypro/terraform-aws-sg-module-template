@@ -36,6 +36,7 @@ terraform-aws-sg-module-template/
 
 # Tests
 
+- Successful first time [run](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074231390/job/33671844485) 
 - Adding new rules to existing sg
   - appended these lines to firewall_rules.csv
   ```
