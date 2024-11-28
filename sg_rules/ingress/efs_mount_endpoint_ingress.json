@@ -1,6 +1,6 @@
 [
     {
-        "name": "efs-mount-endpoint",
+        "name": "efs_mount_endpoint",
         "security_group_id": "efs_mount_endpoint",
         "direction": "ingress",
         "from_port": "2049",
@@ -9,7 +9,7 @@
         "referenced_security_group_id": "istio_nodes"
     },
     {
-        "name": "efs-mount-endpoint",
+        "name": "efs_mount_endpoint",
         "security_group_id": "efs_mount_endpoint",
         "direction": "ingress",
         "from_port": "2049",

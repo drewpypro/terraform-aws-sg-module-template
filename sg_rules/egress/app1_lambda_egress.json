@@ -1,6 +1,6 @@
 [
     {
-        "name": "app1-lambda",
+        "name": "app1_lambda",
         "security_group_id": "app1_lambda",
         "direction": "egress",
         "from_port": "443",
@@ -9,7 +9,7 @@
         "referenced_security_group_id": "internet_istio_nodes"
     },
     {
-        "name": "app1-lambda",
+        "name": "app1_lambda",
         "security_group_id": "app1_lambda",
         "direction": "egress",
         "from_port": "443",
@@ -18,7 +18,7 @@
         "referenced_security_group_id": "istio_nodes"
     },
     {
-        "name": "app1-lambda",
+        "name": "app1_lambda",
         "security_group_id": "app1_lambda",
         "direction": "egress",
         "from_port": "443",

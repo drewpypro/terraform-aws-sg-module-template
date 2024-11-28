@@ -1,6 +1,6 @@
 [
     {
-        "name": "istio-nodes",
+        "name": "istio_nodes",
         "security_group_id": "istio_nodes",
         "direction": "ingress",
         "from_port": "443",
@@ -9,7 +9,7 @@
         "referenced_security_group_id": "app1_lambda"
     },
     {
-        "name": "istio-nodes",
+        "name": "istio_nodes",
         "security_group_id": "istio_nodes",
         "direction": "ingress",
         "from_port": "443",
@@ -18,7 +18,7 @@
         "referenced_security_group_id": "nlb"
     },
     {
-        "name": "istio-nodes",
+        "name": "istio_nodes",
         "security_group_id": "istio_nodes",
         "direction": "ingress",
         "from_port": "443",

@@ -1,6 +1,6 @@
 [
     {
-        "name": "internet-nlb",
+        "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "egress",
         "from_port": "443",
@@ -9,7 +9,7 @@
         "referenced_security_group_id": "internet_istio_nodes"
     },
     {
-        "name": "internet-nlb",
+        "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "egress",
         "from_port": "30000",

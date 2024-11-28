@@ -1,6 +1,6 @@
 [
     {
-        "name": "cluster-endpoint",
+        "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
         "direction": "ingress",
         "from_port": "443",
@@ -9,7 +9,7 @@
         "referenced_security_group_id": "internet_istio_nodes"
     },
     {
-        "name": "cluster-endpoint",
+        "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
         "direction": "ingress",
         "from_port": "443",
@@ -18,7 +18,7 @@
         "referenced_security_group_id": "istio_nodes"
     },
     {
-        "name": "cluster-endpoint",
+        "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
         "direction": "ingress",
         "from_port": "443",

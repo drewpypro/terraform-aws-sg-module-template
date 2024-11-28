@@ -1,6 +1,6 @@
 [
     {
-        "name": "internet-istio-nodes",
+        "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
         "from_port": "443",
@@ -9,7 +9,7 @@
         "referenced_security_group_id": "app1_lambda"
     },
     {
-        "name": "internet-istio-nodes",
+        "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
         "from_port": "443",
@@ -18,7 +18,7 @@
         "referenced_security_group_id": "internet_nlb"
     },
     {
-        "name": "internet-istio-nodes",
+        "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
         "from_port": "30000",
@@ -27,7 +27,7 @@
         "referenced_security_group_id": "internet_nlb"
     },
     {
-        "name": "internet-istio-nodes",
+        "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
         "from_port": "443",

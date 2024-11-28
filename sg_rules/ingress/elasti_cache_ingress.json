@@ -1,6 +1,6 @@
 [
     {
-        "name": "elasti-cache",
+        "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",
         "from_port": "11211",
@@ -9,7 +9,7 @@
         "referenced_security_group_id": "istio_nodes"
     },
     {
-        "name": "elasti-cache",
+        "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",
         "from_port": "6379",
@@ -18,7 +18,7 @@
         "referenced_security_group_id": "istio_nodes"
     },
     {
-        "name": "elasti-cache",
+        "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",
         "from_port": "11211",
@@ -27,7 +27,7 @@
         "referenced_security_group_id": "worker_nodes"
     },
     {
-        "name": "elasti-cache",
+        "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",
         "from_port": "6379",
