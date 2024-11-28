@@ -32,3 +32,115 @@ terraform-aws-sg-module-template/
 - Incorporate per service [vpce-sg-module](https://github.com/drewpypro/aws-vpce-policy-tester/tree/main/modulev2)
 - Incorporate cidr_ipv4 and cidr_ipv6 leveraging list variables. 
 - Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
+
+
+<!-- SECURITY_GROUP_DIAGRAM_START -->
+```mermaid
+flowchart LR
+    %% Styles
+    classDef default fill:#1a2433,stroke:#fff,stroke-width:2px,color:#fff
+    classDef lb fill:#d86613,stroke:#fff,stroke-width:2px,color:#fff
+    classDef nodes fill:#007acc,stroke:#fff,stroke-width:2px,color:#fff
+    classDef data fill:#3b48cc,stroke:#fff,stroke-width:2px,color:#fff
+    classDef infra fill:#c94f17,stroke:#fff,stroke-width:2px,color:#fff
+
+    %% General Subnet
+    subgraph general_subnet [General Subnet]
+        rds[Rds\n3306]
+        msk[Msk\n9096]
+        opensearch[Opensearch\n443]
+        elasti_cache[Elasti Cache\n11211,6379]
+        efs_mount_endpoint[Efs Mount Endpoint\n2049]
+        dms[Dms\n3306]
+    end
+
+    %% Paas Subnet
+    subgraph paas_subnet [Paas Subnet]
+        istio_nodes[Istio Nodes\n11211,2049,30000-40000,3306,443,6379,9096]
+        internet_istio_nodes[Internet Istio Nodes\n11211,2049,30000-40000,3306,443,6379,9096]
+        worker_nodes[Worker Nodes\n11211,2049,3306,443,6379,9096]
+        cluster_endpoint[Cluster Endpoint\n443]
+    end
+
+    %% Lambda Subnet
+    subgraph lambda_subnet [Lambda Subnet]
+        app1_lambda[App1 Lambda\n443]
+        app2_lambda[App2 Lambda\n3306]
+    end
+
+    %% Nlb Subnet
+    subgraph nlb_subnet [Nlb Subnet]
+        nlb[Nlb\n30000-40000,443]
+    end
+
+    %% Internet Nlb Subnet
+    subgraph internet_nlb_subnet [Internet Nlb Subnet]
+        internet_nlb[Internet Nlb\n30000-40000,443]
+    end
+
+    %% Connections
+    app1_lambda --> |443| internet_istio_nodes
+    app1_lambda --> |443| istio_nodes
+    app1_lambda --> |443| worker_nodes
+    app2_lambda --> |3306| rds
+    cluster_endpoint --> |443| internet_istio_nodes
+    cluster_endpoint --> |443| istio_nodes
+    cluster_endpoint --> |443| worker_nodes
+    dms --> |3306| rds
+    efs_mount_endpoint --> |2049| istio_nodes
+    efs_mount_endpoint --> |2049| worker_nodes
+    elasti_cache --> |11211| istio_nodes
+    elasti_cache --> |6379| istio_nodes
+    elasti_cache --> |11211| worker_nodes
+    elasti_cache --> |6379| worker_nodes
+    internet_istio_nodes --> |443| app1_lambda
+    internet_istio_nodes --> |443| cluster_endpoint
+    internet_istio_nodes --> |2049| efs_mount_endpoint
+    internet_istio_nodes --> |11211| elasti_cache
+    internet_istio_nodes --> |6379| elasti_cache
+    internet_istio_nodes --> |443| internet_nlb
+    internet_istio_nodes --> |30000-40000| internet_nlb
+    internet_istio_nodes --> |9096| msk
+    internet_istio_nodes --> |443| opensearch
+    internet_istio_nodes --> |3306| rds
+    internet_istio_nodes --> |443| worker_nodes
+    internet_nlb --> |443| internet_istio_nodes
+    internet_nlb --> |30000-40000| internet_istio_nodes
+    istio_nodes --> |443| app1_lambda
+    istio_nodes --> |443| cluster_endpoint
+    istio_nodes --> |2049| efs_mount_endpoint
+    istio_nodes --> |11211| elasti_cache
+    istio_nodes --> |6379| elasti_cache
+    istio_nodes --> |9096| msk
+    istio_nodes --> |443| nlb
+    istio_nodes --> |443| opensearch
+    istio_nodes --> |3306| rds
+    istio_nodes --> |443| worker_nodes
+    msk --> |9096| internet_istio_nodes
+    msk --> |9096| istio_nodes
+    msk --> |9096| worker_nodes
+    nlb --> |443| istio_nodes
+    nlb --> |30000-40000| istio_nodes
+    opensearch --> |443| internet_istio_nodes
+    opensearch --> |443| istio_nodes
+    opensearch --> |443| worker_nodes
+    rds --> |3306| internet_istio_nodes
+    rds --> |3306| istio_nodes
+    rds --> |3306| worker_nodes
+    worker_nodes --> |443| app1_lambda
+    worker_nodes --> |443| cluster_endpoint
+    worker_nodes --> |2049| efs_mount_endpoint
+    worker_nodes --> |11211| elasti_cache
+    worker_nodes --> |6379| elasti_cache
+    worker_nodes --> |443| istio_nodes
+    worker_nodes --> |9096| msk
+    worker_nodes --> |443| opensearch
+    worker_nodes --> |3306| rds
+
+    %% Apply styles
+    class internet_nlb,nlb lb
+    class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes
+    class rds,msk,opensearch,elasti_cache data
+    class cluster_endpoint,efs_mount_endpoint,dms infra
+```
+<!-- SECURITY_GROUP_DIAGRAM_END -->
