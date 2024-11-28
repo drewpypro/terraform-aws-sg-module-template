@@ -34,6 +34,14 @@ terraform-aws-sg-module-template/
 - Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
 
 
+# Tests
+
+- Adding new rules to existing sg
+- Adding new SG and new SG rules
+- Removing SG 
+- Removing SG rules
+
+
 <!-- SECURITY_GROUP_DIAGRAM_START -->
 ```mermaid
 flowchart LR
@@ -46,36 +54,36 @@ flowchart LR
 
     %% General Subnet
     subgraph general_subnet [General Subnet]
-        rds[Rds\n3306]
-        msk[Msk\n9096]
-        opensearch[Opensearch\n443]
-        elasti_cache[Elasti Cache\n11211,6379]
-        efs_mount_endpoint[Efs Mount Endpoint\n2049]
-        dms[Dms\n3306]
+        rds[Rds<br>3306]
+        msk[Msk<br>9096]
+        opensearch[Opensearch<br>443]
+        elasti_cache[Elasti Cache<br>11211,6379]
+        efs_mount_endpoint[Efs Mount Endpoint<br>2049]
+        dms[Dms<br>3306]
     end
 
     %% Paas Subnet
     subgraph paas_subnet [Paas Subnet]
-        istio_nodes[Istio Nodes\n11211,2049,30000-40000,3306,443,6379,9096]
-        internet_istio_nodes[Internet Istio Nodes\n11211,2049,30000-40000,3306,443,6379,9096]
-        worker_nodes[Worker Nodes\n11211,2049,3306,443,6379,9096]
-        cluster_endpoint[Cluster Endpoint\n443]
+        istio_nodes[Istio Nodes<br>11211,2049,30000-40000,3306,443,6379,9096]
+        internet_istio_nodes[Internet Istio Nodes<br>11211,2049,30000-40000,3306,443,6379,9096]
+        worker_nodes[Worker Nodes<br>11211,2049,3306,443,6379,9096]
+        cluster_endpoint[Cluster Endpoint<br>443]
     end
 
     %% Lambda Subnet
     subgraph lambda_subnet [Lambda Subnet]
-        app1_lambda[App1 Lambda\n443]
-        app2_lambda[App2 Lambda\n3306]
+        app1_lambda[App1 Lambda<br>443]
+        app2_lambda[App2 Lambda<br>3306]
     end
 
     %% Nlb Subnet
     subgraph nlb_subnet [Nlb Subnet]
-        nlb[Nlb\n30000-40000,443]
+        nlb[Nlb<br>30000-40000,443]
     end
 
     %% Internet Nlb Subnet
     subgraph internet_nlb_subnet [Internet Nlb Subnet]
-        internet_nlb[Internet Nlb\n30000-40000,443]
+        internet_nlb[Internet Nlb<br>30000-40000,443]
     end
 
     %% Connections

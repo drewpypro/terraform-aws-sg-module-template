@@ -40,7 +40,7 @@ def generate_mermaid_diagram(df):
         for component in components:
             # Get ports for this component
             ports = get_component_ports(df, component)
-            port_str = f"\\n{ports}" if ports else ""
+            port_str = f"<br>{ports}" if ports else ""
             diagram.append(f"        {component}[{component.replace('_', ' ').title()}{port_str}]")
         diagram.append("    end\n")
 
