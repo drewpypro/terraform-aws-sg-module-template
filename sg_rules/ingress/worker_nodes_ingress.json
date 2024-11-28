@@ -1,0 +1,20 @@
+[
+    {
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "app1_lambda"
+    },
+    {
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes"
+    }
+]
