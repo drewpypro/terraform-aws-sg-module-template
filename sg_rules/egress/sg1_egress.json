@@ -1,0 +1,11 @@
+[
+    {
+        "name": "sg1",
+        "security_group_id": "sg1",
+        "direction": "egress",
+        "from_port": "6969",
+        "to_port": "6969",
+        "ip_protocol": "udp",
+        "referenced_security_group_id": "worker_nodes"
+    }
+]
