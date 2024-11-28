@@ -1,49 +1,26 @@
 import csv
 import json
-from collections import defaultdict
-from typing import Dict, List, Any
-import os
 
-def process_csv_to_json(csv_file: str) -> None:
-    """
-    Process CSV file and generate JSON files for each security group.
-    """
-    # Initialize data structure to hold rules by security group
-    security_groups: Dict[str, Dict[str, Any]] = defaultdict(
-        lambda: {"rules": defaultdict(list)}
-    )
-    
-    # Read CSV file
-    with open(csv_file, 'r') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            name = row['name']
-            
-            # Create rule object, excluding null values
-            rule = {}
-            for key, value in row.items():
-                if value not in ('null', '', None):
-                    rule[key] = value
-            
-            # Determine direction and add to appropriate list
-            direction = rule.pop('direction', None)
-            if direction:
-                security_groups[name]['rules'][direction].append(rule)
-            
-            # Store security_group_id if present
-            if 'security_group_id' in rule:
-                security_groups[name]['security_group_id'] = rule['security_group_id']
-                
-            # Store self_rule if present
-            if 'self_rule' in rule:
-                security_groups[name]['self_rule'] = rule['self_rule']
+# Read the CSV and convert each rule to a JSON file
+def csv_to_json(csv_filepath):
+    with open(csv_filepath, mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        rules_by_group = {}
 
-    # Generate JSON files
-    os.makedirs('rulesets', exist_ok=True)
-    for name, data in security_groups.items():
-        filename = f"rulesets/{name}.json"
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=2)
+        # Group rules by their security group name
+        for row in csv_reader:
+            group_name = row['name']
+            if group_name not in rules_by_group:
+                rules_by_group[group_name] = []
+
+            # Remove fields with 'null' values for Terraform compatibility
+            filtered_row = {key: value for key, value in row.items() if value.lower() != 'null'}
+            rules_by_group[group_name].append(filtered_row)
+
+        # Write each group's rules to a separate JSON file
+        for group_name, rules in rules_by_group.items():
+            with open(f"{group_name}.json", mode='w') as json_file:
+                json.dump(rules, json_file, indent=4)
 
 if __name__ == "__main__":
-    process_csv_to_json("firewall_rules.csv")
+    csv_to_json('referenced_sg_rules.csv')

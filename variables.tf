@@ -64,9 +64,3 @@ variable "external_endpoints" {
   type        = list(string)
   default     = ["69.69.69.69/32", "70.70.70.70/32"]
 }
-
-variable "security_group_rules" {
-  description = "Path to the JSON file containing security group rules"
-  type        = string
-  default     = "security_group_rules.json"
-}

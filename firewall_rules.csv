@@ -1,6 +1,0 @@
-name,security_group_id,self_rule,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6
-app1-lambda,app1_lambda,null,egress,443,443,tcp,internet_istio_nodes,null,null
-app1-lambda,app1_lambda,null,egress,443,443,tcp,null,var.external_endpoint,null
-internet-istio-nodes,internet_istio_nodes,yes,ingress,null,null,-1,null,null,null
-internet-istio-nodes,internet_istio_nodes,yes,egress,null,null,-1,null,null,null
-internet-istio-nodes,internet_istio_nodes,null,ingress,443,443,tcp,app1_lambda,null,null

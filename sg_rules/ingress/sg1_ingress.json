@@ -1,0 +1,12 @@
+[
+    {
+      "name": "sg1",
+      "security_group_id": "sg1",
+      "direction": "ingress",
+      "from_port": "6969",
+      "to_port": "6969",
+      "ip_protocol": "tcp",
+      "referenced_security_group_id": "sg2"
+    }
+  ]
+  
