@@ -2,16 +2,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-data "local_file" "ingress_files" {
-  for_each = fileset(path.module, "sg_rules/ingress/*.json")
-  filename = each.value
-}
-
-data "local_file" "egress_files" {
-  for_each = fileset(path.module, "sg_rules/egress/*.json")
-  filename = each.value
-}
-
 locals {
   # Define security groups as a map
   security_groups = {
@@ -31,13 +21,17 @@ locals {
     "worker_nodes"         = "worker_nodes"
   }
 
+  # Get all ingress rule files and decode them
+  ingress_files = fileset(path.module, "./sg_rules/ingress/*.json")
   ingress_rules = flatten([
-    for file in data.local_file.ingress_files : jsondecode(file.content)
-  ])
-  egress_rules = flatten([
-    for file in data.local_file.egress_files : jsondecode(file.content)
+    for file in local.ingress_files : jsondecode(file("${path.module}/${file}"))
   ])
 
+  # Get all egress rule files and decode them
+  egress_files = fileset(path.module, "./sg_rules/egress/*.json")
+  egress_rules = flatten([
+    for file in local.egress_files : jsondecode(file("${path.module}/${file}"))
+  ])
 }
 
 # Create security groups
@@ -62,7 +56,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress" {
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[lookup(local.security_groups, each.value.referenced_security_group_id)].id : null
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
 
   depends_on = [aws_security_group.sgs]
 }
@@ -75,7 +69,7 @@ resource "aws_vpc_security_group_egress_rule" "egress" {
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[lookup(local.security_groups, each.value.referenced_security_group_id)].id : null
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
 
   depends_on = [aws_security_group.sgs]
 }
