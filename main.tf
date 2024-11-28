@@ -34,8 +34,6 @@ locals {
   ])
 }
 
-}
-
 # Create security groups
 resource "aws_security_group" "sgs" {
   for_each = local.security_groups
