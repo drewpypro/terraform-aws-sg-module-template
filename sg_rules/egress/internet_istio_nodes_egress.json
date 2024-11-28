@@ -12,15 +12,6 @@
         "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "egress",
-        "from_port": "2049",
-        "to_port": "2049",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "efs_mount_endpoint"
-    },
-    {
-        "name": "internet_istio_nodes",
-        "security_group_id": "internet_istio_nodes",
-        "direction": "egress",
         "from_port": "11211",
         "to_port": "11211",
         "ip_protocol": "tcp",
