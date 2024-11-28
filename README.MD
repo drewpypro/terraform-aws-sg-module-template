@@ -13,8 +13,8 @@
 ![Success](./img/successful_test1.png)
 
 # Overview
-- Generate AWS security-group configuration in a single module using json files converted from traditional csv dataflow templates. 
-- Python manages state of json files used for Terraform to build rules. 
+- Generate AWS security-group configuration in a single module using json files converted from traditional csv dataflow templates
+- Python manages state of json files used for Terraform to build rules
 
 # Project Structure
 ```
@@ -32,29 +32,27 @@ terraform-aws-sg-module-template/
 └── README.md
 ```
 
-
 # Usage
 - Define firewall rules in firewall_rules.csv
 - Run rule_conversion.py (for first time or after making changes to firewall_rules.csv)
 - Terraform apply
 
 ## Prerequisites
-    ```
-    AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY
-    BUCKET_ACCESS_KEY_ID
-    BUCKET_ENDPOINT
-    BUCKET_KEY
-    BUCKET_NAME
-    BUCKET_SECRET_ACCESS_KEY
-    ```
+```
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+BUCKET_ACCESS_KEY_ID
+BUCKET_ENDPOINT
+BUCKET_KEY
+BUCKET_NAME
+BUCKET_SECRET_ACCESS_KEY
+```
 
 # TO DO
 
 - Incorporate per service [vpce-sg-module](https://github.com/drewpypro/aws-vpce-policy-tester/tree/main/modulev2)
-- Incorporate cidr_ipv4 and cidr_ipv6 leveraging list variables. 
+- Incorporate cidr_ipv4 and cidr_ipv6 leveraging list variables
 - Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
-
 
 # Test Cases
 
