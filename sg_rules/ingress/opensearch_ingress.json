@@ -1,0 +1,29 @@
+[
+    {
+        "name": "opensearch",
+        "security_group_id": "opensearch",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_istio_nodes"
+    },
+    {
+        "name": "opensearch",
+        "security_group_id": "opensearch",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes"
+    },
+    {
+        "name": "opensearch",
+        "security_group_id": "opensearch",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes"
+    }
+]

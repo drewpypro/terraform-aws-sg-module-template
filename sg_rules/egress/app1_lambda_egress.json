@@ -1,0 +1,29 @@
+[
+    {
+        "name": "app1_lambda",
+        "security_group_id": "app1_lambda",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_istio_nodes"
+    },
+    {
+        "name": "app1_lambda",
+        "security_group_id": "app1_lambda",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes"
+    },
+    {
+        "name": "app1_lambda",
+        "security_group_id": "app1_lambda",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes"
+    }
+]

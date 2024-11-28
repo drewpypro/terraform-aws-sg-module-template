@@ -1,0 +1,38 @@
+[
+    {
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "app1_lambda"
+    },
+    {
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_nlb"
+    },
+    {
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "ingress",
+        "from_port": "30000",
+        "to_port": "40000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_nlb"
+    },
+    {
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes"
+    }
+]

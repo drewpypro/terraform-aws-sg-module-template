@@ -3,6 +3,24 @@ provider "aws" {
 }
 
 locals {
+  # Define security groups as a map
+  security_groups = {
+    "app1_lambda"          = "app1_lambda"
+    "app2_lambda"          = "app2_lambda"
+    "cluster_endpoint"     = "cluster_endpoint"
+    "dms"                  = "dms"
+    "efs_mount_endpoint"   = "efs_mount_endpoint"
+    "elasti_cache"         = "elasti_cache"
+    "internet_istio_nodes" = "internet_istio_nodes"
+    "internet_nlb"         = "internet_nlb"
+    "istio_nodes"          = "istio_nodes"
+    "msk"                  = "msk"
+    "nlb"                  = "nlb"
+    "opensearch"           = "opensearch"
+    "rds"                  = "rds"
+    "worker_nodes"         = "worker_nodes"
+  }
+
   # Load ingress rules from JSON files
   ingress_rule_files = fileset(path.module, "sg_rules/ingress/*.json")
   ingress_rules = flatten([
@@ -14,17 +32,11 @@ locals {
   egress_rules = flatten([
     for file in local.egress_rule_files : jsondecode(file("${path.module}/${file}"))
   ])
-
-  # Collect all unique security group names from ingress and egress rules
-  security_group_names = distinct(concat(
-    [for rule in local.ingress_rules : rule.name],
-    [for rule in local.egress_rules : rule.name]
-  ))
 }
 
 # Create security groups
 resource "aws_security_group" "sgs" {
-  for_each = toset(local.security_group_names)
+  for_each = local.security_groups
 
   name        = each.value
   description = "Managed by Terraform"
@@ -32,28 +44,32 @@ resource "aws_security_group" "sgs" {
 
   tags = {
     Name = each.value
-      }
+  }
 }
 
 
 # Create ingress rules
 resource "aws_vpc_security_group_ingress_rule" "ingress" {
-  for_each = { for rule in local.ingress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-ingress" => rule }
+  for_each = { for i, rule in local.ingress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-ingress-${i}" => rule }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[lookup(local.security_groups, each.value.referenced_security_group_id)].id : null
+
+  depends_on = [aws_security_group.sgs]
 }
 
 # Create egress rules
 resource "aws_vpc_security_group_egress_rule" "egress" {
-  for_each = { for rule in local.egress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-egress" => rule }
+  for_each = { for i, rule in local.egress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-egress-${i}" => rule }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[lookup(local.security_groups, each.value.referenced_security_group_id)].id : null
+
+  depends_on = [aws_security_group.sgs]
 }
