@@ -1,49 +1,99 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
+# Security Groups and Rules Configuration
 locals {
-  security_groups_path = "${path.module}/security-groups"
+  security_group_configs = {
+    for filename in fileset(path.module, "rulesets/*.json") :
+    basename(trimsuffix(filename, ".json")) => jsondecode(file(filename))
+  }
 }
 
-# Read JSON files for each security group
-data "local_file" "security_groups" {
-  for_each = fileset(local.security_groups_path, "*.json")
-
-  filename = "${local.security_groups_path}/${each.value}"
-}
-
-# Create security groups and rules based on JSON files
-resource "aws_security_group" "sg" {
-  for_each = data.local_file.security_groups
+# Create Security Groups
+resource "aws_security_group" "this" {
+  for_each = local.security_group_configs
 
   name        = each.key
   description = "Security group for ${each.key}"
   vpc_id      = module.vpc.vpc_id
 
+  # Handle self-referential rules if self_rule is true
   dynamic "ingress" {
-    for_each = [for rule in jsondecode(each.value.content) : rule if rule.direction == "ingress"]
+    for_each = try(each.value.self_rule, "") == "yes" ? [1] : []
     content {
-      from_port                = ingress.value.from_port
-      to_port                  = ingress.value.to_port
-      protocol                 = ingress.value.ip_protocol
-      cidr_blocks              = ingress.value.cidr_ipv4 != null ? [ingress.value.cidr_ipv4] : []
-      ipv6_cidr_blocks         = ingress.value.cidr_ipv6 != null ? [ingress.value.cidr_ipv6] : []
-      security_groups          = ingress.value.referenced_security_group_id != null ? [ingress.value.referenced_security_group_id] : []
-      self                     = ingress.value.self_rule
+      from_port = 0
+      to_port   = 0
+      protocol  = "-1"
+      self      = true
     }
   }
 
   dynamic "egress" {
-    for_each = [for rule in jsondecode(each.value.content) : rule if rule.direction == "egress"]
+    for_each = try(each.value.self_rule, "") == "yes" ? [1] : []
     content {
-      from_port                = egress.value.from_port
-      to_port                  = egress.value.to_port
-      protocol                 = egress.value.ip_protocol
-      cidr_blocks              = egress.value.cidr_ipv4 != null ? [egress.value.cidr_ipv4] : []
-      ipv6_cidr_blocks         = egress.value.cidr_ipv6 != null ? [egress.value.cidr_ipv6] : []
-      security_groups          = egress.value.referenced_security_group_id != null ? [egress.value.referenced_security_group_id] : []
-      self                     = egress.value.self_rule
+      from_port = 0
+      to_port   = 0
+      protocol  = "-1"
+      self      = true
     }
   }
+
+  tags = {
+    Name = each.key
+  }
+}
+
+# Create Ingress Rules
+resource "aws_vpc_security_group_ingress_rule" "this" {
+  for_each = {
+    for entry in flatten([
+      for sg_name, sg_config in local.security_group_configs :
+      [
+        for rule in try(sg_config.rules.ingress, []) : {
+          sg_name     = sg_name
+          rule        = rule
+          unique_key  = "${sg_name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}"
+        }
+      ]
+    ]) : entry.unique_key => entry
+  }
+
+  security_group_id = aws_security_group.this[each.value.sg_name].id
+  
+  from_port   = try(each.value.rule.from_port, null)
+  to_port     = try(each.value.rule.to_port, null)
+  ip_protocol = each.value.rule.ip_protocol
+  
+  cidr_ipv4              = try(each.value.rule.cidr_ipv4, null)
+  cidr_ipv6              = try(each.value.rule.cidr_ipv6, null)
+  referenced_security_group_id = try(
+    aws_security_group.this[each.value.rule.referenced_security_group_id].id,
+    null
+  )
+}
+
+# Create Egress Rules
+resource "aws_vpc_security_group_egress_rule" "this" {
+  for_each = {
+    for entry in flatten([
+      for sg_name, sg_config in local.security_group_configs :
+      [
+        for rule in try(sg_config.rules.egress, []) : {
+          sg_name     = sg_name
+          rule        = rule
+          unique_key  = "${sg_name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}"
+        }
+      ]
+    ]) : entry.unique_key => entry
+  }
+
+  security_group_id = aws_security_group.this[each.value.sg_name].id
+  
+  from_port   = try(each.value.rule.from_port, null)
+  to_port     = try(each.value.rule.to_port, null)
+  ip_protocol = each.value.rule.ip_protocol
+  
+  cidr_ipv4              = try(each.value.rule.cidr_ipv4, null)
+  cidr_ipv6              = try(each.value.rule.cidr_ipv6, null)
+  referenced_security_group_id = try(
+    aws_security_group.this[each.value.rule.referenced_security_group_id].id,
+    null
+  )
 }

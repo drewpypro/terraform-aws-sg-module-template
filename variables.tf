@@ -58,3 +58,15 @@ variable "private_networks" {
   type        = list(string)
   default     = ["10.10.69.0/24", "10.69.69.0/24"]
 }
+
+variable "external_endpoints" {
+  description = "CIDR blocks for private networks"
+  type        = list(string)
+  default     = ["69.69.69.69/32", "70.70.70.70/32"]
+}
+
+variable "security_group_rules" {
+  description = "Path to the JSON file containing security group rules"
+  type        = string
+  default     = "security_group_rules.json"
+}

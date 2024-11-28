@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "egress": [
+      {
+        "name": "app1-lambda",
+        "security_group_id": "app1_lambda",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_istio_nodes"
+      },
+      {
+        "name": "app1-lambda",
+        "security_group_id": "app1_lambda",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "cidr_ipv4": "var.external_endpoint"
+      }
+    ]
+  },
+  "security_group_id": "app1_lambda"
+}
