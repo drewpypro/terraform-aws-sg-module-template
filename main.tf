@@ -89,7 +89,6 @@ resource "aws_security_group" "sgs" {
         self        = true
         description = rule.business_justification
       }
-      if rule.self_rule == "yes" && rule.direction == "ingress"
     ]
 
   # Add self egress rules (self_rule == "yes" and direction == "egress")
@@ -102,7 +101,6 @@ resource "aws_security_group" "sgs" {
       self        = true
       description = rule.business_justification
     }
-    if rule.self_rule == "yes" && rule.direction == "egress"
   ]
 }
 
