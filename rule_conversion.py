@@ -86,10 +86,11 @@ with open(input_csv, "r") as csvfile:
                 rules["self_ingress"][sg_name].append({
                     "RequestID": row["RequestID"],
                     "name": row["name"],
+                    "self_rule": row["self_rule"],
+                    "direction": row["direction"],
                     "from_port": row["from_port"],
                     "to_port": row["to_port"],
                     "protocol": row["ip_protocol"],
-                    "self": True,
                     "business_justification": row.get("business_justification", ""),
                 })
             elif direction == "egress":
@@ -98,10 +99,11 @@ with open(input_csv, "r") as csvfile:
                 rules["self_egress"][sg_name].append({
                     "RequestID": row["RequestID"],
                     "name": row["name"],
+                    "self_rule": row["self_rule"],
+                    "direction": row["direction"],
                     "from_port": row["from_port"],
                     "to_port": row["to_port"],
                     "protocol": row["ip_protocol"],
-                    "self": True,
                     "business_justification": row.get("business_justification", ""),
                 })
         else:
