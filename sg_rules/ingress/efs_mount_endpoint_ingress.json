@@ -6,7 +6,9 @@
         "from_port": "2049",
         "to_port": "2049",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     },
     {
         "name": "efs_mount_endpoint",
@@ -15,6 +17,8 @@
         "from_port": "2049",
         "to_port": "2049",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     }
 ]

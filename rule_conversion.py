@@ -13,7 +13,7 @@ os.makedirs(ingress_dir, exist_ok=True)
 os.makedirs(egress_dir, exist_ok=True)
 
 # Input CSV file
-input_csv = "firewall_rules.csv"
+input_csv = "firewall_rulesv2.csv"
 
 # Data structure to hold rules categorized by direction and security group
 rules = {"ingress": {}, "egress": {}}
@@ -31,6 +31,37 @@ def read_existing_json(file_path):
 # Helper function to compare and determine if updates are needed
 def rules_changed(existing_rules, new_rules):
     return existing_rules != new_rules
+
+# Helper function to detect duplicates in CSV
+def detect_duplicates(file_path):
+    seen = set()
+    duplicates = []
+    with open(file_path, "r") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            rule_tuple = (
+                row["name"],
+                row["security_group_id"],
+                row["direction"],
+                row["from_port"],
+                row["to_port"],
+                row["ip_protocol"],
+                row["referenced_security_group_id"],
+                row["cidr_ipv4"],
+            )
+            if rule_tuple in seen:
+                duplicates.append(row)
+            else:
+                seen.add(rule_tuple)
+    return duplicates
+
+# Check for duplicates and exit if any are found
+duplicates = detect_duplicates(input_csv)
+if duplicates:
+    print("Duplicate rules detected in the CSV file:")
+    for dup in duplicates:
+        print(dup)
+    exit(1)
 
 # Read the CSV file and organize data
 with open(input_csv, "r") as csvfile:
@@ -51,7 +82,9 @@ with open(input_csv, "r") as csvfile:
             "from_port": row["from_port"],
             "to_port": row["to_port"],
             "ip_protocol": row["ip_protocol"],
-            "referenced_security_group_id": row["referenced_security_group_id"]
+            "referenced_security_group_id": row["referenced_security_group_id"] or None,
+            "cidr_ipv4": row["cidr_ipv4"] or None,
+            "business_justification": row.get("business_justification", ""),
         })
 
 # Write JSON files for each security group and direction
@@ -84,11 +117,17 @@ if changes_detected:
     def get_subnet_mapping():
         """Define which components belong to which subnet."""
         return {
-            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms',],
+            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms'],
             'paas_subnet': ['istio_nodes', 'internet_istio_nodes', 'worker_nodes', 'cluster_endpoint'],
             'lambda_subnet': ['app1_lambda', 'app2_lambda'],
             'nlb_subnet': ['nlb'],
-            'internet_nlb_subnet': ['internet_nlb']
+            'internet_nlb_subnet': ['internet_nlb'],
+            'vpce_subnet': [
+                'vpce_autoscaling', 'vpce_dms', 'vpce_ec2', 'vpce_ec2messages', 'vpce_efs', 'vpce_eks',
+                'vpce_elasticache', 'vpce_elasticloadbalancing', 'vpce_kms', 'vpce_lambda', 'vpce_logs',
+                'vpce_monitoring', 'vpce_rds', 'vpce_s3', 'vpce_sns', 'vpce_sqs', 'vpce_sts', 'vpce_ssm',
+                'vpce_ssmmessages', 'vpce_sts'
+            ],
         }
 
     def generate_mermaid_diagram(df):
@@ -106,12 +145,10 @@ if changes_detected:
         ]
 
         for subnet_name, components in subnet_mapping.items():
-            diagram.append(f"    %% {subnet_name.replace('_', ' ').title()}")
+            diagram.append(f"    %% {subnet_name.replace('_', ' ').title()} Subnet")
             diagram.append(f"    subgraph {subnet_name} [{subnet_name.replace('_', ' ').title()}]")
             for component in components:
-                ports = get_component_ports(df, component)
-                port_str = f"<br>{ports}" if ports else ""
-                diagram.append(f"        {component}[{component.replace('_', ' ').title()}{port_str}]")
+                diagram.append(f"        {component}[{component.replace('_', ' ').title()}]")
             diagram.append("    end\n")
 
         diagram.append("    %% Connections")
@@ -123,24 +160,10 @@ if changes_detected:
         diagram.append("    class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes")
         diagram.append("    class rds,msk,opensearch,elasti_cache data")
         diagram.append("    class cluster_endpoint,efs_mount_endpoint,dms infra")
+        diagram.append("    class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra")
         diagram.append("```")
 
         return "\n".join(diagram)
-
-    def get_component_ports(df, component):
-        ports = set()
-        component_rules = df[
-            (df['security_group_id'] == component) |
-            (df['referenced_security_group_id'] == component)
-        ]
-
-        for _, rule in component_rules.iterrows():
-            if rule['from_port'] == rule['to_port']:
-                ports.add(str(rule['from_port']))
-            else:
-                ports.add(f"{rule['from_port']}-{rule['to_port']}")
-
-        return ",".join(sorted(ports)) if ports else ""
 
     def generate_connections(df):
         connections = []

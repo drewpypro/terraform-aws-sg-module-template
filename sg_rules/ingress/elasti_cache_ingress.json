@@ -6,7 +6,9 @@
         "from_port": "11211",
         "to_port": "11211",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
         "name": "elasti_cache",
@@ -15,7 +17,9 @@
         "from_port": "6379",
         "to_port": "6379",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
         "name": "elasti_cache",
@@ -24,7 +28,9 @@
         "from_port": "11211",
         "to_port": "11211",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
         "name": "elasti_cache",
@@ -33,6 +39,8 @@
         "from_port": "6379",
         "to_port": "6379",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     }
 ]

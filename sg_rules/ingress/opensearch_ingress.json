@@ -6,7 +6,9 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes"
+        "referenced_security_group_id": "internet_istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     },
     {
         "name": "opensearch",
@@ -15,7 +17,9 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     },
     {
         "name": "opensearch",
@@ -24,6 +28,8 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     }
 ]

@@ -6,7 +6,9 @@
         "from_port": "9096",
         "to_port": "9096",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes"
+        "referenced_security_group_id": "internet_istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
         "name": "msk",
@@ -15,7 +17,9 @@
         "from_port": "9096",
         "to_port": "9096",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
         "name": "msk",
@@ -24,6 +28,8 @@
         "from_port": "9096",
         "to_port": "9096",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes needs MSK access for messaging functions"
     }
 ]

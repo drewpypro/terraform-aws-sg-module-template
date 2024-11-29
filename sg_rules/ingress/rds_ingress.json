@@ -6,7 +6,9 @@
         "from_port": "3306",
         "to_port": "3306",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes"
+        "referenced_security_group_id": "internet_istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require RDS connectivity for database operations. "
     },
     {
         "name": "rds",
@@ -15,7 +17,9 @@
         "from_port": "3306",
         "to_port": "3306",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require RDS connectivity for database operations. "
     },
     {
         "name": "rds",
@@ -24,15 +28,8 @@
         "from_port": "3306",
         "to_port": "3306",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
-    },
-    {
-        "name": "rds",
-        "security_group_id": "rds",
-        "direction": "ingress",
-        "from_port": "1433",
-        "to_port": "1433",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require RDS connectivity for database operations. "
     }
 ]
