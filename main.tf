@@ -57,13 +57,13 @@ locals {
   # Get all self_ingress rule files and decode them
   self_ingress_files = fileset(path.module, "./sg_rules/self_ingress/*.json")
   self_ingress_rules = flatten([
-    for file in local.ingress_files : jsondecode(file("${path.module}/${file}"))
+    for file in local.self_ingress_files : jsondecode(file("${path.module}/${file}"))
   ])
 
   # Get all self_egress rule files and decode them
   self_egress_files = fileset(path.module, "./sg_rules/self_egress/*.json")
   self_egress_rules = flatten([
-    for file in local.egress_files : jsondecode(file("${path.module}/${file}"))
+    for file in local.self_egress_files : jsondecode(file("${path.module}/${file}"))
   ])
   
 }
