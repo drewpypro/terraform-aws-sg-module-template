@@ -13,7 +13,7 @@ os.makedirs(ingress_dir, exist_ok=True)
 os.makedirs(egress_dir, exist_ok=True)
 
 # Input CSV file
-input_csv = "firewall_rulesv2.csv"
+input_csv = "firewall_rules.csv"
 
 # Data structure to hold rules categorized by direction and security group
 rules = {"ingress": {}, "egress": {}}

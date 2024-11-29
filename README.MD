@@ -58,14 +58,20 @@ BUCKET_SECRET_ACCESS_KEY
 # Test Cases
 
 ## Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074651948/job/33673022659) 
-
+ 
 ## Adding new rules to existing sg
-  - appended these lines to firewall_rules.csv
+<details>
+  <summary>appended these lines to firewall_rules.csv</summary>
     ```
-    worker_nodes,worker_nodes,egress,1433,1433,tcp,rds
-    rds,rds,ingress,1433,1433,tcp,worker_nodes
+    19493999,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
+    19493999,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
+    19493999,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality.
+    19495659,worker_nodes,worker_nodes,null,egress,1433,1433,tcp,rds,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
+    19495659,rds,rds,null,ingress,1433,1433,tcp,worker_nodes,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
     ```
-  - reran python script to update rule state
+</details>
+<details>
+  <summary>reran python script to update rule state</summary>
     ```
     python3 rule_conversion.py 
     No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
@@ -88,6 +94,7 @@ BUCKET_SECRET_ACCESS_KEY
     JSON files have been synchronized in ./sg_rules
     Successfully updated README.md with new security group diagram!
     ```
+</details>
   - Submitted [PR#14](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/14)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074673918/job/33673086770)
 
