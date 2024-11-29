@@ -70,15 +70,15 @@ resource "aws_security_group" "sgs" {
   # Add self ingress rules (self_rule == "yes" and direction == "ingress")
   ingress = [
     for rule in local.ingress_rules :
-    {
-      from_port   = tonumber(rule.from_port)
-      to_port     = tonumber(rule.to_port)
-      protocol    = rule.ip_protocol
-      self        = true
-      description = rule.business_justification
-    }
-    if rule.self_rule == "yes" && rule.direction == "ingress" && rule.name == each.value
-  ]
+      {
+        from_port   = tonumber(rule.from_port)
+        to_port     = tonumber(rule.to_port)
+        protocol    = rule.ip_protocol
+        self        = true
+        description = rule.business_justification
+      }
+      if rule.self_rule == "yes" && rule.direction == "ingress" && rule.name == each.value
+    ]
 
   # Add self egress rules (self_rule == "yes" and direction == "egress")
   egress = [
