@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "opensearch",
         "security_group_id": "opensearch",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     },
     {
+        "RequestID": "19493892",
         "name": "opensearch",
         "security_group_id": "opensearch",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -24,8 +28,10 @@
         "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     },
     {
+        "RequestID": "19493892",
         "name": "opensearch",
         "security_group_id": "opensearch",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

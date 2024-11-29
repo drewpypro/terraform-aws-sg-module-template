@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "efs_mount_endpoint",
         "security_group_id": "efs_mount_endpoint",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "2049",
         "to_port": "2049",
@@ -12,8 +14,10 @@
         "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     },
     {
+        "RequestID": "19493892",
         "name": "efs_mount_endpoint",
         "security_group_id": "efs_mount_endpoint",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "2049",
         "to_port": "2049",

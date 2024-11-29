@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "vpce_eks",
         "security_group_id": "vpce_eks",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "vpce_eks",
         "security_group_id": "vpce_eks",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -24,8 +28,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "vpce_eks",
         "security_group_id": "vpce_eks",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -36,8 +42,10 @@
         "business_justification": "Allow private networks access to internal AWS APIs"
     },
     {
+        "RequestID": "19493892",
         "name": "vpce_eks",
         "security_group_id": "vpce_eks",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -48,8 +56,10 @@
         "business_justification": "Allow private networks access to internal AWS APIs"
     },
     {
+        "RequestID": "19493892",
         "name": "vpce_eks",
         "security_group_id": "vpce_eks",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

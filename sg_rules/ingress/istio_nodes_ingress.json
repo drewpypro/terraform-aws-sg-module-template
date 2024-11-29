@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "app1-lambda needs k8s node access to perform app1 function"
     },
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -24,8 +28,10 @@
         "business_justification": "Allow health checks from nlb to instance group istio node backends. "
     },
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "30000",
         "to_port": "40000",
@@ -36,8 +42,10 @@
         "business_justification": "Allow health checks from nlb to instance group istio node backends. "
     },
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -48,8 +56,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "yes",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -60,8 +70,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "yes",
         "direction": "ingress",
         "from_port": "10250",
         "to_port": "10250",
@@ -72,8 +84,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "yes",
         "direction": "ingress",
         "from_port": "53",
         "to_port": "53",
@@ -84,8 +98,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
+        "self_rule": "yes",
         "direction": "ingress",
         "from_port": "53",
         "to_port": "53",

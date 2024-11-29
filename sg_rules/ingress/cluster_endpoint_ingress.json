@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
     },
     {
+        "RequestID": "19493892",
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -24,8 +28,10 @@
         "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
     },
     {
+        "RequestID": "19493892",
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -36,8 +42,10 @@
         "business_justification": "terraform needs access to cluster endpoint for eks control plane"
     },
     {
+        "RequestID": "19493892",
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

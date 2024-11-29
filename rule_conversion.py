@@ -40,8 +40,10 @@ def detect_duplicates(file_path):
         reader = csv.DictReader(csvfile)
         for row in reader:
             rule_tuple = (
+                row["RequestID"],
                 row["name"],
                 row["security_group_id"],
+                row["self_rule"],
                 row["direction"],
                 row["from_port"],
                 row["to_port"],
@@ -77,8 +79,10 @@ with open(input_csv, "r") as csvfile:
 
         # Append the rule
         rules[direction][sg_name].append({
+            "RequestID": row["RequestID"],
             "name": row["name"],
             "security_group_id": row["security_group_id"],
+            "self_rule": row["self_rule"],
             "direction": row["direction"],
             "from_port": row["from_port"],
             "to_port": row["to_port"],

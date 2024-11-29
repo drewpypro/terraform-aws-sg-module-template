@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "11211",
         "to_port": "11211",
@@ -12,8 +14,10 @@
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
+        "RequestID": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "6379",
         "to_port": "6379",
@@ -24,8 +28,10 @@
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
+        "RequestID": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "11211",
         "to_port": "11211",
@@ -36,8 +42,10 @@
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
+        "RequestID": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "6379",
         "to_port": "6379",

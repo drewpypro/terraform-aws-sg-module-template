@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "2049",
         "to_port": "2049",
@@ -24,8 +28,10 @@
         "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "11211",
         "to_port": "11211",
@@ -36,8 +42,10 @@
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "6379",
         "to_port": "6379",
@@ -48,8 +56,10 @@
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -60,8 +70,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "9096",
         "to_port": "9096",
@@ -72,8 +84,10 @@
         "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -84,8 +98,10 @@
         "business_justification": "k8s nodes require connectivity to external v6 endpoints for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -96,8 +112,10 @@
         "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "3306",
         "to_port": "3306",
@@ -108,8 +126,10 @@
         "business_justification": "k8s nodes require RDS connectivity for database operations. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -120,8 +140,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -132,8 +154,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -144,8 +168,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -156,8 +182,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -168,8 +196,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -180,8 +210,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -192,8 +224,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -204,8 +238,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -216,8 +252,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -228,8 +266,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -240,8 +280,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -252,8 +294,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -264,8 +308,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -276,8 +322,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -288,8 +336,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -300,8 +350,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -312,8 +364,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -324,8 +378,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -336,8 +392,10 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "yes",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -348,8 +406,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "yes",
         "direction": "egress",
         "from_port": "10250",
         "to_port": "10250",
@@ -360,8 +420,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "yes",
         "direction": "egress",
         "from_port": "53",
         "to_port": "53",
@@ -372,8 +434,10 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
+        "self_rule": "yes",
         "direction": "egress",
         "from_port": "53",
         "to_port": "53",

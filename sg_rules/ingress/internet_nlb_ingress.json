@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -24,8 +28,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -36,8 +42,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -48,8 +56,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -60,8 +70,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -72,8 +84,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -84,8 +98,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -96,8 +112,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -108,8 +126,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -120,8 +140,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -132,8 +154,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -144,8 +168,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -156,8 +182,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -168,8 +196,10 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
+        "RequestID": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
