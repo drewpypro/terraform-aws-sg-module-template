@@ -88,6 +88,7 @@ resource "aws_security_group" "sgs" {
         protocol    = rule.protocol
         self        = true
         description = rule.business_justification
+        cidr_blocks = []
       }
     ]
 
@@ -100,6 +101,7 @@ resource "aws_security_group" "sgs" {
       protocol    = rule.protocol
       self        = true
       description = rule.business_justification
+      cidr_blocks = []
     }
   ]
 }
