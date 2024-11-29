@@ -170,8 +170,9 @@ BUCKET_SECRET_ACCESS_KEY
     Successfully updated README.md with new security group diagram!
     ```
 </details>
-  - Submitted [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
-  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074774216/job/33673381627)
+  - Submitted [PR#34](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/34)
+  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089495517/job/33714875496)
+      - [updatedsg](./img/successful_sg_add_test2.png)
 
 ## Removing SG 
   - Manually deleted ./sg_rules/egress/sg1_egress.json (need conversion script to delete files)
@@ -541,8 +542,6 @@ flowchart LR
     worker_nodes --> |443| nan
     worker_nodes --> |1433| rds
     rds --> |1433| worker_nodes
-    sg1 --> |445| worker_nodes
-    worker_nodes --> |445| sg1
 
     %% Apply styles
     class internet_nlb,nlb lb
