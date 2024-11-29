@@ -68,6 +68,14 @@ resource "aws_security_group" "sgs" {
   }
 }
 
+output "security_group_ids" {
+  value = {
+    for name, sg in aws_security_group.sgs :
+    name => sg.id
+  }
+  description = "Map of all security group names to their IDs"
+}
+
 # Create ingress rules for referenced_security_group_id
 resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
   for_each = {
