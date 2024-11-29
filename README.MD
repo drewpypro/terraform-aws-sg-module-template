@@ -175,21 +175,50 @@ BUCKET_SECRET_ACCESS_KEY
       - [updatedsg](./img/successful_sg_add_test2.png)
 
 ## Removing SG 
-  - Manually deleted ./sg_rules/egress/sg1_egress.json (need conversion script to delete files)
+  - Manually deleted ./sg_rules/ingress/sg1_ingress.json (need conversion script to delete files)
   - Removed sg1 from rule_conversion.py (mermaid section)
-  - Removed sg1 firewall rules from firewall_rules.csv
-  - Generated new rules and updated diagram
+<details>
+  <summary>- Removed sg1 firewall rules from firewall_rules.csv</summary>
+  ```
+    19545259,sg1,sg1,null,ingress,445,445,tcp,worker_nodes,null,null,k8s nodes require SMB connectivity to sg1 resources.
+    19545259,worker_nodes,worker_nodes,null,egress,445,445,tcp,sg1,null,null,k8s nodes require SMB connectivity to sg1 resources. 
+  ```
+</details>
+
+<details>
+  <summary>- Generated new rules and updated diagram</summary>
     ```
     python3 rule_conversion.py 
     No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
     No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
     No changes: ./sg_rules/ingress/elasti_cache_ingress.json
     No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
     No changes: ./sg_rules/ingress/istio_nodes_ingress.json
     No changes: ./sg_rules/ingress/msk_ingress.json
+    No changes: ./sg_rules/ingress/nlb_ingress.json
     No changes: ./sg_rules/ingress/opensearch_ingress.json
     No changes: ./sg_rules/ingress/rds_ingress.json
-    Updated: ./sg_rules/ingress/worker_nodes_ingress.json
+    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
+    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
     No changes: ./sg_rules/egress/app1_lambda_egress.json
     No changes: ./sg_rules/egress/app2_lambda_egress.json
     No changes: ./sg_rules/egress/dms_egress.json
@@ -197,12 +226,14 @@ BUCKET_SECRET_ACCESS_KEY
     No changes: ./sg_rules/egress/internet_nlb_egress.json
     No changes: ./sg_rules/egress/istio_nodes_egress.json
     No changes: ./sg_rules/egress/nlb_egress.json
-    No changes: ./sg_rules/egress/worker_nodes_egress.json
+    Updated: ./sg_rules/egress/worker_nodes_egress.json
     JSON files have been synchronized in ./sg_rules
     Successfully updated README.md with new security group diagram!
     ```
-  - Submitted [PR#17](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/17)
-  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074861670/job/33673634957)
+</detail>
+
+  - Submitted [PR#35](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/35)
+  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089546511/job/33715020403)
 
 ## Removing SG rules
   - Remove Bad rule in firewall_rules.csv
@@ -542,6 +573,8 @@ flowchart LR
     worker_nodes --> |443| nan
     worker_nodes --> |1433| rds
     rds --> |1433| worker_nodes
+    sg1 --> |445| worker_nodes
+    worker_nodes --> |445| sg1
 
     %% Apply styles
     class internet_nlb,nlb lb
