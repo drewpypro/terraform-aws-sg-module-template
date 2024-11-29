@@ -291,8 +291,8 @@ flowchart LR
     cluster_endpoint --> |443| istio_nodes
     cluster_endpoint --> |443| worker_nodes
     dms --> |3306| rds
-    dms --> |443| kms_vpce
-    dms --> |443| sts_vpce
+    dms --> |443| vpce_kms
+    dms --> |443| vpce_sts
     efs_mount_endpoint --> |2049| istio_nodes
     efs_mount_endpoint --> |2049| worker_nodes
     elasti_cache --> |11211| istio_nodes
