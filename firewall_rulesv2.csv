@@ -237,11 +237,3 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
