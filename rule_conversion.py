@@ -84,6 +84,8 @@ with open(input_csv, "r") as csvfile:
                 if sg_name not in rules["self_ingress"]:
                     rules["self_ingress"][sg_name] = []
                 rules["self_ingress"][sg_name].append({
+                    "RequestID": row["RequestID"],
+                    "name": row["name"],
                     "from_port": row["from_port"],
                     "to_port": row["to_port"],
                     "protocol": row["ip_protocol"],
@@ -94,6 +96,8 @@ with open(input_csv, "r") as csvfile:
                 if sg_name not in rules["self_egress"]:
                     rules["self_egress"][sg_name] = []
                 rules["self_egress"][sg_name].append({
+                    "RequestID": row["RequestID"],
+                    "name": row["name"],
                     "from_port": row["from_port"],
                     "to_port": row["to_port"],
                     "protocol": row["ip_protocol"],
