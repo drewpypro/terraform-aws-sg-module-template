@@ -1,29 +1,50 @@
 [
     {
+        "request_id": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "app1_lambda"
+        "referenced_security_group_id": "app1_lambda",
+        "cidr_ipv4": "null",
+        "business_justification": "app1-lambda needs k8s node access to perform app1 function"
     },
     {
+        "request_id": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "nlb"
+        "referenced_security_group_id": "nlb",
+        "cidr_ipv4": "null",
+        "business_justification": "Allow health checks from nlb to instance group istio node backends. "
     },
     {
+        "request_id": "19493892",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": "30000",
+        "to_port": "40000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "nlb",
+        "cidr_ipv4": "null",
+        "business_justification": "Allow health checks from nlb to instance group istio node backends. "
+    },
+    {
+        "request_id": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes"
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     }
 ]

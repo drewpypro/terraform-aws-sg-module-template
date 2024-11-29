@@ -1,11 +1,38 @@
 [
     {
+        "request_id": "19493892",
         "name": "dms",
         "security_group_id": "dms",
         "direction": "egress",
         "from_port": "3306",
         "to_port": "3306",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "rds"
+        "referenced_security_group_id": "rds",
+        "cidr_ipv4": "null",
+        "business_justification": "DMS replication instances require sql access to RDS for migration activities. "
+    },
+    {
+        "request_id": "19493892",
+        "name": "dms",
+        "security_group_id": "dms",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "kms_vpce",
+        "cidr_ipv4": "null",
+        "business_justification": "DMS replication instances require sql access to secrets manager to manage kms keys"
+    },
+    {
+        "request_id": "19493892",
+        "name": "dms",
+        "security_group_id": "dms",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "sts_vpce",
+        "cidr_ipv4": "null",
+        "business_justification": "DMS replication instances require sql access to RDS for migration activities. "
     }
 ]

@@ -5,20 +5,41 @@ provider "aws" {
 locals {
   # Define security groups as a map
   security_groups = {
-    "app1_lambda"          = "app1_lambda"
-    "app2_lambda"          = "app2_lambda"
-    "cluster_endpoint"     = "cluster_endpoint"
-    "dms"                  = "dms"
-    "efs_mount_endpoint"   = "efs_mount_endpoint"
-    "elasti_cache"         = "elasti_cache"
-    "internet_istio_nodes" = "internet_istio_nodes"
-    "internet_nlb"         = "internet_nlb"
-    "istio_nodes"          = "istio_nodes"
-    "msk"                  = "msk"
-    "nlb"                  = "nlb"
-    "opensearch"           = "opensearch"
-    "rds"                  = "rds"
-    "worker_nodes"         = "worker_nodes"
+    "app1_lambda"               = "app1_lambda"
+    "app2_lambda"               = "app2_lambda"
+    "cluster_endpoint"          = "cluster_endpoint"
+    "dms"                       = "dms"
+    "efs_mount_endpoint"        = "efs_mount_endpoint"
+    "elasti_cache"              = "elasti_cache"
+    "internet_istio_nodes"      = "internet_istio_nodes"
+    "internet_nlb"              = "internet_nlb"
+    "istio_nodes"               = "istio_nodes"
+    "msk"                       = "msk"
+    "nlb"                       = "nlb"
+    "opensearch"                = "opensearch"
+    "rds"                       = "rds"
+    "worker_nodes"              = "worker_nodes"
+    "vpce_autoscaling"          = "vpce_autoscaling"
+    "vpce_dms"                  = "vpce_dms"
+    "vpce_ec2"                  = "vpce_ec2"
+    "vpce_ec2messages"          = "vpce_ec2messages"
+    "vpce_efs"                  = "vpce_efs"
+    "vpce_eks"                  = "vpce_eks"
+    "vpce_elasticache"          = "vpce_elasticache"
+    "vpce_elasticloadbalancing" = "vpce_elasticloadbalancing"
+    "vpce_kms"                  = "vpce_kms"
+    "vpce_lambda"               = "vpce_lambda"
+    "vpce_logs"                 = "vpce_logs"
+    "vpce_monitoring"           = "vpce_monitoring"
+    "vpce_rds"                  = "vpce_rds"
+    "vpce_s3"                   = "vpce_s3"
+    "vpce_sns"                  = "vpce_sns"
+    "vpce_sqs"                  = "vpce_sqs"
+    "vpce_sts"                  = "vpce_sts"
+    "vpce_ssm"                  = "vpce_ssm"
+    "vpce_ssmmessages"          = "vpce_ssmmessages"
+    "vpce_sts"                  = "vpce_sts"
+
   }
 
   # Get all ingress rule files and decode them
@@ -47,29 +68,66 @@ resource "aws_security_group" "sgs" {
   }
 }
 
-
-# Create ingress rules
-resource "aws_vpc_security_group_ingress_rule" "ingress" {
-  for_each = { for i, rule in local.ingress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.referenced_security_group_id}-ingress" => rule }
+# Create ingress rules for referenced_security_group_id
+resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
+  for_each = {
+    for i, rule in local.ingress_rules :
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.referenced_security_group_id}-ingress"
+    => rule if rule.referenced_security_group_id != null
+  }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
-
-  depends_on = [aws_security_group.sgs]
+  referenced_security_group_id = aws_security_group.sgs[each.value.referenced_security_group_id].id
+  description                  = each.value.business_justification
 }
 
-# Create egress rules
-resource "aws_vpc_security_group_egress_rule" "egress" {
-  for_each = { for i, rule in local.egress_rules : "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.referenced_security_group_id}-egress" => rule }
+# Create ingress rules for cidr_ipv4
+resource "aws_vpc_security_group_ingress_rule" "ingress_cidr" {
+  for_each = {
+    for i, rule in local.ingress_rules :
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv4}-ingress"
+    => rule if rule.cidr_ipv4 != null
+  }
+
+  security_group_id = aws_security_group.sgs[each.value.name].id
+  from_port         = tonumber(each.value.from_port)
+  to_port           = tonumber(each.value.to_port)
+  ip_protocol       = each.value.ip_protocol
+  cidr_ipv4         = [each.value.cidr_ipv4]
+  description       = each.value.business_justification
+}
+
+# Create egress rules for referenced_security_group_id
+resource "aws_vpc_security_group_egress_rule" "egress_referenced" {
+  for_each = {
+    for i, rule in local.egress_rules :
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.referenced_security_group_id}-egress"
+    => rule if rule.referenced_security_group_id != null
+  }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
   from_port                    = tonumber(each.value.from_port)
   to_port                      = tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
-  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null) != null ? aws_security_group.sgs[each.value.referenced_security_group_id].id : null
+  referenced_security_group_id = aws_security_group.sgs[each.value.referenced_security_group_id].id
+  description                  = each.value.business_justification
+}
 
-  depends_on = [aws_security_group.sgs]
+# Create egress rules for cidr_ipv4
+resource "aws_vpc_security_group_egress_rule" "egress_cidr" {
+  for_each = {
+    for i, rule in local.egress_rules :
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv4}-egress"
+    => rule if rule.cidr_ipv4 != null
+  }
+
+  security_group_id = aws_security_group.sgs[each.value.name].id
+  from_port         = tonumber(each.value.from_port)
+  to_port           = tonumber(each.value.to_port)
+  ip_protocol       = each.value.ip_protocol
+  cidr_ipv4         = [each.value.cidr_ipv4]
+  description       = each.value.business_justification
 }

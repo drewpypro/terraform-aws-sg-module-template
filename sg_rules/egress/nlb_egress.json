@@ -1,20 +1,26 @@
 [
     {
+        "request_id": "19493892",
         "name": "nlb",
         "security_group_id": "nlb",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "Allow health checks from nlb to instance group istio node backends. "
     },
     {
+        "request_id": "19493892",
         "name": "nlb",
         "security_group_id": "nlb",
         "direction": "egress",
         "from_port": "30000",
         "to_port": "40000",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes"
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "Allow health checks from nlb to instance group istio node backends. "
     }
 ]
