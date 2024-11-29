@@ -8,7 +8,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "10.69.69.0/24",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "Allow private networks to access internal application vips"
     },
     {
@@ -20,7 +23,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.168.69.0/24",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "Allow private networks to access internal application vips"
     }
 ]

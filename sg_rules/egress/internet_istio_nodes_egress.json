@@ -8,7 +8,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "cluster_endpoint",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
     },
     {
@@ -20,7 +23,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "efs_mount_endpoint",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     },
     {
@@ -32,7 +38,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "elasti_cache",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
@@ -44,7 +53,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "elasti_cache",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
@@ -56,7 +68,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "msk",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
@@ -66,6 +81,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
+<<<<<<< HEAD
         "referenced_security_group_id": "null",
         "cidr_ipv4": "null",
         "cidr_ipv6": "6969:6969:6969:6969:6969:6969:6969:6969/128",
@@ -81,6 +97,10 @@
         "referenced_security_group_id": "opensearch",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+=======
+        "referenced_security_group_id": "opensearch",
+        "cidr_ipv4": "null",
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     },
     {
@@ -92,8 +112,27 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "rds",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require RDS connectivity for database operations. "
+    },
+    {
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+<<<<<<< HEAD
+        "referenced_security_group_id": "vpce_autoscaling",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+=======
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
         "name": "internet_istio_nodes",
@@ -104,7 +143,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_autoscaling",
         "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -116,7 +155,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_dms",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -128,7 +170,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_ec2",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -140,7 +185,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_ec2messages",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -152,7 +200,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_efs",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -164,7 +215,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_eks",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -176,7 +230,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_elasticache",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -188,7 +245,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_elasticloadbalancing",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -200,7 +260,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_kms",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -212,7 +275,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_lambda",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -224,7 +290,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_logs",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -236,7 +305,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_monitoring",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -248,7 +320,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_rds",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -260,7 +335,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_s3",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -272,7 +350,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_sns",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -284,6 +365,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_sqs",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
@@ -309,6 +391,8 @@
         "referenced_security_group_id": "vpce_ssmmessages",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -320,7 +404,10 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_sts",
         "cidr_ipv4": "null",
+<<<<<<< HEAD
         "cidr_ipv6": "null",
+=======
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -330,9 +417,26 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
+<<<<<<< HEAD
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+=======
+        "referenced_security_group_id": "vpce_ssm",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
+    },
+    {
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "vpce_ssmmessages",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
+>>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
     }
 ]
