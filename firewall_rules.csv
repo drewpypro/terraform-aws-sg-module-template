@@ -20,11 +20,13 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,elasti_cache,elasti_cache,null,ingress,6379,6379,tcp,worker_nodes,null,null,k8s nodes need access to elasti_cache for redis caching
 19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,443,443,tcp,app1_lambda,null,null,app1-lambda needs k8s node access to perform app1 function
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,11211,11211,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,6379,6379,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for redis caching
 19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,30000,40000,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,3306,3306,tcp,rds,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_autoscaling,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
@@ -73,6 +75,7 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,istio_nodes,istio_nodes,null,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
 19493892,istio_nodes,istio_nodes,null,ingress,443,443,tcp,nlb,null,null,Allow health checks from nlb to instance group istio node backends. 
 19493892,istio_nodes,istio_nodes,null,ingress,30000,40000,tcp,nlb,null,null,Allow health checks from nlb to instance group istio node backends. 
+19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,istio_nodes,istio_nodes,null,egress,3306,3306,tcp,rds,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_autoscaling,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
@@ -215,6 +218,7 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,worker_nodes,worker_nodes,null,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
 19493892,worker_nodes,worker_nodes,null,ingress,22,22,tcp,null,55.55.55.55/32,null,Enable external management connectivity
+19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,worker_nodes,worker_nodes,null,egress,3306,3306,tcp,rds,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_autoscaling,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
@@ -236,8 +240,27 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493999,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
-19493999,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
-19493999,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality.
-19495659,worker_nodes,worker_nodes,null,egress,1433,1433,tcp,rds,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
-19495659,rds,rds,null,ingress,1433,1433,tcp,worker_nodes,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
+19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,egress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,ingress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,ingress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,egress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,egress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,ingress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,ingress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,egress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,egress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,ingress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,ingress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,egress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,egress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,yes,ingress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,ingress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,yes,egress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
