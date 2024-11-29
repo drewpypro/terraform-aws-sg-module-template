@@ -8,6 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "Allow health checks from nlb to instance group istio node backends. "
     },
     {
@@ -19,6 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "Allow health checks from nlb to instance group istio node backends. "
     }
 ]

@@ -8,6 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     },
     {
@@ -19,6 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     }
 ]

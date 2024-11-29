@@ -8,6 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "10.69.69.0/24",
+        "cidr_ipv6": "null",
         "business_justification": "Allow private networks access to internal AWS APIs"
     },
     {
@@ -19,6 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.168.69.0/24",
+        "cidr_ipv6": "null",
         "business_justification": "Allow private networks access to internal AWS APIs"
     },
     {
@@ -30,6 +32,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "dms",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "DMS replication instances require sql access to RDS for migration activities. "
     },
     {
@@ -41,6 +44,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "internet_istio_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -52,6 +56,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
@@ -63,6 +68,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     }
 ]

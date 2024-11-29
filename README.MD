@@ -11,7 +11,7 @@
 - [Mermaid](#mermaid)
 
 
-![Success](./img/successful_test1.png)
+![Success](./img/successful_test2.png)
 
 # Overview
 - Generate AWS security-group configuration in a single module using json files converted from traditional csv dataflow templates
@@ -291,8 +291,8 @@ flowchart LR
     cluster_endpoint --> |443| istio_nodes
     cluster_endpoint --> |443| worker_nodes
     dms --> |3306| rds
-    dms --> |443| vpce_kms
-    dms --> |443| vpce_sts
+    dms --> |443| kms_vpce
+    dms --> |443| sts_vpce
     efs_mount_endpoint --> |2049| istio_nodes
     efs_mount_endpoint --> |2049| worker_nodes
     elasti_cache --> |11211| istio_nodes
@@ -329,6 +329,7 @@ flowchart LR
     internet_istio_nodes --> |443| vpce_ssmmessages
     internet_istio_nodes --> |443| internet_nlb
     internet_istio_nodes --> |30000-40000| internet_nlb
+    internet_istio_nodes --> |443| nan
     internet_nlb --> |443| nan
     internet_nlb --> |443| internet_istio_nodes
     internet_nlb --> |30000-40000| internet_istio_nodes
@@ -362,6 +363,7 @@ flowchart LR
     istio_nodes --> |443| vpce_ssmmessages
     istio_nodes --> |443| nlb
     istio_nodes --> |30000-40000| nlb
+    istio_nodes --> |443| nan
     msk --> |9096| internet_istio_nodes
     msk --> |9096| istio_nodes
     msk --> |9096| worker_nodes
@@ -481,6 +483,7 @@ flowchart LR
     worker_nodes --> |443| vpce_sts
     worker_nodes --> |443| vpce_ssm
     worker_nodes --> |443| vpce_ssmmessages
+    worker_nodes --> |443| nan
 
     %% Apply styles
     class internet_nlb,nlb lb

@@ -8,6 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "103.21.244.0/22",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -19,6 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "103.22.200.0/22",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -30,6 +32,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "103.31.4.0/22",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -41,6 +44,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "104.16.0.0/13",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -52,6 +56,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "104.24.0.0/14",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -63,6 +68,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "108.162.192.0/18",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -74,6 +80,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "131.0.72.0/22",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -85,6 +92,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "141.101.64.0/18",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -96,6 +104,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "162.158.0.0/15",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -107,6 +116,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "172.64.0.0/13",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -118,6 +128,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "173.245.48.0/20",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -129,6 +140,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "188.114.96.0/20",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -140,6 +152,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "190.93.240.0/20",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -151,6 +164,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "197.234.240.0/22",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
@@ -162,6 +176,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "198.41.128.0/17",
+        "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     }
 ]
