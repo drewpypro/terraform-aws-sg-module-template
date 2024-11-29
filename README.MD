@@ -22,10 +22,16 @@ terraform-aws-sg-module-template/
 ├── variables.tf
 ├── sg_rules/
 │   ├── egress/
-│   │   ├── aws_security_group.sgs[each.value.name]-egress.json
+│   │   ├── aws_security_group.sgs[each.value.name]_egress.json
 │   │   ├── ...
 │   ├── ingress/
-│   │   ├── aws_security_group.sgs[each.value.name]-ingress.json
+│   │   ├── aws_security_group.sgs[each.value.name]_ingress.json
+│   │   ├── ...
+│   ├── self_ingress/
+│   │   ├── aws_security_group.sgs[each.value.name]_self_ingress.json
+│   │   ├── ...
+│   ├── self_egress/
+│   │   ├── aws_security_group.sgs[each.value.name]_self_egress.json
 │   │   ├── ...
 └── README.md
 ```
@@ -48,14 +54,16 @@ BUCKET_SECRET_ACCESS_KEY
 
 # TO DO
 
-- Self Rules
-- Custom Rules
+- Make mermaid better
+- Custom Rules (If this is being used as a shared template module)
 - Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
 
 # Test Cases
 
-## Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/32) 
- 
+## Successful first build [PR](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/41)/[Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12090865971/job/33718459622) 
+  - ![Success](./img/successful_test3.png)
+
+
 ## Adding new rules to existing sg
 <details>
   <summary>appended these lines to firewall_rules.csv</summary>
