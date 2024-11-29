@@ -1,6 +1,5 @@
 [
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -12,7 +11,6 @@
         "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -24,7 +22,6 @@
         "business_justification": "k8s nodes need access to efs for storage mounts used by containers"
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -36,7 +33,6 @@
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -48,7 +44,6 @@
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -60,7 +55,6 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -72,7 +66,6 @@
         "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -84,7 +77,6 @@
         "business_justification": "k8s nodes require connectivity to opensearch for logging/analytics"
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -96,7 +88,6 @@
         "business_justification": "k8s nodes require RDS connectivity for database operations. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -108,7 +99,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -120,7 +110,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -132,7 +121,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -144,7 +132,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -156,7 +143,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -168,7 +154,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -180,7 +165,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -192,7 +176,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -204,7 +187,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -216,7 +198,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -228,7 +209,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -240,7 +220,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -252,7 +231,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -264,7 +242,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -276,7 +253,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -288,7 +264,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -300,7 +275,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
@@ -312,7 +286,6 @@
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
     },
     {
-        "request_id": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",

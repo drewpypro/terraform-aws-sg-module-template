@@ -1,6 +1,5 @@
 [
     {
-        "request_id": "19493892",
         "name": "dms",
         "security_group_id": "dms",
         "direction": "egress",
@@ -12,7 +11,6 @@
         "business_justification": "DMS replication instances require sql access to RDS for migration activities. "
     },
     {
-        "request_id": "19493892",
         "name": "dms",
         "security_group_id": "dms",
         "direction": "egress",
@@ -24,7 +22,6 @@
         "business_justification": "DMS replication instances require sql access to secrets manager to manage kms keys"
     },
     {
-        "request_id": "19493892",
         "name": "dms",
         "security_group_id": "dms",
         "direction": "egress",

@@ -1,30 +1,5 @@
 [
     {
-        "request_id": "19493892",
-        "name": "app1_lambda",
-        "security_group_id": "app1_lambda",
-        "direction": "egress",
-        "from_port": "443",
-        "to_port": "443",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes",
-        "cidr_ipv4": "null",
-        "business_justification": "app1-lambda needs k8s node access to perform app1 function"
-    },
-    {
-        "request_id": "19493892",
-        "name": "app1_lambda",
-        "security_group_id": "app1_lambda",
-        "direction": "egress",
-        "from_port": "443",
-        "to_port": "443",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes",
-        "cidr_ipv4": "null",
-        "business_justification": "app1-lambda needs k8s node access to perform app1 function"
-    },
-    {
-        "request_id": "19493892",
         "name": "app1_lambda",
         "security_group_id": "app1_lambda",
         "direction": "egress",
@@ -36,7 +11,28 @@
         "business_justification": "app1-lambda needs to call external API to perform app1 function"
     },
     {
-        "request_id": "19493892",
+        "name": "app1_lambda",
+        "security_group_id": "app1_lambda",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "app1-lambda needs k8s node access to perform app1 function"
+    },
+    {
+        "name": "app1_lambda",
+        "security_group_id": "app1_lambda",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "app1-lambda needs k8s node access to perform app1 function"
+    },
+    {
         "name": "app1_lambda",
         "security_group_id": "app1_lambda",
         "direction": "egress",

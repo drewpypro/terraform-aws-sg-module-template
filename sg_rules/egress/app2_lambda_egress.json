@@ -1,6 +1,5 @@
 [
     {
-        "request_id": "19493892",
         "name": "app2_lambda",
         "security_group_id": "app2_lambda",
         "direction": "egress",
@@ -12,7 +11,6 @@
         "business_justification": "app2-lambda needs to call external API to perform app1 function"
     },
     {
-        "request_id": "19493892",
         "name": "app2_lambda",
         "security_group_id": "app2_lambda",
         "direction": "egress",

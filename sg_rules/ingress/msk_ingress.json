@@ -1,6 +1,5 @@
 [
     {
-        "request_id": "19493892",
         "name": "msk",
         "security_group_id": "msk",
         "direction": "ingress",
@@ -12,7 +11,6 @@
         "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
-        "request_id": "19493892",
         "name": "msk",
         "security_group_id": "msk",
         "direction": "ingress",
@@ -24,7 +22,6 @@
         "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
-        "request_id": "19493892",
         "name": "msk",
         "security_group_id": "msk",
         "direction": "ingress",

@@ -1,6 +1,5 @@
 [
     {
-        "request_id": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "egress",
@@ -12,7 +11,6 @@
         "business_justification": "Allow health checks from internet-nlb to instance group internet istio node backends. "
     },
     {
-        "request_id": "19493892",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "egress",

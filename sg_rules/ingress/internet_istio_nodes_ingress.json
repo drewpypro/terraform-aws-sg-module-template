@@ -1,6 +1,5 @@
 [
     {
-        "request_id": "19493892",
         "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
@@ -12,7 +11,6 @@
         "business_justification": "app1-lambda needs k8s node access to perform app1 function"
     },
     {
-        "request_id": "19493892",
         "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
@@ -24,7 +22,6 @@
         "business_justification": "Allow health checks from inlb to instance group istio node backends. "
     },
     {
-        "request_id": "19493892",
         "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
@@ -36,7 +33,6 @@
         "business_justification": "Allow health checks from inlb to instance group istio node backends. "
     },
     {
-        "request_id": "19493892",
         "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",

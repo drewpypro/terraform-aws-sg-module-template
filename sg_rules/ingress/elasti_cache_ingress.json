@@ -1,6 +1,5 @@
 [
     {
-        "request_id": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",
@@ -12,7 +11,6 @@
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
-        "request_id": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",
@@ -24,7 +22,6 @@
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
-        "request_id": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",
@@ -36,7 +33,6 @@
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
-        "request_id": "19493892",
         "name": "elasti_cache",
         "security_group_id": "elasti_cache",
         "direction": "ingress",

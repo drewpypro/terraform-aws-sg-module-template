@@ -1,18 +1,5 @@
 [
     {
-        "request_id": "19493892",
-        "name": "nlb",
-        "security_group_id": "nlb",
-        "direction": "ingress",
-        "from_port": "443",
-        "to_port": "443",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.168.69.0/24",
-        "business_justification": "Allow private networks to access internal application vips"
-    },
-    {
-        "request_id": "19493892",
         "name": "nlb",
         "security_group_id": "nlb",
         "direction": "ingress",
@@ -21,6 +8,17 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "10.69.69.0/24",
+        "business_justification": "Allow private networks to access internal application vips"
+    },
+    {
+        "name": "nlb",
+        "security_group_id": "nlb",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "192.168.69.0/24",
         "business_justification": "Allow private networks to access internal application vips"
     }
 ]

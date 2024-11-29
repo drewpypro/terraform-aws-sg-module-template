@@ -1,30 +1,5 @@
 [
     {
-        "request_id": "19493892",
-        "name": "cluster_endpoint",
-        "security_group_id": "cluster_endpoint",
-        "direction": "ingress",
-        "from_port": "443",
-        "to_port": "443",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes",
-        "cidr_ipv4": "null",
-        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
-    },
-    {
-        "request_id": "19493892",
-        "name": "cluster_endpoint",
-        "security_group_id": "cluster_endpoint",
-        "direction": "ingress",
-        "from_port": "443",
-        "to_port": "443",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes",
-        "cidr_ipv4": "null",
-        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
-    },
-    {
-        "request_id": "19493892",
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
         "direction": "ingress",
@@ -36,7 +11,28 @@
         "business_justification": "terraform needs access to cluster endpoint for eks control plane"
     },
     {
-        "request_id": "19493892",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
+    },
+    {
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
+    },
+    {
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
         "direction": "ingress",
