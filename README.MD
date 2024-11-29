@@ -11,7 +11,7 @@
 - [Mermaid](#mermaid)
 
 
-![Success](./img/successful_test1.png)
+![Success](./img/successful_test2.png)
 
 # Overview
 - Generate AWS security-group configuration in a single module using json files converted from traditional csv dataflow templates
@@ -280,15 +280,15 @@ flowchart LR
     end
 
     %% Connections
-    app1_lambda --> |443| nan
     app1_lambda --> |443| internet_istio_nodes
     app1_lambda --> |443| istio_nodes
+    app1_lambda --> |443| nan
     app1_lambda --> |443| worker_nodes
     app2_lambda --> |443| nan
     app2_lambda --> |3306| rds
-    cluster_endpoint --> |443| nan
     cluster_endpoint --> |443| internet_istio_nodes
     cluster_endpoint --> |443| istio_nodes
+    cluster_endpoint --> |443| nan
     cluster_endpoint --> |443| worker_nodes
     dms --> |3306| rds
     dms --> |443| vpce_kms
@@ -304,10 +304,12 @@ flowchart LR
     internet_istio_nodes --> |2049| efs_mount_endpoint
     internet_istio_nodes --> |11211| elasti_cache
     internet_istio_nodes --> |6379| elasti_cache
+    internet_istio_nodes --> |443| internet_nlb
+    internet_istio_nodes --> |30000-40000| internet_nlb
     internet_istio_nodes --> |9096| msk
+    internet_istio_nodes --> |443| nan
     internet_istio_nodes --> |443| opensearch
     internet_istio_nodes --> |3306| rds
-    internet_istio_nodes --> |443| worker_nodes
     internet_istio_nodes --> |443| vpce_autoscaling
     internet_istio_nodes --> |443| vpce_dms
     internet_istio_nodes --> |443| vpce_ec2
@@ -324,23 +326,24 @@ flowchart LR
     internet_istio_nodes --> |443| vpce_s3
     internet_istio_nodes --> |443| vpce_sns
     internet_istio_nodes --> |443| vpce_sqs
-    internet_istio_nodes --> |443| vpce_sts
     internet_istio_nodes --> |443| vpce_ssm
     internet_istio_nodes --> |443| vpce_ssmmessages
-    internet_istio_nodes --> |443| internet_nlb
-    internet_istio_nodes --> |30000-40000| internet_nlb
-    internet_nlb --> |443| nan
+    internet_istio_nodes --> |443| vpce_sts
+    internet_istio_nodes --> |443| worker_nodes
     internet_nlb --> |443| internet_istio_nodes
     internet_nlb --> |30000-40000| internet_istio_nodes
+    internet_nlb --> |443| nan
     istio_nodes --> |443| app1_lambda
     istio_nodes --> |443| cluster_endpoint
     istio_nodes --> |2049| efs_mount_endpoint
     istio_nodes --> |11211| elasti_cache
     istio_nodes --> |6379| elasti_cache
     istio_nodes --> |9096| msk
+    istio_nodes --> |443| nlb
+    istio_nodes --> |30000-40000| nlb
+    istio_nodes --> |443| nan
     istio_nodes --> |443| opensearch
     istio_nodes --> |3306| rds
-    istio_nodes --> |443| worker_nodes
     istio_nodes --> |443| vpce_autoscaling
     istio_nodes --> |443| vpce_dms
     istio_nodes --> |443| vpce_ec2
@@ -357,109 +360,109 @@ flowchart LR
     istio_nodes --> |443| vpce_s3
     istio_nodes --> |443| vpce_sns
     istio_nodes --> |443| vpce_sqs
-    istio_nodes --> |443| vpce_sts
     istio_nodes --> |443| vpce_ssm
     istio_nodes --> |443| vpce_ssmmessages
-    istio_nodes --> |443| nlb
-    istio_nodes --> |30000-40000| nlb
+    istio_nodes --> |443| vpce_sts
+    istio_nodes --> |443| worker_nodes
     msk --> |9096| internet_istio_nodes
     msk --> |9096| istio_nodes
     msk --> |9096| worker_nodes
-    nlb --> |443| nan
     nlb --> |443| istio_nodes
     nlb --> |30000-40000| istio_nodes
+    nlb --> |443| nan
     opensearch --> |443| internet_istio_nodes
     opensearch --> |443| istio_nodes
     opensearch --> |443| worker_nodes
     rds --> |3306| internet_istio_nodes
     rds --> |3306| istio_nodes
     rds --> |3306| worker_nodes
-    vpce_autoscaling --> |443| nan
     vpce_autoscaling --> |443| internet_istio_nodes
     vpce_autoscaling --> |443| istio_nodes
+    vpce_autoscaling --> |443| nan
     vpce_autoscaling --> |443| worker_nodes
-    vpce_dms --> |443| nan
     vpce_dms --> |443| internet_istio_nodes
     vpce_dms --> |443| istio_nodes
+    vpce_dms --> |443| nan
     vpce_dms --> |443| worker_nodes
-    vpce_ec2 --> |443| nan
     vpce_ec2 --> |443| internet_istio_nodes
     vpce_ec2 --> |443| istio_nodes
+    vpce_ec2 --> |443| nan
     vpce_ec2 --> |443| worker_nodes
-    vpce_ec2messages --> |443| nan
     vpce_ec2messages --> |443| internet_istio_nodes
     vpce_ec2messages --> |443| istio_nodes
+    vpce_ec2messages --> |443| nan
     vpce_ec2messages --> |443| worker_nodes
-    vpce_efs --> |443| nan
     vpce_efs --> |443| internet_istio_nodes
     vpce_efs --> |443| istio_nodes
+    vpce_efs --> |443| nan
     vpce_efs --> |443| worker_nodes
-    vpce_eks --> |443| nan
     vpce_eks --> |443| internet_istio_nodes
     vpce_eks --> |443| istio_nodes
+    vpce_eks --> |443| nan
     vpce_eks --> |443| worker_nodes
-    vpce_elasticache --> |443| nan
     vpce_elasticache --> |443| internet_istio_nodes
     vpce_elasticache --> |443| istio_nodes
+    vpce_elasticache --> |443| nan
     vpce_elasticache --> |443| worker_nodes
-    vpce_elasticloadbalancing --> |443| nan
     vpce_elasticloadbalancing --> |443| internet_istio_nodes
     vpce_elasticloadbalancing --> |443| istio_nodes
+    vpce_elasticloadbalancing --> |443| nan
     vpce_elasticloadbalancing --> |443| worker_nodes
-    vpce_kms --> |443| nan
     vpce_kms --> |443| dms
     vpce_kms --> |443| internet_istio_nodes
     vpce_kms --> |443| istio_nodes
+    vpce_kms --> |443| nan
     vpce_kms --> |443| worker_nodes
-    vpce_lambda --> |443| nan
     vpce_lambda --> |443| internet_istio_nodes
     vpce_lambda --> |443| istio_nodes
+    vpce_lambda --> |443| nan
     vpce_lambda --> |443| worker_nodes
-    vpce_logs --> |443| nan
     vpce_logs --> |443| internet_istio_nodes
     vpce_logs --> |443| istio_nodes
+    vpce_logs --> |443| nan
     vpce_logs --> |443| worker_nodes
-    vpce_monitoring --> |443| nan
     vpce_monitoring --> |443| internet_istio_nodes
     vpce_monitoring --> |443| istio_nodes
+    vpce_monitoring --> |443| nan
     vpce_monitoring --> |443| worker_nodes
-    vpce_rds --> |443| nan
     vpce_rds --> |443| internet_istio_nodes
     vpce_rds --> |443| istio_nodes
+    vpce_rds --> |443| nan
     vpce_rds --> |443| worker_nodes
-    vpce_s3 --> |443| nan
     vpce_s3 --> |443| internet_istio_nodes
     vpce_s3 --> |443| istio_nodes
+    vpce_s3 --> |443| nan
     vpce_s3 --> |443| worker_nodes
-    vpce_sns --> |443| nan
     vpce_sns --> |443| internet_istio_nodes
     vpce_sns --> |443| istio_nodes
+    vpce_sns --> |443| nan
     vpce_sns --> |443| worker_nodes
-    vpce_sqs --> |443| nan
     vpce_sqs --> |443| internet_istio_nodes
     vpce_sqs --> |443| istio_nodes
+    vpce_sqs --> |443| nan
     vpce_sqs --> |443| worker_nodes
-    vpce_ssm --> |443| nan
     vpce_ssm --> |443| internet_istio_nodes
     vpce_ssm --> |443| istio_nodes
+    vpce_ssm --> |443| nan
     vpce_ssm --> |443| worker_nodes
-    vpce_ssmmessages --> |443| nan
     vpce_ssmmessages --> |443| internet_istio_nodes
     vpce_ssmmessages --> |443| istio_nodes
+    vpce_ssmmessages --> |443| nan
     vpce_ssmmessages --> |443| worker_nodes
-    vpce_sts --> |443| nan
     vpce_sts --> |443| dms
     vpce_sts --> |443| internet_istio_nodes
     vpce_sts --> |443| istio_nodes
+    vpce_sts --> |443| nan
     vpce_sts --> |443| worker_nodes
-    worker_nodes --> |22| nan
     worker_nodes --> |443| app1_lambda
-    worker_nodes --> |443| istio_nodes
     worker_nodes --> |443| cluster_endpoint
     worker_nodes --> |2049| efs_mount_endpoint
     worker_nodes --> |11211| elasti_cache
     worker_nodes --> |6379| elasti_cache
+    worker_nodes --> |443| istio_nodes
     worker_nodes --> |9096| msk
+    worker_nodes --> |22| nan
+    worker_nodes --> |443| nan
     worker_nodes --> |443| opensearch
     worker_nodes --> |3306| rds
     worker_nodes --> |443| vpce_autoscaling
@@ -478,9 +481,9 @@ flowchart LR
     worker_nodes --> |443| vpce_s3
     worker_nodes --> |443| vpce_sns
     worker_nodes --> |443| vpce_sqs
-    worker_nodes --> |443| vpce_sts
     worker_nodes --> |443| vpce_ssm
     worker_nodes --> |443| vpce_ssmmessages
+    worker_nodes --> |443| vpce_sts
 
     %% Apply styles
     class internet_nlb,nlb lb

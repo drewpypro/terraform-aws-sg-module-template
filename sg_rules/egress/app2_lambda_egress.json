@@ -8,6 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
         "cidr_ipv4": "69.69.69.69/32",
+        "cidr_ipv6": "null",
         "business_justification": "app2-lambda needs to call external API to perform app1 function"
     },
     {
@@ -19,6 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "rds",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "app1-lambda needs rds connectivity to change db password on first cluster build"
     }
 ]

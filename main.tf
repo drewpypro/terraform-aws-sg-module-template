@@ -68,6 +68,14 @@ resource "aws_security_group" "sgs" {
   }
 }
 
+output "security_group_ids" {
+  value = {
+    for name, sg in aws_security_group.sgs :
+    name => sg.id
+  }
+  description = "Map of all security group names to their IDs"
+}
+
 # Create ingress rules for referenced_security_group_id
 resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
   for_each = {
@@ -85,7 +93,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
 }
 
 # Create ingress rules for cidr_ipv4
-resource "aws_vpc_security_group_ingress_rule" "ingress_cidr" {
+resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv4" {
   for_each = {
     for i, rule in local.ingress_rules :
     "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv4}-ingress"
@@ -97,6 +105,22 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr" {
   to_port           = tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
   cidr_ipv4         = each.value.cidr_ipv4
+  description       = each.value.business_justification
+}
+
+# Create ingress rules for cidr_ipv4
+resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv6" {
+  for_each = {
+    for i, rule in local.ingress_rules :
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv6}-ingress"
+    => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null"
+  }
+
+  security_group_id = aws_security_group.sgs[each.value.name].id
+  from_port         = tonumber(each.value.from_port)
+  to_port           = tonumber(each.value.to_port)
+  ip_protocol       = each.value.ip_protocol
+  cidr_ipv6         = each.value.cidr_ipv6
   description       = each.value.business_justification
 }
 
@@ -129,5 +153,21 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr" {
   to_port           = tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
   cidr_ipv4         = each.value.cidr_ipv4
+  description       = each.value.business_justification
+}
+
+# Create egress rules for cidr_ipv4
+resource "aws_vpc_security_group_egress_rule" "egress_cidr_ipv6" {
+  for_each = {
+    for i, rule in local.egress_rules :
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv6}-egress"
+    => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null"
+  }
+
+  security_group_id = aws_security_group.sgs[each.value.name].id
+  from_port         = tonumber(each.value.from_port)
+  to_port           = tonumber(each.value.to_port)
+  ip_protocol       = each.value.ip_protocol
+  cidr_ipv6         = each.value.cidr_ipv6
   description       = each.value.business_justification
 }

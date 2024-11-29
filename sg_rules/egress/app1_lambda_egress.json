@@ -6,19 +6,9 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "69.69.69.69/32",
-        "business_justification": "app1-lambda needs to call external API to perform app1 function"
-    },
-    {
-        "name": "app1_lambda",
-        "security_group_id": "app1_lambda",
-        "direction": "egress",
-        "from_port": "443",
-        "to_port": "443",
-        "ip_protocol": "tcp",
         "referenced_security_group_id": "internet_istio_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "app1-lambda needs k8s node access to perform app1 function"
     },
     {
@@ -30,7 +20,20 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "app1-lambda needs k8s node access to perform app1 function"
+    },
+    {
+        "name": "app1_lambda",
+        "security_group_id": "app1_lambda",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "69.69.69.69/32",
+        "cidr_ipv6": "null",
+        "business_justification": "app1-lambda needs to call external API to perform app1 function"
     },
     {
         "name": "app1_lambda",
@@ -41,6 +44,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
         "business_justification": "app1-lambda needs k8s node access to perform app1 function"
     }
 ]

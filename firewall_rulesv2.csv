@@ -1,13 +1,13 @@
 RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,business_justification
-19493892,app1_lambda,app1_lambda,null,egress,443,443,tcp,null,69.69.69.69/32,null,app1-lambda needs to call external API to perform app1 function
 19493892,app1_lambda,app1_lambda,null,egress,443,443,tcp,internet_istio_nodes,null,null,app1-lambda needs k8s node access to perform app1 function
 19493892,app1_lambda,app1_lambda,null,egress,443,443,tcp,istio_nodes,null,null,app1-lambda needs k8s node access to perform app1 function
+19493892,app1_lambda,app1_lambda,null,egress,443,443,tcp,null,69.69.69.69/32,null,app1-lambda needs to call external API to perform app1 function
 19493892,app1_lambda,app1_lambda,null,egress,443,443,tcp,worker_nodes,null,null,app1-lambda needs k8s node access to perform app1 function
 19493892,app2_lambda,app2_lambda,null,egress,443,443,tcp,null,69.69.69.69/32,null,app2-lambda needs to call external API to perform app1 function
 19493892,app2_lambda,app2_lambda,null,egress,3306,3306,tcp,rds,null,null,app1-lambda needs rds connectivity to change db password on first cluster build
-19493892,cluster_endpoint,cluster_endpoint,null,ingress,443,443,tcp,null,55.55.55.55/32,null,terraform needs access to cluster endpoint for eks control plane
 19493892,cluster_endpoint,cluster_endpoint,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,cluster_endpoint,cluster_endpoint,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19493892,cluster_endpoint,cluster_endpoint,null,ingress,443,443,tcp,null,55.55.55.55/32,null,terraform needs access to cluster endpoint for eks control plane
 19493892,cluster_endpoint,cluster_endpoint,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,dms,dms,null,egress,3306,3306,tcp,rds,null,null,DMS replication instances require sql access to RDS for migration activities. 
 19493892,dms,dms,null,egress,443,443,tcp,vpce_kms,null,null,DMS replication instances require sql access to secrets manager to manage kms keys
@@ -23,10 +23,12 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,11211,11211,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,6379,6379,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for redis caching
+19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,30000,40000,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,3306,3306,tcp,rds,null,null,k8s nodes require RDS connectivity for database operations. 
-19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_autoscaling,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_dms,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_ec2,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
@@ -43,12 +45,13 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_s3,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_sns,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_sqs,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
-19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,30000,40000,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_nlb,internet_nlb,null,egress,443,443,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+19493892,internet_nlb,internet_nlb,null,egress,30000,40000,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 19493892,internet_nlb,internet_nlb,null,ingress,443,443,tcp,null,103.21.244.0/22,null,Allow Public WAF endpoints into origin for public applications
 19493892,internet_nlb,internet_nlb,null,ingress,443,443,tcp,null,103.22.200.0/22,null,Allow Public WAF endpoints into origin for public applications
 19493892,internet_nlb,internet_nlb,null,ingress,443,443,tcp,null,103.31.4.0/22,null,Allow Public WAF endpoints into origin for public applications
@@ -64,17 +67,17 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,internet_nlb,internet_nlb,null,ingress,443,443,tcp,null,190.93.240.0/20,null,Allow Public WAF endpoints into origin for public applications
 19493892,internet_nlb,internet_nlb,null,ingress,443,443,tcp,null,197.234.240.0/22,null,Allow Public WAF endpoints into origin for public applications
 19493892,internet_nlb,internet_nlb,null,ingress,443,443,tcp,null,198.41.128.0/17,null,Allow Public WAF endpoints into origin for public applications
-19493892,internet_nlb,internet_nlb,null,egress,443,443,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
-19493892,internet_nlb,internet_nlb,null,egress,30000,40000,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 19493892,istio_nodes,istio_nodes,null,ingress,443,443,tcp,app1_lambda,null,null,app1-lambda needs k8s node access to perform app1 function
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,istio_nodes,istio_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,istio_nodes,istio_nodes,null,egress,11211,11211,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,istio_nodes,istio_nodes,null,egress,6379,6379,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for redis caching
 19493892,istio_nodes,istio_nodes,null,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
+19493892,istio_nodes,istio_nodes,null,ingress,443,443,tcp,nlb,null,null,Allow health checks from nlb to instance group istio node backends. 
+19493892,istio_nodes,istio_nodes,null,ingress,30000,40000,tcp,nlb,null,null,Allow health checks from nlb to instance group istio node backends. 
+19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,istio_nodes,istio_nodes,null,egress,3306,3306,tcp,rds,null,null,k8s nodes require RDS connectivity for database operations. 
-19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_autoscaling,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_dms,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_ec2,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
@@ -91,131 +94,131 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_s3,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_sns,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_sqs,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,istio_nodes,istio_nodes,null,ingress,443,443,tcp,nlb,null,null,Allow health checks from nlb to instance group istio node backends. 
-19493892,istio_nodes,istio_nodes,null,ingress,30000,40000,tcp,nlb,null,null,Allow health checks from nlb to instance group istio node backends. 
+19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,msk,msk,null,ingress,9096,9096,tcp,internet_istio_nodes,null,null,k8s nodes needs MSK access for messaging functions
 19493892,msk,msk,null,ingress,9096,9096,tcp,istio_nodes,null,null,k8s nodes needs MSK access for messaging functions
 19493892,msk,msk,null,ingress,9096,9096,tcp,worker_nodes,null,null,k8s nodes needs MSK access for messaging functions
-19493892,nlb,nlb,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks to access internal application vips
-19493892,nlb,nlb,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks to access internal application vips
 19493892,nlb,nlb,null,egress,443,443,tcp,istio_nodes,null,null,Allow health checks from nlb to instance group istio node backends. 
 19493892,nlb,nlb,null,egress,30000,40000,tcp,istio_nodes,null,null,Allow health checks from nlb to instance group istio node backends. 
+19493892,nlb,nlb,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks to access internal application vips
+19493892,nlb,nlb,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks to access internal application vips
 19493892,opensearch,opensearch,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,opensearch,opensearch,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,opensearch,opensearch,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,rds,rds,null,ingress,3306,3306,tcp,internet_istio_nodes,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,rds,rds,null,ingress,3306,3306,tcp,istio_nodes,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,rds,rds,null,ingress,3306,3306,tcp,worker_nodes,null,null,k8s nodes require RDS connectivity for database operations. 
-19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_dms,vpce_dms,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_dms,vpce_dms,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_dms,vpce_dms,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_dms,vpce_dms,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_dms,vpce_dms,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_dms,vpce_dms,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_dms,vpce_dms,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_ec2,vpce_ec2,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_ec2,vpce_ec2,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ec2,vpce_ec2,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_ec2,vpce_ec2,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_ec2,vpce_ec2,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_ec2,vpce_ec2,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ec2,vpce_ec2,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_ec2messages,vpce_ec2messages,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_ec2messages,vpce_ec2messages,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ec2messages,vpce_ec2messages,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_ec2messages,vpce_ec2messages,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_ec2messages,vpce_ec2messages,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_ec2messages,vpce_ec2messages,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ec2messages,vpce_ec2messages,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_efs,vpce_efs,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_efs,vpce_efs,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_efs,vpce_efs,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_efs,vpce_efs,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_efs,vpce_efs,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_efs,vpce_efs,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_efs,vpce_efs,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_eks,vpce_eks,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_eks,vpce_eks,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_eks,vpce_eks,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_eks,vpce_eks,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_eks,vpce_eks,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_eks,vpce_eks,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_eks,vpce_eks,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_elasticache,vpce_elasticache,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_elasticache,vpce_elasticache,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_elasticache,vpce_elasticache,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_elasticache,vpce_elasticache,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_elasticache,vpce_elasticache,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_elasticache,vpce_elasticache,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_elasticache,vpce_elasticache,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_elasticloadbalancing,vpce_elasticloadbalancing,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_elasticloadbalancing,vpce_elasticloadbalancing,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_elasticloadbalancing,vpce_elasticloadbalancing,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_elasticloadbalancing,vpce_elasticloadbalancing,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_elasticloadbalancing,vpce_elasticloadbalancing,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_elasticloadbalancing,vpce_elasticloadbalancing,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_elasticloadbalancing,vpce_elasticloadbalancing,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,dms,null,null,DMS replication instances require sql access to secrets manager to manage kms keys
 19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_kms,vpce_kms,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_lambda,vpce_lambda,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_lambda,vpce_lambda,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_lambda,vpce_lambda,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_lambda,vpce_lambda,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_lambda,vpce_lambda,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_lambda,vpce_lambda,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_lambda,vpce_lambda,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_logs,vpce_logs,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_logs,vpce_logs,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_logs,vpce_logs,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_logs,vpce_logs,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_logs,vpce_logs,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_logs,vpce_logs,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_logs,vpce_logs,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_monitoring,vpce_monitoring,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_monitoring,vpce_monitoring,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_monitoring,vpce_monitoring,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_monitoring,vpce_monitoring,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_monitoring,vpce_monitoring,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_monitoring,vpce_monitoring,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_monitoring,vpce_monitoring,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_rds,vpce_rds,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_rds,vpce_rds,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_rds,vpce_rds,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_rds,vpce_rds,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_rds,vpce_rds,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_rds,vpce_rds,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_rds,vpce_rds,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_s3,vpce_s3,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_s3,vpce_s3,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_s3,vpce_s3,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_s3,vpce_s3,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_s3,vpce_s3,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_s3,vpce_s3,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_s3,vpce_s3,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_sns,vpce_sns,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_sns,vpce_sns,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_sns,vpce_sns,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_sns,vpce_sns,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_sns,vpce_sns,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_sns,vpce_sns,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_sns,vpce_sns,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_sqs,vpce_sqs,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_sqs,vpce_sqs,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_sqs,vpce_sqs,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_sqs,vpce_sqs,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_sqs,vpce_sqs,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_sqs,vpce_sqs,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_sqs,vpce_sqs,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_ssm,vpce_ssm,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_ssm,vpce_ssm,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ssm,vpce_ssm,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_ssm,vpce_ssm,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_ssm,vpce_ssm,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_ssm,vpce_ssm,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ssm,vpce_ssm,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_ssmmessages,vpce_ssmmessages,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_ssmmessages,vpce_ssmmessages,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ssmmessages,vpce_ssmmessages,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_ssmmessages,vpce_ssmmessages,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_ssmmessages,vpce_ssmmessages,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_ssmmessages,vpce_ssmmessages,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_ssmmessages,vpce_ssmmessages,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
-19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,dms,null,null,DMS replication instances require sql access to RDS for migration activities. 
 19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
+19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,null,192.168.69.0/24,null,Allow private networks access to internal AWS APIs
 19493892,vpce_sts,vpce_sts,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,worker_nodes,worker_nodes,null,ingress,22,22,tcp,null,55.55.55.55/32,null,Enable external management connectivity
 19493892,worker_nodes,worker_nodes,null,ingress,443,443,tcp,app1_lambda,null,null,app1-lambda needs k8s node access to perform app1 function
-19493892,worker_nodes,worker_nodes,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,worker_nodes,worker_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,worker_nodes,worker_nodes,null,egress,11211,11211,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,worker_nodes,worker_nodes,null,egress,6379,6379,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for redis caching
+19493892,worker_nodes,worker_nodes,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,worker_nodes,worker_nodes,null,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
+19493892,worker_nodes,worker_nodes,null,ingress,22,22,tcp,null,55.55.55.55/32,null,Enable external management connectivity
+19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,worker_nodes,worker_nodes,null,egress,3306,3306,tcp,rds,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_autoscaling,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
@@ -234,6 +237,6 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_s3,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sns,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sqs,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 

@@ -48,6 +48,7 @@ def detect_duplicates(file_path):
                 row["ip_protocol"],
                 row["referenced_security_group_id"],
                 row["cidr_ipv4"],
+                row["cidr_ipv6"],
             )
             if rule_tuple in seen:
                 duplicates.append(row)
@@ -84,6 +85,7 @@ with open(input_csv, "r") as csvfile:
             "ip_protocol": row["ip_protocol"],
             "referenced_security_group_id": row["referenced_security_group_id"] or None,
             "cidr_ipv4": row["cidr_ipv4"] or None,
+            "cidr_ipv6": row["cidr_ipv6"] or None,
             "business_justification": row.get("business_justification", ""),
         })
 
