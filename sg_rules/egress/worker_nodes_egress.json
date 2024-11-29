@@ -322,5 +322,29 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity to internal AWS APIs for service functionality. "
+    },
+    {
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "6969:6969:6969:6969:6969:6969:6969:6969/128",
+        "business_justification": "k8s nodes require connectivity to external v6 endpoints for service functionality."
+    },
+    {
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "1433",
+        "to_port": "1433",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "rds",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes require sqlnet connectivity to rds for database operations."
     }
 ]
