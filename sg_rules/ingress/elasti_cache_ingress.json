@@ -8,10 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
@@ -23,10 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
@@ -38,10 +32,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to elasti_cache for caching layer support. "
     },
     {
@@ -53,10 +44,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     }
 ]

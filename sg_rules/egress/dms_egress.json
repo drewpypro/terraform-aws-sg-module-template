@@ -8,10 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "rds",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "DMS replication instances require sql access to RDS for migration activities. "
     },
     {
@@ -23,10 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_kms",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "DMS replication instances require sql access to secrets manager to manage kms keys"
     },
     {
@@ -38,10 +32,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "vpce_sts",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "DMS replication instances require sql access to RDS for migration activities. "
     }
 ]

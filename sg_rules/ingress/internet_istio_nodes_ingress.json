@@ -8,10 +8,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "app1_lambda",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "app1-lambda needs k8s node access to perform app1 function"
     },
     {
@@ -23,10 +20,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "internet_nlb",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "Allow health checks from inlb to instance group istio node backends. "
     },
     {
@@ -38,10 +32,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "internet_nlb",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "Allow health checks from inlb to instance group istio node backends. "
     },
     {
@@ -53,10 +44,7 @@
         "ip_protocol": "tcp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
-<<<<<<< HEAD
         "cidr_ipv6": "null",
-=======
->>>>>>> 05dacf58ea49cf284fc4ff0c6380377d8f62375d
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     }
 ]
