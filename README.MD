@@ -57,7 +57,7 @@ BUCKET_SECRET_ACCESS_KEY
 
 # Test Cases
 
-## Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074651948/job/33673022659) 
+## Successful first time [apply](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/32) 
  
 ## Adding new rules to existing sg
 <details>
@@ -277,7 +277,6 @@ flowchart LR
     internet_istio_nodes --> |443| internet_nlb
     internet_istio_nodes --> |30000-40000| internet_nlb
     internet_istio_nodes --> |9096| msk
-    internet_istio_nodes --> |443| nan
     internet_istio_nodes --> |443| opensearch
     internet_istio_nodes --> |3306| rds
     internet_istio_nodes --> |443| vpce_autoscaling
@@ -311,7 +310,6 @@ flowchart LR
     istio_nodes --> |9096| msk
     istio_nodes --> |443| nlb
     istio_nodes --> |30000-40000| nlb
-    istio_nodes --> |443| nan
     istio_nodes --> |443| opensearch
     istio_nodes --> |3306| rds
     istio_nodes --> |443| vpce_autoscaling
@@ -432,7 +430,6 @@ flowchart LR
     worker_nodes --> |443| istio_nodes
     worker_nodes --> |9096| msk
     worker_nodes --> |22| nan
-    worker_nodes --> |443| nan
     worker_nodes --> |443| opensearch
     worker_nodes --> |3306| rds
     worker_nodes --> |443| vpce_autoscaling
@@ -454,6 +451,11 @@ flowchart LR
     worker_nodes --> |443| vpce_ssm
     worker_nodes --> |443| vpce_ssmmessages
     worker_nodes --> |443| vpce_sts
+    internet_istio_nodes --> |443| nan
+    istio_nodes --> |443| nan
+    worker_nodes --> |443| nan
+    worker_nodes --> |1433| rds
+    rds --> |1433| worker_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb

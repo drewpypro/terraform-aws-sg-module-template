@@ -322,5 +322,17 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+    },
+    {
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "6969:6969:6969:6969:6969:6969:6969:6969/128",
+        "business_justification": "k8s nodes require connectivity to external v6 endpoints for service functionality. "
     }
 ]

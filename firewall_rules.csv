@@ -237,3 +237,8 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
+19493999,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
+19493999,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
+19493999,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality.
+19495659,worker_nodes,worker_nodes,null,egress,1433,1433,tcp,rds,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
+19495659,rds,rds,null,ingress,1433,1433,tcp,worker_nodes,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
