@@ -91,6 +91,7 @@ resource "aws_security_group" "sgs" {
       cidr_blocks      = []
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
+      security_groups  = []
     }
   ]
 
@@ -106,6 +107,7 @@ resource "aws_security_group" "sgs" {
       cidr_blocks      = []
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
+      security_groups  = []
     }
   ]
 }
