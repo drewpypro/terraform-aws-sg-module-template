@@ -1,0 +1,14 @@
+[
+    {
+        "name": "sg1",
+        "security_group_id": "sg1",
+        "direction": "ingress",
+        "from_port": "445",
+        "to_port": "445",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes require SMB connectivity to sg1 resources."
+    }
+]

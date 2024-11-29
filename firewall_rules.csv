@@ -242,3 +242,5 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493999,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality.
 19495659,worker_nodes,worker_nodes,null,egress,1433,1433,tcp,rds,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
 19495659,rds,rds,null,ingress,1433,1433,tcp,worker_nodes,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
+19545259,sg1,sg1,null,ingress,445,445,tcp,worker_nodes,null,null,k8s nodes require SMB connectivity to sg1 resources.
+19545259,worker_nodes,worker_nodes,null,egress,445,445,tcp,sg1,null,null,k8s nodes require SMB connectivity to sg1 resources. 

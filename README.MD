@@ -73,19 +73,103 @@ BUCKET_SECRET_ACCESS_KEY
 <details>
   <summary>reran python script to update rule state</summary>
     ```
-    asdfsdaf
+    python3 rule_conversion.py 
+    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
+    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/msk_ingress.json
+    No changes: ./sg_rules/ingress/nlb_ingress.json
+    No changes: ./sg_rules/ingress/opensearch_ingress.json
+    Updated: ./sg_rules/ingress/rds_ingress.json
+    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
+    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
+    No changes: ./sg_rules/egress/app1_lambda_egress.json
+    No changes: ./sg_rules/egress/app2_lambda_egress.json
+    No changes: ./sg_rules/egress/dms_egress.json
+    Updated: ./sg_rules/egress/internet_istio_nodes_egress.json
+    No changes: ./sg_rules/egress/internet_nlb_egress.json
+    Updated: ./sg_rules/egress/istio_nodes_egress.json
+    No changes: ./sg_rules/egress/nlb_egress.json
+    Updated: ./sg_rules/egress/worker_nodes_egress.json
+    JSON files have been synchronized in ./sg_rules
+    Successfully updated README.md with new security group diagram!
     ```
 </details>
 
-  - Submitted [PR#14](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/14)
-  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074673918/job/33673086770)
+  - Submitted [PR#33](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/33)
+  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089421160/job/33714688513)
+    - [updatedsg](./img/successful_sg_rule_add_test2.png)
 
 ## Adding new SG and new SG rules
   - Updated main.tf, firewall_rules.csv and rule_conversion.py as indicated in [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
-  - Generated new rules and diagrams
+<details>
+  <summary>- Generated new rules and diagrams</summary>
     ```
-    asdfsdaf
+    python3 rule_conversion.py 
+    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
+    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/msk_ingress.json
+    No changes: ./sg_rules/ingress/nlb_ingress.json
+    No changes: ./sg_rules/ingress/opensearch_ingress.json
+    No changes: ./sg_rules/ingress/rds_ingress.json
+    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
+    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
+    Updated: ./sg_rules/ingress/sg1_ingress.json
+    No changes: ./sg_rules/egress/app1_lambda_egress.json
+    No changes: ./sg_rules/egress/app2_lambda_egress.json
+    No changes: ./sg_rules/egress/dms_egress.json
+    No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
+    No changes: ./sg_rules/egress/internet_nlb_egress.json
+    No changes: ./sg_rules/egress/istio_nodes_egress.json
+    No changes: ./sg_rules/egress/nlb_egress.json
+    Updated: ./sg_rules/egress/worker_nodes_egress.json
+    JSON files have been synchronized in ./sg_rules
+    Successfully updated README.md with new security group diagram!
     ```
+</details>
   - Submitted [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074774216/job/33673381627)
 
@@ -199,6 +283,7 @@ flowchart LR
         elasti_cache[Elasti Cache]
         efs_mount_endpoint[Efs Mount Endpoint]
         dms[Dms]
+        sg1[Sg1]
     end
 
     %% Paas Subnet Subnet
@@ -456,11 +541,13 @@ flowchart LR
     worker_nodes --> |443| nan
     worker_nodes --> |1433| rds
     rds --> |1433| worker_nodes
+    sg1 --> |445| worker_nodes
+    worker_nodes --> |445| sg1
 
     %% Apply styles
     class internet_nlb,nlb lb
     class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes
-    class rds,msk,opensearch,elasti_cache data
+    class rds,msk,opensearch,elasti_cache, sg1 data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
 ```
