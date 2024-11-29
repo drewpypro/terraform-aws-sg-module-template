@@ -73,28 +73,10 @@ BUCKET_SECRET_ACCESS_KEY
 <details>
   <summary>reran python script to update rule state</summary>
     ```
-    python3 rule_conversion.py 
-    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/msk_ingress.json
-    No changes: ./sg_rules/ingress/opensearch_ingress.json
-    Updated: ./sg_rules/ingress/rds_ingress.json
-    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
-    No changes: ./sg_rules/egress/app1_lambda_egress.json
-    No changes: ./sg_rules/egress/app2_lambda_egress.json
-    No changes: ./sg_rules/egress/dms_egress.json
-    No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
-    No changes: ./sg_rules/egress/internet_nlb_egress.json
-    No changes: ./sg_rules/egress/istio_nodes_egress.json
-    No changes: ./sg_rules/egress/nlb_egress.json
-    Updated: ./sg_rules/egress/worker_nodes_egress.json
-    JSON files have been synchronized in ./sg_rules
-    Successfully updated README.md with new security group diagram!
+    asdfsdaf
     ```
 </details>
+
   - Submitted [PR#14](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/14)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074673918/job/33673086770)
 
@@ -102,26 +84,7 @@ BUCKET_SECRET_ACCESS_KEY
   - Updated main.tf, firewall_rules.csv and rule_conversion.py as indicated in [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
   - Generated new rules and diagrams
     ```
-    python3 rule_conversion.py 
-    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/msk_ingress.json
-    No changes: ./sg_rules/ingress/opensearch_ingress.json
-    No changes: ./sg_rules/ingress/rds_ingress.json
-    Updated: ./sg_rules/ingress/worker_nodes_ingress.json
-    No changes: ./sg_rules/egress/app1_lambda_egress.json
-    No changes: ./sg_rules/egress/app2_lambda_egress.json
-    No changes: ./sg_rules/egress/dms_egress.json
-    No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
-    No changes: ./sg_rules/egress/internet_nlb_egress.json
-    No changes: ./sg_rules/egress/istio_nodes_egress.json
-    No changes: ./sg_rules/egress/nlb_egress.json
-    No changes: ./sg_rules/egress/worker_nodes_egress.json
-    JSON files have been synchronized in ./sg_rules
-    Successfully updated README.md with new security group diagram!
+    asdfsdaf
     ```
   - Submitted [PR#16](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/16)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074774216/job/33673381627)
