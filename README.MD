@@ -57,59 +57,61 @@ BUCKET_SECRET_ACCESS_KEY
 ## Adding new rules to existing sg
 <details>
   <summary>appended these lines to firewall_rules.csv</summary>
-    ```
-    19493999,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
-    19493999,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
-    19493999,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality.
-    19495659,worker_nodes,worker_nodes,null,egress,1433,1433,tcp,rds,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
-    19495659,rds,rds,null,ingress,1433,1433,tcp,worker_nodes,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
-    ```
+
+  ```
+  19493999,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
+  19493999,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
+  19493999,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality.
+  19495659,worker_nodes,worker_nodes,null,egress,1433,1433,tcp,rds,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
+  19495659,rds,rds,null,ingress,1433,1433,tcp,worker_nodes,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
+  ```
 </details>
 <details>
   <summary>reran python script to update rule state</summary>
-    ```
-    python3 rule_conversion.py 
-    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
-    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/msk_ingress.json
-    No changes: ./sg_rules/ingress/nlb_ingress.json
-    No changes: ./sg_rules/ingress/opensearch_ingress.json
-    Updated: ./sg_rules/ingress/rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
-    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
-    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
-    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
-    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
-    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
-    No changes: ./sg_rules/egress/app1_lambda_egress.json
-    No changes: ./sg_rules/egress/app2_lambda_egress.json
-    No changes: ./sg_rules/egress/dms_egress.json
-    Updated: ./sg_rules/egress/internet_istio_nodes_egress.json
-    No changes: ./sg_rules/egress/internet_nlb_egress.json
-    Updated: ./sg_rules/egress/istio_nodes_egress.json
-    No changes: ./sg_rules/egress/nlb_egress.json
-    Updated: ./sg_rules/egress/worker_nodes_egress.json
-    JSON files have been synchronized in ./sg_rules
-    Successfully updated README.md with new security group diagram!
-    ```
+
+  ```
+  python3 rule_conversion.py 
+  No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+  No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/internet_nlb_ingress.json
+  No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/msk_ingress.json
+  No changes: ./sg_rules/ingress/nlb_ingress.json
+  No changes: ./sg_rules/ingress/opensearch_ingress.json
+  Updated: ./sg_rules/ingress/rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+  No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+  No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+  No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+  No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sts_ingress.json
+  No changes: ./sg_rules/ingress/worker_nodes_ingress.json
+  No changes: ./sg_rules/egress/app1_lambda_egress.json
+  No changes: ./sg_rules/egress/app2_lambda_egress.json
+  No changes: ./sg_rules/egress/dms_egress.json
+  Updated: ./sg_rules/egress/internet_istio_nodes_egress.json
+  No changes: ./sg_rules/egress/internet_nlb_egress.json
+  Updated: ./sg_rules/egress/istio_nodes_egress.json
+  No changes: ./sg_rules/egress/nlb_egress.json
+  Updated: ./sg_rules/egress/worker_nodes_egress.json
+  JSON files have been synchronized in ./sg_rules
+  Successfully updated README.md with new security group diagram!
+  ```
 </details>
 
 - Submitted [PR#33](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/33)
@@ -120,50 +122,51 @@ BUCKET_SECRET_ACCESS_KEY
 - Updated main.tf, firewall_rules.csv and rule_conversion.py as indicated in [PR#33](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/33)
 <details>
   <summary>Generated new rules and diagrams</summary>
-    ```
-    python3 rule_conversion.py 
-    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
-    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/msk_ingress.json
-    No changes: ./sg_rules/ingress/nlb_ingress.json
-    No changes: ./sg_rules/ingress/opensearch_ingress.json
-    No changes: ./sg_rules/ingress/rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
-    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
-    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
-    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
-    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
-    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
-    Updated: ./sg_rules/ingress/sg1_ingress.json
-    No changes: ./sg_rules/egress/app1_lambda_egress.json
-    No changes: ./sg_rules/egress/app2_lambda_egress.json
-    No changes: ./sg_rules/egress/dms_egress.json
-    No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
-    No changes: ./sg_rules/egress/internet_nlb_egress.json
-    No changes: ./sg_rules/egress/istio_nodes_egress.json
-    No changes: ./sg_rules/egress/nlb_egress.json
-    Updated: ./sg_rules/egress/worker_nodes_egress.json
-    JSON files have been synchronized in ./sg_rules
-    Successfully updated README.md with new security group diagram!
-    ```
+
+  ```
+  python3 rule_conversion.py 
+  No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+  No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/internet_nlb_ingress.json
+  No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/msk_ingress.json
+  No changes: ./sg_rules/ingress/nlb_ingress.json
+  No changes: ./sg_rules/ingress/opensearch_ingress.json
+  No changes: ./sg_rules/ingress/rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+  No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+  No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+  No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+  No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sts_ingress.json
+  No changes: ./sg_rules/ingress/worker_nodes_ingress.json
+  Updated: ./sg_rules/ingress/sg1_ingress.json
+  No changes: ./sg_rules/egress/app1_lambda_egress.json
+  No changes: ./sg_rules/egress/app2_lambda_egress.json
+  No changes: ./sg_rules/egress/dms_egress.json
+  No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
+  No changes: ./sg_rules/egress/internet_nlb_egress.json
+  No changes: ./sg_rules/egress/istio_nodes_egress.json
+  No changes: ./sg_rules/egress/nlb_egress.json
+  Updated: ./sg_rules/egress/worker_nodes_egress.json
+  JSON files have been synchronized in ./sg_rules
+  Successfully updated README.md with new security group diagram!
+  ```
 </details>
 
 - Submitted [PR#34](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/34)
@@ -175,6 +178,7 @@ BUCKET_SECRET_ACCESS_KEY
 - Removed sg1 from rule_conversion.py (mermaid section)
 <details>
   <summary>Removed sg1 firewall rules from firewall_rules.csv</summary>
+
   ```
     19545259,sg1,sg1,null,ingress,445,445,tcp,worker_nodes,null,null,k8s nodes require SMB connectivity to sg1 resources.
     19545259,worker_nodes,worker_nodes,null,egress,445,445,tcp,sg1,null,null,k8s nodes require SMB connectivity to sg1 resources. 
@@ -183,49 +187,50 @@ BUCKET_SECRET_ACCESS_KEY
 
 <details>
   <summary>Generated new rules and updated diagram</summary>
-    ```
-    python3 rule_conversion.py 
-    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
-    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/msk_ingress.json
-    No changes: ./sg_rules/ingress/nlb_ingress.json
-    No changes: ./sg_rules/ingress/opensearch_ingress.json
-    No changes: ./sg_rules/ingress/rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
-    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
-    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
-    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
-    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
-    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
-    No changes: ./sg_rules/egress/app1_lambda_egress.json
-    No changes: ./sg_rules/egress/app2_lambda_egress.json
-    No changes: ./sg_rules/egress/dms_egress.json
-    No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
-    No changes: ./sg_rules/egress/internet_nlb_egress.json
-    No changes: ./sg_rules/egress/istio_nodes_egress.json
-    No changes: ./sg_rules/egress/nlb_egress.json
-    Updated: ./sg_rules/egress/worker_nodes_egress.json
-    JSON files have been synchronized in ./sg_rules
-    Successfully updated README.md with new security group diagram!
-    ```
+
+  ```
+  python3 rule_conversion.py 
+  No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+  No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/internet_nlb_ingress.json
+  No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/msk_ingress.json
+  No changes: ./sg_rules/ingress/nlb_ingress.json
+  No changes: ./sg_rules/ingress/opensearch_ingress.json
+  No changes: ./sg_rules/ingress/rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+  No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+  No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+  No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+  No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sts_ingress.json
+  No changes: ./sg_rules/ingress/worker_nodes_ingress.json
+  No changes: ./sg_rules/egress/app1_lambda_egress.json
+  No changes: ./sg_rules/egress/app2_lambda_egress.json
+  No changes: ./sg_rules/egress/dms_egress.json
+  No changes: ./sg_rules/egress/internet_istio_nodes_egress.json
+  No changes: ./sg_rules/egress/internet_nlb_egress.json
+  No changes: ./sg_rules/egress/istio_nodes_egress.json
+  No changes: ./sg_rules/egress/nlb_egress.json
+  Updated: ./sg_rules/egress/worker_nodes_egress.json
+  JSON files have been synchronized in ./sg_rules
+  Successfully updated README.md with new security group diagram!
+  ```
 </details>
 
 - Submitted [PR#37](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/37)
@@ -235,56 +240,58 @@ BUCKET_SECRET_ACCESS_KEY
 ## Removing SG rules
 <details>
   <summary>Remove Bad rule in firewall_rules.csv</summary>
-    ```
-    RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,business_justification
-    19493892,internet_istio_nodes,internet_istio_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
-    ```
+
+  ```
+  RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,business_justification
+  19493892,internet_istio_nodes,internet_istio_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
+  ```
 </details>
 <details>
   <summary>Generate new rules and update diagrams</summary>
-    ```
-    python3 rule_conversion.py 
-    No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-    No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-    No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
-    No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-    No changes: ./sg_rules/ingress/msk_ingress.json
-    No changes: ./sg_rules/ingress/nlb_ingress.json
-    No changes: ./sg_rules/ingress/opensearch_ingress.json
-    No changes: ./sg_rules/ingress/rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
-    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
-    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
-    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
-    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
-    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
-    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
-    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
-    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
-    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
-    No changes: ./sg_rules/ingress/worker_nodes_ingress.json
-    No changes: ./sg_rules/egress/app1_lambda_egress.json
-    No changes: ./sg_rules/egress/app2_lambda_egress.json
-    No changes: ./sg_rules/egress/dms_egress.json
-    Updated: ./sg_rules/egress/internet_istio_nodes_egress.json
-    No changes: ./sg_rules/egress/internet_nlb_egress.json
-    No changes: ./sg_rules/egress/istio_nodes_egress.json
-    No changes: ./sg_rules/egress/nlb_egress.json
-    No changes: ./sg_rules/egress/worker_nodes_egress.json
-    JSON files have been synchronized in ./sg_rules
-    Successfully updated README.md with new security group diagram!
-    ```
+    
+  ```
+  python3 rule_conversion.py 
+  No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
+  No changes: ./sg_rules/ingress/elasti_cache_ingress.json
+  No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/internet_nlb_ingress.json
+  No changes: ./sg_rules/ingress/istio_nodes_ingress.json
+  No changes: ./sg_rules/ingress/msk_ingress.json
+  No changes: ./sg_rules/ingress/nlb_ingress.json
+  No changes: ./sg_rules/ingress/opensearch_ingress.json
+  No changes: ./sg_rules/ingress/rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+  No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+  No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+  No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+  No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+  No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+  No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+  No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+  No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+  No changes: ./sg_rules/ingress/vpce_sts_ingress.json
+  No changes: ./sg_rules/ingress/worker_nodes_ingress.json
+  No changes: ./sg_rules/egress/app1_lambda_egress.json
+  No changes: ./sg_rules/egress/app2_lambda_egress.json
+  No changes: ./sg_rules/egress/dms_egress.json
+  Updated: ./sg_rules/egress/internet_istio_nodes_egress.json
+  No changes: ./sg_rules/egress/internet_nlb_egress.json
+  No changes: ./sg_rules/egress/istio_nodes_egress.json
+  No changes: ./sg_rules/egress/nlb_egress.json
+  No changes: ./sg_rules/egress/worker_nodes_egress.json
+  JSON files have been synchronized in ./sg_rules
+  Successfully updated README.md with new security group diagram!
+  ```
 </details>
 
 - Submitted [PR#38](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/38)
