@@ -119,7 +119,7 @@ if changes_detected:
     def get_subnet_mapping():
         """Define which components belong to which subnet."""
         return {
-            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms',],
+            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms', 'sg1'],
             'paas_subnet': ['istio_nodes', 'internet_istio_nodes', 'worker_nodes', 'cluster_endpoint'],
             'lambda_subnet': ['app1_lambda', 'app2_lambda'],
             'nlb_subnet': ['nlb'],
@@ -160,7 +160,7 @@ if changes_detected:
         diagram.append("\n    %% Apply styles")
         diagram.append("    class internet_nlb,nlb lb")
         diagram.append("    class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes")
-        diagram.append("    class rds,msk,opensearch,elasti_cache data")
+        diagram.append("    class rds,msk,opensearch,elasti_cache, sg1 data")
         diagram.append("    class cluster_endpoint,efs_mount_endpoint,dms infra")
         diagram.append("    class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra")
         diagram.append("```")
