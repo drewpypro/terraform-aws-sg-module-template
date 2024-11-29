@@ -1,0 +1,12 @@
+[
+    {
+        "RequestID": "19493892",
+        "name": "rds",
+        "self_rule": "yes",
+        "direction": "ingress",
+        "from_port": "3306",
+        "to_port": "3306",
+        "protocol": "tcp",
+        "business_justification": "k8s nodes require RDS connectivity for database operations. "
+    }
+]
