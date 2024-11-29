@@ -65,7 +65,7 @@ locals {
   self_egress_rules = flatten([
     for file in local.self_egress_files : jsondecode(file("${path.module}/${file}"))
   ])
-  
+
 }
 
 # Create security groups
@@ -82,26 +82,30 @@ resource "aws_security_group" "sgs" {
   # Add self ingress rules (self_rule == "yes" and direction == "ingress")
   ingress = [
     for rule in local.self_ingress_rules :
-      {
-        from_port   = tonumber(rule.from_port)
-        to_port     = tonumber(rule.to_port)
-        protocol    = rule.protocol
-        self        = true
-        description = rule.business_justification
-        cidr_blocks = []
-      }
-    ]
+    {
+      from_port        = tonumber(rule.from_port)
+      to_port          = tonumber(rule.to_port)
+      protocol         = rule.protocol
+      self             = true
+      description      = rule.business_justification
+      cidr_blocks      = []
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+    }
+  ]
 
   # Add self egress rules (self_rule == "yes" and direction == "egress")
   egress = [
     for rule in local.self_egress_rules :
     {
-      from_port   = tonumber(rule.from_port)
-      to_port     = tonumber(rule.to_port)
-      protocol    = rule.protocol
-      self        = true
-      description = rule.business_justification
-      cidr_blocks = []
+      from_port        = tonumber(rule.from_port)
+      to_port          = tonumber(rule.to_port)
+      protocol         = rule.protocol
+      self             = true
+      description      = rule.business_justification
+      cidr_blocks      = []
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
     }
   ]
 }
