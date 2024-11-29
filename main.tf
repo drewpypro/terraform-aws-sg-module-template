@@ -96,7 +96,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr" {
   from_port         = tonumber(each.value.from_port)
   to_port           = tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
-  cidr_ipv4         = [each.value.cidr_ipv4]
+  cidr_ipv4         = each.value.cidr_ipv4
   description       = each.value.business_justification
 }
 
@@ -128,6 +128,6 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr" {
   from_port         = tonumber(each.value.from_port)
   to_port           = tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
-  cidr_ipv4         = [each.value.cidr_ipv4]
+  cidr_ipv4         = each.value.cidr_ipv4
   description       = each.value.business_justification
 }
