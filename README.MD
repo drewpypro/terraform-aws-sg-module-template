@@ -230,28 +230,53 @@ BUCKET_SECRET_ACCESS_KEY
     JSON files have been synchronized in ./sg_rules
     Successfully updated README.md with new security group diagram!
     ```
-</detail>
+</details>
 
-  - Submitted [PR#35](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/35)
-  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089546511/job/33715020403)
+  - Submitted [PR#37](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/37)
+  - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089605572/job/33715178401)
+        - [updatedsg](./img/successful_sg_delete_test2.png)
 
 ## Removing SG rules
-  - Remove Bad rule in firewall_rules.csv
+<details>
+  <summary>-Remove Bad rule in firewall_rules.csv</summary>
     ```
-    name,security_group_id,direction,from_port,to_port,ip_protocol,referenced_security_group_id
-    internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint
+    RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,business_justification
+    19493892,internet_istio_nodes,internet_istio_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
     ```
-  - Generate new rules and update diagrams
+</details>
+<details>
+  <summary>- Generate new rules and update diagrams</summary>
     ```
     python3 rule_conversion.py 
     No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
     No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
     No changes: ./sg_rules/ingress/elasti_cache_ingress.json
     No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
+    No changes: ./sg_rules/ingress/internet_nlb_ingress.json
     No changes: ./sg_rules/ingress/istio_nodes_ingress.json
     No changes: ./sg_rules/ingress/msk_ingress.json
+    No changes: ./sg_rules/ingress/nlb_ingress.json
     No changes: ./sg_rules/ingress/opensearch_ingress.json
     No changes: ./sg_rules/ingress/rds_ingress.json
+    No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
+    No changes: ./sg_rules/ingress/vpce_dms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_efs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_eks_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
+    No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
+    No changes: ./sg_rules/ingress/vpce_kms_ingress.json
+    No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
+    No changes: ./sg_rules/ingress/vpce_logs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
+    No changes: ./sg_rules/ingress/vpce_rds_ingress.json
+    No changes: ./sg_rules/ingress/vpce_s3_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sns_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
+    No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
+    No changes: ./sg_rules/ingress/vpce_sts_ingress.json
     No changes: ./sg_rules/ingress/worker_nodes_ingress.json
     No changes: ./sg_rules/egress/app1_lambda_egress.json
     No changes: ./sg_rules/egress/app2_lambda_egress.json
@@ -264,6 +289,7 @@ BUCKET_SECRET_ACCESS_KEY
     JSON files have been synchronized in ./sg_rules
     Successfully updated README.md with new security group diagram!
     ```
+</details>
   - Submitted [PR#18](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/18)
   - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12074918889/job/33673794002)
 
@@ -387,7 +413,6 @@ flowchart LR
     elasti_cache --> |6379| worker_nodes
     internet_istio_nodes --> |443| app1_lambda
     internet_istio_nodes --> |443| cluster_endpoint
-    internet_istio_nodes --> |2049| efs_mount_endpoint
     internet_istio_nodes --> |11211| elasti_cache
     internet_istio_nodes --> |6379| elasti_cache
     internet_istio_nodes --> |443| internet_nlb
