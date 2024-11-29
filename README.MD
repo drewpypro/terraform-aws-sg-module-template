@@ -235,7 +235,7 @@ BUCKET_SECRET_ACCESS_KEY
 
 - Submitted [PR#37](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/37)
 - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089605572/job/33715178401)
-      - [updatedsg](./img/successful_sg_delete_test2.png)
+    - ![updatedsg](./img/successful_sg_delete_test2.png)
 
 ## Removing SG rules
 <details>
@@ -296,7 +296,7 @@ BUCKET_SECRET_ACCESS_KEY
 
 - Submitted [PR#38](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/38)
 - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089661057/job/33715333186)
-      - [updatedsg](./img/successful_sg_rule_delete_test2.png)
+      - ![updatedsg](./img/successful_sg_rule_delete_test2.png)
 
 # Contributing
 
