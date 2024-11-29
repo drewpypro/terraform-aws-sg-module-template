@@ -7,16 +7,21 @@ import pandas as pd
 output_base_dir = "./sg_rules"
 ingress_dir = os.path.join(output_base_dir, "ingress")
 egress_dir = os.path.join(output_base_dir, "egress")
+self_egress_dir = os.path.join(output_base_dir, "self_egress")
+self_ingress_dir = os.path.join(output_base_dir, "self_ingress")
+
 
 # Create the directories if they don't exist
 os.makedirs(ingress_dir, exist_ok=True)
 os.makedirs(egress_dir, exist_ok=True)
+os.makedirs(self_egress_dir, exist_ok=True)
+os.makedirs(self_ingress_dir, exist_ok=True)
 
 # Input CSV file
 input_csv = "firewall_rules.csv"
 
 # Data structure to hold rules categorized by direction and security group
-rules = {"ingress": {}, "egress": {}}
+rules = {"ingress": {}, "egress": {}, "self_egress": {}, "self_ingress": {}}
 
 # Helper function to read existing JSON state
 def read_existing_json(file_path):
@@ -42,6 +47,7 @@ def detect_duplicates(file_path):
             rule_tuple = (
                 row["name"],
                 row["security_group_id"],
+                row["self_rule"],
                 row["direction"],
                 row["from_port"],
                 row["to_port"],
@@ -71,30 +77,69 @@ with open(input_csv, "r") as csvfile:
         direction = row["direction"]
         sg_name = row["security_group_id"]
 
-        # Initialize the security group if not already present
-        if sg_name not in rules[direction]:
-            rules[direction][sg_name] = []
+        # Check if it's a self rule
+        if row["self_rule"] == "yes":
+            direction = row["direction"]
+            if direction == "ingress":
+                if sg_name not in rules["self_ingress"]:
+                    rules["self_ingress"][sg_name] = []
+                rules["self_ingress"][sg_name].append({
+                    "RequestID": row["RequestID"],
+                    "name": row["name"],
+                    "self_rule": row["self_rule"],
+                    "direction": row["direction"],
+                    "from_port": row["from_port"],
+                    "to_port": row["to_port"],
+                    "protocol": row["ip_protocol"],
+                    "business_justification": row.get("business_justification", ""),
+                })
+            elif direction == "egress":
+                if sg_name not in rules["self_egress"]:
+                    rules["self_egress"][sg_name] = []
+                rules["self_egress"][sg_name].append({
+                    "RequestID": row["RequestID"],
+                    "name": row["name"],
+                    "self_rule": row["self_rule"],
+                    "direction": row["direction"],
+                    "from_port": row["from_port"],
+                    "to_port": row["to_port"],
+                    "protocol": row["ip_protocol"],
+                    "business_justification": row.get("business_justification", ""),
+                })
+        else:
+            # Initialize the security group if not already present
+            if sg_name not in rules[direction]:
+                rules[direction][sg_name] = []
 
-        # Append the rule
-        rules[direction][sg_name].append({
-            "name": row["name"],
-            "security_group_id": row["security_group_id"],
-            "direction": row["direction"],
-            "from_port": row["from_port"],
-            "to_port": row["to_port"],
-            "ip_protocol": row["ip_protocol"],
-            "referenced_security_group_id": row["referenced_security_group_id"] or None,
-            "cidr_ipv4": row["cidr_ipv4"] or None,
-            "cidr_ipv6": row["cidr_ipv6"] or None,
-            "business_justification": row.get("business_justification", ""),
-        })
+            # Append the rule
+            rules[direction][sg_name].append({
+                "RequestID": row["RequestID"],
+                "name": row["name"],
+                "security_group_id": row["security_group_id"],
+                "self_rule": row["self_rule"],
+                "direction": row["direction"],
+                "from_port": row["from_port"],
+                "to_port": row["to_port"],
+                "ip_protocol": row["ip_protocol"],
+                "referenced_security_group_id": row["referenced_security_group_id"] or None,
+                "cidr_ipv4": row["cidr_ipv4"] or None,
+                "cidr_ipv6": row["cidr_ipv6"] or None,
+                "business_justification": row.get("business_justification", ""),
+            })
 
 # Write JSON files for each security group and direction
 changes_detected = False
 for direction, groups in rules.items():
     for sg_name, sg_rules in groups.items():
-        output_dir = ingress_dir if direction == "ingress" else egress_dir
-        output_file = os.path.join(output_dir, f"{sg_name}_{direction}.json")
+        if direction == "self_ingress":
+            output_dir = self_ingress_dir
+            output_file = os.path.join(output_dir, f"{sg_name}_self_ingress.json")
+        elif direction == "self_egress":
+            output_dir = self_egress_dir
+            output_file = os.path.join(output_dir, f"{sg_name}_self_egress.json")
+        else:
+            output_dir = ingress_dir if direction == "ingress" else egress_dir
+            output_file = os.path.join(output_dir, f"{sg_name}_{direction}.json")
 
         # Read existing JSON rules for comparison
         existing_rules = read_existing_json(output_file)

@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "nlb",
         "security_group_id": "nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "Allow private networks to access internal application vips"
     },
     {
+        "RequestID": "19493892",
         "name": "nlb",
         "security_group_id": "nlb",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

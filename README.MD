@@ -48,6 +48,8 @@ BUCKET_SECRET_ACCESS_KEY
 
 # TO DO
 
+- Self Rules
+- Custom Rules
 - Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
 
 # Test Cases
@@ -418,11 +420,13 @@ flowchart LR
     elasti_cache --> |6379| worker_nodes
     internet_istio_nodes --> |443| app1_lambda
     internet_istio_nodes --> |443| cluster_endpoint
+    internet_istio_nodes --> |2049| efs_mount_endpoint
     internet_istio_nodes --> |11211| elasti_cache
     internet_istio_nodes --> |6379| elasti_cache
     internet_istio_nodes --> |443| internet_nlb
     internet_istio_nodes --> |30000-40000| internet_nlb
     internet_istio_nodes --> |9096| msk
+    internet_istio_nodes --> |443| nan
     internet_istio_nodes --> |443| opensearch
     internet_istio_nodes --> |3306| rds
     internet_istio_nodes --> |443| vpce_autoscaling
@@ -456,6 +460,7 @@ flowchart LR
     istio_nodes --> |9096| msk
     istio_nodes --> |443| nlb
     istio_nodes --> |30000-40000| nlb
+    istio_nodes --> |443| nan
     istio_nodes --> |443| opensearch
     istio_nodes --> |3306| rds
     istio_nodes --> |443| vpce_autoscaling
@@ -576,6 +581,7 @@ flowchart LR
     worker_nodes --> |443| istio_nodes
     worker_nodes --> |9096| msk
     worker_nodes --> |22| nan
+    worker_nodes --> |443| nan
     worker_nodes --> |443| opensearch
     worker_nodes --> |3306| rds
     worker_nodes --> |443| vpce_autoscaling
@@ -597,11 +603,12 @@ flowchart LR
     worker_nodes --> |443| vpce_ssm
     worker_nodes --> |443| vpce_ssmmessages
     worker_nodes --> |443| vpce_sts
-    internet_istio_nodes --> |443| nan
-    istio_nodes --> |443| nan
-    worker_nodes --> |443| nan
-    worker_nodes --> |1433| rds
-    rds --> |1433| worker_nodes
+    internet_istio_nodes --> |10250| nan
+    istio_nodes --> |10250| nan
+    worker_nodes --> |10250| nan
+    internet_istio_nodes --> |53| nan
+    istio_nodes --> |53| nan
+    worker_nodes --> |53| nan
 
     %% Apply styles
     class internet_nlb,nlb lb

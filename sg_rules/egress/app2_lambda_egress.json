@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "app2_lambda",
         "security_group_id": "app2_lambda",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "443",
         "to_port": "443",
@@ -12,8 +14,10 @@
         "business_justification": "app2-lambda needs to call external API to perform app1 function"
     },
     {
+        "RequestID": "19493892",
         "name": "app2_lambda",
         "security_group_id": "app2_lambda",
+        "self_rule": "null",
         "direction": "egress",
         "from_port": "3306",
         "to_port": "3306",

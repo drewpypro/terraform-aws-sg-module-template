@@ -1,7 +1,9 @@
 [
     {
+        "RequestID": "19493892",
         "name": "msk",
         "security_group_id": "msk",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "9096",
         "to_port": "9096",
@@ -12,8 +14,10 @@
         "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
+        "RequestID": "19493892",
         "name": "msk",
         "security_group_id": "msk",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "9096",
         "to_port": "9096",
@@ -24,8 +28,10 @@
         "business_justification": "k8s nodes needs MSK access for messaging functions"
     },
     {
+        "RequestID": "19493892",
         "name": "msk",
         "security_group_id": "msk",
+        "self_rule": "null",
         "direction": "ingress",
         "from_port": "9096",
         "to_port": "9096",
