@@ -85,7 +85,7 @@ resource "aws_security_group" "sgs" {
       {
         from_port   = tonumber(rule.from_port)
         to_port     = tonumber(rule.to_port)
-        protocol    = rule.ip_protocol
+        protocol    = rule.protocol
         self        = true
         description = rule.business_justification
       }
@@ -97,7 +97,7 @@ resource "aws_security_group" "sgs" {
     {
       from_port   = tonumber(rule.from_port)
       to_port     = tonumber(rule.to_port)
-      protocol    = rule.ip_protocol
+      protocol    = rule.protocol
       self        = true
       description = rule.business_justification
     }
