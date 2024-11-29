@@ -449,6 +449,9 @@ flowchart LR
     internet_istio_nodes --> |443| vpce_ssmmessages
     internet_istio_nodes --> |443| vpce_sts
     internet_istio_nodes --> |443| worker_nodes
+    internet_istio_nodes --> |443| internet_istio_nodes
+    internet_istio_nodes --> |10250| internet_istio_nodes
+    internet_istio_nodes --> |53| internet_istio_nodes
     internet_nlb --> |443| internet_istio_nodes
     internet_nlb --> |30000-40000| internet_istio_nodes
     internet_nlb --> |443| nan
@@ -483,6 +486,9 @@ flowchart LR
     istio_nodes --> |443| vpce_ssmmessages
     istio_nodes --> |443| vpce_sts
     istio_nodes --> |443| worker_nodes
+    istio_nodes --> |443| istio_nodes
+    istio_nodes --> |10250| istio_nodes
+    istio_nodes --> |53| istio_nodes
     msk --> |9096| internet_istio_nodes
     msk --> |9096| istio_nodes
     msk --> |9096| worker_nodes
@@ -495,6 +501,7 @@ flowchart LR
     rds --> |3306| internet_istio_nodes
     rds --> |3306| istio_nodes
     rds --> |3306| worker_nodes
+    rds --> |3306| nan
     vpce_autoscaling --> |443| internet_istio_nodes
     vpce_autoscaling --> |443| istio_nodes
     vpce_autoscaling --> |443| nan
@@ -603,12 +610,9 @@ flowchart LR
     worker_nodes --> |443| vpce_ssm
     worker_nodes --> |443| vpce_ssmmessages
     worker_nodes --> |443| vpce_sts
-    internet_istio_nodes --> |10250| nan
-    istio_nodes --> |10250| nan
-    worker_nodes --> |10250| nan
-    internet_istio_nodes --> |53| nan
-    istio_nodes --> |53| nan
-    worker_nodes --> |53| nan
+    worker_nodes --> |443| worker_nodes
+    worker_nodes --> |10250| worker_nodes
+    worker_nodes --> |53| worker_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb

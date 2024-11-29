@@ -50,6 +50,14 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,10250,10250,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,10250,10250,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,53,53,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,53,53,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,egress,53,53,udp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,null,ingress,53,53,udp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_nlb,internet_nlb,null,egress,443,443,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 19493892,internet_nlb,internet_nlb,null,egress,30000,40000,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 19493892,internet_nlb,internet_nlb,null,ingress,443,443,tcp,null,103.21.244.0/22,null,Allow Public WAF endpoints into origin for public applications
@@ -99,6 +107,14 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,egress,10250,10250,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,ingress,10250,10250,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,egress,53,53,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,ingress,53,53,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,egress,53,53,udp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,null,ingress,53,53,udp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,msk,msk,null,ingress,9096,9096,tcp,internet_istio_nodes,null,null,k8s nodes needs MSK access for messaging functions
 19493892,msk,msk,null,ingress,9096,9096,tcp,istio_nodes,null,null,k8s nodes needs MSK access for messaging functions
 19493892,msk,msk,null,ingress,9096,9096,tcp,worker_nodes,null,null,k8s nodes needs MSK access for messaging functions
@@ -112,6 +128,8 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,rds,rds,null,ingress,3306,3306,tcp,internet_istio_nodes,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,rds,rds,null,ingress,3306,3306,tcp,istio_nodes,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,rds,rds,null,ingress,3306,3306,tcp,worker_nodes,null,null,k8s nodes require RDS connectivity for database operations. 
+19493892,rds,rds,yes,ingress,3306,3306,tcp,null,null,null,k8s nodes require RDS connectivity for database operations. 
+19493892,rds,rds,yes,egress,3306,3306,tcp,null,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,vpce_autoscaling,vpce_autoscaling,null,ingress,443,443,tcp,null,10.69.69.0/24,null,Allow private networks access to internal AWS APIs
@@ -240,27 +258,11 @@ RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protoc
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,egress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,ingress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,ingress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,egress,443,443,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,egress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,ingress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,ingress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,egress,10250,10250,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,egress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,ingress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,ingress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,egress,53,53,tcp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,yes,egress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,yes,ingress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,egress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,yes,ingress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,ingress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,yes,egress,53,53,udp,null,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,ingress,10250,10250,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,egress,10250,10250,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,ingress,53,53,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,egress,53,53,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,ingress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,null,egress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay

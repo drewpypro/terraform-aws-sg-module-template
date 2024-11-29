@@ -124,7 +124,7 @@ output "security_group_ids" {
 resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
   for_each = {
     for i, rule in local.ingress_rules :
-    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.referenced_security_group_id}-ingress"
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.referenced_security_group_id}-ingress"
     => rule if rule.referenced_security_group_id != "null" && rule.cidr_ipv4 == "null"
   }
 
@@ -140,7 +140,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
 resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv4" {
   for_each = {
     for i, rule in local.ingress_rules :
-    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv4}-ingress"
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv4}-ingress"
     => rule if rule.cidr_ipv4 != "null" && rule.referenced_security_group_id == "null"
   }
 
@@ -156,7 +156,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv4" {
 resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv6" {
   for_each = {
     for i, rule in local.ingress_rules :
-    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv6}-ingress"
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv6}-ingress"
     => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null"
   }
 
@@ -172,7 +172,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv6" {
 resource "aws_vpc_security_group_egress_rule" "egress_referenced" {
   for_each = {
     for i, rule in local.egress_rules :
-    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.referenced_security_group_id}-egress"
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.referenced_security_group_id}-egress"
     => rule if rule.referenced_security_group_id != "null" && rule.cidr_ipv4 == "null"
   }
 
@@ -188,7 +188,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_referenced" {
 resource "aws_vpc_security_group_egress_rule" "egress_cidr" {
   for_each = {
     for i, rule in local.egress_rules :
-    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv4}-egress"
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv4}-egress"
     => rule if rule.cidr_ipv4 != "null" && rule.referenced_security_group_id == "null"
   }
 
@@ -204,7 +204,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr" {
 resource "aws_vpc_security_group_egress_rule" "egress_cidr_ipv6" {
   for_each = {
     for i, rule in local.egress_rules :
-    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.cidr_ipv6}-egress"
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv6}-egress"
     => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null"
   }
 
