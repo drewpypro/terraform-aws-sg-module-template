@@ -115,7 +115,7 @@ if changes_detected:
     def get_subnet_mapping():
         """Define which components belong to which subnet."""
         return {
-            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms',],
+            'general_subnet': ['rds', 'msk', 'opensearch', 'elasti_cache', 'efs_mount_endpoint', 'dms', ],
             'paas_subnet': ['istio_nodes', 'internet_istio_nodes', 'worker_nodes', 'cluster_endpoint'],
             'lambda_subnet': ['app1_lambda', 'app2_lambda'],
             'nlb_subnet': ['nlb'],

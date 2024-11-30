@@ -51,7 +51,7 @@ BUCKET_SECRET_ACCESS_KEY
 
 # Test Cases
 
-## Successful first build [PR](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/44)/[Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097780052/job/33733528325) 
+## Successful first build
 <details>
   <summary>First time python conversion</summary>
 
@@ -100,6 +100,11 @@ JSON files have been synchronized in ./sg_rules
 Successfully updated README.md with new security group diagram!
 ```
 </details>
+
+- Submitted [PR#44](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/44)
+- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097780052/job/33733528325)
+  - ![updatedsg](./img/successful_test4.png)
+
 
 ## Adding new rules to existing sg
 <details>
@@ -160,9 +165,9 @@ Successfully updated README.md with new security group diagram!
   ```
 </details>
 
-- Submitted [PR#33](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/33)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089421160/job/33714688513)
-  - ![updatedsg](./img/successful_sg_rule_add_test2.png)
+- Submitted [PR#45](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/45)
+- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097819021/job/33733610021)
+  - ![updatedsg](./img/successful_sg_rule_add_test4.png)
 
 ## Adding new SG and new SG rules
 - Updated main.tf, firewall_rules.csv and rule_conversion.py as indicated in [PR#33](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/33)
@@ -658,7 +663,6 @@ flowchart LR
     worker_nodes --> |10250| worker_nodes
     worker_nodes --> |53| worker_nodes
     worker_nodes --> |6969| worker_nodes
-    worker_nodes --> |6969| istio_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb
