@@ -77,7 +77,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
   for_each = {
     for i, rule in local.rules :
     "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.referenced_security_group_id}-ingress"
-    => rule if rule.referenced_security_group_id != "null" && rule.cidr_ipv4 == "null"
+    => rule if rule.referenced_security_group_id != "null" && rule.cidr_ipv4 == "null" && rule.direction == "ingress"
   }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
@@ -93,7 +93,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv4" {
   for_each = {
     for i, rule in local.rules :
     "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv4}-ingress"
-    => rule if rule.cidr_ipv4 != "null" && rule.referenced_security_group_id == "null"
+    => rule if rule.cidr_ipv4 != "null" && rule.referenced_security_group_id == "null" && rule.direction == "ingress"
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
@@ -109,7 +109,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv6" {
   for_each = {
     for i, rule in local.rules :
     "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv6}-ingress"
-    => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null"
+    => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null" && rule.direction == "ingress"
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
@@ -125,7 +125,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_referenced" {
   for_each = {
     for i, rule in local.rules :
     "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.referenced_security_group_id}-egress"
-    => rule if rule.referenced_security_group_id != "null" && rule.cidr_ipv4 == "null"
+    => rule if rule.referenced_security_group_id != "null" && rule.cidr_ipv4 == "null" && rule.direction == "egress"
   }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
@@ -141,7 +141,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr" {
   for_each = {
     for i, rule in local.rules :
     "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv4}-egress"
-    => rule if rule.cidr_ipv4 != "null" && rule.referenced_security_group_id == "null"
+    => rule if rule.cidr_ipv4 != "null" && rule.referenced_security_group_id == "null" && rule.direction == "egress"
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
@@ -157,7 +157,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr_ipv6" {
   for_each = {
     for i, rule in local.rules :
     "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.cidr_ipv6}-egress"
-    => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null"
+    => rule if rule.cidr_ipv6 != "null" && rule.referenced_security_group_id == "null" && rule.direction == "egress"
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
