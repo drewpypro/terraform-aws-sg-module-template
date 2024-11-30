@@ -45,9 +45,10 @@ BUCKET_SECRET_ACCESS_KEY
 
 # TO DO
 
+- Make conversion script remove files (if SG is deleted)
+- Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
 - Make mermaid better
 - Custom Rules (If this is being used as a shared template module)
-- Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
 
 # Test Cases
 
@@ -226,7 +227,7 @@ Successfully updated README.md with new security group diagram!
     - ![updatedsg](./img/successful_sg_add_test2.png)
 
 ## Removing SG 
-- Manually deleted ./sg_rules/ingress/sg1_ingress.json (need conversion script to delete files)
+- Manually deleted ./sg_rules/sg1.json (need conversion script to delete files)
 - Removed sg1 from rule_conversion.py (mermaid section)
 <details>
   <summary>Removed sg1 firewall rules from firewall_rules.csv</summary>
