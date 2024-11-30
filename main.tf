@@ -39,6 +39,7 @@ locals {
     "vpce_ssm"                  = "vpce_ssm"
     "vpce_ssmmessages"          = "vpce_ssmmessages"
     "vpce_sts"                  = "vpce_sts"
+    "sg1"                       = "sg1"
 
   }
 

@@ -165,8 +165,8 @@ Successfully updated README.md with new security group diagram!
   ```
 </details>
 
-- Submitted [PR#45](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/45)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097819021/job/33733610021)
+- Submitted [PR#47](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/47)
+- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097978341/job/33733946367)
   - ![updatedsg](./img/successful_sg_rule_add_test4.png)
 
 ## Adding new SG and new SG rules
