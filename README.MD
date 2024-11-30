@@ -51,7 +51,7 @@ BUCKET_SECRET_ACCESS_KEY
 
 # Test Cases
 
-## Successful first build [PR](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/41)/[Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12090865971/job/33718459622) 
+## Successful first build [PR](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/44)/[Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097780052/job/33733528325) 
 <details>
   <summary>First time python conversion</summary>
 
@@ -105,59 +105,58 @@ Successfully updated README.md with new security group diagram!
 <details>
   <summary>appended these lines to firewall_rules.csv</summary>
 
-  ```
-  19493999,internet_istio_nodes,internet_istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
-  19493999,istio_nodes,istio_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
-  19493999,worker_nodes,worker_nodes,null,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality.
-  19495659,worker_nodes,worker_nodes,null,egress,1433,1433,tcp,rds,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
-  19495659,rds,rds,null,ingress,1433,1433,tcp,worker_nodes,null,null,k8s nodes require sqlnet connectivity to rds for database operations.
-  ```
+```
+19543231,worker_nodes,worker_nodes,ingress,6969,6969,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes for geneve tunneling
+19543231,worker_nodes,worker_nodes,egress,53,53,tcp,worker_nodes,192.168.11.53/32,null,k8s nodes require connectivity to bind dns server
+19543231,worker_nodes,worker_nodes,egress,6969,6969,udp,istio_nodes,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
+ ```
 </details>
 <details>
   <summary>reran python script to update rule state</summary>
 
   ```
-  python3 rule_conversion.py 
-  No changes: ./sg_rules/ingress/cluster_endpoint_ingress.json
-  No changes: ./sg_rules/ingress/efs_mount_endpoint_ingress.json
-  No changes: ./sg_rules/ingress/elasti_cache_ingress.json
-  No changes: ./sg_rules/ingress/internet_istio_nodes_ingress.json
-  No changes: ./sg_rules/ingress/internet_nlb_ingress.json
-  No changes: ./sg_rules/ingress/istio_nodes_ingress.json
-  No changes: ./sg_rules/ingress/msk_ingress.json
-  No changes: ./sg_rules/ingress/nlb_ingress.json
-  No changes: ./sg_rules/ingress/opensearch_ingress.json
-  Updated: ./sg_rules/ingress/rds_ingress.json
-  No changes: ./sg_rules/ingress/vpce_autoscaling_ingress.json
-  No changes: ./sg_rules/ingress/vpce_dms_ingress.json
-  No changes: ./sg_rules/ingress/vpce_ec2_ingress.json
-  No changes: ./sg_rules/ingress/vpce_ec2messages_ingress.json
-  No changes: ./sg_rules/ingress/vpce_efs_ingress.json
-  No changes: ./sg_rules/ingress/vpce_eks_ingress.json
-  No changes: ./sg_rules/ingress/vpce_elasticache_ingress.json
-  No changes: ./sg_rules/ingress/vpce_elasticloadbalancing_ingress.json
-  No changes: ./sg_rules/ingress/vpce_kms_ingress.json
-  No changes: ./sg_rules/ingress/vpce_lambda_ingress.json
-  No changes: ./sg_rules/ingress/vpce_logs_ingress.json
-  No changes: ./sg_rules/ingress/vpce_monitoring_ingress.json
-  No changes: ./sg_rules/ingress/vpce_rds_ingress.json
-  No changes: ./sg_rules/ingress/vpce_s3_ingress.json
-  No changes: ./sg_rules/ingress/vpce_sns_ingress.json
-  No changes: ./sg_rules/ingress/vpce_sqs_ingress.json
-  No changes: ./sg_rules/ingress/vpce_ssm_ingress.json
-  No changes: ./sg_rules/ingress/vpce_ssmmessages_ingress.json
-  No changes: ./sg_rules/ingress/vpce_sts_ingress.json
-  No changes: ./sg_rules/ingress/worker_nodes_ingress.json
-  No changes: ./sg_rules/egress/app1_lambda_egress.json
-  No changes: ./sg_rules/egress/app2_lambda_egress.json
-  No changes: ./sg_rules/egress/dms_egress.json
-  Updated: ./sg_rules/egress/internet_istio_nodes_egress.json
-  No changes: ./sg_rules/egress/internet_nlb_egress.json
-  Updated: ./sg_rules/egress/istio_nodes_egress.json
-  No changes: ./sg_rules/egress/nlb_egress.json
-  Updated: ./sg_rules/egress/worker_nodes_egress.json
-  JSON files have been synchronized in ./sg_rules
-  Successfully updated README.md with new security group diagram!
+python3 rule_conversion.py 
+No changes: ./sg_rules/cluster_endpoint.json
+No changes: ./sg_rules/efs_mount_endpoint.json
+No changes: ./sg_rules/elasti_cache.json
+Updated: ./sg_rules/internet_istio_nodes.json
+Updated: ./sg_rules/internet_nlb.json
+Updated: ./sg_rules/istio_nodes.json
+No changes: ./sg_rules/msk.json
+Updated: ./sg_rules/nlb.json
+No changes: ./sg_rules/opensearch.json
+Updated: ./sg_rules/rds.json
+No changes: ./sg_rules/vpce_autoscaling.json
+No changes: ./sg_rules/vpce_dms.json
+No changes: ./sg_rules/vpce_ec2.json
+No changes: ./sg_rules/vpce_ec2messages.json
+No changes: ./sg_rules/vpce_efs.json
+No changes: ./sg_rules/vpce_eks.json
+No changes: ./sg_rules/vpce_elasticache.json
+No changes: ./sg_rules/vpce_elasticloadbalancing.json
+No changes: ./sg_rules/vpce_kms.json
+No changes: ./sg_rules/vpce_lambda.json
+No changes: ./sg_rules/vpce_logs.json
+No changes: ./sg_rules/vpce_monitoring.json
+No changes: ./sg_rules/vpce_rds.json
+No changes: ./sg_rules/vpce_s3.json
+No changes: ./sg_rules/vpce_sns.json
+No changes: ./sg_rules/vpce_sqs.json
+No changes: ./sg_rules/vpce_ssm.json
+No changes: ./sg_rules/vpce_ssmmessages.json
+No changes: ./sg_rules/vpce_sts.json
+Updated: ./sg_rules/worker_nodes.json
+No changes: ./sg_rules/app1_lambda.json
+No changes: ./sg_rules/app2_lambda.json
+No changes: ./sg_rules/dms.json
+Updated: ./sg_rules/internet_istio_nodes.json
+Updated: ./sg_rules/internet_nlb.json
+Updated: ./sg_rules/istio_nodes.json
+Updated: ./sg_rules/nlb.json
+Updated: ./sg_rules/rds.json
+Updated: ./sg_rules/worker_nodes.json
+JSON files have been synchronized in ./sg_rules
+Successfully updated README.md with new security group diagram!
   ```
 </details>
 
@@ -658,6 +657,8 @@ flowchart LR
     worker_nodes --> |443| worker_nodes
     worker_nodes --> |10250| worker_nodes
     worker_nodes --> |53| worker_nodes
+    worker_nodes --> |6969| worker_nodes
+    worker_nodes --> |6969| istio_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb
