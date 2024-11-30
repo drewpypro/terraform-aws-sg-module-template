@@ -237,6 +237,7 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,worker_nodes,worker_nodes,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
 19493892,worker_nodes,worker_nodes,ingress,22,22,tcp,null,55.55.55.55/32,null,Enable external management connectivity
 19493892,worker_nodes,worker_nodes,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
+19493892,worker_nodes,worker_nodes,egress,443,443,tcp,null,69.69.69.69/32,null,k8s nodes require connectivity to external api for infrastructure services
 19493892,worker_nodes,worker_nodes,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
 19493892,worker_nodes,worker_nodes,egress,3306,3306,tcp,rds,null,null,k8s nodes require RDS connectivity for database operations. 
 19493892,worker_nodes,worker_nodes,egress,443,443,tcp,vpce_autoscaling,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 

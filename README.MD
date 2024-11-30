@@ -21,24 +21,15 @@ terraform-aws-sg-module-template/
 ├── providers.tf
 ├── variables.tf
 ├── sg_rules/
-│   ├── egress/
-│   │   ├── aws_security_group.sgs[each.value.name]_egress.json
-│   │   ├── ...
-│   ├── ingress/
-│   │   ├── aws_security_group.sgs[each.value.name]_ingress.json
-│   │   ├── ...
-│   ├── self_ingress/
-│   │   ├── aws_security_group.sgs[each.value.name]_self_ingress.json
-│   │   ├── ...
-│   ├── self_egress/
-│   │   ├── aws_security_group.sgs[each.value.name]_self_egress.json
-│   │   ├── ...
+│   ├── aws_security_group.sgs[each.value.name].json
+├── firewall_rules.csv
+├── rule_conversion.py
 └── README.md
 ```
 
 # Usage
-- Define firewall rules in firewall_rules.csv
-- Run rule_conversion.py (for first time or after making changes to firewall_rules.csv)
+- Define firewall rules in [firewall_rules.csv](https://github.com/drewpypro/terraform-aws-sg-module-template/blob/main/firewall_rules.csv)
+- Run [rule_conversion.py](https://github.com/drewpypro/terraform-aws-sg-module-template/blob/main/rule_conversion.py)
 - Terraform apply
 
 ## Prerequisites
@@ -61,8 +52,54 @@ BUCKET_SECRET_ACCESS_KEY
 # Test Cases
 
 ## Successful first build [PR](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/41)/[Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12090865971/job/33718459622) 
-  - ![Success](./img/successful_test3.png)
+<details>
+  <summary>First time python conversion</summary>
 
+```
+python3 rule_conversion.py 
+Updated: ./sg_rules/cluster_endpoint.json
+Updated: ./sg_rules/efs_mount_endpoint.json
+Updated: ./sg_rules/elasti_cache.json
+Updated: ./sg_rules/internet_istio_nodes.json
+Updated: ./sg_rules/internet_nlb.json
+Updated: ./sg_rules/istio_nodes.json
+Updated: ./sg_rules/msk.json
+Updated: ./sg_rules/nlb.json
+Updated: ./sg_rules/opensearch.json
+Updated: ./sg_rules/rds.json
+Updated: ./sg_rules/vpce_autoscaling.json
+Updated: ./sg_rules/vpce_dms.json
+Updated: ./sg_rules/vpce_ec2.json
+Updated: ./sg_rules/vpce_ec2messages.json
+Updated: ./sg_rules/vpce_efs.json
+Updated: ./sg_rules/vpce_eks.json
+Updated: ./sg_rules/vpce_elasticache.json
+Updated: ./sg_rules/vpce_elasticloadbalancing.json
+Updated: ./sg_rules/vpce_kms.json
+Updated: ./sg_rules/vpce_lambda.json
+Updated: ./sg_rules/vpce_logs.json
+Updated: ./sg_rules/vpce_monitoring.json
+Updated: ./sg_rules/vpce_rds.json
+Updated: ./sg_rules/vpce_s3.json
+Updated: ./sg_rules/vpce_sns.json
+Updated: ./sg_rules/vpce_sqs.json
+Updated: ./sg_rules/vpce_ssm.json
+Updated: ./sg_rules/vpce_ssmmessages.json
+Updated: ./sg_rules/vpce_sts.json
+Updated: ./sg_rules/worker_nodes.json
+Updated: ./sg_rules/app1_lambda.json
+Updated: ./sg_rules/app2_lambda.json
+Updated: ./sg_rules/dms.json
+Updated: ./sg_rules/internet_istio_nodes.json
+Updated: ./sg_rules/internet_nlb.json
+Updated: ./sg_rules/istio_nodes.json
+Updated: ./sg_rules/nlb.json
+Updated: ./sg_rules/rds.json
+Updated: ./sg_rules/worker_nodes.json
+JSON files have been synchronized in ./sg_rules
+Successfully updated README.md with new security group diagram!
+```
+</details>
 
 ## Adding new rules to existing sg
 <details>
