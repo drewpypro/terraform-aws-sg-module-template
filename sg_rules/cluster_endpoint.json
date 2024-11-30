@@ -1,0 +1,54 @@
+[
+    {
+        "RequestID": "19493892",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
+    },
+    {
+        "RequestID": "19493892",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
+    },
+    {
+        "RequestID": "19493892",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "55.55.55.55/32",
+        "cidr_ipv6": "null",
+        "business_justification": "terraform needs access to cluster endpoint for eks control plane"
+    },
+    {
+        "RequestID": "19493892",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
+    }
+]

@@ -509,7 +509,7 @@ flowchart LR
     rds --> |3306| internet_istio_nodes
     rds --> |3306| istio_nodes
     rds --> |3306| worker_nodes
-    rds --> |3306| nan
+    rds --> |3306| rds
     vpce_autoscaling --> |443| internet_istio_nodes
     vpce_autoscaling --> |443| istio_nodes
     vpce_autoscaling --> |443| nan
