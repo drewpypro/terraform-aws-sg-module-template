@@ -112,8 +112,8 @@ Successfully updated README.md with new security group diagram!
 
 ```
 19543231,worker_nodes,worker_nodes,ingress,6969,6969,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes for geneve tunneling
-19543231,worker_nodes,worker_nodes,egress,53,53,tcp,worker_nodes,192.168.11.53/32,null,k8s nodes require connectivity to bind dns server
-19543231,worker_nodes,worker_nodes,egress,6969,6969,udp,istio_nodes,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
+19543231,worker_nodes,worker_nodes,egress,53,53,tcp,null,192.168.11.53/32,null,k8s nodes require connectivity to bind dns server
+19543231,worker_nodes,worker_nodes,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
  ```
 </details>
 <details>
@@ -663,6 +663,8 @@ flowchart LR
     worker_nodes --> |10250| worker_nodes
     worker_nodes --> |53| worker_nodes
     worker_nodes --> |6969| worker_nodes
+    worker_nodes --> |53| nan
+    worker_nodes --> |6969| nan
 
     %% Apply styles
     class internet_nlb,nlb lb
