@@ -268,3 +268,5 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,worker_nodes,worker_nodes,ingress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,worker_nodes,worker_nodes,egress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19543231,worker_nodes,worker_nodes,ingress,6969,6969,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes for geneve tunneling
+19543231,worker_nodes,worker_nodes,egress,53,53,tcp,null,192.168.11.53/32,null,k8s nodes require connectivity to bind dns server
+19543231,worker_nodes,worker_nodes,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
