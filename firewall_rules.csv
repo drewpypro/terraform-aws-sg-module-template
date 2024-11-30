@@ -13,11 +13,13 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,dms,dms,egress,443,443,tcp,vpce_kms,null,null,DMS replication instances require sql access to secrets manager to manage kms keys
 19493892,dms,dms,egress,443,443,tcp,vpce_sts,null,null,DMS replication instances require sql access to RDS for migration activities. 
 19493892,efs_mount_endpoint,efs_mount_endpoint,ingress,2049,2049,tcp,istio_nodes,null,null,k8s nodes need access to efs for storage mounts used by containers
+19493892,efs_mount_endpoint,efs_mount_endpoint,ingress,2049,2049,tcp,internet_istio_nodes,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,efs_mount_endpoint,efs_mount_endpoint,ingress,2049,2049,tcp,worker_nodes,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,elasti_cache,elasti_cache,ingress,11211,11211,tcp,istio_nodes,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,elasti_cache,elasti_cache,ingress,6379,6379,tcp,istio_nodes,null,null,k8s nodes need access to elasti_cache for redis caching
 19493892,elasti_cache,elasti_cache,ingress,11211,11211,tcp,worker_nodes,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,elasti_cache,elasti_cache,ingress,6379,6379,tcp,worker_nodes,null,null,k8s nodes need access to elasti_cache for redis caching
+19493892,internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,app1_lambda,null,null,app1-lambda needs k8s node access to perform app1 function
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
@@ -267,7 +269,3 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,worker_nodes,worker_nodes,egress,53,53,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,worker_nodes,worker_nodes,ingress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,worker_nodes,worker_nodes,egress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19543231,worker_nodes,worker_nodes,ingress,6969,6969,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes for geneve tunneling
-19543231,worker_nodes,worker_nodes,egress,53,53,tcp,null,192.168.11.53/32,null,k8s nodes require connectivity to bind dns server
-19543231,worker_nodes,worker_nodes,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
-19553267,sg1,sg1,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
