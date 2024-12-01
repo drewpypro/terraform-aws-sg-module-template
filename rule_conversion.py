@@ -188,6 +188,15 @@ if changes_detected:
     def generate_mermaid_diagram(df):
         """Generate Mermaid diagram based on firewall rules."""
         subnet_mapping = get_subnet_mapping()
+        
+        # Collect all unique CIDR ranges
+        external_networks = set()
+        for _, rule in df.iterrows():
+            if rule['cidr_ipv4']:
+                external_networks.add(f"cidr_{rule['cidr_ipv4'].replace('/', '_')}")
+            if rule['cidr_ipv6']:
+                external_networks.add(f"cidr_{rule['cidr_ipv6'].replace('/', '_')}")
+
         diagram = [
             "```mermaid",
             "flowchart LR",
@@ -196,14 +205,25 @@ if changes_detected:
             "    classDef lb fill:#d86613,stroke:#fff,stroke-width:2px,color:#fff",
             "    classDef nodes fill:#007acc,stroke:#fff,stroke-width:2px,color:#fff",
             "    classDef data fill:#3b48cc,stroke:#fff,stroke-width:2px,color:#fff",
-            "    classDef infra fill:#c94f17,stroke:#fff,stroke-width:2px,color:#fff\n"
+            "    classDef infra fill:#c94f17,stroke:#fff,stroke-width:2px,color:#fff",
+            "    classDef external fill:#454545,stroke:#fff,stroke-width:2px,color:#fff\n"
         ]
 
+        # Add regular subnets
         for subnet_name, components in subnet_mapping.items():
             diagram.append(f"    %% {subnet_name.replace('_', ' ').title()} Subnet")
             diagram.append(f"    subgraph {subnet_name} [{subnet_name.replace('_', ' ').title()}]")
             for component in components:
                 diagram.append(f"        {component}[{component.replace('_', ' ').title()}]")
+            diagram.append("    end\n")
+
+        # Add external networks subgraph if there are any CIDR ranges
+        if external_networks:
+            diagram.append("    %% External Networks")
+            diagram.append("    subgraph external_networks [External Networks]")
+            for network in sorted(external_networks):
+                original_cidr = network.replace('cidr_', '').replace('_', '/')
+                diagram.append(f"        {network}[{original_cidr}]")
             diagram.append("    end\n")
 
         diagram.append("    %% Connections")
@@ -213,9 +233,12 @@ if changes_detected:
         diagram.append("\n    %% Apply styles")
         diagram.append("    class internet_nlb,nlb lb")
         diagram.append("    class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes")
-        diagram.append("    class rds,msk,opensearch,elasti_cache, data")
+        diagram.append("    class rds,msk,opensearch,elasti_cache data")
         diagram.append("    class cluster_endpoint,efs_mount_endpoint,dms infra")
         diagram.append("    class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra")
+        # Add style for external networks
+        if external_networks:
+            diagram.append(f"    class {','.join(external_networks)} external")
         diagram.append("```")
 
         return "\n".join(diagram)
@@ -234,12 +257,13 @@ if changes_detected:
                     connections.append(f"    {source} --> |{port}| {target}")
                     seen_connections.add(connection_key)
             elif rule['cidr_ipv4'] or rule['cidr_ipv6']:
-                # Add CIDR connections to diagram
                 cidr = rule['cidr_ipv4'] or rule['cidr_ipv6']
                 port = f"{rule['from_port']}" if rule['from_port'] == rule['to_port'] else f"{rule['from_port']}-{rule['to_port']}"
+                # Create a valid node ID for the CIDR
+                cidr_node = f"cidr_{cidr.replace('/', '_')}"
                 connection_key = f"{source}-{cidr}-{port}"
                 if connection_key not in seen_connections:
-                    connections.append(f"    {source} --> |{port}| {cidr}")
+                    connections.append(f"    {source} --> |{port}| {cidr_node}")
                     seen_connections.add(connection_key)
 
         return connections
