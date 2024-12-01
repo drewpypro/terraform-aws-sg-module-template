@@ -160,57 +160,59 @@ Successfully updated README.md with new security group diagram!
 ```
 </details>
 
-- Submitted [PR#47](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/47)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097978341/job/33733946367)
-  - ![updatedsg](./img/successful_sg_rule_add_test4.png)
+- Submitted [PR#56](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/47)
+- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101692358/job/33741831165)
+  - ![updatedsg](./img/successful_sg_rule_add_test5.png)
 
 ## Adding new SG and new SG rules
-- Updated main.tf, firewall_rules.csv and rule_conversion.py as indicated in [PR#48](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/48)
+- Added new "sg1" local to main.tf
+<details>
+  <summary>added new sg1 rules to firewall_rules.csv</summary>
+
+```
+19543694,sg1,sg1,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,sg1 resource nodes require connectivity to external API endpoints
+```
+
+</details>
 <details>
   <summary>Generated new rules and diagrams</summary>
 
 ```
 python3 rule_conversion.py 
-No changes: ./sg_rules/cluster_endpoint.json
+No changes: ./sg_rules/vpce_sqs.json
+No changes: ./sg_rules/app1_lambda.json
+No changes: ./sg_rules/vpce_ec2.json
 No changes: ./sg_rules/efs_mount_endpoint.json
+No changes: ./sg_rules/cluster_endpoint.json
 No changes: ./sg_rules/elasti_cache.json
-Updated: ./sg_rules/internet_istio_nodes.json
-Updated: ./sg_rules/internet_nlb.json
-Updated: ./sg_rules/istio_nodes.json
-No changes: ./sg_rules/msk.json
-Updated: ./sg_rules/nlb.json
+No changes: ./sg_rules/vpce_ec2messages.json
+No changes: ./sg_rules/vpce_ssmmessages.json
+No changes: ./sg_rules/vpce_sns.json
 No changes: ./sg_rules/opensearch.json
-Updated: ./sg_rules/rds.json
+No changes: ./sg_rules/internet_istio_nodes.json
+No changes: ./sg_rules/app2_lambda.json
+No changes: ./sg_rules/vpce_kms.json
+No changes: ./sg_rules/dms.json
+No changes: ./sg_rules/vpce_elasticache.json
+No changes: ./sg_rules/vpce_logs.json
+No changes: ./sg_rules/vpce_sts.json
+No changes: ./sg_rules/vpce_elasticloadbalancing.json
 No changes: ./sg_rules/vpce_autoscaling.json
 No changes: ./sg_rules/vpce_dms.json
-No changes: ./sg_rules/vpce_ec2.json
-No changes: ./sg_rules/vpce_ec2messages.json
-No changes: ./sg_rules/vpce_efs.json
-No changes: ./sg_rules/vpce_eks.json
-No changes: ./sg_rules/vpce_elasticache.json
-No changes: ./sg_rules/vpce_elasticloadbalancing.json
-No changes: ./sg_rules/vpce_kms.json
-No changes: ./sg_rules/vpce_lambda.json
-No changes: ./sg_rules/vpce_logs.json
-No changes: ./sg_rules/vpce_monitoring.json
-No changes: ./sg_rules/vpce_rds.json
-No changes: ./sg_rules/vpce_s3.json
-No changes: ./sg_rules/vpce_sns.json
-No changes: ./sg_rules/vpce_sqs.json
-No changes: ./sg_rules/vpce_ssm.json
-No changes: ./sg_rules/vpce_ssmmessages.json
-No changes: ./sg_rules/vpce_sts.json
-Updated: ./sg_rules/worker_nodes.json
-No changes: ./sg_rules/app1_lambda.json
-No changes: ./sg_rules/app2_lambda.json
-No changes: ./sg_rules/dms.json
-Updated: ./sg_rules/internet_istio_nodes.json
-Updated: ./sg_rules/internet_nlb.json
-Updated: ./sg_rules/istio_nodes.json
-Updated: ./sg_rules/nlb.json
-Updated: ./sg_rules/rds.json
-Updated: ./sg_rules/worker_nodes.json
 Updated: ./sg_rules/sg1.json
+No changes: ./sg_rules/nlb.json
+No changes: ./sg_rules/vpce_rds.json
+No changes: ./sg_rules/vpce_eks.json
+No changes: ./sg_rules/internet_nlb.json
+No changes: ./sg_rules/vpce_lambda.json
+No changes: ./sg_rules/istio_nodes.json
+No changes: ./sg_rules/rds.json
+No changes: ./sg_rules/vpce_efs.json
+No changes: ./sg_rules/vpce_ssm.json
+No changes: ./sg_rules/msk.json
+No changes: ./sg_rules/vpce_monitoring.json
+No changes: ./sg_rules/worker_nodes.json
+No changes: ./sg_rules/vpce_s3.json
 JSON files have been synchronized in ./sg_rules
 Successfully updated README.md with new security group diagram!
 ```
