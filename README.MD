@@ -120,7 +120,7 @@ Successfully updated README.md with new security group diagram!
 <details>
   <summary>reran python script to update rule state</summary>
 
-  ```
+```
 python3 rule_conversion.py 
 No changes: ./sg_rules/cluster_endpoint.json
 No changes: ./sg_rules/efs_mount_endpoint.json
@@ -163,7 +163,7 @@ Updated: ./sg_rules/rds.json
 Updated: ./sg_rules/worker_nodes.json
 JSON files have been synchronized in ./sg_rules
 Successfully updated README.md with new security group diagram!
-  ```
+```
 </details>
 
 - Submitted [PR#47](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/47)
@@ -665,6 +665,9 @@ flowchart LR
     worker_nodes --> |443| worker_nodes
     worker_nodes --> |10250| worker_nodes
     worker_nodes --> |53| worker_nodes
+    worker_nodes --> |6969| worker_nodes
+    worker_nodes --> |53| nan
+    worker_nodes --> |6969| nan
 
     %% Apply styles
     class internet_nlb,nlb lb
