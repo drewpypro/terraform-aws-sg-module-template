@@ -219,7 +219,7 @@ Successfully updated README.md with new security group diagram!
 </details>
 
 - Submitted [PR#57](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/57)
-- Successful [Apply#1](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101755646/job/33741967820)
+- Successful [Apply#](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101755646/job/33741967820)
     - ![updatedsg](./img/successful_sg_add_test5.png)
 
 ## Removing SG 
@@ -277,16 +277,17 @@ No changes detected, README.md was not updated.
 </details>
 
 - Submitted [PR#58](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/58)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089605572/job/33715178401)
-    - ![updatedsg](./img/successful_sg_delete_test2.png)
+- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101792325/job/33742048811)
+    - ![updatedsg](./img/successful_sg_delete_test5.png)
 
 ## Removing SG rules
 <details>
-  <summary>Remove Bad rule in firewall_rules.csv</summary>
+  <summary>Remove Bad rules in firewall_rules.csv</summary>
 
   ```
   RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,business_justification
-  19493892,internet_istio_nodes,internet_istio_nodes,null,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
+  19493892,efs_mount_endpoint,efs_mount_endpoint,ingress,2049,2049,tcp,internet_istio_nodes,null,null,k8s nodes need access to efs for storage mounts used by containers
+  19493892,internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
   ```
 </details>
 <details>
@@ -480,13 +481,11 @@ flowchart LR
     dms --> |443| vpce_kms
     dms --> |443| vpce_sts
     efs_mount_endpoint --> |2049| istio_nodes
-    efs_mount_endpoint --> |2049| internet_istio_nodes
     efs_mount_endpoint --> |2049| worker_nodes
     elasti_cache --> |11211| istio_nodes
     elasti_cache --> |6379| istio_nodes
     elasti_cache --> |11211| worker_nodes
     elasti_cache --> |6379| worker_nodes
-    internet_istio_nodes --> |2049| efs_mount_endpoint
     internet_istio_nodes --> |443| app1_lambda
     internet_istio_nodes --> |443| cluster_endpoint
     internet_istio_nodes --> |11211| elasti_cache
@@ -726,6 +725,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_103.22.200.0_22,cidr_103.31.4.0_22,cidr_69.69.69.69_32,cidr_141.101.64.0_18,cidr_104.24.0.0_14,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_10.69.69.0_24,cidr_188.114.96.0_20,cidr_108.162.192.0_18,cidr_103.21.244.0_22,cidr_173.245.48.0_20,cidr_192.168.69.0_24,cidr_162.158.0.0_15,cidr_198.41.128.0_17,cidr_104.16.0.0_13,cidr_190.93.240.0_20,cidr_131.0.72.0_22,cidr_172.64.0.0_13,cidr_55.55.55.55_32,cidr_197.234.240.0_22,cidr_192.168.11.53_32 external
+    class cidr_190.93.240.0_20,cidr_103.22.200.0_22,cidr_55.55.55.55_32,cidr_198.41.128.0_17,cidr_192.168.69.0_24,cidr_10.69.69.0_24,cidr_104.16.0.0_13,cidr_197.234.240.0_22,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_162.158.0.0_15,cidr_173.245.48.0_20,cidr_131.0.72.0_22,cidr_172.64.0.0_13,cidr_103.31.4.0_22,cidr_192.168.11.53_32,cidr_108.162.192.0_18,cidr_103.21.244.0_22,cidr_69.69.69.69_32,cidr_141.101.64.0_18,cidr_104.24.0.0_14,cidr_188.114.96.0_20 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->
