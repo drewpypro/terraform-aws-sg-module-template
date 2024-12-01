@@ -192,10 +192,12 @@ if changes_detected:
         # Collect all unique CIDR ranges
         external_networks = set()
         for _, rule in df.iterrows():
-            if rule['cidr_ipv4']:
-                external_networks.add(f"cidr_{rule['cidr_ipv4'].replace('/', '_')}")
-            if rule['cidr_ipv6']:
-                external_networks.add(f"cidr_{rule['cidr_ipv6'].replace('/', '_')}")
+            # Check if cidr_ipv4 is not NaN and not null
+            if pd.notna(rule['cidr_ipv4']) and str(rule['cidr_ipv4']).lower() != 'null':
+                external_networks.add(f"cidr_{str(rule['cidr_ipv4']).replace('/', '_')}")
+            # Check if cidr_ipv6 is not NaN and not null
+            if pd.notna(rule['cidr_ipv6']) and str(rule['cidr_ipv6']).lower() != 'null':
+                external_networks.add(f"cidr_{str(rule['cidr_ipv6']).replace('/', '_')}")
 
         diagram = [
             "```mermaid",
@@ -249,15 +251,16 @@ if changes_detected:
 
         for _, rule in df.iterrows():
             source = rule['security_group_id']
-            if rule['referenced_security_group_id']:
+            if pd.notna(rule['referenced_security_group_id']) and str(rule['referenced_security_group_id']).lower() != 'null':
                 target = rule['referenced_security_group_id']
                 port = f"{rule['from_port']}" if rule['from_port'] == rule['to_port'] else f"{rule['from_port']}-{rule['to_port']}"
                 connection_key = f"{source}-{target}-{port}"
                 if connection_key not in seen_connections:
                     connections.append(f"    {source} --> |{port}| {target}")
                     seen_connections.add(connection_key)
-            elif rule['cidr_ipv4'] or rule['cidr_ipv6']:
-                cidr = rule['cidr_ipv4'] or rule['cidr_ipv6']
+            elif (pd.notna(rule['cidr_ipv4']) and str(rule['cidr_ipv4']).lower() != 'null') or \
+                (pd.notna(rule['cidr_ipv6']) and str(rule['cidr_ipv6']).lower() != 'null'):
+                cidr = str(rule['cidr_ipv4']) if pd.notna(rule['cidr_ipv4']) and str(rule['cidr_ipv4']).lower() != 'null' else str(rule['cidr_ipv6'])
                 port = f"{rule['from_port']}" if rule['from_port'] == rule['to_port'] else f"{rule['from_port']}-{rule['to_port']}"
                 # Create a valid node ID for the CIDR
                 cidr_node = f"cidr_{cidr.replace('/', '_')}"

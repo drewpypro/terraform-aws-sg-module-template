@@ -122,45 +122,39 @@ Successfully updated README.md with new security group diagram!
 
 ```
 python3 rule_conversion.py 
-No changes: ./sg_rules/cluster_endpoint.json
-No changes: ./sg_rules/efs_mount_endpoint.json
-No changes: ./sg_rules/elasti_cache.json
-Updated: ./sg_rules/internet_istio_nodes.json
-Updated: ./sg_rules/internet_nlb.json
-Updated: ./sg_rules/istio_nodes.json
-No changes: ./sg_rules/msk.json
-Updated: ./sg_rules/nlb.json
-No changes: ./sg_rules/opensearch.json
-Updated: ./sg_rules/rds.json
-No changes: ./sg_rules/vpce_autoscaling.json
-No changes: ./sg_rules/vpce_dms.json
-No changes: ./sg_rules/vpce_ec2.json
-No changes: ./sg_rules/vpce_ec2messages.json
-No changes: ./sg_rules/vpce_efs.json
-No changes: ./sg_rules/vpce_eks.json
-No changes: ./sg_rules/vpce_elasticache.json
-No changes: ./sg_rules/vpce_elasticloadbalancing.json
-No changes: ./sg_rules/vpce_kms.json
 No changes: ./sg_rules/vpce_lambda.json
-No changes: ./sg_rules/vpce_logs.json
-No changes: ./sg_rules/vpce_monitoring.json
-No changes: ./sg_rules/vpce_rds.json
-No changes: ./sg_rules/vpce_s3.json
+No changes: ./sg_rules/vpce_efs.json
+No changes: ./sg_rules/vpce_elasticache.json
+No changes: ./sg_rules/internet_nlb.json
+No changes: ./sg_rules/elasti_cache.json
 No changes: ./sg_rules/vpce_sns.json
-No changes: ./sg_rules/vpce_sqs.json
-No changes: ./sg_rules/vpce_ssm.json
-No changes: ./sg_rules/vpce_ssmmessages.json
-No changes: ./sg_rules/vpce_sts.json
-Updated: ./sg_rules/worker_nodes.json
+No changes: ./sg_rules/vpce_monitoring.json
+No changes: ./sg_rules/vpce_ec2messages.json
 No changes: ./sg_rules/app1_lambda.json
-No changes: ./sg_rules/app2_lambda.json
-No changes: ./sg_rules/dms.json
-Updated: ./sg_rules/internet_istio_nodes.json
-Updated: ./sg_rules/internet_nlb.json
-Updated: ./sg_rules/istio_nodes.json
-Updated: ./sg_rules/nlb.json
-Updated: ./sg_rules/rds.json
+No changes: ./sg_rules/vpce_ssmmessages.json
+No changes: ./sg_rules/msk.json
+No changes: ./sg_rules/efs_mount_endpoint.json
+No changes: ./sg_rules/vpce_dms.json
+No changes: ./sg_rules/vpce_rds.json
+No changes: ./sg_rules/rds.json
+No changes: ./sg_rules/vpce_eks.json
+No changes: ./sg_rules/internet_istio_nodes.json
+No changes: ./sg_rules/vpce_s3.json
+No changes: ./sg_rules/vpce_ec2.json
 Updated: ./sg_rules/worker_nodes.json
+No changes: ./sg_rules/vpce_logs.json
+No changes: ./sg_rules/vpce_ssm.json
+No changes: ./sg_rules/cluster_endpoint.json
+No changes: ./sg_rules/vpce_kms.json
+No changes: ./sg_rules/vpce_sqs.json
+No changes: ./sg_rules/vpce_elasticloadbalancing.json
+No changes: ./sg_rules/dms.json
+No changes: ./sg_rules/istio_nodes.json
+No changes: ./sg_rules/opensearch.json
+No changes: ./sg_rules/vpce_autoscaling.json
+No changes: ./sg_rules/vpce_sts.json
+No changes: ./sg_rules/nlb.json
+No changes: ./sg_rules/app2_lambda.json
 JSON files have been synchronized in ./sg_rules
 Successfully updated README.md with new security group diagram!
 ```
@@ -390,6 +384,7 @@ flowchart LR
     classDef nodes fill:#007acc,stroke:#fff,stroke-width:2px,color:#fff
     classDef data fill:#3b48cc,stroke:#fff,stroke-width:2px,color:#fff
     classDef infra fill:#c94f17,stroke:#fff,stroke-width:2px,color:#fff
+    classDef external fill:#454545,stroke:#fff,stroke-width:2px,color:#fff
 
     %% General Subnet Subnet
     subgraph general_subnet [General Subnet]
@@ -449,16 +444,41 @@ flowchart LR
         vpce_sts[Vpce Sts]
     end
 
+    %% External Networks
+    subgraph external_networks [External Networks]
+        cidr_10.69.69.0_24[10.69.69.0/24]
+        cidr_103.21.244.0_22[103.21.244.0/22]
+        cidr_103.22.200.0_22[103.22.200.0/22]
+        cidr_103.31.4.0_22[103.31.4.0/22]
+        cidr_104.16.0.0_13[104.16.0.0/13]
+        cidr_104.24.0.0_14[104.24.0.0/14]
+        cidr_108.162.192.0_18[108.162.192.0/18]
+        cidr_131.0.72.0_22[131.0.72.0/22]
+        cidr_141.101.64.0_18[141.101.64.0/18]
+        cidr_162.158.0.0_15[162.158.0.0/15]
+        cidr_172.64.0.0_13[172.64.0.0/13]
+        cidr_173.245.48.0_20[173.245.48.0/20]
+        cidr_188.114.96.0_20[188.114.96.0/20]
+        cidr_190.93.240.0_20[190.93.240.0/20]
+        cidr_192.168.11.53_32[192.168.11.53/32]
+        cidr_192.168.69.0_24[192.168.69.0/24]
+        cidr_197.234.240.0_22[197.234.240.0/22]
+        cidr_198.41.128.0_17[198.41.128.0/17]
+        cidr_55.55.55.55_32[55.55.55.55/32]
+        cidr_69.69.69.69_32[69.69.69.69/32]
+        cidr_6969:6969:6969:6969:6969:6969:6969:6969_128[6969:6969:6969:6969:6969:6969:6969:6969/128]
+    end
+
     %% Connections
     app1_lambda --> |443| internet_istio_nodes
     app1_lambda --> |443| istio_nodes
-    app1_lambda --> |443| nan
+    app1_lambda --> |443| cidr_69.69.69.69_32
     app1_lambda --> |443| worker_nodes
-    app2_lambda --> |443| nan
+    app2_lambda --> |443| cidr_69.69.69.69_32
     app2_lambda --> |3306| rds
     cluster_endpoint --> |443| internet_istio_nodes
     cluster_endpoint --> |443| istio_nodes
-    cluster_endpoint --> |443| nan
+    cluster_endpoint --> |443| cidr_55.55.55.55_32
     cluster_endpoint --> |443| worker_nodes
     dms --> |3306| rds
     dms --> |443| vpce_kms
@@ -478,7 +498,7 @@ flowchart LR
     internet_istio_nodes --> |443| internet_nlb
     internet_istio_nodes --> |30000-40000| internet_nlb
     internet_istio_nodes --> |9096| msk
-    internet_istio_nodes --> |443| nan
+    internet_istio_nodes --> |443| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
     internet_istio_nodes --> |443| opensearch
     internet_istio_nodes --> |3306| rds
     internet_istio_nodes --> |443| vpce_autoscaling
@@ -506,7 +526,21 @@ flowchart LR
     internet_istio_nodes --> |53| internet_istio_nodes
     internet_nlb --> |443| internet_istio_nodes
     internet_nlb --> |30000-40000| internet_istio_nodes
-    internet_nlb --> |443| nan
+    internet_nlb --> |443| cidr_103.21.244.0_22
+    internet_nlb --> |443| cidr_103.22.200.0_22
+    internet_nlb --> |443| cidr_103.31.4.0_22
+    internet_nlb --> |443| cidr_104.16.0.0_13
+    internet_nlb --> |443| cidr_104.24.0.0_14
+    internet_nlb --> |443| cidr_108.162.192.0_18
+    internet_nlb --> |443| cidr_131.0.72.0_22
+    internet_nlb --> |443| cidr_141.101.64.0_18
+    internet_nlb --> |443| cidr_162.158.0.0_15
+    internet_nlb --> |443| cidr_172.64.0.0_13
+    internet_nlb --> |443| cidr_173.245.48.0_20
+    internet_nlb --> |443| cidr_188.114.96.0_20
+    internet_nlb --> |443| cidr_190.93.240.0_20
+    internet_nlb --> |443| cidr_197.234.240.0_22
+    internet_nlb --> |443| cidr_198.41.128.0_17
     istio_nodes --> |443| app1_lambda
     istio_nodes --> |443| cluster_endpoint
     istio_nodes --> |2049| efs_mount_endpoint
@@ -515,7 +549,7 @@ flowchart LR
     istio_nodes --> |9096| msk
     istio_nodes --> |443| nlb
     istio_nodes --> |30000-40000| nlb
-    istio_nodes --> |443| nan
+    istio_nodes --> |443| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
     istio_nodes --> |443| opensearch
     istio_nodes --> |3306| rds
     istio_nodes --> |443| vpce_autoscaling
@@ -546,7 +580,8 @@ flowchart LR
     msk --> |9096| worker_nodes
     nlb --> |443| istio_nodes
     nlb --> |30000-40000| istio_nodes
-    nlb --> |443| nan
+    nlb --> |443| cidr_10.69.69.0_24
+    nlb --> |443| cidr_192.168.69.0_24
     opensearch --> |443| internet_istio_nodes
     opensearch --> |443| istio_nodes
     opensearch --> |443| worker_nodes
@@ -556,81 +591,100 @@ flowchart LR
     rds --> |3306| rds
     vpce_autoscaling --> |443| internet_istio_nodes
     vpce_autoscaling --> |443| istio_nodes
-    vpce_autoscaling --> |443| nan
+    vpce_autoscaling --> |443| cidr_10.69.69.0_24
+    vpce_autoscaling --> |443| cidr_192.168.69.0_24
     vpce_autoscaling --> |443| worker_nodes
     vpce_dms --> |443| internet_istio_nodes
     vpce_dms --> |443| istio_nodes
-    vpce_dms --> |443| nan
+    vpce_dms --> |443| cidr_10.69.69.0_24
+    vpce_dms --> |443| cidr_192.168.69.0_24
     vpce_dms --> |443| worker_nodes
     vpce_ec2 --> |443| internet_istio_nodes
     vpce_ec2 --> |443| istio_nodes
-    vpce_ec2 --> |443| nan
+    vpce_ec2 --> |443| cidr_10.69.69.0_24
+    vpce_ec2 --> |443| cidr_192.168.69.0_24
     vpce_ec2 --> |443| worker_nodes
     vpce_ec2messages --> |443| internet_istio_nodes
     vpce_ec2messages --> |443| istio_nodes
-    vpce_ec2messages --> |443| nan
+    vpce_ec2messages --> |443| cidr_10.69.69.0_24
+    vpce_ec2messages --> |443| cidr_192.168.69.0_24
     vpce_ec2messages --> |443| worker_nodes
     vpce_efs --> |443| internet_istio_nodes
     vpce_efs --> |443| istio_nodes
-    vpce_efs --> |443| nan
+    vpce_efs --> |443| cidr_10.69.69.0_24
+    vpce_efs --> |443| cidr_192.168.69.0_24
     vpce_efs --> |443| worker_nodes
     vpce_eks --> |443| internet_istio_nodes
     vpce_eks --> |443| istio_nodes
-    vpce_eks --> |443| nan
+    vpce_eks --> |443| cidr_10.69.69.0_24
+    vpce_eks --> |443| cidr_192.168.69.0_24
     vpce_eks --> |443| worker_nodes
     vpce_elasticache --> |443| internet_istio_nodes
     vpce_elasticache --> |443| istio_nodes
-    vpce_elasticache --> |443| nan
+    vpce_elasticache --> |443| cidr_10.69.69.0_24
+    vpce_elasticache --> |443| cidr_192.168.69.0_24
     vpce_elasticache --> |443| worker_nodes
     vpce_elasticloadbalancing --> |443| internet_istio_nodes
     vpce_elasticloadbalancing --> |443| istio_nodes
-    vpce_elasticloadbalancing --> |443| nan
+    vpce_elasticloadbalancing --> |443| cidr_10.69.69.0_24
+    vpce_elasticloadbalancing --> |443| cidr_192.168.69.0_24
     vpce_elasticloadbalancing --> |443| worker_nodes
     vpce_kms --> |443| dms
     vpce_kms --> |443| internet_istio_nodes
     vpce_kms --> |443| istio_nodes
-    vpce_kms --> |443| nan
+    vpce_kms --> |443| cidr_10.69.69.0_24
+    vpce_kms --> |443| cidr_192.168.69.0_24
     vpce_kms --> |443| worker_nodes
     vpce_lambda --> |443| internet_istio_nodes
     vpce_lambda --> |443| istio_nodes
-    vpce_lambda --> |443| nan
+    vpce_lambda --> |443| cidr_10.69.69.0_24
+    vpce_lambda --> |443| cidr_192.168.69.0_24
     vpce_lambda --> |443| worker_nodes
     vpce_logs --> |443| internet_istio_nodes
     vpce_logs --> |443| istio_nodes
-    vpce_logs --> |443| nan
+    vpce_logs --> |443| cidr_10.69.69.0_24
+    vpce_logs --> |443| cidr_192.168.69.0_24
     vpce_logs --> |443| worker_nodes
     vpce_monitoring --> |443| internet_istio_nodes
     vpce_monitoring --> |443| istio_nodes
-    vpce_monitoring --> |443| nan
+    vpce_monitoring --> |443| cidr_10.69.69.0_24
+    vpce_monitoring --> |443| cidr_192.168.69.0_24
     vpce_monitoring --> |443| worker_nodes
     vpce_rds --> |443| internet_istio_nodes
     vpce_rds --> |443| istio_nodes
-    vpce_rds --> |443| nan
+    vpce_rds --> |443| cidr_10.69.69.0_24
+    vpce_rds --> |443| cidr_192.168.69.0_24
     vpce_rds --> |443| worker_nodes
     vpce_s3 --> |443| internet_istio_nodes
     vpce_s3 --> |443| istio_nodes
-    vpce_s3 --> |443| nan
+    vpce_s3 --> |443| cidr_10.69.69.0_24
+    vpce_s3 --> |443| cidr_192.168.69.0_24
     vpce_s3 --> |443| worker_nodes
     vpce_sns --> |443| internet_istio_nodes
     vpce_sns --> |443| istio_nodes
-    vpce_sns --> |443| nan
+    vpce_sns --> |443| cidr_10.69.69.0_24
+    vpce_sns --> |443| cidr_192.168.69.0_24
     vpce_sns --> |443| worker_nodes
     vpce_sqs --> |443| internet_istio_nodes
     vpce_sqs --> |443| istio_nodes
-    vpce_sqs --> |443| nan
+    vpce_sqs --> |443| cidr_10.69.69.0_24
+    vpce_sqs --> |443| cidr_192.168.69.0_24
     vpce_sqs --> |443| worker_nodes
     vpce_ssm --> |443| internet_istio_nodes
     vpce_ssm --> |443| istio_nodes
-    vpce_ssm --> |443| nan
+    vpce_ssm --> |443| cidr_10.69.69.0_24
+    vpce_ssm --> |443| cidr_192.168.69.0_24
     vpce_ssm --> |443| worker_nodes
     vpce_ssmmessages --> |443| internet_istio_nodes
     vpce_ssmmessages --> |443| istio_nodes
-    vpce_ssmmessages --> |443| nan
+    vpce_ssmmessages --> |443| cidr_10.69.69.0_24
+    vpce_ssmmessages --> |443| cidr_192.168.69.0_24
     vpce_ssmmessages --> |443| worker_nodes
     vpce_sts --> |443| dms
     vpce_sts --> |443| internet_istio_nodes
     vpce_sts --> |443| istio_nodes
-    vpce_sts --> |443| nan
+    vpce_sts --> |443| cidr_10.69.69.0_24
+    vpce_sts --> |443| cidr_192.168.69.0_24
     vpce_sts --> |443| worker_nodes
     worker_nodes --> |443| app1_lambda
     worker_nodes --> |443| cluster_endpoint
@@ -639,8 +693,9 @@ flowchart LR
     worker_nodes --> |6379| elasti_cache
     worker_nodes --> |443| istio_nodes
     worker_nodes --> |9096| msk
-    worker_nodes --> |22| nan
-    worker_nodes --> |443| nan
+    worker_nodes --> |22| cidr_55.55.55.55_32
+    worker_nodes --> |443| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
+    worker_nodes --> |443| cidr_69.69.69.69_32
     worker_nodes --> |443| opensearch
     worker_nodes --> |3306| rds
     worker_nodes --> |443| vpce_autoscaling
@@ -665,12 +720,16 @@ flowchart LR
     worker_nodes --> |443| worker_nodes
     worker_nodes --> |10250| worker_nodes
     worker_nodes --> |53| worker_nodes
+    worker_nodes --> |6969| worker_nodes
+    worker_nodes --> |53| cidr_192.168.11.53_32
+    worker_nodes --> |6969| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
 
     %% Apply styles
     class internet_nlb,nlb lb
     class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes
-    class rds,msk,opensearch,elasti_cache, data
+    class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
+    class cidr_103.22.200.0_22,cidr_103.31.4.0_22,cidr_69.69.69.69_32,cidr_141.101.64.0_18,cidr_104.24.0.0_14,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_10.69.69.0_24,cidr_188.114.96.0_20,cidr_108.162.192.0_18,cidr_103.21.244.0_22,cidr_173.245.48.0_20,cidr_192.168.69.0_24,cidr_162.158.0.0_15,cidr_198.41.128.0_17,cidr_104.16.0.0_13,cidr_190.93.240.0_20,cidr_131.0.72.0_22,cidr_172.64.0.0_13,cidr_55.55.55.55_32,cidr_197.234.240.0_22,cidr_192.168.11.53_32 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->
