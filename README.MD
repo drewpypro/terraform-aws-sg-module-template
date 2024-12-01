@@ -224,6 +224,7 @@ Successfully updated README.md with new security group diagram!
 
 ## Removing SG 
 - Manually deleted ./sg_rules/sg1.json (need conversion script to delete files)
+- Removed "sg1" local in main.tf
 <details>
   <summary>Removed sg1 firewall rules from firewall_rules.csv</summary>
 
@@ -275,7 +276,7 @@ No changes detected, README.md was not updated.
 ```
 </details>
 
-- Submitted [PR#37](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/37)
+- Submitted [PR#58](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/58)
 - Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12089605572/job/33715178401)
     - ![updatedsg](./img/successful_sg_delete_test2.png)
 
