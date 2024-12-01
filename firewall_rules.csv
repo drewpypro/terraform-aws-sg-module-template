@@ -22,7 +22,6 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,app1_lambda,null,null,app1-lambda needs k8s node access to perform app1 function
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
-19493892,internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,internet_istio_nodes,internet_istio_nodes,egress,11211,11211,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,internet_istio_nodes,internet_istio_nodes,egress,6379,6379,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for redis caching
 19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 

@@ -51,6 +51,22 @@ def detect_duplicates(file_path):
                 seen.add(rule_tuple)
     return duplicates
 
+# Helper function to detect invalid rules
+def detect_invalid_rules(file_path):
+    invalid_rules = []
+    with open(file_path, "r") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            conditions_set = sum([
+                bool(row["referenced_security_group_id"] and row["referenced_security_group_id"].lower() != "null"),
+                bool(row["cidr_ipv4"] and row["cidr_ipv4"].lower() != "null"),
+                bool(row["cidr_ipv6"] and row["cidr_ipv6"].lower() != "null")
+            ])
+
+            if conditions_set > 1:  # More than one field is set
+                invalid_rules.append(row)
+    return invalid_rules
+
 # Check for duplicates and exit if any are found
 duplicates = detect_duplicates(input_csv)
 if duplicates:
@@ -58,6 +74,15 @@ if duplicates:
     for dup in duplicates:
         print(dup)
     exit(1)
+
+# Check for invalid rules and exit if any are found
+invalid_rules = detect_invalid_rules(input_csv)
+if invalid_rules:
+    print("Invalid rules detected in the CSV file:")
+    for invalid in invalid_rules:
+        print(invalid)
+    exit(1)
+
 
 # Read the CSV file and organize data
 with open(input_csv, "r") as csvfile:

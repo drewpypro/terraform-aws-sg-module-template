@@ -399,7 +399,6 @@ flowchart LR
         elasti_cache[Elasti Cache]
         efs_mount_endpoint[Efs Mount Endpoint]
         dms[Dms]
-        sg1[Sg1]
     end
 
     %% Paas Subnet Subnet
@@ -465,14 +464,15 @@ flowchart LR
     dms --> |443| vpce_kms
     dms --> |443| vpce_sts
     efs_mount_endpoint --> |2049| istio_nodes
+    efs_mount_endpoint --> |2049| internet_istio_nodes
     efs_mount_endpoint --> |2049| worker_nodes
     elasti_cache --> |11211| istio_nodes
     elasti_cache --> |6379| istio_nodes
     elasti_cache --> |11211| worker_nodes
     elasti_cache --> |6379| worker_nodes
+    internet_istio_nodes --> |2049| efs_mount_endpoint
     internet_istio_nodes --> |443| app1_lambda
     internet_istio_nodes --> |443| cluster_endpoint
-    internet_istio_nodes --> |2049| efs_mount_endpoint
     internet_istio_nodes --> |11211| elasti_cache
     internet_istio_nodes --> |6379| elasti_cache
     internet_istio_nodes --> |443| internet_nlb
@@ -665,15 +665,11 @@ flowchart LR
     worker_nodes --> |443| worker_nodes
     worker_nodes --> |10250| worker_nodes
     worker_nodes --> |53| worker_nodes
-    worker_nodes --> |6969| worker_nodes
-    worker_nodes --> |53| nan
-    worker_nodes --> |6969| nan
-    sg1 --> |6969| nan
 
     %% Apply styles
     class internet_nlb,nlb lb
     class internet_istio_nodes,istio_nodes,worker_nodes,app1_lambda,app2_lambda nodes
-    class rds,msk,opensearch,elasti_cache, sg1 data
+    class rds,msk,opensearch,elasti_cache, data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
 ```
