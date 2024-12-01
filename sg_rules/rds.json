@@ -1,0 +1,15 @@
+[
+    {
+        "RequestID": "19493892",
+        "name": "rds",
+        "security_group_id": "rds",
+        "direction": "egress",
+        "from_port": "3306",
+        "to_port": "3306",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "rds",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes require RDS connectivity for database operations. "
+    }
+]
