@@ -2,13 +2,19 @@ import csv
 import os
 import json
 import pandas as pd
+import logging
+from typing import Dict, List, Any
 
-# Define paths for the output directories
-output_dir = "./sg_rules"
-os.makedirs(output_dir, exist_ok=True)
+# Configuration constants
+CONFIG = {
+    "OUTPUT_DIR": "./sg_rules",
+    "INPUT_CSV": "firewall_rules.csv",
+    "README_PATH": "README.md",
+    "DIAGRAM_START_MARKER": "<!-- SECURITY_GROUP_DIAGRAM_START -->",
+    "DIAGRAM_END_MARKER": "<!-- SECURITY_GROUP_DIAGRAM_END -->"
+}
 
-# Input CSV file
-input_csv = "firewall_rules.csv"
+os.makedirs(CONFIG["OUTPUT_DIR"], exist_ok=True)
 
 # Data structure to hold rules categorized by direction and security group
 rules = {"ingress": {}, "egress": {}}
@@ -51,9 +57,26 @@ def detect_duplicates(file_path):
                 seen.add(rule_tuple)
     return duplicates
 
-# Helper function to detect invalid rules
-def detect_invalid_rules(file_path):
-    invalid_rules = []
+def validate_port_range(row: Dict[str, str]) -> bool:
+    try:
+        if row["from_port"] and row["to_port"]:
+            return int(row["from_port"]) <= int(row["to_port"])
+    except ValueError:
+        return False
+    return True
+
+def validate_rules(file_path: str) -> Dict[str, List[Dict[str, Any]]]:
+    issues = {
+        "duplicates": [],
+        "invalid_rules": [],
+        "port_range": [],
+        "protocol": []
+    }
+    
+    # Check for duplicates
+    issues["duplicates"] = detect_duplicates(file_path)
+    
+    # Validate all other rules
     with open(file_path, "r") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -64,28 +87,30 @@ def detect_invalid_rules(file_path):
             ])
 
             if conditions_set > 1:  # More than one field is set
-                invalid_rules.append(row)
-    return invalid_rules
-
-# Check for duplicates and exit if any are found
-duplicates = detect_duplicates(input_csv)
-if duplicates:
-    print("Duplicate rules detected in the CSV file:")
-    for dup in duplicates:
-        print(dup)
-    exit(1)
-
-# Check for invalid rules and exit if any are found
-invalid_rules = detect_invalid_rules(input_csv)
-if invalid_rules:
-    print("Invalid rules detected in the CSV file:")
-    for invalid in invalid_rules:
-        print(invalid)
+                issues["invalid_rules"].append(row)
+            
+            # Validate port ranges
+            if not validate_port_range(row):
+                issues["port_range"].append(row)
+            
+            # Validate protocol (could add more specific protocol validation)
+            if row["ip_protocol"] and row["ip_protocol"].lower() not in ["tcp", "udp", "icmp", "-1", "all"]:
+                issues["protocol"].append(row)
+    
+    return {k: v for k, v in issues.items() if v}
+# Validate all rules at once
+issues = validate_rules(CONFIG["INPUT_CSV"])
+if issues:
+    print("The following issues were found:")
+    for issue_type, rows in issues.items():
+        print(f"\n{issue_type.replace('_', ' ').title()}:")
+        for row in rows:
+            print(row)
     exit(1)
 
 
 # Read the CSV file and organize data
-with open(input_csv, "r") as csvfile:
+with open(CONFIG["INPUT_CSV"], "r") as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         direction = row["direction"]
@@ -108,28 +133,35 @@ with open(input_csv, "r") as csvfile:
             "cidr_ipv6": row["cidr_ipv6"] or None,
             "business_justification": row.get("business_justification", ""),
         })
-
-# Write JSON files for each security group and direction
+# Write JSON files for each security group
 changes_detected = False
-for direction, groups in rules.items():
-    for sg_name, sg_rules in groups.items():
-        output_file = os.path.join(output_dir, f"{sg_name}.json")
+all_security_groups = set(rules["ingress"].keys()).union(rules["egress"].keys())
 
-        sg_rules_sorted = sorted(sg_rules, key=lambda x: (x["direction"], x["from_port"], x["to_port"], x["ip_protocol"], x.get("referenced_security_group_id", ""), x.get("cidr_ipv4", ""), x.get("cidr_ipv6", "")))
+for sg_name in all_security_groups:
+    # Combine ingress and egress rules for the security group
+    combined_rules = rules["ingress"].get(sg_name, []) + rules["egress"].get(sg_name, [])
+    output_file = os.path.join(CONFIG["OUTPUT_DIR"], f"{sg_name}.json")
+    
+    # Read existing JSON rules for comparison
+    existing_rules = read_existing_json(output_file)
+    
+    # Sort combined rules for consistency
+    combined_rules_sorted = sorted(combined_rules, key=lambda x: (
+        x["direction"], x["from_port"], x["to_port"], x["ip_protocol"],
+        x.get("referenced_security_group_id", ""),
+        x.get("cidr_ipv4", ""), x.get("cidr_ipv6", "")
+    ))
+    
+    # Overwrite only if rules have changed
+    if rules_changed(existing_rules, combined_rules_sorted):
+        with open(output_file, "w") as jsonfile:
+            json.dump(combined_rules_sorted, jsonfile, indent=4)
+        print(f"Updated: {output_file}")
+        changes_detected = True
+    else:
+        print(f"No changes: {output_file}")
 
-        # Read existing JSON rules for comparison
-        existing_rules = read_existing_json(output_file)
-
-        # Overwrite only if rules have changed
-        if rules_changed(existing_rules, sg_rules_sorted):
-            with open(output_file, "w") as jsonfile:
-                json.dump(sg_rules_sorted, jsonfile, indent=4)
-            print(f"Updated: {output_file}")
-            changes_detected = True
-        else:
-            print(f"No changes: {output_file}")
-
-print(f"JSON files have been synchronized in {output_dir}")
+print(f"JSON files have been synchronized in {CONFIG['OUTPUT_DIR']}")
 
 # If changes were detected, update the Mermaid diagram in README.md
 if changes_detected:
@@ -194,13 +226,21 @@ if changes_detected:
 
         for _, rule in df.iterrows():
             source = rule['security_group_id']
-            target = rule['referenced_security_group_id']
-            port = f"{rule['from_port']}" if rule['from_port'] == rule['to_port'] else f"{rule['from_port']}-{rule['to_port']}"
-
-            connection_key = f"{source}-{target}-{port}"
-            if connection_key not in seen_connections:
-                connections.append(f"    {source} --> |{port}| {target}")
-                seen_connections.add(connection_key)
+            if rule['referenced_security_group_id']:
+                target = rule['referenced_security_group_id']
+                port = f"{rule['from_port']}" if rule['from_port'] == rule['to_port'] else f"{rule['from_port']}-{rule['to_port']}"
+                connection_key = f"{source}-{target}-{port}"
+                if connection_key not in seen_connections:
+                    connections.append(f"    {source} --> |{port}| {target}")
+                    seen_connections.add(connection_key)
+            elif rule['cidr_ipv4'] or rule['cidr_ipv6']:
+                # Add CIDR connections to diagram
+                cidr = rule['cidr_ipv4'] or rule['cidr_ipv6']
+                port = f"{rule['from_port']}" if rule['from_port'] == rule['to_port'] else f"{rule['from_port']}-{rule['to_port']}"
+                connection_key = f"{source}-{cidr}-{port}"
+                if connection_key not in seen_connections:
+                    connections.append(f"    {source} --> |{port}| {cidr}")
+                    seen_connections.add(connection_key)
 
         return connections
 
@@ -228,7 +268,7 @@ if changes_detected:
                 f.write(f"{marker_start}\n{mermaid_diagram}\n{marker_end}")
 
     # Generate Mermaid diagram and update README
-    df = read_firewall_rules(input_csv)
+    df = read_firewall_rules(CONFIG["INPUT_CSV"])
     mermaid_diagram = generate_mermaid_diagram(df)
     update_readme(mermaid_diagram)
     print("Successfully updated README.md with new security group diagram!")
