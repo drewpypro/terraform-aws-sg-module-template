@@ -55,7 +55,7 @@ resource "aws_security_group" "sgs" {
 
   name        = each.value
   description = "Managed by Terraform"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   tags = {
     Name = each.value
