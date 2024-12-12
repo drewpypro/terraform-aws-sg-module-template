@@ -307,3 +307,47 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19543234,worker_nodes,worker_nodes,egress,1,65535,udp,null,0.0.0.0/0,null,eks testing
 19543234,istio_nodes,worker_nodes,egress,1,65535,tcp,null,0.0.0.0/0,null,eks testing
 19543234,istio_nodes,worker_nodes,egress,1,65535,udp,null,0.0.0.0/0,null,eks testing
+19543235,worker_nodes,worker_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,worker_nodes,worker_nodes,egress,80,80,tcp,worker_nodes,null,null,testing
+19543235,worker_nodes,worker_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,worker_nodes,worker_nodes,egress,80,80,tcp,istio_nodes,null,null,testing
+19543235,worker_nodes,worker_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,egress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,worker_nodes,worker_nodes,ingress,80,80,tcp,worker_nodes,null,null,testing
+19543235,worker_nodes,worker_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,worker_nodes,worker_nodes,ingress,80,80,tcp,istio_nodes,null,null,testing
+19543235,worker_nodes,worker_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,istio_nodes,istio_nodes,egress,80,80,tcp,worker_nodes,null,null,testing
+19543235,istio_nodes,istio_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,istio_nodes,istio_nodes,egress,80,80,tcp,istio_nodes,null,null,testing
+19543235,istio_nodes,istio_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,egress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,istio_nodes,istio_nodes,ingress,80,80,tcp,worker_nodes,null,null,testing
+19543235,istio_nodes,istio_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,istio_nodes,istio_nodes,ingress,80,80,tcp,istio_nodes,null,null,testing
+19543235,istio_nodes,istio_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,80,40000,tcp,null,10.0.101.63/32,null,allow elb ingress
+19543235,istio_nodes,istio_nodes,ingress,80,40000,tcp,null,10.0.102.190/32,null,allow elb ingress
+19543235,worker_nodes,worker_nodes,ingress,80,40000,tcp,null,10.0.101.63/32,null,allow elb ingress
+19543235,worker_nodes,worker_nodes,ingress,80,40000,tcp,null,10.0.102.190/32,null,allow elb ingress

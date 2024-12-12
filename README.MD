@@ -439,6 +439,8 @@ flowchart LR
     %% External Networks
     subgraph external_networks [External Networks]
         cidr_0.0.0.0_0[0.0.0.0/0]
+        cidr_10.0.101.63_32[10.0.101.63/32]
+        cidr_10.0.102.190_32[10.0.102.190/32]
         cidr_10.69.69.0_24[10.69.69.0/24]
         cidr_103.21.244.0_22[103.21.244.0/22]
         cidr_103.22.200.0_22[103.22.200.0/22]
@@ -728,6 +730,30 @@ flowchart LR
     worker_nodes --> |8-0| ec2_test_sg
     worker_nodes --> |0| ec2_test_sg
     worker_nodes --> |1-65535| cidr_0.0.0.0_0
+    worker_nodes --> |15021| worker_nodes
+    worker_nodes --> |80| worker_nodes
+    worker_nodes --> |8443| worker_nodes
+    worker_nodes --> |15090| worker_nodes
+    worker_nodes --> |15020| worker_nodes
+    worker_nodes --> |15021| istio_nodes
+    worker_nodes --> |80| istio_nodes
+    worker_nodes --> |8443| istio_nodes
+    worker_nodes --> |15090| istio_nodes
+    worker_nodes --> |15020| istio_nodes
+    istio_nodes --> |15021| worker_nodes
+    istio_nodes --> |80| worker_nodes
+    istio_nodes --> |8443| worker_nodes
+    istio_nodes --> |15090| worker_nodes
+    istio_nodes --> |15020| worker_nodes
+    istio_nodes --> |15021| istio_nodes
+    istio_nodes --> |80| istio_nodes
+    istio_nodes --> |8443| istio_nodes
+    istio_nodes --> |15090| istio_nodes
+    istio_nodes --> |15020| istio_nodes
+    istio_nodes --> |80-40000| cidr_10.0.101.63_32
+    istio_nodes --> |80-40000| cidr_10.0.102.190_32
+    worker_nodes --> |80-40000| cidr_10.0.101.63_32
+    worker_nodes --> |80-40000| cidr_10.0.102.190_32
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -735,6 +761,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_198.41.128.0_17,cidr_0.0.0.0_0,cidr_172.64.0.0_13,cidr_131.0.72.0_22,cidr_173.245.48.0_20,cidr_69.69.69.69_32,cidr_103.31.4.0_22,cidr_55.55.55.55_32,cidr_162.158.0.0_15,cidr_10.69.69.0_24,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_104.24.0.0_14,cidr_188.114.96.0_20,cidr_197.234.240.0_22,cidr_103.21.244.0_22,cidr_103.22.200.0_22,cidr_192.168.11.53_32,cidr_108.162.192.0_18,cidr_192.168.69.0_24,cidr_104.16.0.0_13,cidr_141.101.64.0_18,cidr_190.93.240.0_20 external
+    class cidr_104.16.0.0_13,cidr_172.64.0.0_13,cidr_69.69.69.69_32,cidr_198.41.128.0_17,cidr_55.55.55.55_32,cidr_188.114.96.0_20,cidr_10.0.102.190_32,cidr_103.31.4.0_22,cidr_131.0.72.0_22,cidr_104.24.0.0_14,cidr_192.168.11.53_32,cidr_141.101.64.0_18,cidr_0.0.0.0_0,cidr_103.21.244.0_22,cidr_103.22.200.0_22,cidr_197.234.240.0_22,cidr_108.162.192.0_18,cidr_190.93.240.0_20,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_173.245.48.0_20,cidr_10.69.69.0_24,cidr_192.168.69.0_24,cidr_10.0.101.63_32,cidr_162.158.0.0_15 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->
