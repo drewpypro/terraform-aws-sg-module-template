@@ -21,8 +21,8 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,internet_istio_nodes,internet_istio_nodes,egress,11211,11211,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,internet_istio_nodes,internet_istio_nodes,egress,6379,6379,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for redis caching
-19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
-19493892,internet_istio_nodes,internet_istio_nodes,ingress,30000,40000,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,opensearch,null,null,k8s nodes require connectivity to opensearch for logging/analytics
@@ -46,10 +46,6 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,egress,10250,10250,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,ingress,10250,10250,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,egress,53,53,tcp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
@@ -57,7 +53,13 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,internet_istio_nodes,internet_istio_nodes,egress,53,53,udp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_istio_nodes,internet_istio_nodes,ingress,53,53,udp,internet_istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_nlb,internet_nlb,egress,443,443,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
-19493892,internet_nlb,internet_nlb,egress,30000,40000,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+19493892,internet_nlb,internet_nlb,egress,10000,40000,tcp,internet_istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+19493892,internet_nlb,internet_nlb,egress,10000,40000,tcp,istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+19493892,internet_nlb,internet_nlb,egress,10000,40000,tcp,worker_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,internet_istio_nodes,internet_istio_nodes,ingress,10000,40000,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,istio_nodes,istio_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,internet_nlb,internet_nlb,ingress,443,443,tcp,null,103.21.244.0/22,null,Allow Public WAF endpoints into origin for public applications
 19493892,internet_nlb,internet_nlb,ingress,443,443,tcp,null,103.22.200.0/22,null,Allow Public WAF endpoints into origin for public applications
 19493892,internet_nlb,internet_nlb,ingress,443,443,tcp,null,103.31.4.0/22,null,Allow Public WAF endpoints into origin for public applications
@@ -103,16 +105,16 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,istio_nodes,istio_nodes,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,istio_nodes,istio_nodes,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,istio_nodes,istio_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,istio_nodes,istio_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,egress,10250,10250,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,ingress,10250,10250,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,egress,53,53,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,ingress,53,53,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,egress,53,53,udp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19493892,istio_nodes,istio_nodes,ingress,53,53,udp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19543235,istio_nodes,istio_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,istio_nodes,istio_nodes,egress,80,80,tcp,istio_nodes,null,null,testing
+19543235,istio_nodes,istio_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19493892,msk,msk,ingress,9096,9096,tcp,internet_istio_nodes,null,null,k8s nodes needs MSK access for messaging functions
 19493892,msk,msk,ingress,9096,9096,tcp,istio_nodes,null,null,k8s nodes needs MSK access for messaging functions
 19493892,msk,msk,ingress,9096,9096,tcp,worker_nodes,null,null,k8s nodes needs MSK access for messaging functions
@@ -230,8 +232,8 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,worker_nodes,worker_nodes,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
 19493892,worker_nodes,worker_nodes,egress,11211,11211,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for caching layer support. 
 19493892,worker_nodes,worker_nodes,egress,6379,6379,tcp,elasti_cache,null,null,k8s nodes need access to elasti_cache for redis caching
-19493892,worker_nodes,worker_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19543235,istio_nodes,istio_nodes,egress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
 19493892,worker_nodes,worker_nodes,egress,9096,9096,tcp,msk,null,null,k8s nodes needs MSK access for messaging functions
 19493892,worker_nodes,worker_nodes,ingress,22,22,tcp,null,55.55.55.55/32,null,Enable external management connectivity
 19493892,worker_nodes,worker_nodes,egress,443,443,tcp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external v6 endpoints for service functionality. 
@@ -257,15 +259,15 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,worker_nodes,worker_nodes,egress,443,443,tcp,vpce_ssm,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,egress,443,443,tcp,vpce_ssmmessages,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
 19493892,worker_nodes,worker_nodes,egress,443,443,tcp,vpce_sts,null,null,k8s nodes require connectivity to internal AWS APIs for service functionality. 
-19493892,worker_nodes,worker_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,ingress,10250,10250,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,egress,10250,10250,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,ingress,53,53,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,egress,53,53,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,ingress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19493892,worker_nodes,worker_nodes,egress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-19543231,worker_nodes,worker_nodes,ingress,6969,6969,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes for geneve tunneling
+19543235,istio_nodes,istio_nodes,ingress,80,80,tcp,istio_nodes,null,null,testing
+19543235,istio_nodes,istio_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,istio_nodes,istio_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19493892,worker_nodes,worker_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19543235,worker_nodes,worker_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,worker_nodes,worker_nodes,egress,80,80,tcp,istio_nodes,null,null,testing
+19543235,worker_nodes,worker_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543231,worker_nodes,worker_nodes,egress,53,53,tcp,null,192.168.11.53/32,null,k8s nodes require connectivity to bind dns server
 19543231,worker_nodes,worker_nodes,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
 19543232,ec2_test_sg,ec2_test_sg,egress,1,65535,tcp,worker_nodes,null,null,ec2 testing
@@ -306,46 +308,46 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19543234,worker_nodes,worker_nodes,egress,1,65535,udp,null,0.0.0.0/0,null,eks testing
 19543234,istio_nodes,worker_nodes,egress,1,65535,tcp,null,0.0.0.0/0,null,eks testing
 19543234,istio_nodes,worker_nodes,egress,1,65535,udp,null,0.0.0.0/0,null,eks testing
-19543235,worker_nodes,worker_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
-19543235,worker_nodes,worker_nodes,egress,80,80,tcp,worker_nodes,null,null,testing
-19543235,worker_nodes,worker_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,worker_nodes,worker_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,worker_nodes,worker_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,worker_nodes,worker_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
-19543235,worker_nodes,worker_nodes,egress,80,80,tcp,istio_nodes,null,null,testing
-19543235,worker_nodes,worker_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,worker_nodes,worker_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,worker_nodes,worker_nodes,egress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,worker_nodes,worker_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
-19543235,worker_nodes,worker_nodes,ingress,80,80,tcp,worker_nodes,null,null,testing
-19543235,worker_nodes,worker_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,worker_nodes,worker_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,worker_nodes,worker_nodes,ingress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,worker_nodes,worker_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
 19543235,worker_nodes,worker_nodes,ingress,80,80,tcp,istio_nodes,null,null,testing
 19543235,worker_nodes,worker_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,worker_nodes,worker_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,worker_nodes,worker_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19493892,internet_istio_nodes,internet_istio_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,internet_istio_nodes,internet_istio_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 19543235,istio_nodes,istio_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
 19543235,istio_nodes,istio_nodes,egress,80,80,tcp,worker_nodes,null,null,testing
 19543235,istio_nodes,istio_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,istio_nodes,istio_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,istio_nodes,istio_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,istio_nodes,istio_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
-19543235,istio_nodes,istio_nodes,egress,80,80,tcp,istio_nodes,null,null,testing
-19543235,istio_nodes,istio_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,istio_nodes,istio_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,istio_nodes,istio_nodes,egress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,istio_nodes,istio_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
 19543235,istio_nodes,istio_nodes,ingress,80,80,tcp,worker_nodes,null,null,testing
 19543235,istio_nodes,istio_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,istio_nodes,istio_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,istio_nodes,istio_nodes,ingress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,istio_nodes,istio_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
-19543235,istio_nodes,istio_nodes,ingress,80,80,tcp,istio_nodes,null,null,testing
-19543235,istio_nodes,istio_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,istio_nodes,istio_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-19543235,istio_nodes,istio_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19493892,worker_nodes,worker_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,ingress,10250,10250,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,egress,10250,10250,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,ingress,53,53,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,egress,53,53,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,ingress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,egress,53,53,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19543231,worker_nodes,worker_nodes,ingress,6969,6969,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes for geneve tunneling
+19543235,worker_nodes,worker_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,worker_nodes,worker_nodes,egress,80,80,tcp,worker_nodes,null,null,testing
+19543235,worker_nodes,worker_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.
+19543235,worker_nodes,worker_nodes,ingress,80,80,tcp,worker_nodes,null,null,testing
+19543235,worker_nodes,worker_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
+19543235,worker_nodes,worker_nodes,ingress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 19543235,istio_nodes,istio_nodes,ingress,80,40000,tcp,null,10.0.101.63/32,null,allow elb ingress
 19543235,istio_nodes,istio_nodes,ingress,80,40000,tcp,null,10.0.102.190/32,null,allow elb ingress
 19543235,worker_nodes,worker_nodes,ingress,80,40000,tcp,null,10.0.101.63/32,null,allow elb ingress
@@ -356,3 +358,15 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19543236,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,internet_istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19543236,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19543236,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,worker_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19493892,worker_nodes,worker_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,worker_nodes,worker_nodes,ingress,10000,40000,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,istio_nodes,istio_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,istio_nodes,istio_nodes,ingress,10000,40000,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+19493892,worker_nodes,worker_nodes,egress,10000,40000,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,ingress,10000,40000,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,ingress,10000,40000,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,worker_nodes,worker_nodes,egress,10000,40000,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,egress,10000,40000,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,ingress,10000,40000,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,ingress,10000,40000,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+19493892,istio_nodes,istio_nodes,egress,10000,40000,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay

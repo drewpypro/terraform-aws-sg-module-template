@@ -420,6 +420,19 @@
         "name": "internet_istio_nodes",
         "security_group_id": "internet_istio_nodes",
         "direction": "ingress",
+        "from_port": "10000",
+        "to_port": "40000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_nlb",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow health checks from inlb to instance group istio node backends. "
+    },
+    {
+        "RequestID": "19493892",
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "ingress",
         "from_port": "10250",
         "to_port": "10250",
         "ip_protocol": "tcp",
@@ -427,19 +440,6 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "19493892",
-        "name": "internet_istio_nodes",
-        "security_group_id": "internet_istio_nodes",
-        "direction": "ingress",
-        "from_port": "30000",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_nlb",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "Allow health checks from inlb to instance group istio node backends. "
     },
     {
         "RequestID": "19493892",
