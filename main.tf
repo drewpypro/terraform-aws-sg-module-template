@@ -39,6 +39,7 @@ locals {
     "vpce_ssm"                  = "vpce_ssm"
     "vpce_ssmmessages"          = "vpce_ssmmessages"
     "vpce_sts"                  = "vpce_sts"
+    "ec2_test_sg"               = "ec2_test_sg"
   }
 
   # Get all rule files and decode them

@@ -1,5 +1,31 @@
 [
     {
+        "RequestID": "19543232",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "1",
+        "to_port": "65535",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "ec2 testing"
+    },
+    {
+        "RequestID": "19543232",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "1",
+        "to_port": "65535",
+        "ip_protocol": "udp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "ec2 testing"
+    },
+    {
         "RequestID": "19493892",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
@@ -453,6 +479,32 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes needs MSK access for messaging functions"
+    },
+    {
+        "RequestID": "19543232",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "1",
+        "to_port": "65535",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "ec2 testing"
+    },
+    {
+        "RequestID": "19543232",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "1",
+        "to_port": "65535",
+        "ip_protocol": "udp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "ec2 testing"
     },
     {
         "RequestID": "19493892",
