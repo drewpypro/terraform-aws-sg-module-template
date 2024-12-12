@@ -350,9 +350,9 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19543235,istio_nodes,istio_nodes,ingress,80,40000,tcp,null,10.0.102.190/32,null,allow elb ingress
 19543235,worker_nodes,worker_nodes,ingress,80,40000,tcp,null,10.0.101.63/32,null,allow elb ingress
 19543235,worker_nodes,worker_nodes,ingress,80,40000,tcp,null,10.0.102.190/32,null,allow elb ingress
-19543236,internet_istio_nodes,internet_istio_nodes,egress,10250,10250,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
-19543236,istio_nodes,istio_nodes,egress,10250,10250,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
-19543236,worker_nodes,worker_nodes,egress,10250,10250,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
-19543236,cluster_endpoint,cluster_endpoint,ingress,10250,10250,tcp,internet_istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
-19543236,cluster_endpoint,cluster_endpoint,ingress,10250,10250,tcp,istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
-19543236,cluster_endpoint,cluster_endpoint,ingress,10250,10250,tcp,worker_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,internet_istio_nodes,internet_istio_nodes,egress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,istio_nodes,istio_nodes,egress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,worker_nodes,worker_nodes,egress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,internet_istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,worker_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 

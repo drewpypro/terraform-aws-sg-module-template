@@ -39,19 +39,6 @@
         "business_justification": "ec2 testing"
     },
     {
-        "RequestID": "19543236",
-        "name": "istio_nodes",
-        "security_group_id": "istio_nodes",
-        "direction": "egress",
-        "from_port": "10250",
-        "to_port": "10250",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "cluster_endpoint",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
-    },
-    {
         "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
@@ -544,6 +531,19 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Allow Type 8 Code 0 (echo)"
+    },
+    {
+        "RequestID": "19543236",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": "80",
+        "to_port": "40000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "cluster_endpoint",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
     },
     {
         "RequestID": "19543235",
