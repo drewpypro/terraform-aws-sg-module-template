@@ -1,5 +1,31 @@
 [
     {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "egress",
+        "from_port": "0",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "egress",
+        "from_port": "0",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
+    },
+    {
         "RequestID": "19543232",
         "name": "ec2_test_sg",
         "security_group_id": "ec2_test_sg",
@@ -78,6 +104,58 @@
         "business_justification": "ec2 testing"
     },
     {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "egress",
+        "from_port": "8",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 8 Code 0 (echo)"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "egress",
+        "from_port": "8",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 8 Code 0 (echo)"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "ingress",
+        "from_port": "0",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "ingress",
+        "from_port": "0",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
+    },
+    {
         "RequestID": "19543232",
         "name": "ec2_test_sg",
         "security_group_id": "ec2_test_sg",
@@ -128,5 +206,31 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "ec2 testing"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "ingress",
+        "from_port": "8",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 8 Code 0 (echo)"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "ec2_test_sg",
+        "security_group_id": "ec2_test_sg",
+        "direction": "ingress",
+        "from_port": "8",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 8 Code 0 (echo)"
     }
 ]

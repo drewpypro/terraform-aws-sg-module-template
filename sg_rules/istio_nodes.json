@@ -1,5 +1,18 @@
 [
     {
+        "RequestID": "19543233",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": "0",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
+    },
+    {
         "RequestID": "19543232",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
@@ -429,6 +442,19 @@
         "business_justification": "k8s nodes need access to elasti_cache for redis caching"
     },
     {
+        "RequestID": "19543233",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": "8",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 8 Code 0 (echo)"
+    },
+    {
         "RequestID": "19493892",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
@@ -440,6 +466,19 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes needs MSK access for messaging functions"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": "0",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
     },
     {
         "RequestID": "19543232",
@@ -570,5 +609,18 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+    },
+    {
+        "RequestID": "19543233",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": "8",
+        "to_port": "0",
+        "ip_protocol": "icmp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow Type 8 Code 0 (echo)"
     }
 ]

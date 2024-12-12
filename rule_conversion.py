@@ -59,11 +59,15 @@ def detect_duplicates(file_path):
 
 def validate_port_range(row: Dict[str, str]) -> bool:
     try:
+        if row["ip_protocol"].lower() == "icmp":
+            return True
+
         if row["from_port"] and row["to_port"]:
             return int(row["from_port"]) <= int(row["to_port"])
     except ValueError:
         return False
     return True
+
 
 def validate_rules(file_path: str) -> Dict[str, List[Dict[str, Any]]]:
     issues = {
