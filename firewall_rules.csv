@@ -303,3 +303,7 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19543233,istio_nodes,istio_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply)
 19543233,worker_nodes,worker_nodes,ingress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo)
 19543233,worker_nodes,worker_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply)
+19543234,worker_nodes,worker_nodes,egress,1,65535,tcp,null,0.0.0.0/0,null,eks testing
+19543234,worker_nodes,worker_nodes,egress,1,65535,udp,null,0.0.0.0/0,null,eks testing
+19543234,istio_nodes,worker_nodes,egress,1,65535,tcp,null,0.0.0.0/0,null,eks testing
+19543234,istio_nodes,worker_nodes,egress,1,65535,udp,null,0.0.0.0/0,null,eks testing
