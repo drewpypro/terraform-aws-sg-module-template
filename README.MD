@@ -473,7 +473,6 @@ flowchart LR
     app2_lambda --> |3306| rds
     cluster_endpoint --> |443| internet_istio_nodes
     cluster_endpoint --> |443| istio_nodes
-    cluster_endpoint --> |443| cidr_55.55.55.55_32
     cluster_endpoint --> |443| worker_nodes
     dms --> |3306| rds
     dms --> |443| vpce_kms
@@ -754,6 +753,12 @@ flowchart LR
     istio_nodes --> |80-40000| cidr_10.0.102.190_32
     worker_nodes --> |80-40000| cidr_10.0.101.63_32
     worker_nodes --> |80-40000| cidr_10.0.102.190_32
+    internet_istio_nodes --> |10250| cluster_endpoint
+    istio_nodes --> |10250| cluster_endpoint
+    worker_nodes --> |10250| cluster_endpoint
+    cluster_endpoint --> |10250| internet_istio_nodes
+    cluster_endpoint --> |10250| istio_nodes
+    cluster_endpoint --> |10250| worker_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -761,6 +766,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_104.16.0.0_13,cidr_172.64.0.0_13,cidr_69.69.69.69_32,cidr_198.41.128.0_17,cidr_55.55.55.55_32,cidr_188.114.96.0_20,cidr_10.0.102.190_32,cidr_103.31.4.0_22,cidr_131.0.72.0_22,cidr_104.24.0.0_14,cidr_192.168.11.53_32,cidr_141.101.64.0_18,cidr_0.0.0.0_0,cidr_103.21.244.0_22,cidr_103.22.200.0_22,cidr_197.234.240.0_22,cidr_108.162.192.0_18,cidr_190.93.240.0_20,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_173.245.48.0_20,cidr_10.69.69.0_24,cidr_192.168.69.0_24,cidr_10.0.101.63_32,cidr_162.158.0.0_15 external
+    class cidr_141.101.64.0_18,cidr_55.55.55.55_32,cidr_103.21.244.0_22,cidr_197.234.240.0_22,cidr_108.162.192.0_18,cidr_172.64.0.0_13,cidr_190.93.240.0_20,cidr_103.31.4.0_22,cidr_10.0.102.190_32,cidr_173.245.48.0_20,cidr_0.0.0.0_0,cidr_103.22.200.0_22,cidr_188.114.96.0_20,cidr_192.168.11.53_32,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_198.41.128.0_17,cidr_10.0.101.63_32,cidr_192.168.69.0_24,cidr_104.16.0.0_13,cidr_162.158.0.0_15,cidr_104.24.0.0_14,cidr_69.69.69.69_32,cidr_10.69.69.0_24,cidr_131.0.72.0_22 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->

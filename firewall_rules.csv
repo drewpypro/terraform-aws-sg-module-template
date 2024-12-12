@@ -7,7 +7,6 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19493892,app2_lambda,app2_lambda,egress,3306,3306,tcp,rds,null,null,app1-lambda needs rds connectivity to change db password on first cluster build
 19493892,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,internet_istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
-19493892,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,null,55.55.55.55/32,null,terraform needs access to cluster endpoint for eks control plane
 19493892,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 19493892,dms,dms,egress,3306,3306,tcp,rds,null,null,DMS replication instances require sql access to RDS for migration activities. 
 19493892,dms,dms,egress,443,443,tcp,vpce_kms,null,null,DMS replication instances require sql access to secrets manager to manage kms keys
@@ -351,3 +350,9 @@ RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referen
 19543235,istio_nodes,istio_nodes,ingress,80,40000,tcp,null,10.0.102.190/32,null,allow elb ingress
 19543235,worker_nodes,worker_nodes,ingress,80,40000,tcp,null,10.0.101.63/32,null,allow elb ingress
 19543235,worker_nodes,worker_nodes,ingress,80,40000,tcp,null,10.0.102.190/32,null,allow elb ingress
+19543236,internet_istio_nodes,internet_istio_nodes,egress,10250,10250,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,istio_nodes,istio_nodes,egress,10250,10250,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,worker_nodes,worker_nodes,egress,10250,10250,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,cluster_endpoint,cluster_endpoint,ingress,10250,10250,tcp,internet_istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,cluster_endpoint,cluster_endpoint,ingress,10250,10250,tcp,istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+19543236,cluster_endpoint,cluster_endpoint,ingress,10250,10250,tcp,worker_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
