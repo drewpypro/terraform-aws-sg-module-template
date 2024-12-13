@@ -1,19 +1,6 @@
 [
     {
-        "RequestID": "19493892",
-        "name": "internet_nlb",
-        "security_group_id": "internet_nlb",
-        "direction": "egress",
-        "from_port": "10000",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "Allow health checks from internet-nlb to instance group internet istio node backends. "
-    },
-    {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "egress",
@@ -26,7 +13,7 @@
         "business_justification": "Allow health checks from internet-nlb to instance group internet istio node backends. "
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "egress",
@@ -39,20 +26,7 @@
         "business_justification": "Allow health checks from internet-nlb to instance group internet istio node backends. "
     },
     {
-        "RequestID": "19493892",
-        "name": "internet_nlb",
-        "security_group_id": "internet_nlb",
-        "direction": "egress",
-        "from_port": "443",
-        "to_port": "443",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "Allow health checks from internet-nlb to instance group internet istio node backends. "
-    },
-    {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -65,7 +39,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -78,7 +52,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -91,7 +65,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -104,7 +78,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -117,7 +91,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -130,7 +104,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -143,7 +117,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -156,7 +130,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -169,7 +143,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -182,7 +156,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -195,7 +169,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -208,7 +182,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -221,7 +195,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
@@ -234,7 +208,7 @@
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "internet_nlb",
         "security_group_id": "internet_nlb",
         "direction": "ingress",
