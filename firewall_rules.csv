@@ -161,3 +161,9 @@ Request00001,worker_nodes,worker_nodes,ingress,15017,15017,tcp,worker_nodes,null
 Request00001,worker_nodes,worker_nodes,ingress,15017,15017,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00002,internet_nlb,internet_nlb,ingress,80,40000,tcp,ec2_test_sg,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 Request00002,ec2_test_sg,ec2_test_sg,egress,80,40000,tcp,ec2_test_sg,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+Request00003,cluster_endpoint,cluster_endpoint,egress,80,40000,tcp,istio_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+Request00003,cluster_endpoint,cluster_endpoint,egress,80,40000,tcp,worker_nodes,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+Request00003,istio_nodes,istio_nodes,ingress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+Request00003,worker_nodes,worker_nodes,ingress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+Request00003,ec2_test_sg,ec2_test_sg,egress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
+Request00003,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,ec2_test_sg,null,null,k8s nodes need access to cluster endpoint for eks control plane. 

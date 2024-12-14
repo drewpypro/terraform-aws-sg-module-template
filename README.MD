@@ -553,6 +553,8 @@ flowchart LR
     worker_nodes --> |15017| istio_nodes
     internet_nlb --> |80-40000| ec2_test_sg
     ec2_test_sg --> |80-40000| ec2_test_sg
+    ec2_test_sg --> |80-40000| cluster_endpoint
+    cluster_endpoint --> |80-40000| ec2_test_sg
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -560,6 +562,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_103.31.4.0_22,cidr_131.0.72.0_22,cidr_162.158.0.0_15,cidr_172.64.0.0_13,cidr_103.21.244.0_22,cidr_173.245.48.0_20,cidr_10.0.101.0_24,cidr_197.234.240.0_22,cidr_0.0.0.0_0,cidr_104.24.0.0_14,cidr_190.93.240.0_20,cidr_198.41.128.0_17,cidr_104.16.0.0_13,cidr_108.162.192.0_18,cidr_141.101.64.0_18,cidr_10.0.102.0_24,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_188.114.96.0_20,cidr_103.22.200.0_22 external
+    class cidr_0.0.0.0_0,cidr_104.24.0.0_14,cidr_190.93.240.0_20,cidr_162.158.0.0_15,cidr_108.162.192.0_18,cidr_198.41.128.0_17,cidr_104.16.0.0_13,cidr_197.234.240.0_22,cidr_172.64.0.0_13,cidr_188.114.96.0_20,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_103.21.244.0_22,cidr_103.31.4.0_22,cidr_131.0.72.0_22,cidr_10.0.102.0_24,cidr_103.22.200.0_22,cidr_173.245.48.0_20,cidr_141.101.64.0_18,cidr_10.0.101.0_24 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->
