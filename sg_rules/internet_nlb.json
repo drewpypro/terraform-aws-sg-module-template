@@ -219,5 +219,18 @@
         "cidr_ipv4": "198.41.128.0/17",
         "cidr_ipv6": "null",
         "business_justification": "Allow Public WAF endpoints into origin for public applications"
+    },
+    {
+        "RequestID": "Request00002",
+        "name": "internet_nlb",
+        "security_group_id": "internet_nlb",
+        "direction": "ingress",
+        "from_port": "80",
+        "to_port": "40000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "ec2_test_sg",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow health checks from internet-nlb to instance group internet istio node backends. "
     }
 ]
