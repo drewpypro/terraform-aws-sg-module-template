@@ -32,19 +32,6 @@
         "direction": "egress",
         "from_port": "1",
         "to_port": "65535",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "0.0.0.0/0",
-        "cidr_ipv6": "null",
-        "business_justification": "eks testing"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "1",
-        "to_port": "65535",
         "ip_protocol": "udp",
         "referenced_security_group_id": "ec2_test_sg",
         "cidr_ipv4": "null",
@@ -56,52 +43,13 @@
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "egress",
-        "from_port": "1",
-        "to_port": "65535",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "0.0.0.0/0",
-        "cidr_ipv6": "null",
-        "business_justification": "eks testing"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "10000",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "10000",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
         "from_port": "10250",
         "to_port": "10250",
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "kubelet api server communication"
     },
     {
         "RequestID": "Request00001",
@@ -114,7 +62,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "kubelet api server communication"
     },
     {
         "RequestID": "Request00001",
@@ -153,7 +101,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
         "RequestID": "Request00001",
@@ -166,7 +114,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
         "RequestID": "Request00001",
@@ -245,6 +193,32 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "30000",
+        "to_port": "35000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "30000",
+        "to_port": "35000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
         "RequestID": "Request00001",
@@ -257,7 +231,7 @@
         "referenced_security_group_id": "cluster_endpoint",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
+        "business_justification": "nodes need access to local kubelet API"
     },
     {
         "RequestID": "Request00001",
@@ -281,9 +255,74 @@
         "to_port": "443",
         "ip_protocol": "tcp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "6969:6969:6969:6969:6969:6969:6969:6969/128",
-        "business_justification": "k8s nodes require connectivity to external v6 endpoints for service functionality. "
+        "cidr_ipv4": "0.0.0.0/5",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "11.0.0.0/8",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "12.0.0.0/6",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "16.0.0.0/4",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "8.0.0.0/6",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "9.0.0.0/8",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -297,45 +336,6 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "53",
-        "to_port": "53",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "53",
-        "to_port": "53",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "6969",
-        "to_port": "6969",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "6969:6969:6969:6969:6969:6969:6969:6969/128",
-        "business_justification": "k8s nodes require connectivity to external API endpoints"
     },
     {
         "RequestID": "Request00001",
@@ -349,45 +349,6 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Allow Type 8 Code 0 (echo)"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "80",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "cluster_endpoint",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "80",
-        "to_port": "80",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "testing"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "80",
-        "to_port": "80",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "testing"
     },
     {
         "RequestID": "Request00001",
@@ -459,52 +420,13 @@
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "ingress",
-        "from_port": "10000",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_nlb",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "Allow health checks from inlb to instance group istio node backends. "
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "10000",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "10000",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
         "from_port": "10250",
         "to_port": "10250",
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "kubelet api server communication"
     },
     {
         "RequestID": "Request00001",
@@ -517,7 +439,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "kubelet api server communication"
     },
     {
         "RequestID": "Request00001",
@@ -546,6 +468,19 @@
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
+        "RequestID": "Request00003",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "15017",
+        "to_port": "15017",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "cluster_endpoint",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "kubelet api server communication with nodes"
+    },
+    {
         "RequestID": "Request00001",
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
@@ -556,7 +491,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
         "RequestID": "Request00001",
@@ -569,7 +504,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+        "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
         "RequestID": "Request00001",
@@ -654,6 +589,45 @@
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "ingress",
+        "from_port": "30000",
+        "to_port": "35000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_nlb",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Allow health checks from inlb to instance group istio node backends. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "30000",
+        "to_port": "35000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "30000",
+        "to_port": "35000",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
@@ -683,32 +657,6 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "53",
-        "to_port": "53",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "53",
-        "to_port": "53",
-        "ip_protocol": "udp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
@@ -726,71 +674,6 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Allow Type 8 Code 0 (echo)"
-    },
-    {
-        "RequestID": "Request00003",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "80",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "cluster_endpoint",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "80",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "10.0.101.0/24",
-        "cidr_ipv6": "null",
-        "business_justification": "allow elb ingress"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "80",
-        "to_port": "40000",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "10.0.102.0/24",
-        "cidr_ipv6": "null",
-        "business_justification": "allow elb ingress"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "80",
-        "to_port": "80",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "istio_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "testing"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "ingress",
-        "from_port": "80",
-        "to_port": "80",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "worker_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "testing"
     },
     {
         "RequestID": "Request00001",

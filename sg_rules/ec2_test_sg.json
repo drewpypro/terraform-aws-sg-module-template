@@ -130,7 +130,7 @@
         "business_justification": "Allow Type 8 Code 0 (echo)"
     },
     {
-        "RequestID": "Request00003",
+        "RequestID": "Request00001",
         "name": "ec2_test_sg",
         "security_group_id": "ec2_test_sg",
         "direction": "egress",
@@ -143,7 +143,7 @@
         "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
     },
     {
-        "RequestID": "Request00002",
+        "RequestID": "Request00001",
         "name": "ec2_test_sg",
         "security_group_id": "ec2_test_sg",
         "direction": "egress",
