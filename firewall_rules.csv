@@ -108,6 +108,9 @@ Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,9.0.0.0/8,null,outb
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. 
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. 
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,16.0.0.0/4,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,32.0.0.0/3,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,64.0.0.0/2,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,128.0.0.0/1,null,outbound to internet 443 only. 
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
@@ -152,3 +155,6 @@ Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,9.0.0.0/8,null,ou
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. 
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. 
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,16.0.0.0/4,null,outbound to internet 443 only. 
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,32.0.0.0/3,null,outbound to internet 443 only. 
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,64.0.0.0/2,null,outbound to internet 443 only. 
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,128.0.0.0/1,null,outbound to internet 443 only. 
