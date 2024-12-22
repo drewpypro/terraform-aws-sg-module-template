@@ -39,8 +39,8 @@ Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,190.93.240.0/20,
 Request00002,internet_nlb,internet_nlb,ingress,80,40000,tcp,ec2_test_sg,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,197.234.240.0/22,null,Allow Public WAF endpoints into origin for public applications
 Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,198.41.128.0/17,null,Allow Public WAF endpoints into origin for public applications
-Request00001,internet_nlb,internet_nlb,egress,30000,39999,tcp,istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
-Request00001,internet_nlb,internet_nlb,egress,30000,39999,tcp,worker_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+Request00001,internet_nlb,internet_nlb,egress,30000,32767,tcp,istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
+Request00001,internet_nlb,internet_nlb,egress,30000,32767,tcp,worker_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 Request00003,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,ec2_test_sg,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 Request00001,istio_nodes,istio_nodes,egress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication
 Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply)
@@ -54,7 +54,7 @@ Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,ec2_test_sg,null,null,Allow
 Request00001,istio_nodes,istio_nodes,ingress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
-Request00001,istio_nodes,istio_nodes,ingress,30000,39999,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
 Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,istio_nodes,istio_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 Request00001,istio_nodes,istio_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
@@ -68,10 +68,10 @@ Request00001,istio_nodes,istio_nodes,egress,15021,15021,tcp,worker_nodes,null,nu
 Request00001,istio_nodes,istio_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.
 Request00001,istio_nodes,istio_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 Request00001,istio_nodes,istio_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-Request00001,istio_nodes,istio_nodes,egress,30000,39999,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-Request00001,istio_nodes,istio_nodes,ingress,30000,39999,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-Request00001,istio_nodes,istio_nodes,ingress,30000,39999,tcp,null,10.0.101.0/24,null,allow elb ingress
-Request00001,istio_nodes,istio_nodes,ingress,30000,39999,tcp,null,10.0.102.0/24,null,allow elb ingress
+Request00001,istio_nodes,istio_nodes,egress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,null,10.0.101.0/24,null,allow elb ingress
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,null,10.0.102.0/24,null,allow elb ingress
 Request00001,istio_nodes,istio_nodes,egress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication
 Request00001,istio_nodes,istio_nodes,ingress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
@@ -88,8 +88,8 @@ Request00001,istio_nodes,istio_nodes,egress,15021,15021,tcp,istio_nodes,null,nul
 Request00001,istio_nodes,istio_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.
 Request00001,istio_nodes,istio_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 Request00001,istio_nodes,istio_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-Request00001,istio_nodes,istio_nodes,egress,30000,39999,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-Request00001,istio_nodes,istio_nodes,ingress,30000,39999,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,istio_nodes,istio_nodes,egress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API
 Request00003,istio_nodes,istio_nodes,ingress,15017,15017,tcp,cluster_endpoint,null,null,kubelet api server communication with nodes
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,0.0.0.0/5,null,outbound to internet 443 only. 
@@ -102,7 +102,7 @@ Request00001,worker_nodes,worker_nodes,ingress,1,65535,udp,ec2_test_sg,null,null
 Request00001,worker_nodes,worker_nodes,ingress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo)
 Request00001,worker_nodes,worker_nodes,egress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo)
 Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
-Request00001,worker_nodes,worker_nodes,ingress,30000,39999,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
+Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,8.0.0.0/6,null,outbound to internet 443 only. 
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,9.0.0.0/8,null,outbound to internet 443 only. 
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. 
@@ -115,8 +115,8 @@ Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,worker_nodes,null,null
 Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 Request00001,worker_nodes,worker_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-Request00001,worker_nodes,worker_nodes,egress,30000,39999,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-Request00001,worker_nodes,worker_nodes,ingress,30000,39999,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,worker_nodes,worker_nodes,egress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,egress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication
 Request00001,worker_nodes,worker_nodes,ingress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication
 Request00001,worker_nodes,worker_nodes,egress,15012,15012,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
@@ -133,8 +133,8 @@ Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,istio_nodes,null,null,
 Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
 Request00001,worker_nodes,worker_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
-Request00001,worker_nodes,worker_nodes,egress,30000,39999,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
-Request00001,worker_nodes,worker_nodes,ingress,30000,39999,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,worker_nodes,worker_nodes,egress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,egress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication
 Request00001,worker_nodes,worker_nodes,ingress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication
 Request00001,worker_nodes,worker_nodes,egress,15012,15012,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
