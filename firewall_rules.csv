@@ -3,6 +3,7 @@ Request00001,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,worker_nodes,
 Request00003,cluster_endpoint,cluster_endpoint,egress,15017,15017,tcp,worker_nodes,null,null,kubelet api server communication with nodes
 Request00001,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,istio_nodes,null,null,nodes need access to local kubelet API
 Request00003,cluster_endpoint,cluster_endpoint,egress,15017,15017,tcp,istio_nodes,null,null,kubelet api server communication with nodes
+Request00003,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,ec2_test_sg,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 Request00001,ec2_test_sg,ec2_test_sg,egress,1,65535,tcp,null,0.0.0.0/0,null,ec2 testing
 Request00001,ec2_test_sg,ec2_test_sg,egress,1,65535,udp,null,0.0.0.0/0,null,ec2 testing
 Request00001,ec2_test_sg,ec2_test_sg,egress,1,65535,tcp,worker_nodes,null,null,ec2 testing
@@ -41,7 +42,6 @@ Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,197.234.240.0/22
 Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,198.41.128.0/17,null,Allow Public WAF endpoints into origin for public applications
 Request00001,internet_nlb,internet_nlb,egress,30000,32767,tcp,istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
 Request00001,internet_nlb,internet_nlb,egress,30000,32767,tcp,worker_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. 
-Request00003,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,ec2_test_sg,null,null,k8s nodes need access to cluster endpoint for eks control plane. 
 Request00001,istio_nodes,istio_nodes,egress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication
 Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply)
 Request00001,istio_nodes,istio_nodes,egress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply)
@@ -93,6 +93,14 @@ Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,istio_nodes,null,nu
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API
 Request00003,istio_nodes,istio_nodes,ingress,15017,15017,tcp,cluster_endpoint,null,null,kubelet api server communication with nodes
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,0.0.0.0/5,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,8.0.0.0/6,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,9.0.0.0/8,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,16.0.0.0/4,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,32.0.0.0/3,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,64.0.0.0/2,null,outbound to internet 443 only. 
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,128.0.0.0/1,null,outbound to internet 443 only. 
 Request00001,worker_nodes,worker_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply)
 Request00001,worker_nodes,worker_nodes,egress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply)
 Request00001,worker_nodes,worker_nodes,ingress,1,65535,tcp,ec2_test_sg,null,null,ec2 testing
@@ -103,14 +111,6 @@ Request00001,worker_nodes,worker_nodes,ingress,8,0,icmp,ec2_test_sg,null,null,Al
 Request00001,worker_nodes,worker_nodes,egress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo)
 Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
 Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,8.0.0.0/6,null,outbound to internet 443 only. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,9.0.0.0/8,null,outbound to internet 443 only. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,16.0.0.0/4,null,outbound to internet 443 only. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,32.0.0.0/3,null,outbound to internet 443 only. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,64.0.0.0/2,null,outbound to internet 443 only. 
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,128.0.0.0/1,null,outbound to internet 443 only. 
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.
@@ -158,3 +158,7 @@ Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,16.0.0.0/4,null,o
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,32.0.0.0/3,null,outbound to internet 443 only. 
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,64.0.0.0/2,null,outbound to internet 443 only. 
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,128.0.0.0/1,null,outbound to internet 443 only. 
+Request00004,cluster_endpoint,cluster_endpoint,egress,10250,10250,tcp,istio_nodes,null,null,kubectl exec and port-forwarding through cluster endpoint
+Request00004,cluster_endpoint,cluster_endpoint,egress,10250,10250,tcp,worker_nodes,null,null,kubectl exec and port-forwarding through cluster endpoint
+Request00004,istio_nodes,istio_nodes,ingress,10250,10250,tcp,cluster_endpoint,null,null,kubectl exec and port-forwarding through cluster endpoint
+Request00004,worker_nodes,worker_nodes,ingress,10250,10250,tcp,cluster_endpoint,null,null,kubectl exec and port-forwarding through cluster endpoint

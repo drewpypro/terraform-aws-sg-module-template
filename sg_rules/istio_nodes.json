@@ -455,6 +455,19 @@
         "business_justification": "ec2 testing"
     },
     {
+        "RequestID": "Request00004",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": "10250",
+        "to_port": "10250",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "cluster_endpoint",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "kubectl exec and port-forwarding through cluster endpoint"
+    },
+    {
         "RequestID": "Request00001",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",

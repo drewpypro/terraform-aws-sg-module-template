@@ -472,6 +472,7 @@ flowchart LR
     cluster_endpoint --> |15017| worker_nodes
     cluster_endpoint --> |443| istio_nodes
     cluster_endpoint --> |15017| istio_nodes
+    cluster_endpoint --> |80-40000| ec2_test_sg
     ec2_test_sg --> |1-65535| cidr_0.0.0.0_0
     ec2_test_sg --> |1-65535| worker_nodes
     ec2_test_sg --> |1-65535| istio_nodes
@@ -499,7 +500,6 @@ flowchart LR
     internet_nlb --> |443| cidr_198.41.128.0_17
     internet_nlb --> |30000-32767| istio_nodes
     internet_nlb --> |30000-32767| worker_nodes
-    cluster_endpoint --> |80-40000| ec2_test_sg
     istio_nodes --> |10250| worker_nodes
     istio_nodes --> |0| ec2_test_sg
     istio_nodes --> |1-65535| ec2_test_sg
@@ -528,11 +528,6 @@ flowchart LR
     istio_nodes --> |443| cluster_endpoint
     istio_nodes --> |15017| cluster_endpoint
     istio_nodes --> |443| cidr_0.0.0.0_5
-    worker_nodes --> |0| ec2_test_sg
-    worker_nodes --> |1-65535| ec2_test_sg
-    worker_nodes --> |8-0| ec2_test_sg
-    worker_nodes --> |443| internet_nlb
-    worker_nodes --> |30000-32767| internet_nlb
     istio_nodes --> |443| cidr_8.0.0.0_6
     istio_nodes --> |443| cidr_9.0.0.0_8
     istio_nodes --> |443| cidr_11.0.0.0_8
@@ -541,6 +536,11 @@ flowchart LR
     istio_nodes --> |443| cidr_32.0.0.0_3
     istio_nodes --> |443| cidr_64.0.0.0_2
     istio_nodes --> |443| cidr_128.0.0.0_1
+    worker_nodes --> |0| ec2_test_sg
+    worker_nodes --> |1-65535| ec2_test_sg
+    worker_nodes --> |8-0| ec2_test_sg
+    worker_nodes --> |443| internet_nlb
+    worker_nodes --> |30000-32767| internet_nlb
     worker_nodes --> |443| worker_nodes
     worker_nodes --> |8443| worker_nodes
     worker_nodes --> |30000-32767| worker_nodes
@@ -570,6 +570,10 @@ flowchart LR
     worker_nodes --> |443| cidr_32.0.0.0_3
     worker_nodes --> |443| cidr_64.0.0.0_2
     worker_nodes --> |443| cidr_128.0.0.0_1
+    cluster_endpoint --> |10250| istio_nodes
+    cluster_endpoint --> |10250| worker_nodes
+    istio_nodes --> |10250| cluster_endpoint
+    worker_nodes --> |10250| cluster_endpoint
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -577,6 +581,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_128.0.0.0_1,cidr_103.21.244.0_22,cidr_162.158.0.0_15,cidr_64.0.0.0_2,cidr_9.0.0.0_8,cidr_10.0.102.0_24,cidr_188.114.96.0_20,cidr_0.0.0.0_0,cidr_141.101.64.0_18,cidr_0.0.0.0_5,cidr_10.0.101.0_24,cidr_8.0.0.0_6,cidr_16.0.0.0_4,cidr_190.93.240.0_20,cidr_198.41.128.0_17,cidr_131.0.72.0_22,cidr_103.22.200.0_22,cidr_104.24.0.0_14,cidr_172.64.0.0_13,cidr_104.16.0.0_13,cidr_11.0.0.0_8,cidr_197.234.240.0_22,cidr_32.0.0.0_3,cidr_12.0.0.0_6,cidr_108.162.192.0_18,cidr_173.245.48.0_20,cidr_103.31.4.0_22 external
+    class cidr_16.0.0.0_4,cidr_190.93.240.0_20,cidr_32.0.0.0_3,cidr_9.0.0.0_8,cidr_0.0.0.0_5,cidr_108.162.192.0_18,cidr_173.245.48.0_20,cidr_12.0.0.0_6,cidr_172.64.0.0_13,cidr_8.0.0.0_6,cidr_64.0.0.0_2,cidr_11.0.0.0_8,cidr_188.114.96.0_20,cidr_197.234.240.0_22,cidr_104.24.0.0_14,cidr_10.0.102.0_24,cidr_198.41.128.0_17,cidr_104.16.0.0_13,cidr_103.31.4.0_22,cidr_103.22.200.0_22,cidr_10.0.101.0_24,cidr_141.101.64.0_18,cidr_103.21.244.0_22,cidr_131.0.72.0_22,cidr_162.158.0.0_15,cidr_128.0.0.0_1,cidr_0.0.0.0_0 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->

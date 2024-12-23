@@ -1,5 +1,31 @@
 [
     {
+        "RequestID": "Request00004",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "egress",
+        "from_port": "10250",
+        "to_port": "10250",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "kubectl exec and port-forwarding through cluster endpoint"
+    },
+    {
+        "RequestID": "Request00004",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "egress",
+        "from_port": "10250",
+        "to_port": "10250",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "kubectl exec and port-forwarding through cluster endpoint"
+    },
+    {
         "RequestID": "Request00003",
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
