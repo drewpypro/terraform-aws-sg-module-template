@@ -73,9 +73,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "0.0.0.0/5",
+        "cidr_ipv4": "3.86.4.106",
         "cidr_ipv6": "null",
-        "business_justification": "outbound to internet 443 only. "
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -86,9 +86,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "11.0.0.0/8",
+        "cidr_ipv4": "3.87.127.143",
         "cidr_ipv6": "null",
-        "business_justification": "outbound to internet 443 only. "
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -99,9 +99,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "12.0.0.0/6",
+        "cidr_ipv4": "3.94.91.31",
         "cidr_ipv6": "null",
-        "business_justification": "outbound to internet 443 only. "
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -112,9 +112,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "128.0.0.0/2",
+        "cidr_ipv4": "44.201.148.133",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -125,9 +125,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.0.0.0/9",
+        "cidr_ipv4": "52.207.222.50",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -138,9 +138,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.128.0.0/11",
+        "cidr_ipv4": "54.161.254.100",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -151,9 +151,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.160.0.0/13",
+        "cidr_ipv4": "54.197.201.248",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -164,9 +164,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.169.0.0/16",
+        "cidr_ipv4": "54.210.225.137",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -177,9 +177,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.170.0.0/15",
+        "cidr_ipv4": "54.81.127.33",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",
@@ -190,87 +190,9 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.172.0.0/14",
+        "cidr_ipv4": "54.90.191.9",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "123",
-        "to_port": "123",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "192.176.0.0/12",
-        "cidr_ipv6": "null",
-        "business_justification": "outbound"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "123",
-        "to_port": "123",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "193.0.0.0/8",
-        "cidr_ipv6": "null",
-        "business_justification": "outbound"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "123",
-        "to_port": "123",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "194.0.0.0/7",
-        "cidr_ipv6": "null",
-        "business_justification": "outbound"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "123",
-        "to_port": "123",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "196.0.0.0/6",
-        "cidr_ipv6": "null",
-        "business_justification": "outbound"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "123",
-        "to_port": "123",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "200.0.0.0/5",
-        "cidr_ipv6": "null",
-        "business_justification": "outbound"
-    },
-    {
-        "RequestID": "Request00001",
-        "name": "worker_nodes",
-        "security_group_id": "worker_nodes",
-        "direction": "egress",
-        "from_port": "123",
-        "to_port": "123",
-        "ip_protocol": "udp",
-        "referenced_security_group_id": "null",
-        "cidr_ipv4": "208.0.0.0/4",
-        "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "aws ntp servers"
     },
     {
         "RequestID": "Request00001",

@@ -161,89 +161,57 @@ Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,istio_nodes,null,null,
 Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API,,
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,0.0.0.0/5,null,outbound to internet 443 only. ,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,11.0.0.0/8,null,outbound to internet 443 only. ,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,12.0.0.0/6,null,outbound to internet 443 only. ,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,0.0.0.0/5,null,outbound to internet 443 only. ,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,11.0.0.0/8,null,outbound to internet 443 only. ,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,12.0.0.0/6,null,outbound to internet 443 only. ,,
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,128.0.0.0/2,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,128.0.0.0/2,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,128.0.0.0/2,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.0.0.0/9,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,192.0.0.0/9,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.0.0.0/9,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.128.0.0/11,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,192.128.0.0/11,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.128.0.0/11,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.160.0.0/13,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,192.160.0.0/13,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.160.0.0/13,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.169.0.0/16,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,192.169.0.0/16,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.169.0.0/16,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.170.0.0/15,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,192.170.0.0/15,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.170.0.0/15,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.172.0.0/14,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,192.172.0.0/14,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.172.0.0/14,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.176.0.0/12,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,192.176.0.0/12,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.176.0.0/12,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,193.0.0.0/8,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,193.0.0.0/8,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,193.0.0.0/8,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,194.0.0.0/7,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,194.0.0.0/7,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,194.0.0.0/7,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,196.0.0.0/6,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,196.0.0.0/6,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,196.0.0.0/6,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,200.0.0.0/5,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,200.0.0.0/5,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,200.0.0.0/5,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,208.0.0.0/4,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,208.0.0.0/4,null,outbound,to,internet
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,208.0.0.0/4,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,128.0.0.0/2,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,128.0.0.0/2,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,128.0.0.0/2,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.0.0.0/9,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,192.0.0.0/9,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.0.0.0/9,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.128.0.0/11,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,192.128.0.0/11,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.128.0.0/11,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.160.0.0/13,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,192.160.0.0/13,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.160.0.0/13,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.169.0.0/16,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,192.169.0.0/16,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.169.0.0/16,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.170.0.0/15,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,192.170.0.0/15,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.170.0.0/15,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.172.0.0/14,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,192.172.0.0/14,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.172.0.0/14,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.176.0.0/12,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,192.176.0.0/12,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.176.0.0/12,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,193.0.0.0/8,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,193.0.0.0/8,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,193.0.0.0/8,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,194.0.0.0/7,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,194.0.0.0/7,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,194.0.0.0/7,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,196.0.0.0/6,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,196.0.0.0/6,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,196.0.0.0/6,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,200.0.0.0/5,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,200.0.0.0/5,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,200.0.0.0/5,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,208.0.0.0/4,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,208.0.0.0/4,null,outbound,to,internet
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,208.0.0.0/4,null,outbound,to,internet
 Request00002,internet_nlb,internet_nlb,ingress,80,40000,tcp,ec2_test_sg,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. ,,
 Request00003,cluster_endpoint,cluster_endpoint,egress,15017,15017,tcp,worker_nodes,null,null,kubelet api server communication with nodes,,
@@ -271,3 +239,23 @@ Request00006,worker_nodes,worker_nodes,egress,53,53,tcp,worker_nodes,null,null,o
 Request00006,worker_nodes,worker_nodes,ingress,53,53,tcp,worker_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,egress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,ingress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.94.91.31,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.86.4.106,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.90.191.9,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.210.225.137,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,44.201.148.133,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.161.254.100,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.197.201.248,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.81.127.33,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.87.127.143,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,52.207.222.50,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.94.91.31,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.86.4.106,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.90.191.9,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.210.225.137,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,44.201.148.133,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.161.254.100,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.197.201.248,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.81.127.33,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.87.127.143,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,52.207.222.50,null,aws ntp servers,,
