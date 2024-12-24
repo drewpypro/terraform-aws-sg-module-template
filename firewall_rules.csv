@@ -1,11 +1,10 @@
 RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,business_justification,,
 Request00001,ec2_test_sg,ec2_test_sg,egress,1,65535,tcp,null,0.0.0.0/0,null,ec2 testing,,
 Request00001,ec2_test_sg,ec2_test_sg,egress,1,65535,udp,null,0.0.0.0/0,null,ec2 testing,,
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,0.0.0.0/5,null,outbound to internet 443 only. ,,
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,0.0.0.0/5,null,outbound to internet 443 only. ,,
-Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,null,10.0.101.0/24,null,allow elb ingress,,
-Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,null,10.0.102.0/24,null,allow elb ingress,,
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,0.0.0.0/5,null,outbound to internet 443 only. ,,
+Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply),,
+Request00001,istio_nodes,istio_nodes,egress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply),,
+Request00001,istio_nodes,istio_nodes,egress,1,65535,tcp,ec2_test_sg,null,null,ec2 testing,,
+Request00001,istio_nodes,istio_nodes,egress,1,65535,udp,ec2_test_sg,null,null,ec2 testing,,
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,0.0.0.0/5,null,outbound to internet 443 only. ,,
 Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,103.21.244.0/22,null,Allow Public WAF endpoints into origin for public applications,,
 Request00001,internet_nlb,internet_nlb,ingress,80,80,tcp,null,103.21.244.0/22,null,Allow Public WAF endpoints into origin for public applications,,
@@ -19,13 +18,11 @@ Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,104.24.0.0/14,nu
 Request00001,internet_nlb,internet_nlb,ingress,80,80,tcp,null,104.24.0.0/14,null,Allow Public WAF endpoints into origin for public applications,,
 Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,108.162.192.0/18,null,Allow Public WAF endpoints into origin for public applications,,
 Request00001,internet_nlb,internet_nlb,ingress,80,80,tcp,null,108.162.192.0/18,null,Allow Public WAF endpoints into origin for public applications,,
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. ,,
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. ,,
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. ,,
+Request00001,istio_nodes,istio_nodes,ingress,1,65535,tcp,ec2_test_sg,null,null,ec2 testing,,
+Request00001,istio_nodes,istio_nodes,ingress,1,65535,udp,ec2_test_sg,null,null,ec2 testing,,
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. ,,
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. ,,
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. ,,
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. ,,
+Request00001,istio_nodes,istio_nodes,ingress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo),,
+Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo),,
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. ,,
 Request00001,internet_nlb,internet_nlb,ingress,80,80,tcp,null,131.0.72.0/22,null,Allow Public WAF endpoints into origin for public applications,,
 Request00001,internet_nlb,internet_nlb,ingress,443,443,tcp,null,131.0.72.0/22,null,Allow Public WAF endpoints into origin for public applications,,
@@ -63,40 +60,103 @@ Request00001,ec2_test_sg,ec2_test_sg,ingress,0,0,icmp,istio_nodes,null,null,Allo
 Request00001,ec2_test_sg,ec2_test_sg,ingress,0,0,icmp,worker_nodes,null,null,Allow Type 0 Code 0 (echo-Reply),,
 Request00001,internet_nlb,internet_nlb,egress,30000,32767,tcp,istio_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. ,,
 Request00001,internet_nlb,internet_nlb,egress,30000,32767,tcp,worker_nodes,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. ,,
-Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. ,,
+Request00006,istio_nodes,istio_nodes,egress,53,53,udp,istio_nodes,null,null,overlay dns connectivity between pods ,,
+Request00006,istio_nodes,istio_nodes,ingress,53,53,udp,istio_nodes,null,null,overlay dns connectivity between pods ,,
+Request00006,istio_nodes,istio_nodes,egress,53,53,udp,worker_nodes,null,null,overlay dns connectivity between pods ,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,128.0.0.0/2,null,outbound,to,internet
+Request00006,istio_nodes,istio_nodes,ingress,53,53,udp,worker_nodes,null,null,overlay dns connectivity between pods ,,
+Request00006,istio_nodes,istio_nodes,egress,53,53,tcp,worker_nodes,null,null,overlay dns connectivity between pods ,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.0.0.0/9,null,outbound,to,internet
+Request00006,istio_nodes,istio_nodes,ingress,53,53,tcp,worker_nodes,null,null,overlay dns connectivity between pods ,,
+Request00006,istio_nodes,istio_nodes,egress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
+Request00006,istio_nodes,istio_nodes,ingress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.128.0.0/11,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.160.0.0/13,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.169.0.0/16,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.170.0.0/15,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.172.0.0/14,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.176.0.0/12,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,193.0.0.0/8,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,194.0.0.0/7,null,outbound,to,internet
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.94.91.31/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,196.0.0.0/6,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,200.0.0.0/5,null,outbound,to,internet
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.86.4.106/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.90.191.9/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.210.225.137/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,44.201.148.133/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.161.254.100/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.197.201.248/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.81.127.33/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.87.127.143/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,52.207.222.50/32,null,aws ntp servers,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,0.0.0.0/5,null,outbound to internet 443 only. ,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,11.0.0.0/8,null,outbound to internet 443 only. ,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,12.0.0.0/6,null,outbound to internet 443 only. ,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,208.0.0.0/4,null,outbound,to,internet
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.86.4.106/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.87.127.143/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.94.91.31/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,44.201.148.133/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,52.207.222.50/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.161.254.100/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.197.201.248/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.210.225.137/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.81.127.33/32,null,aws ntp servers,,
+Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.90.191.9/32,null,aws ntp servers,,
 Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. ,,
-Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply),,
-Request00001,istio_nodes,istio_nodes,egress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply),,
+Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. ,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,worker_nodes,worker_nodes,ingress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply),,
 Request00001,worker_nodes,worker_nodes,egress,0,0,icmp,ec2_test_sg,null,null,Allow Type 0 Code 0 (echo-Reply),,
-Request00001,istio_nodes,istio_nodes,ingress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo),,
-Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo),,
 Request00001,worker_nodes,worker_nodes,ingress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo),,
 Request00001,worker_nodes,worker_nodes,egress,8,0,icmp,ec2_test_sg,null,null,Allow Type 8 Code 0 (echo),,
-Request00001,istio_nodes,istio_nodes,egress,1,65535,tcp,ec2_test_sg,null,null,ec2 testing,,
-Request00001,istio_nodes,istio_nodes,egress,1,65535,udp,ec2_test_sg,null,null,ec2 testing,,
-Request00001,istio_nodes,istio_nodes,ingress,1,65535,tcp,ec2_test_sg,null,null,ec2 testing,,
-Request00001,istio_nodes,istio_nodes,ingress,1,65535,udp,ec2_test_sg,null,null,ec2 testing,,
+Request00001,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,worker_nodes,null,null,nodes need access to local kubelet API,,
+Request00001,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,istio_nodes,null,null,nodes need access to local kubelet API,,
+Request00001,ec2_test_sg,ec2_test_sg,egress,80,40000,tcp,ec2_test_sg,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. ,,
+Request00001,ec2_test_sg,ec2_test_sg,egress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. ,,
+Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,worker_nodes,worker_nodes,ingress,1,65535,tcp,ec2_test_sg,null,null,ec2 testing,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,128.0.0.0/2,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.0.0.0/9,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.128.0.0/11,null,outbound to internet,,
 Request00001,worker_nodes,worker_nodes,egress,1,65535,tcp,ec2_test_sg,null,null,ec2 testing,,
 Request00001,worker_nodes,worker_nodes,egress,1,65535,udp,ec2_test_sg,null,null,ec2 testing,,
 Request00001,worker_nodes,worker_nodes,ingress,1,65535,udp,ec2_test_sg,null,null,ec2 testing,,
+Request00001,worker_nodes,worker_nodes,egress,15017,15017,tcp,worker_nodes,null,null,Istio X5.09 certification management with istiod service.,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.160.0.0/13,null,outbound to internet,,
+Request00001,worker_nodes,worker_nodes,ingress,15017,15017,tcp,worker_nodes,null,null,Istio X5.09 certification management with istiod service.,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.169.0.0/16,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.170.0.0/15,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.172.0.0/14,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.176.0.0/12,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,193.0.0.0/8,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,194.0.0.0/7,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,196.0.0.0/6,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,200.0.0.0/5,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,208.0.0.0/4,null,outbound to internet,,
+Request00001,istio_nodes,istio_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,egress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication,,
+Request00001,istio_nodes,istio_nodes,ingress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication,,
+Request00001,istio_nodes,istio_nodes,egress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication,,
+Request00001,istio_nodes,istio_nodes,ingress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication,,
+Request00004,istio_nodes,istio_nodes,ingress,10250,10250,tcp,cluster_endpoint,null,null,kubectl exec and port-forwarding through cluster endpoint,,
+Request00001,istio_nodes,istio_nodes,egress,15012,15012,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,ingress,15012,15012,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,egress,15012,15012,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,ingress,15012,15012,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,istio_nodes,istio_nodes,egress,15017,15017,tcp,worker_nodes,null,null,Istio X5.09 certification management with istiod service.,,
 Request00001,istio_nodes,istio_nodes,ingress,15017,15017,tcp,worker_nodes,null,null,Istio X5.09 certification management with istiod service.,,
 Request00001,istio_nodes,istio_nodes,egress,15017,15017,tcp,istio_nodes,null,null,Istio X5.09 certification management with istiod service.,,
 Request00001,istio_nodes,istio_nodes,ingress,15017,15017,tcp,istio_nodes,null,null,Istio X5.09 certification management with istiod service.,,
-Request00001,worker_nodes,worker_nodes,egress,15017,15017,tcp,worker_nodes,null,null,Istio X5.09 certification management with istiod service.,,
-Request00001,worker_nodes,worker_nodes,ingress,15017,15017,tcp,worker_nodes,null,null,Istio X5.09 certification management with istiod service.,,
 Request00001,worker_nodes,worker_nodes,egress,15017,15017,tcp,istio_nodes,null,null,Istio X5.09 certification management with istiod service.,,
 Request00001,worker_nodes,worker_nodes,ingress,15017,15017,tcp,istio_nodes,null,null,Istio X5.09 certification management with istiod service.,,
-Request00001,istio_nodes,istio_nodes,egress,15012,15012,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,ingress,15012,15012,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,egress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,egress,15012,15012,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,ingress,15012,15012,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,egress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,worker_nodes,worker_nodes,egress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,worker_nodes,worker_nodes,egress,15012,15012,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
@@ -105,26 +165,10 @@ Request00001,worker_nodes,worker_nodes,egress,30000,32767,tcp,istio_nodes,null,n
 Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,worker_nodes,worker_nodes,egress,15012,15012,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
 Request00001,worker_nodes,worker_nodes,ingress,15012,15012,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,egress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication,,
-Request00001,istio_nodes,istio_nodes,ingress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication,,
-Request00001,istio_nodes,istio_nodes,egress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication,,
-Request00001,istio_nodes,istio_nodes,ingress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication,,
 Request00001,worker_nodes,worker_nodes,egress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication,,
 Request00001,worker_nodes,worker_nodes,ingress,10250,10250,tcp,worker_nodes,null,null,kubelet api server communication,,
 Request00001,worker_nodes,worker_nodes,egress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication,,
 Request00001,worker_nodes,worker_nodes,ingress,10250,10250,tcp,istio_nodes,null,null,kubelet api server communication,,
-Request00001,istio_nodes,istio_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,ingress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,egress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,ingress,8443,8443,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,egress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
 Request00001,worker_nodes,worker_nodes,egress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
 Request00001,worker_nodes,worker_nodes,ingress,8443,8443,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
 Request00001,worker_nodes,worker_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
@@ -137,125 +181,49 @@ Request00001,worker_nodes,worker_nodes,egress,15020,15020,tcp,istio_nodes,null,n
 Request00001,worker_nodes,worker_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
 Request00001,worker_nodes,worker_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
 Request00001,worker_nodes,worker_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
-Request00001,istio_nodes,istio_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
-Request00001,istio_nodes,istio_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
-Request00001,istio_nodes,istio_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
-Request00001,istio_nodes,istio_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
-Request00001,worker_nodes,worker_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
-Request00001,worker_nodes,worker_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
-Request00001,worker_nodes,worker_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
-Request00001,worker_nodes,worker_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
-Request00001,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,worker_nodes,null,null,nodes need access to local kubelet API,,
-Request00001,cluster_endpoint,cluster_endpoint,ingress,443,443,tcp,istio_nodes,null,null,nodes need access to local kubelet API,,
-Request00001,ec2_test_sg,ec2_test_sg,egress,80,40000,tcp,ec2_test_sg,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. ,,
-Request00001,ec2_test_sg,ec2_test_sg,egress,80,40000,tcp,cluster_endpoint,null,null,k8s nodes need access to cluster endpoint for eks control plane. ,,
-Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. ,,
-Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. ,,
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API,,
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API,,
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,128.0.0.0/2,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,128.0.0.0/2,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.0.0.0/9,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.0.0.0/9,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.128.0.0/11,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.128.0.0/11,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.160.0.0/13,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.160.0.0/13,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.169.0.0/16,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.169.0.0/16,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.170.0.0/15,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.170.0.0/15,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.172.0.0/14,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.172.0.0/14,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,192.176.0.0/12,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,192.176.0.0/12,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,193.0.0.0/8,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,193.0.0.0/8,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,194.0.0.0/7,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,194.0.0.0/7,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,196.0.0.0/6,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,196.0.0.0/6,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,200.0.0.0/5,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,200.0.0.0/5,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,null,208.0.0.0/4,null,outbound,to,internet
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,null,208.0.0.0/4,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,128.0.0.0/2,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,128.0.0.0/2,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.0.0.0/9,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.0.0.0/9,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.128.0.0/11,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.128.0.0/11,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.160.0.0/13,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.160.0.0/13,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.169.0.0/16,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.169.0.0/16,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.170.0.0/15,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.170.0.0/15,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.172.0.0/14,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.172.0.0/14,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,192.176.0.0/12,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,192.176.0.0/12,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,193.0.0.0/8,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,193.0.0.0/8,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,194.0.0.0/7,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,194.0.0.0/7,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,196.0.0.0/6,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,196.0.0.0/6,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,200.0.0.0/5,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,200.0.0.0/5,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,null,208.0.0.0/4,null,outbound,to,internet
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,208.0.0.0/4,null,outbound,to,internet
 Request00002,internet_nlb,internet_nlb,ingress,80,40000,tcp,ec2_test_sg,null,null,Allow health checks from internet-nlb to instance group internet istio node backends. ,,
 Request00003,cluster_endpoint,cluster_endpoint,egress,15017,15017,tcp,worker_nodes,null,null,kubelet api server communication with nodes,,
 Request00003,cluster_endpoint,cluster_endpoint,egress,15017,15017,tcp,istio_nodes,null,null,kubelet api server communication with nodes,,
 Request00003,istio_nodes,istio_nodes,ingress,15017,15017,tcp,cluster_endpoint,null,null,kubelet api server communication with nodes,,
-Request00003,worker_nodes,worker_nodes,ingress,15017,15017,tcp,cluster_endpoint,null,null,kubelet api server communication with nodes,,
+Request00001,worker_nodes,worker_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
 Request00003,cluster_endpoint,cluster_endpoint,ingress,80,40000,tcp,ec2_test_sg,null,null,k8s nodes need access to cluster endpoint for eks control plane. ,,
-Request00004,istio_nodes,istio_nodes,ingress,10250,10250,tcp,cluster_endpoint,null,null,kubectl exec and port-forwarding through cluster endpoint,,
-Request00004,worker_nodes,worker_nodes,ingress,10250,10250,tcp,cluster_endpoint,null,null,kubectl exec and port-forwarding through cluster endpoint,,
+Request00001,istio_nodes,istio_nodes,egress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,worker_nodes,worker_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
 Request00004,cluster_endpoint,cluster_endpoint,egress,10250,10250,tcp,istio_nodes,null,null,kubectl exec and port-forwarding through cluster endpoint,,
 Request00004,cluster_endpoint,cluster_endpoint,egress,10250,10250,tcp,worker_nodes,null,null,kubectl exec and port-forwarding through cluster endpoint,,
-Request00006,istio_nodes,istio_nodes,egress,53,53,udp,istio_nodes,null,null,overlay dns connectivity between pods ,,
-Request00006,istio_nodes,istio_nodes,ingress,53,53,udp,istio_nodes,null,null,overlay dns connectivity between pods ,,
+Request00001,istio_nodes,istio_nodes,ingress,15020,15020,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,egress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,worker_nodes,worker_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
+Request00001,worker_nodes,worker_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe.,,
+Request00001,istio_nodes,istio_nodes,ingress,15020,15020,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,egress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
+Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. ,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,ingress,15021,15021,tcp,worker_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
+Request00001,istio_nodes,istio_nodes,egress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
+Request00001,istio_nodes,istio_nodes,ingress,15021,15021,tcp,istio_nodes,null,null,Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe.,,
+Request00001,istio_nodes,istio_nodes,egress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,worker_nodes,worker_nodes,ingress,443,443,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,cluster_endpoint,null,null,nodes need access to local kubelet API,,
+Request00001,istio_nodes,istio_nodes,ingress,15090,15090,tcp,worker_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,egress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,ingress,15090,15090,tcp,istio_nodes,null,null,Metrics/Monitoring Communication for Istio monitoring and metrics.,,
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,null,10.0.101.0/24,null,allow elb ingress,,
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,null,10.0.102.0/24,null,allow elb ingress,,
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,internet_nlb,null,null,Allow health checks from inlb to instance group istio node backends. ,,
+Request00001,istio_nodes,istio_nodes,egress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,egress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00001,istio_nodes,istio_nodes,ingress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay,,
+Request00003,worker_nodes,worker_nodes,ingress,15017,15017,tcp,cluster_endpoint,null,null,kubelet api server communication with nodes,,
+Request00004,worker_nodes,worker_nodes,ingress,10250,10250,tcp,cluster_endpoint,null,null,kubectl exec and port-forwarding through cluster endpoint,,
 Request00006,worker_nodes,worker_nodes,egress,53,53,udp,istio_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,ingress,53,53,udp,istio_nodes,null,null,overlay dns connectivity between pods ,,
-Request00006,istio_nodes,istio_nodes,egress,53,53,udp,worker_nodes,null,null,overlay dns connectivity between pods ,,
-Request00006,istio_nodes,istio_nodes,ingress,53,53,udp,worker_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,egress,53,53,udp,worker_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,ingress,53,53,udp,worker_nodes,null,null,overlay dns connectivity between pods ,,
-Request00006,istio_nodes,istio_nodes,egress,53,53,tcp,worker_nodes,null,null,overlay dns connectivity between pods ,,
-Request00006,istio_nodes,istio_nodes,ingress,53,53,tcp,worker_nodes,null,null,overlay dns connectivity between pods ,,
-Request00006,istio_nodes,istio_nodes,egress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
-Request00006,istio_nodes,istio_nodes,ingress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,egress,53,53,tcp,worker_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,ingress,53,53,tcp,worker_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,egress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
 Request00006,worker_nodes,worker_nodes,ingress,53,53,tcp,istio_nodes,null,null,overlay dns connectivity between pods ,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.94.91.31/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.86.4.106/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.90.191.9/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.210.225.137/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,44.201.148.133/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.161.254.100/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.197.201.248/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,54.81.127.33/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,3.87.127.143/32,null,aws ntp servers,,
-Request00001,istio_nodes,istio_nodes,egress,123,123,udp,null,52.207.222.50/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.94.91.31/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.86.4.106/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.90.191.9/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.210.225.137/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,44.201.148.133/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.161.254.100/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.197.201.248/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,54.81.127.33/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,3.87.127.143/32,null,aws ntp servers,,
-Request00001,worker_nodes,worker_nodes,egress,123,123,udp,null,52.207.222.50/32,null,aws ntp servers,,

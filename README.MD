@@ -486,11 +486,8 @@ flowchart LR
 
     %% Connections
     ec2_test_sg --> |1-65535| cidr_0.0.0.0_0
-    istio_nodes --> |80| cidr_0.0.0.0_5
-    istio_nodes --> |443| cidr_0.0.0.0_5
-    istio_nodes --> |30000-32767| cidr_10.0.101.0_24
-    istio_nodes --> |30000-32767| cidr_10.0.102.0_24
-    worker_nodes --> |80| cidr_0.0.0.0_5
+    istio_nodes --> |0| ec2_test_sg
+    istio_nodes --> |1-65535| ec2_test_sg
     worker_nodes --> |443| cidr_0.0.0.0_5
     internet_nlb --> |443| cidr_103.21.244.0_22
     internet_nlb --> |80| cidr_103.21.244.0_22
@@ -504,13 +501,8 @@ flowchart LR
     internet_nlb --> |80| cidr_104.24.0.0_14
     internet_nlb --> |443| cidr_108.162.192.0_18
     internet_nlb --> |80| cidr_108.162.192.0_18
-    istio_nodes --> |80| cidr_11.0.0.0_8
-    istio_nodes --> |443| cidr_11.0.0.0_8
-    worker_nodes --> |80| cidr_11.0.0.0_8
     worker_nodes --> |443| cidr_11.0.0.0_8
-    istio_nodes --> |80| cidr_12.0.0.0_6
-    istio_nodes --> |443| cidr_12.0.0.0_6
-    worker_nodes --> |80| cidr_12.0.0.0_6
+    istio_nodes --> |8-0| ec2_test_sg
     worker_nodes --> |443| cidr_12.0.0.0_6
     internet_nlb --> |80| cidr_131.0.72.0_22
     internet_nlb --> |443| cidr_131.0.72.0_22
@@ -538,125 +530,21 @@ flowchart LR
     ec2_test_sg --> |0| worker_nodes
     internet_nlb --> |30000-32767| istio_nodes
     internet_nlb --> |30000-32767| worker_nodes
-    istio_nodes --> |30000-32767| internet_nlb
-    worker_nodes --> |30000-32767| internet_nlb
-    istio_nodes --> |0| ec2_test_sg
-    worker_nodes --> |0| ec2_test_sg
-    istio_nodes --> |8-0| ec2_test_sg
-    worker_nodes --> |8-0| ec2_test_sg
-    istio_nodes --> |1-65535| ec2_test_sg
-    worker_nodes --> |1-65535| ec2_test_sg
-    istio_nodes --> |15017| worker_nodes
-    istio_nodes --> |15017| istio_nodes
-    worker_nodes --> |15017| worker_nodes
-    worker_nodes --> |15017| istio_nodes
-    istio_nodes --> |15012| worker_nodes
-    istio_nodes --> |30000-32767| worker_nodes
-    istio_nodes --> |15012| istio_nodes
-    istio_nodes --> |30000-32767| istio_nodes
-    worker_nodes --> |30000-32767| worker_nodes
-    worker_nodes --> |15012| worker_nodes
-    worker_nodes --> |30000-32767| istio_nodes
-    worker_nodes --> |15012| istio_nodes
-    istio_nodes --> |10250| worker_nodes
-    istio_nodes --> |10250| istio_nodes
-    worker_nodes --> |10250| worker_nodes
-    worker_nodes --> |10250| istio_nodes
-    istio_nodes --> |8443| worker_nodes
-    istio_nodes --> |15020| worker_nodes
-    istio_nodes --> |15090| worker_nodes
-    istio_nodes --> |8443| istio_nodes
-    istio_nodes --> |15020| istio_nodes
-    istio_nodes --> |15090| istio_nodes
-    worker_nodes --> |8443| worker_nodes
-    worker_nodes --> |15020| worker_nodes
-    worker_nodes --> |15090| worker_nodes
-    worker_nodes --> |8443| istio_nodes
-    worker_nodes --> |15020| istio_nodes
-    worker_nodes --> |15090| istio_nodes
-    istio_nodes --> |15021| worker_nodes
-    istio_nodes --> |15021| istio_nodes
-    worker_nodes --> |15021| worker_nodes
-    worker_nodes --> |15021| istio_nodes
-    cluster_endpoint --> |443| worker_nodes
-    cluster_endpoint --> |443| istio_nodes
-    ec2_test_sg --> |80-40000| ec2_test_sg
-    ec2_test_sg --> |80-40000| cluster_endpoint
-    istio_nodes --> |443| internet_nlb
-    worker_nodes --> |443| internet_nlb
-    istio_nodes --> |443| worker_nodes
-    istio_nodes --> |443| istio_nodes
-    worker_nodes --> |443| worker_nodes
-    worker_nodes --> |443| istio_nodes
-    istio_nodes --> |443| cluster_endpoint
-    worker_nodes --> |443| cluster_endpoint
-    istio_nodes --> |80| cidr_128.0.0.0_2
-    istio_nodes --> |443| cidr_128.0.0.0_2
-    istio_nodes --> |80| cidr_192.0.0.0_9
-    istio_nodes --> |443| cidr_192.0.0.0_9
-    istio_nodes --> |80| cidr_192.128.0.0_11
-    istio_nodes --> |443| cidr_192.128.0.0_11
-    istio_nodes --> |80| cidr_192.160.0.0_13
-    istio_nodes --> |443| cidr_192.160.0.0_13
-    istio_nodes --> |80| cidr_192.169.0.0_16
-    istio_nodes --> |443| cidr_192.169.0.0_16
-    istio_nodes --> |80| cidr_192.170.0.0_15
-    istio_nodes --> |443| cidr_192.170.0.0_15
-    istio_nodes --> |80| cidr_192.172.0.0_14
-    istio_nodes --> |443| cidr_192.172.0.0_14
-    istio_nodes --> |80| cidr_192.176.0.0_12
-    istio_nodes --> |443| cidr_192.176.0.0_12
-    istio_nodes --> |80| cidr_193.0.0.0_8
-    istio_nodes --> |443| cidr_193.0.0.0_8
-    istio_nodes --> |80| cidr_194.0.0.0_7
-    istio_nodes --> |443| cidr_194.0.0.0_7
-    istio_nodes --> |80| cidr_196.0.0.0_6
-    istio_nodes --> |443| cidr_196.0.0.0_6
-    istio_nodes --> |80| cidr_200.0.0.0_5
-    istio_nodes --> |443| cidr_200.0.0.0_5
-    istio_nodes --> |80| cidr_208.0.0.0_4
-    istio_nodes --> |443| cidr_208.0.0.0_4
-    worker_nodes --> |80| cidr_128.0.0.0_2
-    worker_nodes --> |443| cidr_128.0.0.0_2
-    worker_nodes --> |80| cidr_192.0.0.0_9
-    worker_nodes --> |443| cidr_192.0.0.0_9
-    worker_nodes --> |80| cidr_192.128.0.0_11
-    worker_nodes --> |443| cidr_192.128.0.0_11
-    worker_nodes --> |80| cidr_192.160.0.0_13
-    worker_nodes --> |443| cidr_192.160.0.0_13
-    worker_nodes --> |80| cidr_192.169.0.0_16
-    worker_nodes --> |443| cidr_192.169.0.0_16
-    worker_nodes --> |80| cidr_192.170.0.0_15
-    worker_nodes --> |443| cidr_192.170.0.0_15
-    worker_nodes --> |80| cidr_192.172.0.0_14
-    worker_nodes --> |443| cidr_192.172.0.0_14
-    worker_nodes --> |80| cidr_192.176.0.0_12
-    worker_nodes --> |443| cidr_192.176.0.0_12
-    worker_nodes --> |80| cidr_193.0.0.0_8
-    worker_nodes --> |443| cidr_193.0.0.0_8
-    worker_nodes --> |80| cidr_194.0.0.0_7
-    worker_nodes --> |443| cidr_194.0.0.0_7
-    worker_nodes --> |80| cidr_196.0.0.0_6
-    worker_nodes --> |443| cidr_196.0.0.0_6
-    worker_nodes --> |80| cidr_200.0.0.0_5
-    worker_nodes --> |443| cidr_200.0.0.0_5
-    worker_nodes --> |80| cidr_208.0.0.0_4
-    worker_nodes --> |443| cidr_208.0.0.0_4
-    internet_nlb --> |80-40000| ec2_test_sg
-    cluster_endpoint --> |15017| worker_nodes
-    cluster_endpoint --> |15017| istio_nodes
-    istio_nodes --> |15017| cluster_endpoint
-    worker_nodes --> |15017| cluster_endpoint
-    cluster_endpoint --> |80-40000| ec2_test_sg
-    istio_nodes --> |10250| cluster_endpoint
-    worker_nodes --> |10250| cluster_endpoint
-    cluster_endpoint --> |10250| istio_nodes
-    cluster_endpoint --> |10250| worker_nodes
     istio_nodes --> |53| istio_nodes
-    worker_nodes --> |53| istio_nodes
     istio_nodes --> |53| worker_nodes
-    worker_nodes --> |53| worker_nodes
+    worker_nodes --> |443| cidr_128.0.0.0_2
+    worker_nodes --> |443| cidr_192.0.0.0_9
+    worker_nodes --> |443| cidr_192.128.0.0_11
+    worker_nodes --> |443| cidr_192.160.0.0_13
+    worker_nodes --> |443| cidr_192.169.0.0_16
+    worker_nodes --> |443| cidr_192.170.0.0_15
+    worker_nodes --> |443| cidr_192.172.0.0_14
+    worker_nodes --> |443| cidr_192.176.0.0_12
+    worker_nodes --> |443| cidr_193.0.0.0_8
+    worker_nodes --> |443| cidr_194.0.0.0_7
     istio_nodes --> |123| cidr_3.94.91.31_32
+    worker_nodes --> |443| cidr_196.0.0.0_6
+    worker_nodes --> |443| cidr_200.0.0.0_5
     istio_nodes --> |123| cidr_3.86.4.106_32
     istio_nodes --> |123| cidr_54.90.191.9_32
     istio_nodes --> |123| cidr_54.210.225.137_32
@@ -666,16 +554,96 @@ flowchart LR
     istio_nodes --> |123| cidr_54.81.127.33_32
     istio_nodes --> |123| cidr_3.87.127.143_32
     istio_nodes --> |123| cidr_52.207.222.50_32
-    worker_nodes --> |123| cidr_3.94.91.31_32
+    istio_nodes --> |443| cidr_0.0.0.0_5
+    istio_nodes --> |443| cidr_11.0.0.0_8
+    istio_nodes --> |443| cidr_12.0.0.0_6
+    worker_nodes --> |443| cidr_208.0.0.0_4
     worker_nodes --> |123| cidr_3.86.4.106_32
-    worker_nodes --> |123| cidr_54.90.191.9_32
-    worker_nodes --> |123| cidr_54.210.225.137_32
+    worker_nodes --> |123| cidr_3.87.127.143_32
+    worker_nodes --> |123| cidr_3.94.91.31_32
     worker_nodes --> |123| cidr_44.201.148.133_32
+    worker_nodes --> |123| cidr_52.207.222.50_32
     worker_nodes --> |123| cidr_54.161.254.100_32
     worker_nodes --> |123| cidr_54.197.201.248_32
+    worker_nodes --> |123| cidr_54.210.225.137_32
     worker_nodes --> |123| cidr_54.81.127.33_32
-    worker_nodes --> |123| cidr_3.87.127.143_32
-    worker_nodes --> |123| cidr_52.207.222.50_32
+    worker_nodes --> |123| cidr_54.90.191.9_32
+    worker_nodes --> |30000-32767| internet_nlb
+    istio_nodes --> |443| internet_nlb
+    istio_nodes --> |443| worker_nodes
+    istio_nodes --> |443| istio_nodes
+    worker_nodes --> |0| ec2_test_sg
+    worker_nodes --> |8-0| ec2_test_sg
+    cluster_endpoint --> |443| worker_nodes
+    cluster_endpoint --> |443| istio_nodes
+    ec2_test_sg --> |80-40000| ec2_test_sg
+    ec2_test_sg --> |80-40000| cluster_endpoint
+    worker_nodes --> |1-65535| ec2_test_sg
+    istio_nodes --> |443| cluster_endpoint
+    istio_nodes --> |443| cidr_128.0.0.0_2
+    istio_nodes --> |443| cidr_192.0.0.0_9
+    istio_nodes --> |443| cidr_192.128.0.0_11
+    worker_nodes --> |15017| worker_nodes
+    istio_nodes --> |443| cidr_192.160.0.0_13
+    istio_nodes --> |443| cidr_192.169.0.0_16
+    istio_nodes --> |443| cidr_192.170.0.0_15
+    istio_nodes --> |443| cidr_192.172.0.0_14
+    istio_nodes --> |443| cidr_192.176.0.0_12
+    istio_nodes --> |443| cidr_193.0.0.0_8
+    istio_nodes --> |443| cidr_194.0.0.0_7
+    istio_nodes --> |443| cidr_196.0.0.0_6
+    istio_nodes --> |443| cidr_200.0.0.0_5
+    istio_nodes --> |443| cidr_208.0.0.0_4
+    istio_nodes --> |8443| worker_nodes
+    istio_nodes --> |8443| istio_nodes
+    istio_nodes --> |10250| worker_nodes
+    istio_nodes --> |10250| istio_nodes
+    istio_nodes --> |10250| cluster_endpoint
+    istio_nodes --> |15012| worker_nodes
+    istio_nodes --> |15012| istio_nodes
+    istio_nodes --> |15017| worker_nodes
+    istio_nodes --> |15017| istio_nodes
+    worker_nodes --> |15017| istio_nodes
+    worker_nodes --> |30000-32767| worker_nodes
+    worker_nodes --> |15012| worker_nodes
+    worker_nodes --> |30000-32767| istio_nodes
+    worker_nodes --> |15012| istio_nodes
+    worker_nodes --> |10250| worker_nodes
+    worker_nodes --> |10250| istio_nodes
+    worker_nodes --> |8443| worker_nodes
+    worker_nodes --> |15020| worker_nodes
+    worker_nodes --> |15090| worker_nodes
+    worker_nodes --> |8443| istio_nodes
+    worker_nodes --> |15020| istio_nodes
+    worker_nodes --> |15090| istio_nodes
+    internet_nlb --> |80-40000| ec2_test_sg
+    cluster_endpoint --> |15017| worker_nodes
+    cluster_endpoint --> |15017| istio_nodes
+    istio_nodes --> |15017| cluster_endpoint
+    worker_nodes --> |15021| worker_nodes
+    cluster_endpoint --> |80-40000| ec2_test_sg
+    istio_nodes --> |15020| worker_nodes
+    cluster_endpoint --> |10250| istio_nodes
+    cluster_endpoint --> |10250| worker_nodes
+    istio_nodes --> |15020| istio_nodes
+    worker_nodes --> |15021| istio_nodes
+    istio_nodes --> |15021| worker_nodes
+    worker_nodes --> |443| internet_nlb
+    worker_nodes --> |443| worker_nodes
+    istio_nodes --> |15021| istio_nodes
+    istio_nodes --> |15090| worker_nodes
+    worker_nodes --> |443| istio_nodes
+    worker_nodes --> |443| cluster_endpoint
+    istio_nodes --> |15090| istio_nodes
+    istio_nodes --> |30000-32767| cidr_10.0.101.0_24
+    istio_nodes --> |30000-32767| cidr_10.0.102.0_24
+    istio_nodes --> |30000-32767| internet_nlb
+    istio_nodes --> |30000-32767| worker_nodes
+    istio_nodes --> |30000-32767| istio_nodes
+    worker_nodes --> |15017| cluster_endpoint
+    worker_nodes --> |10250| cluster_endpoint
+    worker_nodes --> |53| istio_nodes
+    worker_nodes --> |53| worker_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -683,6 +651,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_200.0.0.0_5,cidr_104.16.0.0_13,cidr_0.0.0.0_0,cidr_3.94.91.31_32,cidr_54.90.191.9_32,cidr_192.172.0.0_14,cidr_10.0.102.0_24,cidr_103.21.244.0_22,cidr_3.87.127.143_32,cidr_196.0.0.0_6,cidr_103.31.4.0_22,cidr_197.234.240.0_22,cidr_194.0.0.0_7,cidr_52.207.222.50_32,cidr_54.161.254.100_32,cidr_162.158.0.0_15,cidr_188.114.96.0_20,cidr_190.93.240.0_20,cidr_141.101.64.0_18,cidr_54.197.201.248_32,cidr_192.176.0.0_12,cidr_108.162.192.0_18,cidr_192.170.0.0_15,cidr_3.86.4.106_32,cidr_131.0.72.0_22,cidr_198.41.128.0_17,cidr_10.0.101.0_24,cidr_0.0.0.0_5,cidr_208.0.0.0_4,cidr_12.0.0.0_6,cidr_193.0.0.0_8,cidr_54.210.225.137_32,cidr_103.22.200.0_22,cidr_172.64.0.0_13,cidr_192.160.0.0_13,cidr_54.81.127.33_32,cidr_192.128.0.0_11,cidr_44.201.148.133_32,cidr_11.0.0.0_8,cidr_192.169.0.0_16,cidr_104.24.0.0_14,cidr_173.245.48.0_20,cidr_128.0.0.0_2,cidr_192.0.0.0_9 external
+    class cidr_192.0.0.0_9,cidr_197.234.240.0_22,cidr_54.161.254.100_32,cidr_200.0.0.0_5,cidr_192.128.0.0_11,cidr_172.64.0.0_13,cidr_0.0.0.0_0,cidr_10.0.101.0_24,cidr_108.162.192.0_18,cidr_3.94.91.31_32,cidr_128.0.0.0_2,cidr_196.0.0.0_6,cidr_188.114.96.0_20,cidr_52.207.222.50_32,cidr_103.21.244.0_22,cidr_54.197.201.248_32,cidr_192.169.0.0_16,cidr_54.81.127.33_32,cidr_11.0.0.0_8,cidr_3.87.127.143_32,cidr_194.0.0.0_7,cidr_141.101.64.0_18,cidr_103.31.4.0_22,cidr_104.16.0.0_13,cidr_173.245.48.0_20,cidr_192.170.0.0_15,cidr_192.172.0.0_14,cidr_190.93.240.0_20,cidr_54.90.191.9_32,cidr_44.201.148.133_32,cidr_0.0.0.0_5,cidr_10.0.102.0_24,cidr_198.41.128.0_17,cidr_54.210.225.137_32,cidr_192.160.0.0_13,cidr_193.0.0.0_8,cidr_103.22.200.0_22,cidr_104.24.0.0_14,cidr_208.0.0.0_4,cidr_192.176.0.0_12,cidr_162.158.0.0_15,cidr_12.0.0.0_6,cidr_131.0.72.0_22,cidr_3.86.4.106_32 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->
