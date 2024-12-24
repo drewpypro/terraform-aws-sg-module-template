@@ -73,7 +73,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "3.86.4.106",
+        "cidr_ipv4": "3.86.4.106/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -86,7 +86,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "3.87.127.143",
+        "cidr_ipv4": "3.87.127.143/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -99,7 +99,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "3.94.91.31",
+        "cidr_ipv4": "3.94.91.31/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -112,7 +112,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "44.201.148.133",
+        "cidr_ipv4": "44.201.148.133/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -125,7 +125,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "52.207.222.50",
+        "cidr_ipv4": "52.207.222.50/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -138,7 +138,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "54.161.254.100",
+        "cidr_ipv4": "54.161.254.100/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -151,7 +151,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "54.197.201.248",
+        "cidr_ipv4": "54.197.201.248/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -164,7 +164,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "54.210.225.137",
+        "cidr_ipv4": "54.210.225.137/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -177,7 +177,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "54.81.127.33",
+        "cidr_ipv4": "54.81.127.33/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
@@ -190,7 +190,7 @@
         "to_port": "123",
         "ip_protocol": "udp",
         "referenced_security_group_id": "null",
-        "cidr_ipv4": "54.90.191.9",
+        "cidr_ipv4": "54.90.191.9/32",
         "cidr_ipv6": "null",
         "business_justification": "aws ntp servers"
     },
