@@ -6,7 +6,7 @@ variable "aws_region" {
 
 variable "vpc_id" {
   description = "vpc id"
-  type = string
+  type        = string
 }
 
 variable "services" {

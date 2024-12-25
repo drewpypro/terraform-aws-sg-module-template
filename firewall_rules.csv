@@ -237,3 +237,11 @@ Request00001,worker_nodes,worker_nodes,egress,30000,32767,tcp,worker_nodes,null,
 Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,worker_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,egress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
 Request00001,worker_nodes,worker_nodes,ingress,30000,32767,tcp,istio_nodes,null,null,k8s nodes require connectivity between nodes to establish overlay
+Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,worker_nodes,null,null,port 80 for cert connectivity requirements
+Request00001,istio_nodes,istio_nodes,ingress,80,80,tcp,worker_nodes,null,null,port 80 for cert connectivity requirements
+Request00001,istio_nodes,istio_nodes,egress,80,80,tcp,istio_nodes,null,null,port 80 for cert connectivity requirements
+Request00001,istio_nodes,istio_nodes,ingress,80,80,tcp,istio_nodes,null,null,port 80 for cert connectivity requirements
+Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,worker_nodes,null,null,port 80 for cert connectivity requirements
+Request00001,worker_nodes,worker_nodes,ingress,80,80,tcp,worker_nodes,null,null,port 80 for cert connectivity requirements
+Request00001,worker_nodes,worker_nodes,egress,80,80,tcp,istio_nodes,null,null,port 80 for cert connectivity requirements
+Request00001,worker_nodes,worker_nodes,ingress,80,80,tcp,istio_nodes,null,null,port 80 for cert connectivity requirements
