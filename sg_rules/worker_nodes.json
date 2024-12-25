@@ -426,7 +426,20 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "128.0.0.0/2",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "16.0.0.0/4",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -439,7 +452,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.0.0.0/9",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -452,7 +465,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.128.0.0/11",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -465,7 +478,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.160.0.0/13",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -478,7 +491,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.169.0.0/16",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -491,7 +504,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.170.0.0/15",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -504,7 +517,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.172.0.0/14",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -517,7 +530,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "192.176.0.0/12",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -530,7 +543,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "193.0.0.0/8",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -543,7 +556,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "194.0.0.0/7",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -556,7 +569,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "196.0.0.0/6",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -569,7 +582,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "200.0.0.0/5",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
@@ -582,7 +595,59 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "208.0.0.0/4",
         "cidr_ipv6": "null",
-        "business_justification": "outbound"
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "32.0.0.0/3",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "64.0.0.0/2",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "8.0.0.0/6",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "9.0.0.0/8",
+        "cidr_ipv6": "null",
+        "business_justification": "outbound to internet 443 only. "
     },
     {
         "RequestID": "Request00001",
