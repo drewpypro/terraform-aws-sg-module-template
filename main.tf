@@ -40,6 +40,7 @@ locals {
     "ssmmessages"               = "ssmmessages"
     "sts"                       = "sts"
     "ec2_test_sg"               = "ec2_test_sg"
+    "ecr"                       = "ecr"
   }
 
   # Get all rule files and decode them
