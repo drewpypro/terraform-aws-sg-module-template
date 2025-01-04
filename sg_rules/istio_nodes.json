@@ -358,7 +358,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "autoscaling_vpce",
+        "referenced_security_group_id": "vpce_autoscaling",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -371,7 +371,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "dms_vpce",
+        "referenced_security_group_id": "vpce_dms",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -384,7 +384,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "ec2_vpce",
+        "referenced_security_group_id": "vpce_ec2",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -397,7 +397,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "ec2messages_vpce",
+        "referenced_security_group_id": "vpce_ec2messages",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -410,7 +410,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "ecr_vpce",
+        "referenced_security_group_id": "vpce_ecr",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -423,7 +423,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "elasticloadbalancing_vpce",
+        "referenced_security_group_id": "vpce_elasticloadbalancing",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -436,7 +436,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "kms_vpce",
+        "referenced_security_group_id": "vpce_kms",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -449,7 +449,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "logs_vpce",
+        "referenced_security_group_id": "vpce_logs",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -462,7 +462,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "monitoring_vpce",
+        "referenced_security_group_id": "vpce_monitoring",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -475,7 +475,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "rds_vpce",
+        "referenced_security_group_id": "vpce_rds",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -488,7 +488,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "sns_vpce",
+        "referenced_security_group_id": "vpce_sns",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -501,7 +501,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "sqs_vpce",
+        "referenced_security_group_id": "vpce_sqs",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -514,7 +514,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "ssm_vpce",
+        "referenced_security_group_id": "vpce_ssm",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -527,7 +527,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "ssmmessages_vpce",
+        "referenced_security_group_id": "vpce_ssmmessages",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
@@ -540,7 +540,7 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "",
-        "referenced_security_group_id": "sts_vpce",
+        "referenced_security_group_id": "vpce_sts",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
