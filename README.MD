@@ -645,66 +645,66 @@ flowchart LR
     istio_nodes --> |15021| istio_nodes
     worker_nodes --> |15021| worker_nodes
     worker_nodes --> |15021| istio_nodes
-    worker_nodes --> |443| vpce_autoscaling
-    worker_nodes --> |443| vpce_dms
-    worker_nodes --> |443| vpce_ec2
-    worker_nodes --> |443| vpce_ec2messages
-    worker_nodes --> |443| vpce_elasticloadbalancing
-    worker_nodes --> |443| vpce_logs
-    worker_nodes --> |443| vpce_monitoring
-    worker_nodes --> |443| vpce_rds
-    worker_nodes --> |443| vpce_kms
-    worker_nodes --> |443| vpce_sns
-    worker_nodes --> |443| vpce_sqs
-    worker_nodes --> |443| vpce_ssm
-    worker_nodes --> |443| vpce_ssmmessages
-    worker_nodes --> |443| vpce_sts
-    worker_nodes --> |443| vpce_ecr
-    istio_nodes --> |443| vpce_autoscaling
-    istio_nodes --> |443| vpce_dms
-    istio_nodes --> |443| vpce_ec2
-    istio_nodes --> |443| vpce_ec2messages
-    istio_nodes --> |443| vpce_elasticloadbalancing
-    istio_nodes --> |443| vpce_logs
-    istio_nodes --> |443| vpce_monitoring
-    istio_nodes --> |443| vpce_rds
-    istio_nodes --> |443| vpce_kms
-    istio_nodes --> |443| vpce_sns
-    istio_nodes --> |443| vpce_sqs
-    istio_nodes --> |443| vpce_ssm
-    istio_nodes --> |443| vpce_ssmmessages
-    istio_nodes --> |443| vpce_sts
-    istio_nodes --> |443| vpce_ecr
-    vpce_autoscaling --> |443| worker_nodes
-    vpce_dms --> |443| worker_nodes
-    vpce_ec2 --> |443| worker_nodes
-    vpce_ec2messages --> |443| worker_nodes
-    vpce_elasticloadbalancing --> |443| worker_nodes
-    vpce_logs --> |443| worker_nodes
-    vpce_monitoring --> |443| worker_nodes
-    vpce_rds --> |443| worker_nodes
-    vpce_kms --> |443| worker_nodes
-    vpce_sns --> |443| worker_nodes
-    vpce_sqs --> |443| worker_nodes
-    vpce_ssm --> |443| worker_nodes
-    vpce_ssmmessages --> |443| worker_nodes
-    vpce_sts --> |443| worker_nodes
-    vpce_ecr --> |443| worker_nodes
-    vpce_autoscaling --> |443| istio_nodes
-    vpce_dms --> |443| istio_nodes
-    vpce_ec2 --> |443| istio_nodes
-    vpce_ec2messages --> |443| istio_nodes
-    vpce_elasticloadbalancing --> |443| istio_nodes
-    vpce_logs --> |443| istio_nodes
-    vpce_monitoring --> |443| istio_nodes
-    vpce_rds --> |443| istio_nodes
-    vpce_kms --> |443| istio_nodes
-    vpce_sns --> |443| istio_nodes
-    vpce_sqs --> |443| istio_nodes
-    vpce_ssm --> |443| istio_nodes
-    vpce_ssmmessages --> |443| istio_nodes
-    vpce_sts --> |443| istio_nodes
-    vpce_ecr --> |443| istio_nodes
+    worker_nodes --> |443| autoscaling
+    worker_nodes --> |443| dms
+    worker_nodes --> |443| ec2
+    worker_nodes --> |443| ec2messages
+    worker_nodes --> |443| elasticloadbalancing
+    worker_nodes --> |443| logs
+    worker_nodes --> |443| monitoring
+    worker_nodes --> |443| rds
+    worker_nodes --> |443| kms
+    worker_nodes --> |443| sns
+    worker_nodes --> |443| sqs
+    worker_nodes --> |443| ssm
+    worker_nodes --> |443| ssmmessages
+    worker_nodes --> |443| sts
+    worker_nodes --> |443| ecr
+    istio_nodes --> |443| autoscaling
+    istio_nodes --> |443| dms
+    istio_nodes --> |443| ec2
+    istio_nodes --> |443| ec2messages
+    istio_nodes --> |443| elasticloadbalancing
+    istio_nodes --> |443| logs
+    istio_nodes --> |443| monitoring
+    istio_nodes --> |443| rds
+    istio_nodes --> |443| kms
+    istio_nodes --> |443| sns
+    istio_nodes --> |443| sqs
+    istio_nodes --> |443| ssm
+    istio_nodes --> |443| ssmmessages
+    istio_nodes --> |443| sts
+    istio_nodes --> |443| ecr
+    autoscaling --> |443| worker_nodes
+    dms --> |443| worker_nodes
+    ec2 --> |443| worker_nodes
+    ec2messages --> |443| worker_nodes
+    elasticloadbalancing --> |443| worker_nodes
+    logs --> |443| worker_nodes
+    monitoring --> |443| worker_nodes
+    rds --> |443| worker_nodes
+    kms --> |443| worker_nodes
+    sns --> |443| worker_nodes
+    sqs --> |443| worker_nodes
+    ssm --> |443| worker_nodes
+    ssmmessages --> |443| worker_nodes
+    sts --> |443| worker_nodes
+    ecr --> |443| worker_nodes
+    autoscaling --> |443| istio_nodes
+    dms --> |443| istio_nodes
+    ec2 --> |443| istio_nodes
+    ec2messages --> |443| istio_nodes
+    elasticloadbalancing --> |443| istio_nodes
+    logs --> |443| istio_nodes
+    monitoring --> |443| istio_nodes
+    rds --> |443| istio_nodes
+    kms --> |443| istio_nodes
+    sns --> |443| istio_nodes
+    sqs --> |443| istio_nodes
+    ssm --> |443| istio_nodes
+    ssmmessages --> |443| istio_nodes
+    sts --> |443| istio_nodes
+    ecr --> |443| istio_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -712,6 +712,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_0.0.0.0_5,cidr_198.41.128.0_17,cidr_11.0.0.0_8,cidr_128.0.0.0_1,cidr_3.86.4.106_32,cidr_108.162.193.105_32,cidr_54.210.225.137_32,cidr_64.0.0.0_2,cidr_10.0.102.0_24,cidr_104.24.0.0_14,cidr_54.161.254.100_32,cidr_108.162.194.254_32,cidr_32.0.0.0_3,cidr_141.101.64.0_18,cidr_190.93.240.0_20,cidr_9.0.0.0_8,cidr_104.16.0.0_13,cidr_3.94.91.31_32,cidr_54.197.201.248_32,cidr_103.31.4.0_22,cidr_54.81.127.33_32,cidr_162.158.0.0_15,cidr_54.90.191.9_32,cidr_16.0.0.0_4,cidr_188.114.96.0_20,cidr_108.162.192.0_18,cidr_103.21.244.0_22,cidr_12.0.0.0_6,cidr_162.159.38.254_32,cidr_52.207.222.50_32,cidr_10.0.101.0_24,cidr_172.64.0.0_13,cidr_44.201.148.133_32,cidr_173.245.59.105_32,cidr_172.64.33.105_32,cidr_8.0.0.0_6,cidr_197.234.240.0_22,cidr_0.0.0.0_0,cidr_172.64.34.254_32,cidr_103.22.200.0_22,cidr_173.245.48.0_20,cidr_131.0.72.0_22,cidr_3.87.127.143_32 external
+    class cidr_188.114.96.0_20,cidr_104.16.0.0_13,cidr_197.234.240.0_22,cidr_108.162.194.254_32,cidr_52.207.222.50_32,cidr_16.0.0.0_4,cidr_128.0.0.0_1,cidr_3.87.127.143_32,cidr_172.64.34.254_32,cidr_172.64.0.0_13,cidr_32.0.0.0_3,cidr_162.159.38.254_32,cidr_103.31.4.0_22,cidr_44.201.148.133_32,cidr_10.0.101.0_24,cidr_0.0.0.0_5,cidr_173.245.59.105_32,cidr_190.93.240.0_20,cidr_54.210.225.137_32,cidr_54.81.127.33_32,cidr_104.24.0.0_14,cidr_64.0.0.0_2,cidr_141.101.64.0_18,cidr_3.86.4.106_32,cidr_54.197.201.248_32,cidr_103.22.200.0_22,cidr_10.0.102.0_24,cidr_108.162.192.0_18,cidr_0.0.0.0_0,cidr_12.0.0.0_6,cidr_172.64.33.105_32,cidr_131.0.72.0_22,cidr_108.162.193.105_32,cidr_8.0.0.0_6,cidr_198.41.128.0_17,cidr_3.94.91.31_32,cidr_11.0.0.0_8,cidr_54.161.254.100_32,cidr_54.90.191.9_32,cidr_9.0.0.0_8,cidr_103.21.244.0_22,cidr_162.158.0.0_15,cidr_173.245.48.0_20 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->

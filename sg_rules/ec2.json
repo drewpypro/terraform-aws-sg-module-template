@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "ssmmessages",
-        "security_group_id": "vpce_ssmmessages",
+        "name": "ec2",
+        "security_group_id": "ec2",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "ssmmessages",
-        "security_group_id": "vpce_ssmmessages",
+        "name": "ec2",
+        "security_group_id": "ec2",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

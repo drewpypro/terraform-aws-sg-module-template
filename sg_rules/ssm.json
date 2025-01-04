@@ -2,7 +2,7 @@
     {
         "RequestID": "Request00001",
         "name": "ssm",
-        "security_group_id": "vpce_ssm",
+        "security_group_id": "ssm",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -15,7 +15,7 @@
     {
         "RequestID": "Request00001",
         "name": "ssm",
-        "security_group_id": "vpce_ssm",
+        "security_group_id": "ssm",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

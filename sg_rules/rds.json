@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "sns",
-        "security_group_id": "vpce_sns",
+        "name": "rds",
+        "security_group_id": "rds",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "sns",
-        "security_group_id": "vpce_sns",
+        "name": "rds",
+        "security_group_id": "rds",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

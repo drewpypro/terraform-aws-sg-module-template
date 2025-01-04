@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "elasticloadbalancing",
-        "security_group_id": "vpce_elasticloadbalancing",
+        "name": "logs",
+        "security_group_id": "logs",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "elasticloadbalancing",
-        "security_group_id": "vpce_elasticloadbalancing",
+        "name": "logs",
+        "security_group_id": "logs",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

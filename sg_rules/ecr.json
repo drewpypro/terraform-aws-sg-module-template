@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "sts",
-        "security_group_id": "vpce_sts",
+        "name": "ecr",
+        "security_group_id": "ecr",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "sts",
-        "security_group_id": "vpce_sts",
+        "name": "ecr",
+        "security_group_id": "ecr",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

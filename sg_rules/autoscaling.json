@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "monitoring",
-        "security_group_id": "vpce_monitoring",
+        "name": "autoscaling",
+        "security_group_id": "autoscaling",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "monitoring",
-        "security_group_id": "vpce_monitoring",
+        "name": "autoscaling",
+        "security_group_id": "autoscaling",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

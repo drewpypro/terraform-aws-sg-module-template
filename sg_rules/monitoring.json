@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "ec2",
-        "security_group_id": "vpce_ec2",
+        "name": "monitoring",
+        "security_group_id": "monitoring",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "ec2",
-        "security_group_id": "vpce_ec2",
+        "name": "monitoring",
+        "security_group_id": "monitoring",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

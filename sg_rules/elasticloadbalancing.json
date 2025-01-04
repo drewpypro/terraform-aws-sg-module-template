@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "rds",
-        "security_group_id": "vpce_rds",
+        "name": "elasticloadbalancing",
+        "security_group_id": "elasticloadbalancing",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "rds",
-        "security_group_id": "vpce_rds",
+        "name": "elasticloadbalancing",
+        "security_group_id": "elasticloadbalancing",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

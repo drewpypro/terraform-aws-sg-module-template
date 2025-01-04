@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "ec2messages",
-        "security_group_id": "vpce_ec2messages",
+        "name": "kms",
+        "security_group_id": "kms",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "ec2messages",
-        "security_group_id": "vpce_ec2messages",
+        "name": "kms",
+        "security_group_id": "kms",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
