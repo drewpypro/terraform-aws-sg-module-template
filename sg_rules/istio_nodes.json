@@ -423,7 +423,20 @@
         "from_port": "443",
         "to_port": "443",
         "ip_protocol": "tcp",
-        "referenced_security_group_id": "ecr",
+        "referenced_security_group_id": "ecr.api",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "Enable connectivity to AWS API endpoints per service."
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": "443",
+        "to_port": "443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "ecr.dkr",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."

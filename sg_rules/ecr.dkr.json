@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "ecr",
-        "security_group_id": "ecr",
+        "name": "ecr.dkr",
+        "security_group_id": "ecr.dkr",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "ecr",
-        "security_group_id": "ecr",
+        "name": "ecr.dkr",
+        "security_group_id": "ecr.dkr",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",

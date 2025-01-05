@@ -259,7 +259,8 @@ Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,sqs,null,null,Enable c
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,ssm,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,ssmmessages,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,sts,null,null,Enable connectivity to AWS API endpoints per service.
-Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,ecr,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,ecr.api,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,ecr.dkr,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,autoscaling,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,dms,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,ec2,null,null,Enable connectivity to AWS API endpoints per service.
@@ -274,7 +275,8 @@ Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,sqs,null,null,Enable con
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,ssm,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,ssmmessages,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,sts,null,null,Enable connectivity to AWS API endpoints per service.
-Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,ecr,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,ecr.api,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,istio_nodes,istio_nodes,egress,443,443,tcp,ecr.dkr,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,autoscaling,autoscaling,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,dms,dms,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,ec2,ec2,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
@@ -289,7 +291,8 @@ Request00001,sqs,sqs,ingress,443,443,tcp,worker_nodes,null,null,Enable connectiv
 Request00001,ssm,ssm,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,ssmmessages,ssmmessages,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,sts,sts,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
-Request00001,ecr,ecr,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,ecr.api,ecr.api,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,ecr.dkr,ecr.dkr,ingress,443,443,tcp,worker_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,autoscaling,autoscaling,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,dms,dms,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,ec2,ec2,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
@@ -304,4 +307,5 @@ Request00001,sqs,sqs,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivi
 Request00001,ssm,ssm,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,ssmmessages,ssmmessages,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
 Request00001,sts,sts,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
-Request00001,ecr,ecr,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,ecr.api,ecr.api,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
+Request00001,ecr.dkr,ecr.dkr,ingress,443,443,tcp,istio_nodes,null,null,Enable connectivity to AWS API endpoints per service.
