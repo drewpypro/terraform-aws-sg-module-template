@@ -55,6 +55,32 @@
         "RequestID": "Request00001",
         "name": "cluster_endpoint",
         "security_group_id": "cluster_endpoint",
+        "direction": "egress",
+        "from_port": "9443",
+        "to_port": "9443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "cluster endpoint to aws-lb-controller testing"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "egress",
+        "from_port": "9443",
+        "to_port": "9443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "cluster endpoint to aws-lb-controller testing"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
         "direction": "ingress",
         "from_port": "443",
         "to_port": "443",
@@ -89,5 +115,31 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "k8s nodes need access to cluster endpoint for eks control plane. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "9443",
+        "to_port": "9443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "cluster endpoint to aws-lb-controller testing"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "cluster_endpoint",
+        "security_group_id": "cluster_endpoint",
+        "direction": "ingress",
+        "from_port": "9443",
+        "to_port": "9443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "cluster endpoint to aws-lb-controller testing"
     }
 ]

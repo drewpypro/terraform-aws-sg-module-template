@@ -717,6 +717,14 @@ flowchart LR
     worker_nodes --> |8080| istio_nodes
     istio_nodes --> |8080| worker_nodes
     istio_nodes --> |8080| istio_nodes
+    worker_nodes --> |8081| worker_nodes
+    worker_nodes --> |8081| istio_nodes
+    istio_nodes --> |8081| worker_nodes
+    istio_nodes --> |8081| istio_nodes
+    cluster_endpoint --> |9443| worker_nodes
+    cluster_endpoint --> |9443| istio_nodes
+    worker_nodes --> |9443| cluster_endpoint
+    istio_nodes --> |9443| cluster_endpoint
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -724,6 +732,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_104.16.0.0_13,cidr_52.207.222.50_32,cidr_104.24.0.0_14,cidr_103.22.200.0_22,cidr_172.64.33.105_32,cidr_3.87.127.143_32,cidr_0.0.0.0_5,cidr_162.159.38.254_32,cidr_16.0.0.0_4,cidr_54.81.127.33_32,cidr_108.162.193.105_32,cidr_54.90.191.9_32,cidr_10.0.101.0_24,cidr_108.162.192.0_18,cidr_3.86.4.106_32,cidr_128.0.0.0_1,cidr_44.201.148.133_32,cidr_173.245.59.105_32,cidr_12.0.0.0_6,cidr_172.64.34.254_32,cidr_172.64.0.0_13,cidr_64.0.0.0_2,cidr_10.0.102.0_24,cidr_141.101.64.0_18,cidr_190.93.240.0_20,cidr_103.31.4.0_22,cidr_103.21.244.0_22,cidr_54.210.225.137_32,cidr_9.0.0.0_8,cidr_188.114.96.0_20,cidr_197.234.240.0_22,cidr_162.158.0.0_15,cidr_131.0.72.0_22,cidr_11.0.0.0_8,cidr_108.162.194.254_32,cidr_173.245.48.0_20,cidr_198.41.128.0_17,cidr_32.0.0.0_3,cidr_54.197.201.248_32,cidr_54.161.254.100_32,cidr_8.0.0.0_6,cidr_3.94.91.31_32,cidr_0.0.0.0_0 external
+    class cidr_10.0.101.0_24,cidr_197.234.240.0_22,cidr_3.86.4.106_32,cidr_0.0.0.0_5,cidr_64.0.0.0_2,cidr_52.207.222.50_32,cidr_8.0.0.0_6,cidr_128.0.0.0_1,cidr_32.0.0.0_3,cidr_3.94.91.31_32,cidr_108.162.193.105_32,cidr_103.21.244.0_22,cidr_44.201.148.133_32,cidr_173.245.48.0_20,cidr_9.0.0.0_8,cidr_54.81.127.33_32,cidr_103.31.4.0_22,cidr_131.0.72.0_22,cidr_188.114.96.0_20,cidr_54.161.254.100_32,cidr_54.197.201.248_32,cidr_54.90.191.9_32,cidr_104.24.0.0_14,cidr_103.22.200.0_22,cidr_108.162.194.254_32,cidr_172.64.0.0_13,cidr_104.16.0.0_13,cidr_12.0.0.0_6,cidr_172.64.34.254_32,cidr_173.245.59.105_32,cidr_162.159.38.254_32,cidr_10.0.102.0_24,cidr_162.158.0.0_15,cidr_11.0.0.0_8,cidr_190.93.240.0_20,cidr_3.87.127.143_32,cidr_54.210.225.137_32,cidr_16.0.0.0_4,cidr_108.162.192.0_18,cidr_198.41.128.0_17,cidr_0.0.0.0_0,cidr_141.101.64.0_18,cidr_172.64.33.105_32 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->

@@ -317,7 +317,7 @@ Request00001,worker_nodes,worker_nodes,ingress,6379,6379,tcp,worker_nodes,null,n
 Request00001,worker_nodes,worker_nodes,ingress,6379,6379,tcp,istio_nodes,null,null,redis for argocd
 Request00001,istio_nodes,istio_nodes,ingress,6379,6379,tcp,worker_nodes,null,null,redis for argocd
 Request00001,istio_nodes,istio_nodes,ingress,6379,6379,tcp,istio_nodes,null,null,redis for argocd
-Request00001,worker_nodes,worker_nodes,egress,8080,8080,tcp,worker_nodes,null,null,redis for argocd
+Request00001,worker_nodes,worker_nodes,egress,8080,8080,tcp,worker_nodes,null,null,testing port 8080 pod connectivity
 Request00001,worker_nodes,worker_nodes,egress,8080,8080,tcp,istio_nodes,null,null,testing port 8080 pod connectivity
 Request00001,istio_nodes,istio_nodes,egress,8080,8080,tcp,worker_nodes,null,null,testing port 8080 pod connectivity
 Request00001,istio_nodes,istio_nodes,egress,8080,8080,tcp,istio_nodes,null,null,testing port 8080 pod connectivity
@@ -325,3 +325,19 @@ Request00001,worker_nodes,worker_nodes,ingress,8080,8080,tcp,worker_nodes,null,n
 Request00001,worker_nodes,worker_nodes,ingress,8080,8080,tcp,istio_nodes,null,null,testing port 8080 pod connectivity
 Request00001,istio_nodes,istio_nodes,ingress,8080,8080,tcp,worker_nodes,null,null,testing port 8080 pod connectivity
 Request00001,istio_nodes,istio_nodes,ingress,8080,8080,tcp,istio_nodes,null,null,testing port 8080 pod connectivity
+Request00001,worker_nodes,worker_nodes,egress,8081,8081,tcp,worker_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,worker_nodes,worker_nodes,egress,8081,8081,tcp,istio_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,istio_nodes,istio_nodes,egress,8081,8081,tcp,worker_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,istio_nodes,istio_nodes,egress,8081,8081,tcp,istio_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,worker_nodes,worker_nodes,ingress,8081,8081,tcp,worker_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,worker_nodes,worker_nodes,ingress,8081,8081,tcp,istio_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,istio_nodes,istio_nodes,ingress,8081,8081,tcp,worker_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,istio_nodes,istio_nodes,ingress,8081,8081,tcp,istio_nodes,null,null,aws-cluster-lb-controller testing
+Request00001,cluster_endpoint,cluster_endpoint,egress,9443,9443,tcp,worker_nodes,null,null,cluster endpoint to aws-lb-controller testing
+Request00001,cluster_endpoint,cluster_endpoint,egress,9443,9443,tcp,istio_nodes,null,null,cluster endpoint to aws-lb-controller testing
+Request00001,cluster_endpoint,cluster_endpoint,ingress,9443,9443,tcp,worker_nodes,null,null,cluster endpoint to aws-lb-controller testing
+Request00001,cluster_endpoint,cluster_endpoint,ingress,9443,9443,tcp,istio_nodes,null,null,cluster endpoint to aws-lb-controller testing
+Request00001,worker_nodes,worker_nodes,ingress,9443,9443,tcp,cluster_endpoint,null,null,cluster endpoint to aws-lb-controller testing
+Request00001,worker_nodes,worker_nodes,egress,9443,9443,tcp,cluster_endpoint,null,null,cluster endpoint to aws-lb-controller testing
+Request00001,istio_nodes,istio_nodes,ingress,9443,9443,tcp,cluster_endpoint,null,null,cluster endpoint to aws-lb-controller testing
+Request00001,istio_nodes,istio_nodes,egress,9443,9443,tcp,cluster_endpoint,null,null,cluster endpoint to aws-lb-controller testing

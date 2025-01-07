@@ -1011,7 +1011,33 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "redis for argocd"
+        "business_justification": "testing port 8080 pod connectivity"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "8081",
+        "to_port": "8081",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "aws-cluster-lb-controller testing"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "8081",
+        "to_port": "8081",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "aws-cluster-lb-controller testing"
     },
     {
         "RequestID": "Request00001",
@@ -1038,6 +1064,19 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": "9443",
+        "to_port": "9443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "cluster_endpoint",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "cluster endpoint to aws-lb-controller testing"
     },
     {
         "RequestID": "Request00001",
@@ -1486,6 +1525,32 @@
         "name": "worker_nodes",
         "security_group_id": "worker_nodes",
         "direction": "ingress",
+        "from_port": "8081",
+        "to_port": "8081",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "aws-cluster-lb-controller testing"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "8081",
+        "to_port": "8081",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "aws-cluster-lb-controller testing"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
         "from_port": "8443",
         "to_port": "8443",
         "ip_protocol": "tcp",
@@ -1506,5 +1571,18 @@
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "ingress",
+        "from_port": "9443",
+        "to_port": "9443",
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "cluster_endpoint",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "business_justification": "cluster endpoint to aws-lb-controller testing"
     }
 ]
