@@ -17,28 +17,31 @@ locals {
     "msk"                       = "msk"
     "nlb"                       = "nlb"
     "opensearch"                = "opensearch"
-    "rds"                       = "rds"
+    "rds_db"                    = "rds_db"
     "worker_nodes"              = "worker_nodes"
-    "vpce_autoscaling"          = "vpce_autoscaling"
-    "vpce_dms"                  = "vpce_dms"
-    "vpce_ec2"                  = "vpce_ec2"
-    "vpce_ec2messages"          = "vpce_ec2messages"
-    "vpce_efs"                  = "vpce_efs"
-    "vpce_eks"                  = "vpce_eks"
-    "vpce_elasticache"          = "vpce_elasticache"
-    "vpce_elasticloadbalancing" = "vpce_elasticloadbalancing"
-    "vpce_kms"                  = "vpce_kms"
-    "vpce_lambda"               = "vpce_lambda"
-    "vpce_logs"                 = "vpce_logs"
-    "vpce_monitoring"           = "vpce_monitoring"
-    "vpce_rds"                  = "vpce_rds"
-    "vpce_s3"                   = "vpce_s3"
-    "vpce_sns"                  = "vpce_sns"
-    "vpce_sqs"                  = "vpce_sqs"
-    "vpce_sts"                  = "vpce_sts"
-    "vpce_ssm"                  = "vpce_ssm"
-    "vpce_ssmmessages"          = "vpce_ssmmessages"
-    "vpce_sts"                  = "vpce_sts"
+    "autoscaling"               = "autoscaling"
+    "dms"                       = "dms"
+    "ec2"                       = "ec2"
+    "ec2messages"               = "ec2messages"
+    "efs"                       = "efs"
+    "eks"                       = "eks"
+    "elasticache"               = "elasticache"
+    "elasticloadbalancing"      = "elasticloadbalancing"
+    "kms"                       = "kms"
+    "lambda"                    = "lambda"
+    "logs"                      = "logs"
+    "monitoring"                = "monitoring"
+    "rds"                       = "rds"
+    "s3"                        = "s3"
+    "sns"                       = "sns"
+    "sqs"                       = "sqs"
+    "sts"                       = "sts"
+    "ssm"                       = "ssm"
+    "ssmmessages"               = "ssmmessages"
+    "sts"                       = "sts"
+    "ec2_test_sg"               = "ec2_test_sg"
+    "ecr.api"                   = "ecr.api"
+    "ecr.dkr"                   = "ecr.dkr"
   }
 
   # Get all rule files and decode them
@@ -55,7 +58,7 @@ resource "aws_security_group" "sgs" {
 
   name        = each.value
   description = "Managed by Terraform"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   tags = {
     Name = each.value

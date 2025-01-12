@@ -1,8 +1,8 @@
 [
     {
         "RequestID": "Request00001",
-        "name": "dms",
-        "security_group_id": "dms",
+        "name": "ssm",
+        "security_group_id": "ssm",
         "direction": "ingress",
         "from_port": 443,
         "to_port": 443,
@@ -14,8 +14,8 @@
     },
     {
         "RequestID": "Request00001",
-        "name": "dms",
-        "security_group_id": "dms",
+        "name": "ssm",
+        "security_group_id": "ssm",
         "direction": "ingress",
         "from_port": 443,
         "to_port": 443,

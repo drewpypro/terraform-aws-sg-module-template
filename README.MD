@@ -1,10 +1,11 @@
-# terraform-aws-security-group-eks-module
+# terraform-aws-security-group-module-template
 - [Overview](#overview)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
 - [Prerequisites](#prerequisites)
 - [TO DO](#to-do)
-- [Test Cases](#test-cases)
+- [Scripts](#scripts)
+- [Test Cases](tests/README.MD#test-cases)
 - [Contributing](#contributing)
 - [Disclaimer](#disclaimer)
 - [License](#license)
@@ -50,292 +51,18 @@ BUCKET_SECRET_ACCESS_KEY
 - Make mermaid better
 - Custom Rules (If this is being used as a shared template module)
 
-# Test Cases
+# Scripts
 
-## Successful first build
-<details>
-  <summary>First time python conversion</summary>
-
-```
-python3 rule_conversion.py 
-Updated: ./sg_rules/cluster_endpoint.json
-Updated: ./sg_rules/efs_mount_endpoint.json
-Updated: ./sg_rules/elasti_cache.json
-Updated: ./sg_rules/internet_istio_nodes.json
-Updated: ./sg_rules/internet_nlb.json
-Updated: ./sg_rules/istio_nodes.json
-Updated: ./sg_rules/msk.json
-Updated: ./sg_rules/nlb.json
-Updated: ./sg_rules/opensearch.json
-Updated: ./sg_rules/rds.json
-Updated: ./sg_rules/vpce_autoscaling.json
-Updated: ./sg_rules/vpce_dms.json
-Updated: ./sg_rules/vpce_ec2.json
-Updated: ./sg_rules/vpce_ec2messages.json
-Updated: ./sg_rules/vpce_efs.json
-Updated: ./sg_rules/vpce_eks.json
-Updated: ./sg_rules/vpce_elasticache.json
-Updated: ./sg_rules/vpce_elasticloadbalancing.json
-Updated: ./sg_rules/vpce_kms.json
-Updated: ./sg_rules/vpce_lambda.json
-Updated: ./sg_rules/vpce_logs.json
-Updated: ./sg_rules/vpce_monitoring.json
-Updated: ./sg_rules/vpce_rds.json
-Updated: ./sg_rules/vpce_s3.json
-Updated: ./sg_rules/vpce_sns.json
-Updated: ./sg_rules/vpce_sqs.json
-Updated: ./sg_rules/vpce_ssm.json
-Updated: ./sg_rules/vpce_ssmmessages.json
-Updated: ./sg_rules/vpce_sts.json
-Updated: ./sg_rules/worker_nodes.json
-Updated: ./sg_rules/app1_lambda.json
-Updated: ./sg_rules/app2_lambda.json
-Updated: ./sg_rules/dms.json
-Updated: ./sg_rules/internet_istio_nodes.json
-Updated: ./sg_rules/internet_nlb.json
-Updated: ./sg_rules/istio_nodes.json
-Updated: ./sg_rules/nlb.json
-Updated: ./sg_rules/rds.json
-Updated: ./sg_rules/worker_nodes.json
-JSON files have been synchronized in ./sg_rules
-Successfully updated README.md with new security group diagram!
-```
-</details>
-
-- Submitted [PR#44](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/44)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12097780052/job/33733528325)
-  - ![updatedsg](./img/successful_test4.png)
-
-
-## Adding new rules to existing sg
-<details>
-  <summary>appended these lines to firewall_rules.csv</summary>
-
-```
-19543231,worker_nodes,worker_nodes,ingress,6969,6969,udp,worker_nodes,null,null,k8s nodes require connectivity between nodes for geneve tunneling
-19543231,worker_nodes,worker_nodes,egress,53,53,tcp,null,192.168.11.53/32,null,k8s nodes require connectivity to bind dns server
-19543231,worker_nodes,worker_nodes,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,k8s nodes require connectivity to external API endpoints
- ```
-</details>
-<details>
-  <summary>reran python script to update rule state</summary>
-
-```
-python3 rule_conversion.py 
-No changes: ./sg_rules/vpce_lambda.json
-No changes: ./sg_rules/vpce_efs.json
-No changes: ./sg_rules/vpce_elasticache.json
-No changes: ./sg_rules/internet_nlb.json
-No changes: ./sg_rules/elasti_cache.json
-No changes: ./sg_rules/vpce_sns.json
-No changes: ./sg_rules/vpce_monitoring.json
-No changes: ./sg_rules/vpce_ec2messages.json
-No changes: ./sg_rules/app1_lambda.json
-No changes: ./sg_rules/vpce_ssmmessages.json
-No changes: ./sg_rules/msk.json
-No changes: ./sg_rules/efs_mount_endpoint.json
-No changes: ./sg_rules/vpce_dms.json
-No changes: ./sg_rules/vpce_rds.json
-No changes: ./sg_rules/rds.json
-No changes: ./sg_rules/vpce_eks.json
-No changes: ./sg_rules/internet_istio_nodes.json
-No changes: ./sg_rules/vpce_s3.json
-No changes: ./sg_rules/vpce_ec2.json
-Updated: ./sg_rules/worker_nodes.json
-No changes: ./sg_rules/vpce_logs.json
-No changes: ./sg_rules/vpce_ssm.json
-No changes: ./sg_rules/cluster_endpoint.json
-No changes: ./sg_rules/vpce_kms.json
-No changes: ./sg_rules/vpce_sqs.json
-No changes: ./sg_rules/vpce_elasticloadbalancing.json
-No changes: ./sg_rules/dms.json
-No changes: ./sg_rules/istio_nodes.json
-No changes: ./sg_rules/opensearch.json
-No changes: ./sg_rules/vpce_autoscaling.json
-No changes: ./sg_rules/vpce_sts.json
-No changes: ./sg_rules/nlb.json
-No changes: ./sg_rules/app2_lambda.json
-JSON files have been synchronized in ./sg_rules
-Successfully updated README.md with new security group diagram!
-```
-</details>
-
-- Submitted [PR#56](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/47)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101692358/job/33741831165)
-  - ![updatedsg](./img/successful_sg_rule_add_test5.png)
-
-## Adding new SG and new SG rules
-- Added new "sg1" local to main.tf
-<details>
-  <summary>added new sg1 rules to firewall_rules.csv</summary>
-
-```
-19543694,sg1,sg1,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,sg1 resource nodes require connectivity to external API endpoints
-```
-
-</details>
-<details>
-  <summary>Generated new rules and diagrams</summary>
-
-```
-python3 rule_conversion.py 
-No changes: ./sg_rules/vpce_sqs.json
-No changes: ./sg_rules/app1_lambda.json
-No changes: ./sg_rules/vpce_ec2.json
-No changes: ./sg_rules/efs_mount_endpoint.json
-No changes: ./sg_rules/cluster_endpoint.json
-No changes: ./sg_rules/elasti_cache.json
-No changes: ./sg_rules/vpce_ec2messages.json
-No changes: ./sg_rules/vpce_ssmmessages.json
-No changes: ./sg_rules/vpce_sns.json
-No changes: ./sg_rules/opensearch.json
-No changes: ./sg_rules/internet_istio_nodes.json
-No changes: ./sg_rules/app2_lambda.json
-No changes: ./sg_rules/vpce_kms.json
-No changes: ./sg_rules/dms.json
-No changes: ./sg_rules/vpce_elasticache.json
-No changes: ./sg_rules/vpce_logs.json
-No changes: ./sg_rules/vpce_sts.json
-No changes: ./sg_rules/vpce_elasticloadbalancing.json
-No changes: ./sg_rules/vpce_autoscaling.json
-No changes: ./sg_rules/vpce_dms.json
-Updated: ./sg_rules/sg1.json
-No changes: ./sg_rules/nlb.json
-No changes: ./sg_rules/vpce_rds.json
-No changes: ./sg_rules/vpce_eks.json
-No changes: ./sg_rules/internet_nlb.json
-No changes: ./sg_rules/vpce_lambda.json
-No changes: ./sg_rules/istio_nodes.json
-No changes: ./sg_rules/rds.json
-No changes: ./sg_rules/vpce_efs.json
-No changes: ./sg_rules/vpce_ssm.json
-No changes: ./sg_rules/msk.json
-No changes: ./sg_rules/vpce_monitoring.json
-No changes: ./sg_rules/worker_nodes.json
-No changes: ./sg_rules/vpce_s3.json
-JSON files have been synchronized in ./sg_rules
-Successfully updated README.md with new security group diagram!
-```
-</details>
-
-- Submitted [PR#57](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/57)
-- Successful [Apply#](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101755646/job/33741967820)
-    - ![updatedsg](./img/successful_sg_add_test5.png)
-
-## Removing SG 
-- Manually deleted ./sg_rules/sg1.json (need conversion script to delete files)
-- Removed "sg1" local in main.tf
-<details>
-  <summary>Removed sg1 firewall rules from firewall_rules.csv</summary>
-
-```
-19543694,sg1,sg1,egress,6969,6969,udp,null,null,6969:6969:6969:6969:6969:6969:6969:6969/128,sg1 resource nodes require connectivity to external API endpoints 
-```
-</details>
-
-<details>
-  <summary>Generated new rules and updated diagram</summary>
-
-```
-python3 rule_conversion.py
-No changes: ./sg_rules/efs_mount_endpoint.json
-No changes: ./sg_rules/vpce_elasticache.json
-No changes: ./sg_rules/internet_istio_nodes.json
-No changes: ./sg_rules/app2_lambda.json
-No changes: ./sg_rules/vpce_efs.json
-No changes: ./sg_rules/vpce_elasticloadbalancing.json
-No changes: ./sg_rules/vpce_sts.json
-No changes: ./sg_rules/vpce_ec2.json
-No changes: ./sg_rules/vpce_eks.json
-No changes: ./sg_rules/vpce_dms.json
-No changes: ./sg_rules/vpce_monitoring.json
-No changes: ./sg_rules/vpce_ssmmessages.json
-No changes: ./sg_rules/vpce_rds.json
-No changes: ./sg_rules/istio_nodes.json
-No changes: ./sg_rules/vpce_s3.json
-No changes: ./sg_rules/nlb.json
-No changes: ./sg_rules/worker_nodes.json
-No changes: ./sg_rules/vpce_sqs.json
-No changes: ./sg_rules/vpce_autoscaling.json
-No changes: ./sg_rules/msk.json
-No changes: ./sg_rules/vpce_kms.json
-No changes: ./sg_rules/vpce_logs.json
-No changes: ./sg_rules/vpce_ssm.json
-No changes: ./sg_rules/dms.json
-No changes: ./sg_rules/elasti_cache.json
-No changes: ./sg_rules/app1_lambda.json
-No changes: ./sg_rules/vpce_sns.json
-No changes: ./sg_rules/opensearch.json
-No changes: ./sg_rules/cluster_endpoint.json
-No changes: ./sg_rules/vpce_lambda.json
-No changes: ./sg_rules/rds.json
-No changes: ./sg_rules/vpce_ec2messages.json
-No changes: ./sg_rules/internet_nlb.json
-JSON files have been synchronized in ./sg_rules
-No changes detected, README.md was not updated.
-```
-</details>
-
-- Submitted [PR#58](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/58)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101792325/job/33742048811)
-    - ![updatedsg](./img/successful_sg_delete_test5.png)
-
-## Removing SG rules
-<details>
-  <summary>Remove Bad rules in firewall_rules.csv</summary>
-
-  ```
-  RequestID,name,security_group_id,self_rule,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,business_justification
-  19493892,efs_mount_endpoint,efs_mount_endpoint,ingress,2049,2049,tcp,internet_istio_nodes,null,null,k8s nodes need access to efs for storage mounts used by containers
-  19493892,internet_istio_nodes,internet_istio_nodes,egress,2049,2049,tcp,efs_mount_endpoint,null,null,k8s nodes need access to efs for storage mounts used by containers
-  ```
-</details>
-<details>
-  <summary>Generate new rules and update diagrams</summary>
-    
-```
-python3 rule_conversion.py
-No changes: ./sg_rules/dms.json
-No changes: ./sg_rules/elasti_cache.json
-Updated: ./sg_rules/efs_mount_endpoint.json
-No changes: ./sg_rules/msk.json
-No changes: ./sg_rules/vpce_lambda.json
-No changes: ./sg_rules/vpce_ec2.json
-No changes: ./sg_rules/vpce_ec2messages.json
-No changes: ./sg_rules/vpce_elasticloadbalancing.json
-No changes: ./sg_rules/vpce_kms.json
-No changes: ./sg_rules/opensearch.json
-No changes: ./sg_rules/internet_nlb.json
-No changes: ./sg_rules/vpce_s3.json
-No changes: ./sg_rules/istio_nodes.json
-No changes: ./sg_rules/vpce_elasticache.json
-No changes: ./sg_rules/vpce_logs.json
-No changes: ./sg_rules/vpce_rds.json
-No changes: ./sg_rules/worker_nodes.json
-No changes: ./sg_rules/cluster_endpoint.json
-No changes: ./sg_rules/vpce_autoscaling.json
-No changes: ./sg_rules/app2_lambda.json
-No changes: ./sg_rules/vpce_ssmmessages.json
-No changes: ./sg_rules/nlb.json
-No changes: ./sg_rules/rds.json
-No changes: ./sg_rules/vpce_sts.json
-No changes: ./sg_rules/vpce_ssm.json
-No changes: ./sg_rules/vpce_sqs.json
-No changes: ./sg_rules/vpce_sns.json
-No changes: ./sg_rules/vpce_monitoring.json
-Updated: ./sg_rules/internet_istio_nodes.json
-No changes: ./sg_rules/app1_lambda.json
-No changes: ./sg_rules/vpce_dms.json
-No changes: ./sg_rules/vpce_eks.json
-No changes: ./sg_rules/vpce_efs.json
-JSON files have been synchronized in ./sg_rules
-Successfully updated README.md with new security group diagram!
-```
-</details>
-
-- Submitted [PR#59](https://github.com/drewpypro/terraform-aws-sg-module-template/pull/59)
-- Successful [Apply](https://github.com/drewpypro/terraform-aws-sg-module-template/actions/runs/12101827294/job/33742141628)
-      - ![updatedsg](./img/successful_sg_rule_delete_test5.png)
+## Security Group Rules Validator and Generator [rule_conversion.py](https://github.com/drewpypro/terraform-aws-sg-module-template/rule_conversion.py)
+- This script automates the validation and generation of json rules used for AWS Security Group modules. 
+  1. Reads firewall_rules.csv
+  2. Performs Validation
+    - All fields must be present and valid. 
+    - IPv4/IPv6 validation
+    - Multiple input detection (referenced_security_group_id, cidr_ipv4, cidr_ipv6)
+    - Duplicate rule detection
+  3. Converts rules into JSON format used in [terraform-aws-sg-module-template](https://github.com/drewpypro/terraform-aws-sg-module-template)
+  4. Maintains state and empties rules for removed security groups. 
 
 # Contributing
 
@@ -353,7 +80,7 @@ This project is provided "as is" without warranty of any kind, express or implie
 This project is licensed under the MIT License. This means you are free to use, modify, and distribute the code as long as credit is given to the original author.
 
 ```
-Copyright (c) 2024 drewpypro
+Copyright (c) 2025 drewpypro
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -438,281 +165,273 @@ flowchart LR
 
     %% External Networks
     subgraph external_networks [External Networks]
-        cidr_10.69.69.0_24[10.69.69.0/24]
+        cidr_0.0.0.0_0[0.0.0.0/0]
+        cidr_0.0.0.0_5[0.0.0.0/5]
+        cidr_10.0.101.0_24[10.0.101.0/24]
+        cidr_10.0.102.0_24[10.0.102.0/24]
         cidr_103.21.244.0_22[103.21.244.0/22]
         cidr_103.22.200.0_22[103.22.200.0/22]
         cidr_103.31.4.0_22[103.31.4.0/22]
         cidr_104.16.0.0_13[104.16.0.0/13]
         cidr_104.24.0.0_14[104.24.0.0/14]
         cidr_108.162.192.0_18[108.162.192.0/18]
+        cidr_108.162.193.105_32[108.162.193.105/32]
+        cidr_108.162.194.254_32[108.162.194.254/32]
+        cidr_11.0.0.0_8[11.0.0.0/8]
+        cidr_12.0.0.0_6[12.0.0.0/6]
+        cidr_128.0.0.0_1[128.0.0.0/1]
         cidr_131.0.72.0_22[131.0.72.0/22]
         cidr_141.101.64.0_18[141.101.64.0/18]
+        cidr_16.0.0.0_4[16.0.0.0/4]
         cidr_162.158.0.0_15[162.158.0.0/15]
+        cidr_162.159.38.254_32[162.159.38.254/32]
         cidr_172.64.0.0_13[172.64.0.0/13]
+        cidr_172.64.33.105_32[172.64.33.105/32]
+        cidr_172.64.34.254_32[172.64.34.254/32]
         cidr_173.245.48.0_20[173.245.48.0/20]
+        cidr_173.245.59.105_32[173.245.59.105/32]
         cidr_188.114.96.0_20[188.114.96.0/20]
         cidr_190.93.240.0_20[190.93.240.0/20]
-        cidr_192.168.11.53_32[192.168.11.53/32]
-        cidr_192.168.69.0_24[192.168.69.0/24]
         cidr_197.234.240.0_22[197.234.240.0/22]
         cidr_198.41.128.0_17[198.41.128.0/17]
-        cidr_55.55.55.55_32[55.55.55.55/32]
-        cidr_69.69.69.69_32[69.69.69.69/32]
-        cidr_6969:6969:6969:6969:6969:6969:6969:6969_128[6969:6969:6969:6969:6969:6969:6969:6969/128]
+        cidr_3.86.4.106_32[3.86.4.106/32]
+        cidr_3.87.127.143_32[3.87.127.143/32]
+        cidr_3.94.91.31_32[3.94.91.31/32]
+        cidr_32.0.0.0_3[32.0.0.0/3]
+        cidr_44.201.148.133_32[44.201.148.133/32]
+        cidr_52.207.222.50_32[52.207.222.50/32]
+        cidr_54.161.254.100_32[54.161.254.100/32]
+        cidr_54.197.201.248_32[54.197.201.248/32]
+        cidr_54.210.225.137_32[54.210.225.137/32]
+        cidr_54.81.127.33_32[54.81.127.33/32]
+        cidr_54.90.191.9_32[54.90.191.9/32]
+        cidr_64.0.0.0_2[64.0.0.0/2]
+        cidr_8.0.0.0_6[8.0.0.0/6]
+        cidr_9.0.0.0_8[9.0.0.0/8]
     end
 
     %% Connections
-    app1_lambda --> |443| internet_istio_nodes
-    app1_lambda --> |443| istio_nodes
-    app1_lambda --> |443| cidr_69.69.69.69_32
-    app1_lambda --> |443| worker_nodes
-    app2_lambda --> |443| cidr_69.69.69.69_32
-    app2_lambda --> |3306| rds
-    cluster_endpoint --> |443| internet_istio_nodes
-    cluster_endpoint --> |443| istio_nodes
-    cluster_endpoint --> |443| cidr_55.55.55.55_32
-    cluster_endpoint --> |443| worker_nodes
-    dms --> |3306| rds
-    dms --> |443| vpce_kms
-    dms --> |443| vpce_sts
-    efs_mount_endpoint --> |2049| istio_nodes
-    efs_mount_endpoint --> |2049| worker_nodes
-    elasti_cache --> |11211| istio_nodes
-    elasti_cache --> |6379| istio_nodes
-    elasti_cache --> |11211| worker_nodes
-    elasti_cache --> |6379| worker_nodes
-    internet_istio_nodes --> |443| app1_lambda
-    internet_istio_nodes --> |443| cluster_endpoint
-    internet_istio_nodes --> |11211| elasti_cache
-    internet_istio_nodes --> |6379| elasti_cache
-    internet_istio_nodes --> |443| internet_nlb
-    internet_istio_nodes --> |30000-40000| internet_nlb
-    internet_istio_nodes --> |9096| msk
-    internet_istio_nodes --> |443| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
-    internet_istio_nodes --> |443| opensearch
-    internet_istio_nodes --> |3306| rds
-    internet_istio_nodes --> |443| vpce_autoscaling
-    internet_istio_nodes --> |443| vpce_dms
-    internet_istio_nodes --> |443| vpce_ec2
-    internet_istio_nodes --> |443| vpce_ec2messages
-    internet_istio_nodes --> |443| vpce_efs
-    internet_istio_nodes --> |443| vpce_eks
-    internet_istio_nodes --> |443| vpce_elasticache
-    internet_istio_nodes --> |443| vpce_elasticloadbalancing
-    internet_istio_nodes --> |443| vpce_kms
-    internet_istio_nodes --> |443| vpce_lambda
-    internet_istio_nodes --> |443| vpce_logs
-    internet_istio_nodes --> |443| vpce_monitoring
-    internet_istio_nodes --> |443| vpce_rds
-    internet_istio_nodes --> |443| vpce_s3
-    internet_istio_nodes --> |443| vpce_sns
-    internet_istio_nodes --> |443| vpce_sqs
-    internet_istio_nodes --> |443| vpce_ssm
-    internet_istio_nodes --> |443| vpce_ssmmessages
-    internet_istio_nodes --> |443| vpce_sts
-    internet_istio_nodes --> |443| worker_nodes
-    internet_istio_nodes --> |443| internet_istio_nodes
-    internet_istio_nodes --> |10250| internet_istio_nodes
-    internet_istio_nodes --> |53| internet_istio_nodes
-    internet_nlb --> |443| internet_istio_nodes
-    internet_nlb --> |30000-40000| internet_istio_nodes
+    istio_nodes --> |30000-32767| cidr_10.0.101.0_24
+    istio_nodes --> |30000-32767| cidr_10.0.102.0_24
+    worker_nodes --> |443| internet_nlb
+    istio_nodes --> |443| internet_nlb
+    worker_nodes --> |30000-32767| internet_nlb
+    istio_nodes --> |30000-32767| internet_nlb
+    ec2_test_sg --> |80-40000| ec2_test_sg
+    internet_nlb --> |80-40000| ec2_test_sg
+    internet_nlb --> |30000-32767| istio_nodes
+    internet_nlb --> |30000-32767| worker_nodes
+    internet_nlb --> |80| cidr_103.21.244.0_22
     internet_nlb --> |443| cidr_103.21.244.0_22
+    internet_nlb --> |80| cidr_103.22.200.0_22
     internet_nlb --> |443| cidr_103.22.200.0_22
+    internet_nlb --> |80| cidr_103.31.4.0_22
     internet_nlb --> |443| cidr_103.31.4.0_22
+    internet_nlb --> |80| cidr_104.16.0.0_13
     internet_nlb --> |443| cidr_104.16.0.0_13
+    internet_nlb --> |80| cidr_104.24.0.0_14
     internet_nlb --> |443| cidr_104.24.0.0_14
+    internet_nlb --> |80| cidr_108.162.192.0_18
     internet_nlb --> |443| cidr_108.162.192.0_18
+    internet_nlb --> |80| cidr_131.0.72.0_22
     internet_nlb --> |443| cidr_131.0.72.0_22
+    internet_nlb --> |80| cidr_141.101.64.0_18
     internet_nlb --> |443| cidr_141.101.64.0_18
+    internet_nlb --> |80| cidr_162.158.0.0_15
     internet_nlb --> |443| cidr_162.158.0.0_15
+    internet_nlb --> |80| cidr_172.64.0.0_13
     internet_nlb --> |443| cidr_172.64.0.0_13
+    internet_nlb --> |80| cidr_173.245.48.0_20
     internet_nlb --> |443| cidr_173.245.48.0_20
+    internet_nlb --> |80| cidr_188.114.96.0_20
     internet_nlb --> |443| cidr_188.114.96.0_20
+    internet_nlb --> |80| cidr_190.93.240.0_20
     internet_nlb --> |443| cidr_190.93.240.0_20
+    internet_nlb --> |80| cidr_197.234.240.0_22
     internet_nlb --> |443| cidr_197.234.240.0_22
+    internet_nlb --> |80| cidr_198.41.128.0_17
     internet_nlb --> |443| cidr_198.41.128.0_17
-    istio_nodes --> |443| app1_lambda
-    istio_nodes --> |443| cluster_endpoint
-    istio_nodes --> |2049| efs_mount_endpoint
-    istio_nodes --> |11211| elasti_cache
-    istio_nodes --> |6379| elasti_cache
-    istio_nodes --> |9096| msk
-    istio_nodes --> |443| nlb
-    istio_nodes --> |30000-40000| nlb
-    istio_nodes --> |443| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
-    istio_nodes --> |443| opensearch
-    istio_nodes --> |3306| rds
-    istio_nodes --> |443| vpce_autoscaling
-    istio_nodes --> |443| vpce_dms
-    istio_nodes --> |443| vpce_ec2
-    istio_nodes --> |443| vpce_ec2messages
-    istio_nodes --> |443| vpce_efs
-    istio_nodes --> |443| vpce_eks
-    istio_nodes --> |443| vpce_elasticache
-    istio_nodes --> |443| vpce_elasticloadbalancing
-    istio_nodes --> |443| vpce_kms
-    istio_nodes --> |443| vpce_lambda
-    istio_nodes --> |443| vpce_logs
-    istio_nodes --> |443| vpce_monitoring
-    istio_nodes --> |443| vpce_rds
-    istio_nodes --> |443| vpce_s3
-    istio_nodes --> |443| vpce_sns
-    istio_nodes --> |443| vpce_sqs
-    istio_nodes --> |443| vpce_ssm
-    istio_nodes --> |443| vpce_ssmmessages
-    istio_nodes --> |443| vpce_sts
+    ec2_test_sg --> |0| istio_nodes
+    ec2_test_sg --> |0| worker_nodes
+    worker_nodes --> |0| ec2_test_sg
+    istio_nodes --> |0| ec2_test_sg
+    ec2_test_sg --> |8-0| istio_nodes
+    ec2_test_sg --> |8-0| worker_nodes
+    worker_nodes --> |8-0| ec2_test_sg
+    istio_nodes --> |8-0| ec2_test_sg
+    worker_nodes --> |123| cidr_3.86.4.106_32
+    istio_nodes --> |123| cidr_3.86.4.106_32
+    worker_nodes --> |123| cidr_3.87.127.143_32
+    istio_nodes --> |123| cidr_3.87.127.143_32
+    worker_nodes --> |123| cidr_3.94.91.31_32
+    istio_nodes --> |123| cidr_3.94.91.31_32
+    worker_nodes --> |123| cidr_44.201.148.133_32
+    istio_nodes --> |123| cidr_44.201.148.133_32
+    worker_nodes --> |123| cidr_52.207.222.50_32
+    istio_nodes --> |123| cidr_52.207.222.50_32
+    worker_nodes --> |123| cidr_54.161.254.100_32
+    istio_nodes --> |123| cidr_54.161.254.100_32
+    worker_nodes --> |123| cidr_54.197.201.248_32
+    istio_nodes --> |123| cidr_54.197.201.248_32
+    worker_nodes --> |123| cidr_54.210.225.137_32
+    istio_nodes --> |123| cidr_54.210.225.137_32
+    worker_nodes --> |123| cidr_54.81.127.33_32
+    istio_nodes --> |123| cidr_54.81.127.33_32
+    worker_nodes --> |123| cidr_54.90.191.9_32
+    istio_nodes --> |123| cidr_54.90.191.9_32
+    ec2_test_sg --> |1-65535| cidr_0.0.0.0_0
+    ec2_test_sg --> |1-65535| worker_nodes
+    ec2_test_sg --> |1-65535| istio_nodes
+    worker_nodes --> |1-65535| ec2_test_sg
+    istio_nodes --> |1-65535| ec2_test_sg
+    worker_nodes --> |15017| worker_nodes
+    worker_nodes --> |15017| istio_nodes
+    istio_nodes --> |15017| worker_nodes
+    istio_nodes --> |15017| istio_nodes
+    cluster_endpoint --> |80-40000| ec2_test_sg
+    ec2_test_sg --> |80-40000| cluster_endpoint
+    worker_nodes --> |443| worker_nodes
+    worker_nodes --> |443| istio_nodes
     istio_nodes --> |443| worker_nodes
     istio_nodes --> |443| istio_nodes
-    istio_nodes --> |10250| istio_nodes
-    istio_nodes --> |53| istio_nodes
-    msk --> |9096| internet_istio_nodes
-    msk --> |9096| istio_nodes
-    msk --> |9096| worker_nodes
-    nlb --> |443| istio_nodes
-    nlb --> |30000-40000| istio_nodes
-    nlb --> |443| cidr_10.69.69.0_24
-    nlb --> |443| cidr_192.168.69.0_24
-    opensearch --> |443| internet_istio_nodes
-    opensearch --> |443| istio_nodes
-    opensearch --> |443| worker_nodes
-    rds --> |3306| internet_istio_nodes
-    rds --> |3306| istio_nodes
-    rds --> |3306| worker_nodes
-    rds --> |3306| rds
-    vpce_autoscaling --> |443| internet_istio_nodes
-    vpce_autoscaling --> |443| istio_nodes
-    vpce_autoscaling --> |443| cidr_10.69.69.0_24
-    vpce_autoscaling --> |443| cidr_192.168.69.0_24
-    vpce_autoscaling --> |443| worker_nodes
-    vpce_dms --> |443| internet_istio_nodes
-    vpce_dms --> |443| istio_nodes
-    vpce_dms --> |443| cidr_10.69.69.0_24
-    vpce_dms --> |443| cidr_192.168.69.0_24
-    vpce_dms --> |443| worker_nodes
-    vpce_ec2 --> |443| internet_istio_nodes
-    vpce_ec2 --> |443| istio_nodes
-    vpce_ec2 --> |443| cidr_10.69.69.0_24
-    vpce_ec2 --> |443| cidr_192.168.69.0_24
-    vpce_ec2 --> |443| worker_nodes
-    vpce_ec2messages --> |443| internet_istio_nodes
-    vpce_ec2messages --> |443| istio_nodes
-    vpce_ec2messages --> |443| cidr_10.69.69.0_24
-    vpce_ec2messages --> |443| cidr_192.168.69.0_24
-    vpce_ec2messages --> |443| worker_nodes
-    vpce_efs --> |443| internet_istio_nodes
-    vpce_efs --> |443| istio_nodes
-    vpce_efs --> |443| cidr_10.69.69.0_24
-    vpce_efs --> |443| cidr_192.168.69.0_24
-    vpce_efs --> |443| worker_nodes
-    vpce_eks --> |443| internet_istio_nodes
-    vpce_eks --> |443| istio_nodes
-    vpce_eks --> |443| cidr_10.69.69.0_24
-    vpce_eks --> |443| cidr_192.168.69.0_24
-    vpce_eks --> |443| worker_nodes
-    vpce_elasticache --> |443| internet_istio_nodes
-    vpce_elasticache --> |443| istio_nodes
-    vpce_elasticache --> |443| cidr_10.69.69.0_24
-    vpce_elasticache --> |443| cidr_192.168.69.0_24
-    vpce_elasticache --> |443| worker_nodes
-    vpce_elasticloadbalancing --> |443| internet_istio_nodes
-    vpce_elasticloadbalancing --> |443| istio_nodes
-    vpce_elasticloadbalancing --> |443| cidr_10.69.69.0_24
-    vpce_elasticloadbalancing --> |443| cidr_192.168.69.0_24
-    vpce_elasticloadbalancing --> |443| worker_nodes
-    vpce_kms --> |443| dms
-    vpce_kms --> |443| internet_istio_nodes
-    vpce_kms --> |443| istio_nodes
-    vpce_kms --> |443| cidr_10.69.69.0_24
-    vpce_kms --> |443| cidr_192.168.69.0_24
-    vpce_kms --> |443| worker_nodes
-    vpce_lambda --> |443| internet_istio_nodes
-    vpce_lambda --> |443| istio_nodes
-    vpce_lambda --> |443| cidr_10.69.69.0_24
-    vpce_lambda --> |443| cidr_192.168.69.0_24
-    vpce_lambda --> |443| worker_nodes
-    vpce_logs --> |443| internet_istio_nodes
-    vpce_logs --> |443| istio_nodes
-    vpce_logs --> |443| cidr_10.69.69.0_24
-    vpce_logs --> |443| cidr_192.168.69.0_24
-    vpce_logs --> |443| worker_nodes
-    vpce_monitoring --> |443| internet_istio_nodes
-    vpce_monitoring --> |443| istio_nodes
-    vpce_monitoring --> |443| cidr_10.69.69.0_24
-    vpce_monitoring --> |443| cidr_192.168.69.0_24
-    vpce_monitoring --> |443| worker_nodes
-    vpce_rds --> |443| internet_istio_nodes
-    vpce_rds --> |443| istio_nodes
-    vpce_rds --> |443| cidr_10.69.69.0_24
-    vpce_rds --> |443| cidr_192.168.69.0_24
-    vpce_rds --> |443| worker_nodes
-    vpce_s3 --> |443| internet_istio_nodes
-    vpce_s3 --> |443| istio_nodes
-    vpce_s3 --> |443| cidr_10.69.69.0_24
-    vpce_s3 --> |443| cidr_192.168.69.0_24
-    vpce_s3 --> |443| worker_nodes
-    vpce_sns --> |443| internet_istio_nodes
-    vpce_sns --> |443| istio_nodes
-    vpce_sns --> |443| cidr_10.69.69.0_24
-    vpce_sns --> |443| cidr_192.168.69.0_24
-    vpce_sns --> |443| worker_nodes
-    vpce_sqs --> |443| internet_istio_nodes
-    vpce_sqs --> |443| istio_nodes
-    vpce_sqs --> |443| cidr_10.69.69.0_24
-    vpce_sqs --> |443| cidr_192.168.69.0_24
-    vpce_sqs --> |443| worker_nodes
-    vpce_ssm --> |443| internet_istio_nodes
-    vpce_ssm --> |443| istio_nodes
-    vpce_ssm --> |443| cidr_10.69.69.0_24
-    vpce_ssm --> |443| cidr_192.168.69.0_24
-    vpce_ssm --> |443| worker_nodes
-    vpce_ssmmessages --> |443| internet_istio_nodes
-    vpce_ssmmessages --> |443| istio_nodes
-    vpce_ssmmessages --> |443| cidr_10.69.69.0_24
-    vpce_ssmmessages --> |443| cidr_192.168.69.0_24
-    vpce_ssmmessages --> |443| worker_nodes
-    vpce_sts --> |443| dms
-    vpce_sts --> |443| internet_istio_nodes
-    vpce_sts --> |443| istio_nodes
-    vpce_sts --> |443| cidr_10.69.69.0_24
-    vpce_sts --> |443| cidr_192.168.69.0_24
-    vpce_sts --> |443| worker_nodes
-    worker_nodes --> |443| app1_lambda
-    worker_nodes --> |443| cluster_endpoint
-    worker_nodes --> |2049| efs_mount_endpoint
-    worker_nodes --> |11211| elasti_cache
-    worker_nodes --> |6379| elasti_cache
-    worker_nodes --> |443| istio_nodes
-    worker_nodes --> |9096| msk
-    worker_nodes --> |22| cidr_55.55.55.55_32
-    worker_nodes --> |443| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
-    worker_nodes --> |443| cidr_69.69.69.69_32
-    worker_nodes --> |443| opensearch
-    worker_nodes --> |3306| rds
-    worker_nodes --> |443| vpce_autoscaling
-    worker_nodes --> |443| vpce_dms
-    worker_nodes --> |443| vpce_ec2
-    worker_nodes --> |443| vpce_ec2messages
-    worker_nodes --> |443| vpce_efs
-    worker_nodes --> |443| vpce_eks
-    worker_nodes --> |443| vpce_elasticache
-    worker_nodes --> |443| vpce_elasticloadbalancing
-    worker_nodes --> |443| vpce_kms
-    worker_nodes --> |443| vpce_lambda
-    worker_nodes --> |443| vpce_logs
-    worker_nodes --> |443| vpce_monitoring
-    worker_nodes --> |443| vpce_rds
-    worker_nodes --> |443| vpce_s3
-    worker_nodes --> |443| vpce_sns
-    worker_nodes --> |443| vpce_sqs
-    worker_nodes --> |443| vpce_ssm
-    worker_nodes --> |443| vpce_ssmmessages
-    worker_nodes --> |443| vpce_sts
-    worker_nodes --> |443| worker_nodes
+    worker_nodes --> |15012| worker_nodes
+    worker_nodes --> |15012| istio_nodes
+    istio_nodes --> |15012| worker_nodes
+    istio_nodes --> |15012| istio_nodes
+    worker_nodes --> |30000-32767| worker_nodes
+    worker_nodes --> |30000-32767| istio_nodes
+    istio_nodes --> |30000-32767| worker_nodes
+    istio_nodes --> |30000-32767| istio_nodes
+    cluster_endpoint --> |10250| istio_nodes
+    cluster_endpoint --> |10250| worker_nodes
+    worker_nodes --> |10250| cluster_endpoint
+    istio_nodes --> |10250| cluster_endpoint
     worker_nodes --> |10250| worker_nodes
+    worker_nodes --> |10250| istio_nodes
+    istio_nodes --> |10250| worker_nodes
+    istio_nodes --> |10250| istio_nodes
+    cluster_endpoint --> |15017| worker_nodes
+    cluster_endpoint --> |15017| istio_nodes
+    worker_nodes --> |15017| cluster_endpoint
+    istio_nodes --> |15017| cluster_endpoint
+    worker_nodes --> |8443| worker_nodes
+    worker_nodes --> |8443| istio_nodes
+    istio_nodes --> |8443| worker_nodes
+    istio_nodes --> |8443| istio_nodes
+    worker_nodes --> |15020| worker_nodes
+    worker_nodes --> |15020| istio_nodes
+    worker_nodes --> |15090| worker_nodes
+    worker_nodes --> |15090| istio_nodes
+    istio_nodes --> |15020| worker_nodes
+    istio_nodes --> |15020| istio_nodes
+    istio_nodes --> |15090| worker_nodes
+    istio_nodes --> |15090| istio_nodes
+    cluster_endpoint --> |443| worker_nodes
+    cluster_endpoint --> |443| istio_nodes
+    worker_nodes --> |443| cluster_endpoint
+    istio_nodes --> |443| cluster_endpoint
+    worker_nodes --> |443| cidr_0.0.0.0_5
+    worker_nodes --> |443| cidr_8.0.0.0_6
+    worker_nodes --> |443| cidr_9.0.0.0_8
+    worker_nodes --> |443| cidr_11.0.0.0_8
+    worker_nodes --> |443| cidr_12.0.0.0_6
+    worker_nodes --> |443| cidr_16.0.0.0_4
+    worker_nodes --> |443| cidr_32.0.0.0_3
+    worker_nodes --> |443| cidr_64.0.0.0_2
+    worker_nodes --> |443| cidr_128.0.0.0_1
+    istio_nodes --> |443| cidr_0.0.0.0_5
+    istio_nodes --> |443| cidr_8.0.0.0_6
+    istio_nodes --> |443| cidr_9.0.0.0_8
+    istio_nodes --> |443| cidr_11.0.0.0_8
+    istio_nodes --> |443| cidr_12.0.0.0_6
+    istio_nodes --> |443| cidr_16.0.0.0_4
+    istio_nodes --> |443| cidr_32.0.0.0_3
+    istio_nodes --> |443| cidr_64.0.0.0_2
+    istio_nodes --> |443| cidr_128.0.0.0_1
+    worker_nodes --> |53| istio_nodes
     worker_nodes --> |53| worker_nodes
-    worker_nodes --> |6969| worker_nodes
-    worker_nodes --> |53| cidr_192.168.11.53_32
-    worker_nodes --> |6969| cidr_6969:6969:6969:6969:6969:6969:6969:6969_128
+    istio_nodes --> |53| istio_nodes
+    istio_nodes --> |53| worker_nodes
+    istio_nodes --> |53| cidr_108.162.193.105_32
+    worker_nodes --> |53| cidr_108.162.193.105_32
+    istio_nodes --> |53| cidr_108.162.194.254_32
+    worker_nodes --> |53| cidr_108.162.194.254_32
+    istio_nodes --> |53| cidr_162.159.38.254_32
+    worker_nodes --> |53| cidr_162.159.38.254_32
+    istio_nodes --> |53| cidr_172.64.33.105_32
+    worker_nodes --> |53| cidr_172.64.33.105_32
+    istio_nodes --> |53| cidr_172.64.34.254_32
+    worker_nodes --> |53| cidr_172.64.34.254_32
+    istio_nodes --> |53| cidr_173.245.59.105_32
+    worker_nodes --> |53| cidr_173.245.59.105_32
+    worker_nodes --> |80| worker_nodes
+    worker_nodes --> |80| istio_nodes
+    istio_nodes --> |80| worker_nodes
+    istio_nodes --> |80| istio_nodes
+    istio_nodes --> |15021| worker_nodes
+    istio_nodes --> |15021| istio_nodes
+    worker_nodes --> |15021| worker_nodes
+    worker_nodes --> |15021| istio_nodes
+    worker_nodes --> |443| autoscaling
+    worker_nodes --> |443| dms
+    worker_nodes --> |443| ec2
+    worker_nodes --> |443| ec2messages
+    worker_nodes --> |443| elasticloadbalancing
+    worker_nodes --> |443| logs
+    worker_nodes --> |443| monitoring
+    worker_nodes --> |443| rds
+    worker_nodes --> |443| kms
+    worker_nodes --> |443| sns
+    worker_nodes --> |443| sqs
+    worker_nodes --> |443| ssm
+    worker_nodes --> |443| ssmmessages
+    worker_nodes --> |443| sts
+    worker_nodes --> |443| ecr
+    istio_nodes --> |443| autoscaling
+    istio_nodes --> |443| dms
+    istio_nodes --> |443| ec2
+    istio_nodes --> |443| ec2messages
+    istio_nodes --> |443| elasticloadbalancing
+    istio_nodes --> |443| logs
+    istio_nodes --> |443| monitoring
+    istio_nodes --> |443| rds
+    istio_nodes --> |443| kms
+    istio_nodes --> |443| sns
+    istio_nodes --> |443| sqs
+    istio_nodes --> |443| ssm
+    istio_nodes --> |443| ssmmessages
+    istio_nodes --> |443| sts
+    istio_nodes --> |443| ecr
+    autoscaling --> |443| worker_nodes
+    dms --> |443| worker_nodes
+    ec2 --> |443| worker_nodes
+    ec2messages --> |443| worker_nodes
+    elasticloadbalancing --> |443| worker_nodes
+    logs --> |443| worker_nodes
+    monitoring --> |443| worker_nodes
+    rds --> |443| worker_nodes
+    kms --> |443| worker_nodes
+    sns --> |443| worker_nodes
+    sqs --> |443| worker_nodes
+    ssm --> |443| worker_nodes
+    ssmmessages --> |443| worker_nodes
+    sts --> |443| worker_nodes
+    ecr --> |443| worker_nodes
+    autoscaling --> |443| istio_nodes
+    dms --> |443| istio_nodes
+    ec2 --> |443| istio_nodes
+    ec2messages --> |443| istio_nodes
+    elasticloadbalancing --> |443| istio_nodes
+    logs --> |443| istio_nodes
+    monitoring --> |443| istio_nodes
+    rds --> |443| istio_nodes
+    kms --> |443| istio_nodes
+    sns --> |443| istio_nodes
+    sqs --> |443| istio_nodes
+    ssm --> |443| istio_nodes
+    ssmmessages --> |443| istio_nodes
+    sts --> |443| istio_nodes
+    ecr --> |443| istio_nodes
 
     %% Apply styles
     class internet_nlb,nlb lb
@@ -720,6 +439,6 @@ flowchart LR
     class rds,msk,opensearch,elasti_cache data
     class cluster_endpoint,efs_mount_endpoint,dms infra
     class vpce_autoscaling,vpce_dms,vpce_ec2,vpce_ec2messages,vpce_efs,vpce_eks,vpce_elasticache,vpce_elasticloadbalancing,vpce_kms,vpce_lambda,vpce_logs,vpce_monitoring,vpce_rds,vpce_s3,vpce_sns,vpce_sqs,vpce_sts,vpce_ssm,vpce_ssmmessages,vpce_sts infra
-    class cidr_190.93.240.0_20,cidr_103.22.200.0_22,cidr_55.55.55.55_32,cidr_198.41.128.0_17,cidr_192.168.69.0_24,cidr_10.69.69.0_24,cidr_104.16.0.0_13,cidr_197.234.240.0_22,cidr_6969:6969:6969:6969:6969:6969:6969:6969_128,cidr_162.158.0.0_15,cidr_173.245.48.0_20,cidr_131.0.72.0_22,cidr_172.64.0.0_13,cidr_103.31.4.0_22,cidr_192.168.11.53_32,cidr_108.162.192.0_18,cidr_103.21.244.0_22,cidr_69.69.69.69_32,cidr_141.101.64.0_18,cidr_104.24.0.0_14,cidr_188.114.96.0_20 external
+    class cidr_64.0.0.0_2,cidr_190.93.240.0_20,cidr_8.0.0.0_6,cidr_54.210.225.137_32,cidr_3.87.127.143_32,cidr_0.0.0.0_5,cidr_44.201.148.133_32,cidr_172.64.0.0_13,cidr_32.0.0.0_3,cidr_108.162.193.105_32,cidr_103.31.4.0_22,cidr_141.101.64.0_18,cidr_54.90.191.9_32,cidr_12.0.0.0_6,cidr_173.245.48.0_20,cidr_103.22.200.0_22,cidr_173.245.59.105_32,cidr_9.0.0.0_8,cidr_131.0.72.0_22,cidr_103.21.244.0_22,cidr_188.114.96.0_20,cidr_10.0.101.0_24,cidr_108.162.192.0_18,cidr_104.24.0.0_14,cidr_172.64.33.105_32,cidr_54.197.201.248_32,cidr_172.64.34.254_32,cidr_0.0.0.0_0,cidr_52.207.222.50_32,cidr_104.16.0.0_13,cidr_3.86.4.106_32,cidr_3.94.91.31_32,cidr_11.0.0.0_8,cidr_16.0.0.0_4,cidr_128.0.0.0_1,cidr_162.158.0.0_15,cidr_162.159.38.254_32,cidr_198.41.128.0_17,cidr_54.81.127.33_32,cidr_197.234.240.0_22,cidr_108.162.194.254_32,cidr_54.161.254.100_32,cidr_10.0.102.0_24 external
 ```
 <!-- SECURITY_GROUP_DIAGRAM_END -->

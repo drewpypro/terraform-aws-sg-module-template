@@ -1,67 +1,28 @@
 [
     {
-        "RequestID": "19493892",
-        "name": "rds",
-        "security_group_id": "rds",
-        "direction": "egress",
-        "from_port": "3306",
-        "to_port": "3306",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "rds",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require RDS connectivity for database operations. "
-    },
-    {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "rds",
         "security_group_id": "rds",
         "direction": "ingress",
-        "from_port": "3306",
-        "to_port": "3306",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "internet_istio_nodes",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require RDS connectivity for database operations. "
-    },
-    {
-        "RequestID": "19493892",
-        "name": "rds",
-        "security_group_id": "rds",
-        "direction": "ingress",
-        "from_port": "3306",
-        "to_port": "3306",
+        "from_port": 443,
+        "to_port": 443,
         "ip_protocol": "tcp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require RDS connectivity for database operations. "
+        "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
-        "RequestID": "19493892",
+        "RequestID": "Request00001",
         "name": "rds",
         "security_group_id": "rds",
         "direction": "ingress",
-        "from_port": "3306",
-        "to_port": "3306",
-        "ip_protocol": "tcp",
-        "referenced_security_group_id": "rds",
-        "cidr_ipv4": "null",
-        "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require RDS connectivity for database operations. "
-    },
-    {
-        "RequestID": "19493892",
-        "name": "rds",
-        "security_group_id": "rds",
-        "direction": "ingress",
-        "from_port": "3306",
-        "to_port": "3306",
+        "from_port": 443,
+        "to_port": 443,
         "ip_protocol": "tcp",
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
-        "business_justification": "k8s nodes require RDS connectivity for database operations. "
+        "business_justification": "Enable connectivity to AWS API endpoints per service."
     }
 ]
