@@ -45,10 +45,9 @@ BUCKET_SECRET_ACCESS_KEY
 
 # TO DO
 
-- Make conversion script remove files (if SG is deleted)
-- Incorporate into [aws-eks-drewpy](https://github.com/drewpypro/aws-eks-drewpy)
-- Make mermaid better
-- Custom Rules (If this is being used as a shared template module)
+- LLM Validator
+    - Provides better business justification
+    - Provides feedback on dataflow requirements
 
 # Scripts
 
@@ -62,6 +61,10 @@ BUCKET_SECRET_ACCESS_KEY
     **Duplicate rule detection**
   3. Converts rules into JSON format used in [terraform-aws-sg-module-template](https://github.com/drewpypro/terraform-aws-sg-module-template)
   4. Maintains state and empties rules for removed security groups. 
+
+## Unit Testing Script [test_rule_conversion.py](https://github.com/drewpypro/terraform-aws-sg-module-template/tests/test_rule_conversion.py)
+- This script validates that the rule_conversion.py script is validating specific rule condition failures. 
+- Runs [rule_conversion.py](https://github.com/drewpypro/terraform-aws-sg-module-template/rule_conversion.py) on [specific tests cases](https://github.com/drewpypro/terraform-aws-sg-module-template/tests/test_cases)
 
 # Contributing
 
