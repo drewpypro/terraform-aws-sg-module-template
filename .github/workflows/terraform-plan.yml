@@ -3,7 +3,7 @@ name: terraform plan workflow
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
 
 env:
@@ -14,7 +14,6 @@ env:
   BUCKET_ENDPOINT: ${{ secrets.BUCKET_ENDPOINT }}
   BUCKET_ACCESS_KEY_ID: ${{ secrets.BUCKET_ACCESS_KEY_ID }}
   BUCKET_SECRET_ACCESS_KEY: ${{ secrets.BUCKET_SECRET_ACCESS_KEY }}
-
   
 jobs:
   terraform-plan:
