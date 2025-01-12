@@ -1,12 +1,8 @@
 name: Python Unit Test Workflow
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-  workflow_dispatch:
-
+  
 jobs:
   unit-tests:
     runs-on: ubuntu-22.04
