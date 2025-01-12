@@ -2,11 +2,7 @@ name: Python Unit Test Workflow
 
 on:
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-
+  
 jobs:
   unit-tests:
     runs-on: ubuntu-22.04

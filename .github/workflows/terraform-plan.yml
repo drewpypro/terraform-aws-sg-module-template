@@ -2,11 +2,7 @@ name: terraform plan workflow
 
 on:
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      
+
 env:
   AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
   AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
