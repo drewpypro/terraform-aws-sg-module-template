@@ -175,8 +175,9 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr_ipv6" {
 # Lookup prefix list IDs dynamically based on aws_region
 resource "aws_vpc_security_group_egress_rule" "egress_prefix_list" {
   for_each = {
-    for rule in local.rules :
-    rule.name => rule if rule.prefix_list_id != "null" && rule.direction == "egress"
+    for i, rule in local.rules :
+    "${rule.name}-${rule.from_port}-${rule.to_port}-${rule.ip_protocol}-${rule.prefix_list_id}-egress"
+    => rule if rule.prefix_list_id != "null" && rule.referenced_security_group_id == "null" && rule.direction == "egress"
   }
 
   security_group_id = aws_security_group.sgs[each.value.security_group_id].id
