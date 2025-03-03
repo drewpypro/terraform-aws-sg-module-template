@@ -25,6 +25,7 @@ jobs:
       - name: terraform init
         run: |
           terraform init \
+            -reconfigure \
             -backend-config="bucket=$BUCKET_NAME" \
             -backend-config="key=$BUCKET_KEY" \
             -backend-config="endpoint=$BUCKET_ENDPOINT" \
