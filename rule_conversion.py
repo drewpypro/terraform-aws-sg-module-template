@@ -6,14 +6,14 @@ import ipaddress
 
 CONFIG = {
     "OUTPUT_DIR": "./sg_rules",
-    "VALID_PROTOCOLS": ["tcp", "udp", "icmp"]
+    "VALID_PROTOCOLS": ["tcp", "udp", "icmp"],
 }
 
 def validate_required_fields(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Check all required fields are present"""
     errors = []
     required_fields = ['RequestID', 'name', 'security_group_id', 'direction', 
-                      'from_port', 'to_port', 'ip_protocol']
+                      'from_port', 'to_port', 'ip_protocol', ]
     
     for field in required_fields:
         missing_mask = df[field].isna() | (df[field].astype(str).str.strip() == '')
@@ -41,7 +41,7 @@ def validate_field_values(df: pd.DataFrame) -> List[Dict[str, Any]]:
             {"row": row, "error": f"Protocol must be one of: {', '.join(CONFIG['VALID_PROTOCOLS'])}"} 
             for row in df[invalid_protocol].to_dict('records')
         ])
-    
+
     return errors
 
 def validate_ports(df: pd.DataFrame) -> List[Dict[str, Any]]:
@@ -85,27 +85,55 @@ def validate_ports(df: pd.DataFrame) -> List[Dict[str, Any]]:
             })
     return errors
 
-def validate_source_declarations(df: pd.DataFrame) -> List[Dict[str, Any]]:
-    """Check that only one source (security group, CIDR IPv4, or CIDR IPv6) is specified per rule"""
+def validate_input_declarations(df: pd.DataFrame) -> List[Dict[str, Any]]:
+    """Check that only one source (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) is specified per rule"""
     rule_conditions = [
         (df['referenced_security_group_id'].fillna('null') != 'null') & 
         (df['referenced_security_group_id'].fillna('null').str.lower() != 'null'),
         (df['cidr_ipv4'].fillna('null') != 'null') & 
         (df['cidr_ipv4'].fillna('null').str.lower() != 'null'),
         (df['cidr_ipv6'].fillna('null') != 'null') & 
-        (df['cidr_ipv6'].fillna('null').str.lower() != 'null')
+        (df['cidr_ipv6'].fillna('null').str.lower() != 'null'),
+        (df['prefix_list_id'].fillna('null') != 'null') & 
+        (df['prefix_list_id'].fillna('null').str.lower() != 'null')
     ]
     
-    multiple_sources = sum(rule_conditions) > 1
-    if multiple_sources.any():
+    multiple_inputs = sum(rule_conditions) > 1
+    if multiple_inputs.any():
         return [
             {
                 "row": row,
-                "error": "Only one source (security group, CIDR IPv4, or CIDR IPv6) can be specified per rule"
+                "error": "Only one source (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) can be specified per rule"
             }
-            for row in df[multiple_sources].to_dict('records')
+            for row in df[multiple_inputs].to_dict('records')
         ]
     return []
+
+def validate_null_input(df: pd.DataFrame) -> List[Dict[str, Any]]:
+    """Ensure that at least one input (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) is set per rule."""
+
+    errors = []
+    rule_conditions = [
+        (df['referenced_security_group_id'].fillna('null').str.lower() != 'null'),
+        (df['cidr_ipv4'].fillna('null').str.lower() != 'null'),
+        (df['cidr_ipv6'].fillna('null').str.lower() != 'null'),
+        (df['prefix_list_id'].fillna('null').str.lower() != 'null')
+    ]
+
+    # Sum up the number of non-null fields for each row
+    missing_inputs = sum(rule_conditions) == 0
+    if missing_inputs.any():
+        return [
+            {
+                "row": row.to_dict(),
+                "error": "At least one input (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) must be specified."
+            }
+            for _, row in df[missing_inputs].iterrows()
+        ]
+
+    return []
+
+
 
 def validate_ip_addresses(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Check IP address formats and ensure proper CIDR notation for security group rules.
@@ -159,12 +187,32 @@ def validate_ip_addresses(df: pd.DataFrame) -> List[Dict[str, Any]]:
                 })
     return errors
 
+
+def validate_prefix_lists(df: pd.DataFrame) -> List[Dict[str, Any]]:
+    """Ensure prefix_list_id is only 's3' or 'dynamodb'."""
+    errors = []
+    valid_prefix_lists = [ "s3", "dynamodb", "null"]
+
+    invalid_rows = ~df["prefix_list_id"].isin(valid_prefix_lists)
+
+    if invalid_rows.any():
+        errors.extend([
+            {
+                "row": row.to_dict(),
+                "error": f"Invalid prefix_list_id: '{row['prefix_list_id']}'. "
+                         f"Must be one of {', '.join(valid_prefix_lists)}."
+            }
+            for _, row in df[invalid_rows].iterrows()
+        ])
+    
+    return errors
+
 def check_duplicates(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Check for duplicate rules."""
     duplicate_mask = df.duplicated(subset=[
         'name', 'security_group_id', 'direction', 'from_port', 
         'to_port', 'ip_protocol', 'referenced_security_group_id',
-        'cidr_ipv4', 'cidr_ipv6'
+        'cidr_ipv4', 'cidr_ipv6', 'prefix_list_id'
     ], keep=False)
     
     if duplicate_mask.any():
@@ -191,8 +239,8 @@ def validate_rules(df: pd.DataFrame) -> Dict[str, List[Dict[str, Any]]]:
         issues["port_validation"] = port_errors
 
     # 4. Source declarations
-    if source_errors := validate_source_declarations(df):
-        issues["multiple_source_declarations"] = source_errors
+    if sinput_errors := validate_input_declarations(df):
+        issues["multiple_input_declarations"] = input_errors
         
     # 5. IPs
     if ip_errors := validate_ip_addresses(df):
@@ -201,6 +249,15 @@ def validate_rules(df: pd.DataFrame) -> Dict[str, List[Dict[str, Any]]]:
     # 6. Duplicates
     if duplicate_errors := check_duplicates(df):
         issues["duplicates"] = duplicate_errors
+
+    # 6. Prefix Lists 
+    if prefix_errors := validate_prefix_lists(df):
+        issues["prefix_validation"] = prefix_errors
+
+    # 7. Null input
+    if invalid_input := validate_null_input(df):
+        issues["invalid_input"] = invalid_input
+
 
     return issues
 
