@@ -239,7 +239,7 @@ def validate_rules(df: pd.DataFrame) -> Dict[str, List[Dict[str, Any]]]:
         issues["port_validation"] = port_errors
 
     # 4. Source declarations
-    if sinput_errors := validate_input_declarations(df):
+    if input_errors := validate_input_declarations(df):
         issues["multiple_input_declarations"] = input_errors
         
     # 5. IPs
