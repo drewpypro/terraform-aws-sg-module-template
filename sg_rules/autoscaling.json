@@ -10,6 +10,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -23,6 +24,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     }
 ]
