@@ -1,6 +1,27 @@
 
 # Test Cases
 
+# Run Tests
+```
+git clone https://github.com/drewpypro/terraform-aws-sg-module-template
+cd terraform-aws-sg-module-template
+python3 -m unittest tests/test_rule_conversion.py
+2025-03-03 20:21:19,350 - INFO - Test output directory set to ./tests/sg_rules_test
+2025-03-03 20:21:19,350 - INFO - Error output directory set to ./tests/error_outputs
+2025-03-03 20:21:19,370 - INFO - Errors for duplicate_rules written to ./tests/error_outputs/duplicate_rules_errors.txt
+.2025-03-03 20:21:19,384 - INFO - Errors for invalid_ip written to ./tests/error_outputs/invalid_ip_errors.txt
+.2025-03-03 20:21:19,395 - INFO - Errors for invalid_ports written to ./tests/error_outputs/invalid_ports_errors.txt
+.2025-03-03 20:21:19,407 - INFO - Errors for invalid_rules written to ./tests/error_outputs/invalid_rules_errors.txt
+.No changes: ./tests/sg_rules_test/worker_nodes.json
+
+JSON files have been synchronized in ./tests/sg_rules_test
+..
+----------------------------------------------------------------------
+Ran 6 tests in 0.095s
+
+OK
+```
+
 ## Successful first build
 <details>
   <summary>First time python conversion</summary>
