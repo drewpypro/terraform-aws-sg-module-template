@@ -85,8 +85,8 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_referenced" {
   }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
-  from_port                    = tonumber(each.value.from_port)
-  to_port                      = tonumber(each.value.to_port)
+  from_port                    = each.value.ip_protocol == "-1" ? null : tonumber(each.value.from_port)
+  to_port                      = each.value.ip_protocol == "-1" ? null : tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
   referenced_security_group_id = aws_security_group.sgs[each.value.referenced_security_group_id].id
   description                  = each.value.business_justification
@@ -101,8 +101,8 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv4" {
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
-  from_port         = tonumber(each.value.from_port)
-  to_port           = tonumber(each.value.to_port)
+  from_port         = each.value.ip_protocol == "-1" ? null : tonumber(each.value.from_port)
+  to_port           = each.value.ip_protocol == "-1" ? null : tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
   cidr_ipv4         = each.value.cidr_ipv4
   description       = each.value.business_justification
@@ -117,8 +117,8 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_cidr_ipv6" {
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
-  from_port         = tonumber(each.value.from_port)
-  to_port           = tonumber(each.value.to_port)
+  from_port         = each.value.ip_protocol == "-1" ? null : tonumber(each.value.from_port)
+  to_port           = each.value.ip_protocol == "-1" ? null : tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
   cidr_ipv6         = each.value.cidr_ipv6
   description       = each.value.business_justification
@@ -133,8 +133,8 @@ resource "aws_vpc_security_group_egress_rule" "egress_referenced" {
   }
 
   security_group_id            = aws_security_group.sgs[each.value.name].id
-  from_port                    = tonumber(each.value.from_port)
-  to_port                      = tonumber(each.value.to_port)
+  from_port                    = each.value.ip_protocol == "-1" ? null : tonumber(each.value.from_port)
+  to_port                      = each.value.ip_protocol == "-1" ? null : tonumber(each.value.to_port)
   ip_protocol                  = each.value.ip_protocol
   referenced_security_group_id = aws_security_group.sgs[each.value.referenced_security_group_id].id
   description                  = each.value.business_justification
@@ -149,8 +149,8 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr" {
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
-  from_port         = tonumber(each.value.from_port)
-  to_port           = tonumber(each.value.to_port)
+  from_port         = each.value.ip_protocol == "-1" ? null : tonumber(each.value.from_port)
+  to_port           = each.value.ip_protocol == "-1" ? null : tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
   cidr_ipv4         = each.value.cidr_ipv4
   description       = each.value.business_justification
@@ -165,8 +165,8 @@ resource "aws_vpc_security_group_egress_rule" "egress_cidr_ipv6" {
   }
 
   security_group_id = aws_security_group.sgs[each.value.name].id
-  from_port         = tonumber(each.value.from_port)
-  to_port           = tonumber(each.value.to_port)
+  from_port         = each.value.ip_protocol == "-1" ? null : tonumber(each.value.from_port)
+  to_port           = each.value.ip_protocol == "-1" ? null : tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
   cidr_ipv6         = each.value.cidr_ipv6
   description       = each.value.business_justification
@@ -181,8 +181,8 @@ resource "aws_vpc_security_group_egress_rule" "egress_prefix_list" {
   }
 
   security_group_id = aws_security_group.sgs[each.value.security_group_id].id
-  from_port         = tonumber(each.value.from_port)
-  to_port           = tonumber(each.value.to_port)
+  from_port         = each.value.ip_protocol == "-1" ? null : tonumber(each.value.from_port)
+  to_port           = each.value.ip_protocol == "-1" ? null : tonumber(each.value.to_port)
   ip_protocol       = each.value.ip_protocol
   prefix_list_id    = lookup(local.prefix_lists[var.aws_region], "com.amazonaws.${var.aws_region}.${each.value.prefix_list_id}", null)
   description       = each.value.business_justification
