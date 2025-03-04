@@ -6,14 +6,14 @@ import ipaddress
 
 CONFIG = {
     "OUTPUT_DIR": "./sg_rules",
-    "VALID_PROTOCOLS": ["tcp", "udp", "icmp"],
+    "VALID_PROTOCOLS": ["tcp", "udp", "icmp", "-1"]
 }
 
 def validate_required_fields(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Check all required fields are present"""
     errors = []
     required_fields = ['RequestID', 'name', 'security_group_id', 'direction', 
-                      'from_port', 'to_port', 'ip_protocol', ]
+                      'from_port', 'to_port', 'ip_protocol' ]
     
     for field in required_fields:
         missing_mask = df[field].isna() | (df[field].astype(str).str.strip() == '')
@@ -58,6 +58,10 @@ def validate_ports(df: pd.DataFrame) -> List[Dict[str, Any]]:
     for _, row in df.iterrows():
         try:
             protocol = row['ip_protocol'].lower()
+
+            if protocol == '-1':
+                continue
+
             from_port = int(row['from_port'])
             to_port = int(row['to_port'])
             
@@ -120,7 +124,6 @@ def validate_null_input(df: pd.DataFrame) -> List[Dict[str, Any]]:
         (df['prefix_list_id'].fillna('null').str.lower() != 'null')
     ]
 
-    # Sum up the number of non-null fields for each row
     missing_inputs = sum(rule_conditions) == 0
     if missing_inputs.any():
         return [
@@ -186,7 +189,6 @@ def validate_ip_addresses(df: pd.DataFrame) -> List[Dict[str, Any]]:
                     "error": f"Invalid IP format: {ip} must be a string in CIDR notation"
                 })
     return errors
-
 
 def validate_prefix_lists(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Ensure prefix_list_id is only 's3' or 'dynamodb'."""

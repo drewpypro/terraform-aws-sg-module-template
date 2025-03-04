@@ -319,3 +319,6 @@ Request00001,worker_nodes,worker_nodes,ingress,8,0,icmp,istio_nodes,null,null,nu
 Request00001,worker_nodes,worker_nodes,ingress,8,0,icmp,worker_nodes,null,null,null,Allow Type 8 Code 0 (echo)
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,null,null,s3,Allow worker to s3 prefixes
 Request00001,worker_nodes,worker_nodes,egress,443,443,tcp,null,null,null,dynamodb,Allow worker to s3 prefixes
+Request00001,worker_nodes,worker_nodes,egress,0,0,-1,null,10.0.0.0/8,null,null,Allow worker to s3 prefixes
+Request00001,worker_nodes,worker_nodes,egress,0,0,-1,worker_nodes,null,null,null,Allow worker to s3 prefixes
+Request00001,worker_nodes,worker_nodes,egress,0,0,-1,null,null,null,s3,Allow worker to s3 prefixes
