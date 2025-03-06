@@ -18,10 +18,12 @@ def validate_required_fields(df: pd.DataFrame) -> List[Dict[str, Any]]:
     for field in required_fields:
         missing_mask = df[field].isna() | (df[field].astype(str).str.strip() == '')
         if missing_mask.any():
-            errors.extend([
-                {"row": row, "error": f"Missing required field: {field}"} 
-                for row in df[missing_mask].to_dict('records')
-            ])
+            for index, row in df[missing_mask].iterrows():
+                errors.append({
+                    "row_number": index + 2,
+                    "row": row.to_dict(),
+                    "error": f"Missing required field: {field}"
+                })
     return errors
 
 def validate_field_values(df: pd.DataFrame) -> List[Dict[str, Any]]:
@@ -30,17 +32,21 @@ def validate_field_values(df: pd.DataFrame) -> List[Dict[str, Any]]:
     
     invalid_direction = ~df['direction'].str.lower().isin(['ingress', 'egress'])
     if invalid_direction.any():
-        errors.extend([
-            {"row": row, "error": "Direction must be either 'ingress' or 'egress'"} 
-            for row in df[invalid_direction].to_dict('records')
-        ])
+        for index, row in df[invalid_direction].iterrows():
+            errors.append({
+                "row_number": index + 2,
+                "row": row.to_dict(),
+                "error": "Direction must be either 'ingress' or 'egress'"
+            })
 
     invalid_protocol = ~df['ip_protocol'].str.lower().isin(CONFIG['VALID_PROTOCOLS'])
     if invalid_protocol.any():
-        errors.extend([
-            {"row": row, "error": f"Protocol must be one of: {', '.join(CONFIG['VALID_PROTOCOLS'])}"} 
-            for row in df[invalid_protocol].to_dict('records')
-        ])
+        for index, row in df[invalid_protocol].iterrows():
+            errors.append({
+                "row_number": index + 2,
+                "row": row.to_dict(),
+                "error": f"Protocol must be one of: {', '.join(CONFIG['VALID_PROTOCOLS'])}"
+            })
 
     return errors
 
@@ -55,7 +61,7 @@ def validate_ports(df: pd.DataFrame) -> List[Dict[str, Any]]:
     }
     errors = []
     
-    for _, row in df.iterrows():
+    for index, row in df.iterrows():
         try:
             protocol = row['ip_protocol'].lower()
 
@@ -68,22 +74,26 @@ def validate_ports(df: pd.DataFrame) -> List[Dict[str, Any]]:
             if protocol == 'icmp':
                 if not (0 <= from_port <= 255 and 0 <= to_port <= 255):
                     errors.append({
+                        "row_number": index + 2,
                         "row": row.to_dict(),
                         "error": f"Invalid ICMP ports: {from_port}, {to_port}. {validation_rules['icmp']}"
                     })
             else: 
                 if not (0 <= from_port <= 65535 and 0 <= to_port <= 65535):
                     errors.append({
+                        "row_number": index + 2,
                         "row": row.to_dict(),
                         "error": f"Invalid port range: {from_port}, {to_port}. {validation_rules['tcp/udp']}"
                     })
                 elif from_port > to_port:
                     errors.append({
+                        "row_number": index + 2,
                         "row": row.to_dict(),
                         "error": f"From port ({from_port}) cannot be greater than to port ({to_port})"
                     })
         except ValueError:
             errors.append({
+                "row_number": index + 2,
                 "row": row.to_dict(),
                 "error": f"Port values must be integers, got from_port={row['from_port']}, to_port={row['to_port']}"
             })
@@ -91,6 +101,7 @@ def validate_ports(df: pd.DataFrame) -> List[Dict[str, Any]]:
 
 def validate_input_declarations(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Check that only one source (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) is specified per rule"""
+    errors = []
     rule_conditions = [
         (df['referenced_security_group_id'].fillna('null') != 'null') & 
         (df['referenced_security_group_id'].fillna('null').str.lower() != 'null'),
@@ -104,14 +115,14 @@ def validate_input_declarations(df: pd.DataFrame) -> List[Dict[str, Any]]:
     
     multiple_inputs = sum(rule_conditions) > 1
     if multiple_inputs.any():
-        return [
-            {
-                "row": row,
+        for index, row in df[multiple_inputs].iterrows():
+            errors.append({
+                "row_number": index + 2,
+                "row": row.to_dict(),
                 "error": "Only one source (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) can be specified per rule"
-            }
-            for row in df[multiple_inputs].to_dict('records')
-        ]
-    return []
+            })
+
+    return errors
 
 def validate_null_input(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Ensure that at least one input (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) is set per rule."""
@@ -126,15 +137,14 @@ def validate_null_input(df: pd.DataFrame) -> List[Dict[str, Any]]:
 
     missing_inputs = sum(rule_conditions) == 0
     if missing_inputs.any():
-        return [
-            {
+        for index, row in df[missing_inputs].iterrows():
+            errors.append({
+                "row_number": index + 2,
                 "row": row.to_dict(),
                 "error": "At least one input (security group, CIDR IPv4, CIDR IPv6 or prefix_list_id) must be specified."
-            }
-            for _, row in df[missing_inputs].iterrows()
-        ]
+            })
 
-    return []
+        return errors
 
 
 
@@ -145,7 +155,7 @@ def validate_ip_addresses(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """
     errors = []
     
-    for _, row in df.iterrows():
+    for index, row in df.iterrows():
         for ip_field, version in [('cidr_ipv4', 4), ('cidr_ipv6', 6)]:
             ip = row[ip_field]
             if pd.isna(ip) or str(ip).lower() == 'null':
@@ -154,6 +164,7 @@ def validate_ip_addresses(df: pd.DataFrame) -> List[Dict[str, Any]]:
             # Check for CIDR notation
             if '/' not in str(ip):
                 errors.append({
+                    "row_number": index + 2,
                     "row": row.to_dict(),
                     "error": f"IP address {ip} must be in CIDR notation (e.g., x.x.x.x/32 for IPv4, x:x:x:x:x:x:x:x/128 for IPv6)"
                 })
@@ -165,6 +176,7 @@ def validate_ip_addresses(df: pd.DataFrame) -> List[Dict[str, Any]]:
                 # Verify IP version
                 if ip_obj.version != version:
                     errors.append({
+                        "row_number": index + 2,
                         "row": row.to_dict(),
                         "error": f"IP address {ip} must be a valid IPv{version} CIDR block"
                     })
@@ -174,17 +186,20 @@ def validate_ip_addresses(df: pd.DataFrame) -> List[Dict[str, Any]]:
                 max_prefix = 32 if version == 4 else 128
                 if not (0 <= ip_obj.prefixlen <= max_prefix):
                     errors.append({
+                        "row_number": index + 2,
                         "row": row.to_dict(),
                         "error": f"IPv{version} CIDR {ip} must have a prefix length between 0 and {max_prefix}"
                     })
                     
             except ValueError as e:
                 errors.append({
+                    "row_number": index + 2,
                     "row": row.to_dict(),
                     "error": f"Invalid CIDR block {ip}: Must be a valid IPv{version} CIDR notation"
                 })
             except TypeError:
                 errors.append({
+                    "row_number": index + 2,
                     "row": row.to_dict(),
                     "error": f"Invalid IP format: {ip} must be a string in CIDR notation"
                 })
@@ -200,17 +215,19 @@ def validate_prefix_lists(df: pd.DataFrame) -> List[Dict[str, Any]]:
     if invalid_rows.any():
         errors.extend([
             {
+                "row_number": index + 2,
                 "row": row.to_dict(),
                 "error": f"Invalid prefix_list_id: '{row['prefix_list_id']}'. "
                          f"Must be one of {', '.join(valid_prefix_lists)}."
             }
-            for _, row in df[invalid_rows].iterrows()
+            for index, row in df[invalid_rows].iterrows()
         ])
     
     return errors
 
 def check_duplicates(df: pd.DataFrame) -> List[Dict[str, Any]]:
     """Check for duplicate rules."""
+    errors = []
     duplicate_mask = df.duplicated(subset=[
         'name', 'security_group_id', 'direction', 'from_port', 
         'to_port', 'ip_protocol', 'referenced_security_group_id',
@@ -219,10 +236,11 @@ def check_duplicates(df: pd.DataFrame) -> List[Dict[str, Any]]:
     
     if duplicate_mask.any():
         return [
-            {"row": row, "error": "Duplicate rule detected"}
-            for row in df[duplicate_mask].to_dict('records')
+            {"row_number": index + 2, "row": row.to_dict(), "error": "Duplicate rule detected"}
+            for index, row in df[duplicate_mask].iterrows()
         ]
-    return []
+    return errors
+
 
 def validate_rules(df: pd.DataFrame) -> Dict[str, List[Dict[str, Any]]]:
     """Main validation function that calls all validators in sequence"""
@@ -276,6 +294,18 @@ def read_existing_json(file_path: str) -> List[Dict[str, Any]]:
 def rules_changed(existing_rules: List[Dict[str, Any]], new_rules: List[Dict[str, Any]]) -> bool:
     """Compare existing and new rules to determine if updates are needed."""
     return existing_rules != new_rules
+
+def write_rule_count(rules):
+    """Write the count of rules per security group per direction to rule_count.txt in the root directory."""
+    rule_count_file = "rule_count.txt"
+    with open(rule_count_file, "w") as f:
+        f.write("# Security Group Rule Count:\n")
+        for direction, sg_rules in rules.items():
+            for sg_name, rule_list in sg_rules.items():
+                f.write(f"- {sg_name} ({direction}): {len(rule_list)} rules\n")
+    
+    print(f"Rule count written to {rule_count_file}")
+
 
 def process_rules(input_file: str) -> None:
     """Main function to process and validate rules."""
@@ -337,7 +367,7 @@ def process_rules(input_file: str) -> None:
         output_file = os.path.join(CONFIG["OUTPUT_DIR"], f"{sg_name}.json")
         
         # Read existing JSON rules for comparison
-        existing_rules = read_existing_json(output_file)
+        existing_rules = read_existing_json(output_file) or []
         
         # Sort combined rules for consistency
         combined_rules_sorted = sorted(combined_rules, key=lambda x: (
@@ -356,6 +386,9 @@ def process_rules(input_file: str) -> None:
             print(f"No changes: {output_file}")
     
     print(f"\nJSON files have been synchronized in {CONFIG['OUTPUT_DIR']}")
+
+    # Write rule count to the root folder
+    write_rule_count(rules)
     
 if __name__ == "__main__":
     process_rules("firewall_rules.csv")
