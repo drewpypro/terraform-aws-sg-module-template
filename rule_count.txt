@@ -1,25 +1,31 @@
 # Security Group Rule Count:
-- autoscaling (ingress): 2 rules
-- cluster_endpoint (ingress): 4 rules
-- dms (ingress): 2 rules
-- ec2 (ingress): 2 rules
-- ec2messages (ingress): 2 rules
-- ecr.api (ingress): 2 rules
-- ecr.dkr (ingress): 2 rules
-- elasticloadbalancing (ingress): 2 rules
-- internet_nlb (ingress): 30 rules
-- istio_nodes (ingress): 39 rules
-- kms (ingress): 2 rules
-- logs (ingress): 2 rules
-- monitoring (ingress): 2 rules
-- rds (ingress): 2 rules
-- sns (ingress): 2 rules
-- sqs (ingress): 2 rules
-- ssm (ingress): 2 rules
-- ssmmessages (ingress): 2 rules
-- sts (ingress): 2 rules
-- worker_nodes (ingress): 39 rules
-- cluster_endpoint (egress): 6 rules
-- internet_nlb (egress): 2 rules
-- istio_nodes (egress): 83 rules
-- worker_nodes (egress): 88 rules
+
+## Ingress Rules:
+- autoscaling : 2 rules
+- cluster_endpoint : 4 rules
+- dms : 2 rules
+- ec2 : 2 rules
+- ec2messages : 2 rules
+- ecr.api : 2 rules
+- ecr.dkr : 2 rules
+- elasticloadbalancing : 2 rules
+- internet_nlb : 30 rules
+- istio_nodes : 39 rules
+- kms : 2 rules
+- logs : 2 rules
+- monitoring : 2 rules
+- rds : 2 rules
+- sns : 2 rules
+- sqs : 2 rules
+- ssm : 2 rules
+- ssmmessages : 2 rules
+- sts : 2 rules
+- vpce_ec2 : 1 rules
+- vpce_rds : 1 rules
+- worker_nodes : 45 rules
+
+## Egress Rules:
+- cluster_endpoint : 6 rules
+- internet_nlb : 2 rules
+- istio_nodes : 83 rules
+- worker_nodes : 91 rules
