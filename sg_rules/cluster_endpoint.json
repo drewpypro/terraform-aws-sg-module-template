@@ -10,6 +10,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubectl exec and port-forwarding through cluster endpoint"
     },
     {
@@ -23,6 +24,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubectl exec and port-forwarding through cluster endpoint"
     },
     {
@@ -36,6 +38,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubelet api server communication with nodes"
     },
     {
@@ -49,6 +52,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubelet api server communication with nodes"
     },
     {
@@ -62,6 +66,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "cluster endpoint to aws-lb-controller testing"
     },
     {
@@ -75,6 +80,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "cluster endpoint to aws-lb-controller testing"
     },
     {
@@ -88,6 +94,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "nodes need access to local kubelet API"
     },
     {
@@ -101,6 +108,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "nodes need access to local kubelet API"
     },
     {
@@ -114,6 +122,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "cluster endpoint to aws-lb-controller testing"
     },
     {
@@ -127,6 +136,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "cluster endpoint to aws-lb-controller testing"
     }
 ]

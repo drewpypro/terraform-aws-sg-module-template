@@ -18,10 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref}}
+          fetch-depth: 0
       - uses: hashicorp/setup-terraform@v3
       - name: terraform init
         run: |
           terraform init \
+            -reconfigure \
             -backend-config="bucket=$BUCKET_NAME" \
             -backend-config="key=$BUCKET_KEY" \
             -backend-config="endpoint=$BUCKET_ENDPOINT" \

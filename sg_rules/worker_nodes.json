@@ -6,10 +6,53 @@
         "direction": "egress",
         "from_port": 0,
         "to_port": 0,
+        "ip_protocol": "-1",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "10.0.0.0/8",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Allow worker to s3 prefixes"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": 0,
+        "to_port": 0,
+        "ip_protocol": "-1",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "s3",
+        "business_justification": "Allow worker to s3 prefixes"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": 0,
+        "to_port": 0,
+        "ip_protocol": "-1",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Allow worker to s3 prefixes"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": 0,
+        "to_port": 0,
         "ip_protocol": "icmp",
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
     },
     {
@@ -23,6 +66,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
     },
     {
@@ -36,6 +80,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubelet api server communication"
     },
     {
@@ -49,6 +94,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubelet api server communication"
     },
     {
@@ -62,6 +108,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "3.86.4.106/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -75,6 +122,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "3.87.127.143/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -88,6 +136,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "3.94.91.31/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -101,6 +150,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "44.201.148.133/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -114,6 +164,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "52.207.222.50/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -127,6 +178,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "54.161.254.100/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -140,6 +192,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "54.197.201.248/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -153,6 +206,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "54.210.225.137/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -166,6 +220,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "54.81.127.33/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -179,6 +234,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "54.90.191.9/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws ntp servers"
     },
     {
@@ -192,6 +248,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -205,6 +262,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -218,6 +276,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
@@ -231,6 +290,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
@@ -244,6 +304,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -257,6 +318,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -270,6 +332,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe."
     },
     {
@@ -283,6 +346,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe."
     },
     {
@@ -296,6 +360,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -309,6 +374,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -322,6 +388,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -335,6 +402,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -348,6 +416,7 @@
         "referenced_security_group_id": "autoscaling",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -361,6 +430,7 @@
         "referenced_security_group_id": "cluster_endpoint",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "nodes need access to local kubelet API"
     },
     {
@@ -374,6 +444,7 @@
         "referenced_security_group_id": "dms",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -387,6 +458,7 @@
         "referenced_security_group_id": "ec2",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -400,6 +472,7 @@
         "referenced_security_group_id": "ec2messages",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -413,6 +486,7 @@
         "referenced_security_group_id": "ecr.api",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -426,6 +500,7 @@
         "referenced_security_group_id": "ecr.dkr",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -439,6 +514,7 @@
         "referenced_security_group_id": "elasticloadbalancing",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -452,6 +528,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -465,6 +542,7 @@
         "referenced_security_group_id": "kms",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -478,6 +556,7 @@
         "referenced_security_group_id": "logs",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -491,6 +570,7 @@
         "referenced_security_group_id": "monitoring",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -504,6 +584,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "0.0.0.0/5",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -517,6 +598,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "11.0.0.0/8",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -530,6 +612,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "12.0.0.0/6",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -543,6 +626,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "128.0.0.0/1",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -556,6 +640,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "16.0.0.0/4",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -569,6 +654,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "32.0.0.0/3",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -582,6 +668,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "64.0.0.0/2",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -595,6 +682,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "8.0.0.0/6",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
     },
     {
@@ -608,7 +696,36 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "9.0.0.0/8",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "outbound to internet 443 only. "
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "s3",
+        "business_justification": "Allow worker to s3 prefixes"
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "dynamodb",
+        "business_justification": "Allow worker to s3 prefixes"
     },
     {
         "RequestID": "Request00001",
@@ -621,6 +738,7 @@
         "referenced_security_group_id": "rds",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -634,6 +752,7 @@
         "referenced_security_group_id": "sns",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -647,6 +766,7 @@
         "referenced_security_group_id": "sqs",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -660,6 +780,7 @@
         "referenced_security_group_id": "ssm",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -673,6 +794,7 @@
         "referenced_security_group_id": "ssmmessages",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -686,6 +808,7 @@
         "referenced_security_group_id": "sts",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Enable connectivity to AWS API endpoints per service."
     },
     {
@@ -699,6 +822,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -712,6 +836,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -725,6 +850,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "108.162.193.105/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -738,6 +864,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "108.162.194.254/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -751,6 +878,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "162.159.38.254/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -764,6 +892,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "172.64.33.105/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -777,6 +906,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "172.64.34.254/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -790,6 +920,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "173.245.59.105/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -803,6 +934,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -816,6 +948,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -829,6 +962,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "108.162.193.105/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -842,6 +976,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "108.162.194.254/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -855,6 +990,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "162.159.38.254/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -868,6 +1004,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "172.64.33.105/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -881,6 +1018,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "172.64.34.254/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -894,6 +1032,7 @@
         "referenced_security_group_id": "null",
         "cidr_ipv4": "173.245.59.105/32",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 53 for cert connectivity requirements"
     },
     {
@@ -907,6 +1046,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -920,6 +1060,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "redis for argocd"
     },
     {
@@ -933,6 +1074,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "redis for argocd"
     },
     {
@@ -946,6 +1088,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 8 Code 0 (echo)"
     },
     {
@@ -959,6 +1102,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 8 Code 0 (echo)"
     },
     {
@@ -972,6 +1116,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 80 for cert connectivity requirements"
     },
     {
@@ -985,6 +1130,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 80 for cert connectivity requirements"
     },
     {
@@ -998,6 +1144,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "testing port 8080 pod connectivity"
     },
     {
@@ -1011,6 +1158,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "testing port 8080 pod connectivity"
     },
     {
@@ -1024,6 +1172,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws-cluster-lb-controller testing"
     },
     {
@@ -1037,6 +1186,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws-cluster-lb-controller testing"
     },
     {
@@ -1050,6 +1200,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1063,6 +1214,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1076,6 +1228,7 @@
         "referenced_security_group_id": "cluster_endpoint",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "cluster endpoint to aws-lb-controller testing"
     },
     {
@@ -1089,6 +1242,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
     },
     {
@@ -1102,6 +1256,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 0 Code 0 (echo-Reply)"
     },
     {
@@ -1115,6 +1270,7 @@
         "referenced_security_group_id": "cluster_endpoint",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubectl exec and port-forwarding through cluster endpoint"
     },
     {
@@ -1128,6 +1284,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubelet api server communication"
     },
     {
@@ -1141,6 +1298,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubelet api server communication"
     },
     {
@@ -1154,6 +1312,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -1167,6 +1326,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -1180,6 +1340,7 @@
         "referenced_security_group_id": "cluster_endpoint",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "kubelet api server communication with nodes"
     },
     {
@@ -1193,6 +1354,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
@@ -1206,6 +1368,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Istio X5.09 certification management with istiod service."
     },
     {
@@ -1219,6 +1382,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1232,6 +1396,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1245,6 +1410,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe."
     },
     {
@@ -1258,6 +1424,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Readiness/Liveness Probe: Ensure connectivity for the readiness/liveness probe."
     },
     {
@@ -1271,6 +1438,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1284,6 +1452,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1297,6 +1466,7 @@
         "referenced_security_group_id": "internet_nlb",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow health checks from inlb to instance group istio node backends. "
     },
     {
@@ -1310,6 +1480,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -1323,6 +1494,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -1336,6 +1508,7 @@
         "referenced_security_group_id": "internet_nlb",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow health checks from inlb to instance group istio node backends. "
     },
     {
@@ -1349,6 +1522,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -1362,6 +1536,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "k8s nodes require connectivity between nodes to establish overlay"
     },
     {
@@ -1375,6 +1550,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -1388,6 +1564,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -1401,6 +1578,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -1414,6 +1592,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "overlay dns connectivity between pods "
     },
     {
@@ -1427,6 +1606,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "redis for argocd"
     },
     {
@@ -1440,6 +1620,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "redis for argocd"
     },
     {
@@ -1453,6 +1634,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 8 Code 0 (echo)"
     },
     {
@@ -1466,6 +1648,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Allow Type 8 Code 0 (echo)"
     },
     {
@@ -1479,6 +1662,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 80 for cert connectivity requirements"
     },
     {
@@ -1492,6 +1676,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "port 80 for cert connectivity requirements"
     },
     {
@@ -1505,6 +1690,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "testing port 8080 pod connectivity"
     },
     {
@@ -1518,6 +1704,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "testing port 8080 pod connectivity"
     },
     {
@@ -1531,6 +1718,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws-cluster-lb-controller testing"
     },
     {
@@ -1544,6 +1732,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "aws-cluster-lb-controller testing"
     },
     {
@@ -1557,6 +1746,7 @@
         "referenced_security_group_id": "istio_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1570,6 +1760,7 @@
         "referenced_security_group_id": "worker_nodes",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "Metrics/Monitoring Communication for Istio monitoring and metrics."
     },
     {
@@ -1583,6 +1774,7 @@
         "referenced_security_group_id": "cluster_endpoint",
         "cidr_ipv4": "null",
         "cidr_ipv6": "null",
+        "prefix_list_id": "null",
         "business_justification": "cluster endpoint to aws-lb-controller testing"
     }
 ]
