@@ -15,6 +15,7 @@
 - logs : 2 rules
 - monitoring : 2 rules
 - rds : 2 rules
+- rds_db : 1 rules
 - sns : 2 rules
 - sqs : 2 rules
 - ssm : 2 rules
