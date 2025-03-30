@@ -14,7 +14,7 @@
 - kms : 2 rules
 - logs : 2 rules
 - monitoring : 2 rules
-- rds : 2 rules
+- rds : 3 rules
 - sns : 2 rules
 - sqs : 2 rules
 - ssm : 2 rules
