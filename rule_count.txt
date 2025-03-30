@@ -22,6 +22,7 @@
 - sts : 2 rules
 - vpce_ec2 : 1 rules
 - vpce_rds : 1 rules
+- vpce_sts : 1 rules
 - worker_nodes : 45 rules
 
 ## Egress Rules:
