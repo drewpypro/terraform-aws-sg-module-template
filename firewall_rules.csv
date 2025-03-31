@@ -335,3 +335,5 @@ Request00002,rds,rds,ingress,553,7070,tcp,worker_nodes,null,null,null,this is my
 Request00002,rds,rds,ingress,5353,7470,tcp,worker_nodes,null,null,null,this is my business justification again
 REQ9815279,internet_nlb,cluster_endpoint,egress,6443,7443,tcp,internet_istio_nodes,null,null,null,cluster endpoint to aws-lb-controller testing
 REQ9815279,internet_nlb,cluster_endpoint,ingress,7443,8443,tcp,internet_istio_nodes,null,null,null,cluster endpoint to aws-lb-controller testing
+REQ9815279,internet_nlb,cluster_endpoint,egress,23,23,tcp,internet_istio_nodes,null,null,null,cluster endpoint to aws-lb-controller testing
+REQ9815279,internet_nlb,cluster_endpoint,ingress,23,23,tcp,internet_istio_nodes,null,null,null,cluster endpoint to aws-lb-controller testing
