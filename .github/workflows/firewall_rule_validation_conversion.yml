@@ -2,8 +2,7 @@ name: Firewall Rule Validation and Conversion
 
 on:
   pull_request:
-    types: [opened]
-
+  
 jobs:
   validate:
     runs-on: ubuntu-latest
