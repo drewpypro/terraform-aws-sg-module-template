@@ -45,9 +45,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_GITHUB_ACTIONS }}
         run: |
           echo "📋 **Validation output**:" > comment.txt
-          echo '```' >> comment.txt
           echo "${{ steps.run_validation.outputs.result }}" >> comment.txt
-          echo '```' >> comment.txt
 
           cat comment.txt
 
