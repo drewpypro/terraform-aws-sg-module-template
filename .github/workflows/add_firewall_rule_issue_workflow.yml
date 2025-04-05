@@ -65,6 +65,7 @@ jobs:
           repository: drewpy-ai-actions/ai-rule-review
           path: ai-rule-review
           token: ${{ secrets.DREWPY_PAT }}
+          ref: main
 
       - name: Run AI Review
         run: python3 ai-rule-review/ai-rule-review.py --input-file appended.csv > ai_output.txt
