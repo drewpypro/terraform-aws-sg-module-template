@@ -97,9 +97,7 @@ jobs:
             echo ""
             echo "Please review and merge. Below is the AI firewall rule review:"
             echo ""
-            echo '```markdown'
             cat ai_output.txt
-            echo '```'
           } > pr_body.txt
 
           PR_URL=$(gh pr create \
