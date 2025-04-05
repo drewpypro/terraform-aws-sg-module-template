@@ -1,0 +1,30 @@
+[
+    {
+        "RequestID": "Request00001",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": 15021,
+        "to_port": 15021,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe."
+    },
+    {
+        "RequestID": "Request00001",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": 15021,
+        "to_port": 15021,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Readiness/Liveness Probe: Ensure connectivity for the /healthz/ready probe."
+    }
+]
