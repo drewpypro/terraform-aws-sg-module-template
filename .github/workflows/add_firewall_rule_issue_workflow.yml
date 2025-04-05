@@ -59,33 +59,23 @@ jobs:
             exit 1
           fi
 
-      - name: Checkout private AI action
-        uses: actions/checkout@v4
-        with:
-          repository: drewpypro/drewpy-ai-actions
-          token: ${{ secrets.DREWPY_PAT }}
-          ref: main
-          clean: false
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install AI Review Dependencies
+      - name: AI Review
         run: |
           ls -lt .
           ls -lt ../
+          git clone https://x-access-token:${{ secrets.DREWPY_PAT }}@github.com/drewpypro/drewpy-ai-actions.git
+          cd drewpy-ai-actions
           python3 -m pip install --upgrade pip
           pip install -r ai-rule-review/requirements.txt
-
-      - name: Run AI Review
-        run: |
-          ls -lt .
-          ls -lt ../
           python3 ai-rule-review/ai-rule-review.py --input-file ./appended.csv > ./ai_output.txt
         env:
           DREWPY_AI_KEY: ${{ secrets.DREWPY_AI_KEY }}
+          DREWPY_PAT: ${{ secrets.DREWPY_PAT }}
 
       - name: Post AI Review to Issue
         env:
