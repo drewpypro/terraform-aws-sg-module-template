@@ -64,9 +64,9 @@ jobs:
         uses: drewpy-ai-actions/ai-rule-review@main
         with:
           input-file: appended.csv
+        token: ${{ secrets.DREWPY_PAT }}
         env:
-          token: ${{ secrets.DREWPY_AI_TOKEN }}
-          GH_TOKEN: ${{ secrets.DREWPY_PAT }}
+          token: ${{ secrets.DREWPY_AI_KEY }}
 
       - name: Post AI Review to Issue
         env:
