@@ -74,9 +74,9 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install -r ai-rule-review/requirements.txt
           echo "🧠 Running AI review script..."
-          python3 ai-rule-review/ai-rule-review.py --input-file ../appended.csv | tee ../ai_output.txt
+          python3 ai-rule-review/ai-rule-review.py --input-file ../appended.csv | tee ai_output.txt
           echo "✅ Script completed. Contents of ai_output.txt:"
-          cat ../ai_output.txt
+          cat ai_output.txt
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           DREWPY_PAT: ${{ secrets.DREWPY_PAT }}
@@ -85,13 +85,13 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_GITHUB_ACTIONS }}
         run: |
-          echo "🤖 **AI Firewall Rule Review**:" > ai_output.txt
-          echo '```markdown' >> ai_output.txt
-          echo "${{ steps.run_ai.outputs.result }}" >> ai_output.txt
-          echo '```' >> ai_output.txt
+          echo "🤖 **AI Firewall Rule Review**:" > comment.txt
+          echo '```markdown' >> comment.txt
+          cat ai_output.txt >> comment.txt
+          echo '```' >> comment.txt
 
-          cat ai_output.txt
-          gh issue comment ${{ github.event.issue.number }} --body-file ai_output.txt
+          cat comment.txt
+          gh issue comment ${{ github.event.issue.number }} --body-file comment.txt
 
       - name: Commit Changes and Create PR
         id: create_pr
@@ -118,7 +118,7 @@ jobs:
 
           PR_URL=$(gh pr create \
             --title "Firewall Rule Request from Issue #${{ github.event.issue.number }}" \
-            --body-file pr_body.txt
+            --body-file pr_body.txt \
             --base main \
             --head $BRANCH_NAME)
 
