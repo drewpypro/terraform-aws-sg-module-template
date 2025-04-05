@@ -65,6 +65,7 @@ jobs:
           repository: drewpypro/drewpy-ai-actions
           token: ${{ secrets.DREWPY_PAT }}
           ref: main
+          clean: false
 
       - name: Set up Python
         uses: actions/setup-python@v4
