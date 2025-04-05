@@ -31,7 +31,6 @@ jobs:
 
           # Append cleanly
           cat appended.csv >> firewall_rules.csv
-          rm appended.csv
 
       - name: Run Validation and Comment on Issue
         id: run_validation
@@ -59,6 +58,30 @@ jobs:
             gh issue edit ${{ github.event.issue.number }} --add-label "needs-fix"
             exit 1
           fi
+
+      - name: Run AI Review on Appended Rules
+        id: run_ai
+        uses: drewpy-ai-actions/ai-rule-review@main
+        with:
+          input-file: appended.csv
+        env:
+          token: ${{ secrets.DREWPY_AI_TOKEN }}
+        permissions:
+          contents: read
+        env:
+          GH_TOKEN: ${{ secrets.DREWPY_PAT }}
+
+      - name: Post AI Review to Issue
+        env:
+          GH_TOKEN: ${{ secrets.PAT_GITHUB_ACTIONS }}
+        run: |
+          echo "🤖 **AI Firewall Rule Review**:" > ai_output.txt
+          echo '```markdown' >> ai_output.txt
+          echo "${{ steps.run_ai.outputs.result }}" >> ai_output.txt
+          echo '```' >> ai_output.txt
+
+          cat ai_output.txt
+          gh issue comment ${{ github.event.issue.number }} --body-file ai_output.txt
 
       - name: Commit Changes and Create PR
         id: create_pr
