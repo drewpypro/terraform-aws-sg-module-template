@@ -66,13 +66,9 @@ jobs:
 
       - name: AI Review
         run: |
-          set -x
           git clone https://x-access-token:${{ secrets.DREWPY_PAT }}@github.com/drewpypro/drewpy-ai-actions.git
           pip install -r drewpy-ai-actions/ai-rule-review/requirements.txt
-          echo "🧠 Running AI review script..."
           python3 drewpy-ai-actions/ai-rule-review/ai-rule-review.py --input-file appended.csv | tee ai_output.txt
-          echo "✅ Script completed. Contents of ai_output.txt:"
-          cat ai_output.txt
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           DREWPY_PAT: ${{ secrets.DREWPY_PAT }}
@@ -81,13 +77,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_GITHUB_ACTIONS }}
         run: |
-          ls -lt .
-          ls -lt ../
           echo "🤖 **AI Firewall Rule Review**:" > comment.txt
           echo '```markdown' >> comment.txt
           cat ai_output.txt >> comment.txt
           echo '```' >> comment.txt
-
           cat comment.txt
           gh issue comment ${{ github.event.issue.number }} --body-file comment.txt
 
