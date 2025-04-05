@@ -78,10 +78,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT_GITHUB_ACTIONS }}
         run: |
           echo "🤖 **AI Firewall Rule Review**:" > comment.txt
-          echo '```markdown' >> comment.txt
           cat ai_output.txt >> comment.txt
-          echo '```' >> comment.txt
-          cat comment.txt
           gh issue comment ${{ github.event.issue.number }} --body-file comment.txt
 
       - name: Commit Changes and Create PR
