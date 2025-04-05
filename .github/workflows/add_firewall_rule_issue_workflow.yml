@@ -66,13 +66,17 @@ jobs:
 
       - name: AI Review
         run: |
-          ls -lt .
-          ls -lt ../
-          git clone https://x-access-token:${{ secrets.DREWPY_PAT }}@github.com/drewpypro/drewpy-ai-actions.git
-          cd drewpy-ai-actions
-          python3 -m pip install --upgrade pip
-          pip install -r ai-rule-review/requirements.txt
-          python3 ai-rule-review/ai-rule-review.py --input-file ./appended.csv > ./ai_output.txt
+        set -x  # Echo all commands
+        ls -lt .
+        ls -lt ../
+        git clone https://x-access-token:${{ secrets.DREWPY_PAT }}@github.com/drewpypro/drewpy-ai-actions.git
+        cd drewpy-ai-actions
+        python3 -m pip install --upgrade pip
+        pip install -r ai-rule-review/requirements.txt
+        echo "🧠 Running AI review script..."
+        python3 ai-rule-review/ai-rule-review.py --input-file ../appended.csv | tee ../ai_output.txt
+        echo "✅ Script completed. Contents of ai_output.txt:"
+        cat ../ai_output.txt
         env:
           DREWPY_AI_KEY: ${{ secrets.DREWPY_AI_KEY }}
           DREWPY_PAT: ${{ secrets.DREWPY_PAT }}
