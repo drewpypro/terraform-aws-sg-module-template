@@ -1,1 +1,5 @@
 RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,prefix_list_id,business_justification
+Request00006,istio_nodes,istio_nodes,egress,53,53,udp,istio_nodes,null,null,null,overlay dns connectivity between pods 
+Request00006,istio_nodes,istio_nodes,egress,53,53,tcp,istio_nodes,null,null,null,overlay dns connectivity between pods 
+Request00006,istio_nodes,istio_nodes,ingress,53,53,udp,istio_nodes,null,null,null,overlay dns connectivity between pods 
+Request00006,istio_nodes,istio_nodes,ingress,53,53,tcp,istio_nodes,null,null,null,overlay dns connectivity between pods 
