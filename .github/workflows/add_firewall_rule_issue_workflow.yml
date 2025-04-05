@@ -62,7 +62,7 @@ jobs:
       - name: Checkout private AI action
         uses: actions/checkout@v4
         with:
-          repository: drewpy-ai-actions/ai-rule-review
+          repository: drewpypro/drewpy-ai-actions
           path: ai-rule-review
           token: ${{ secrets.DREWPY_PAT }}
           ref: main
