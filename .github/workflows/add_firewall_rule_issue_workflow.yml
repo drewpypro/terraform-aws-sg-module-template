@@ -63,7 +63,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: drewpypro/drewpy-ai-actions
-          path: ai-rule-review
           token: ${{ secrets.DREWPY_PAT }}
           ref: main
 
@@ -74,11 +73,15 @@ jobs:
 
       - name: Install AI Review Dependencies
         run: |
+          ls -lt .
+          ls -lt ./
           python3 -m pip install --upgrade pip
-          pip install -r ./ai-rule-review/requirements.txt
+          pip install -r requirements.txt
 
       - name: Run AI Review
         run: |
+          ls -lt .
+          ls -lt ./
           python3 ai-rule-review.py --input-file appended.csv > ai_output.txt
         env:
           DREWPY_AI_KEY: ${{ secrets.DREWPY_AI_KEY }}
