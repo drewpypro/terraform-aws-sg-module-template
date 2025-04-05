@@ -66,7 +66,6 @@ jobs:
           path: ai-rule-review
           token: ${{ secrets.DREWPY_PAT }}
           ref: main
-          clean: false
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -76,11 +75,11 @@ jobs:
       - name: Install AI Review Dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install -r ai-rule-review/requirements.txt
+          pip install -r ./ai-rule-review/requirements.txt
 
       - name: Run AI Review
         run: |
-          python3 ai-rule-review/ai-rule-review.py --input-file appended.csv > ai_output.txt
+          python3 ai-rule-review.py --input-file appended.csv > ai_output.txt
         env:
           DREWPY_AI_KEY: ${{ secrets.DREWPY_AI_KEY }}
 
