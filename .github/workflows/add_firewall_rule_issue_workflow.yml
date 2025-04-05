@@ -68,7 +68,9 @@ jobs:
           ref: main
 
       - name: Run AI Review
-        run: python3 ./ai-rule-review/ai-rule-review.py --input-file appended.csv > ai_output.txt
+        working-directory: ./ai-rule-review/ai-rule-review
+        run: |
+          python3 ai-rule-review.py --input-file ../../appended.csv > ../../ai_output.txt
         env:
           DREWPY_AI_KEY: ${{ secrets.DREWPY_AI_KEY }}
 
