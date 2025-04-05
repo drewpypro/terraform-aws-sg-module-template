@@ -78,7 +78,7 @@ jobs:
           echo "✅ Script completed. Contents of ai_output.txt:"
           cat ../ai_output.txt
         env:
-          DREWPY_AI_KEY: ${{ secrets.DREWPY_AI_KEY }}
+          DREWPY_AI_KEY: ${{ secrets.OPENAI_API_KEY }}
           DREWPY_PAT: ${{ secrets.DREWPY_PAT }}
 
       - name: Post AI Review to Issue
