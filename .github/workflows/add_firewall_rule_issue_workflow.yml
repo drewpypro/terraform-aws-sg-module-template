@@ -66,13 +66,13 @@ jobs:
           path: ai-rule-review
           token: ${{ secrets.DREWPY_PAT }}
           ref: main
+          clean: false
 
       - name: Run AI Review
         working-directory: ./ai-rule-review/ai-rule-review
         run: |
           ls -lt *
           ls -lt */*
-          ls -lt */*/*
           python3 ai-rule-review.py --input-file appended.csv > ai_output.txt
         env:
           DREWPY_AI_KEY: ${{ secrets.DREWPY_AI_KEY }}
