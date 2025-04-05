@@ -66,9 +66,6 @@ jobs:
           input-file: appended.csv
         env:
           token: ${{ secrets.DREWPY_AI_TOKEN }}
-        permissions:
-          contents: read
-        env:
           GH_TOKEN: ${{ secrets.DREWPY_PAT }}
 
       - name: Post AI Review to Issue
