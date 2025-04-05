@@ -1,0 +1,58 @@
+[
+    {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods "
+    },
+    {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "udp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods "
+    },
+    {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods "
+    },
+    {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "udp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods "
+    }
+]
