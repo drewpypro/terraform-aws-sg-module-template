@@ -1,1 +1,5 @@
 RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,prefix_list_id,business_justification
+Request00001,istio_nodes,istio_nodes,egress,8081,8081,tcp,worker_nodes,null,null,null,aws-cluster-lb-controller testing
+Request00001,istio_nodes,istio_nodes,ingress,8081,8081,tcp,worker_nodes,null,null,null,aws-cluster-lb-controller testing
+Request00001,worker_nodes,worker_nodes,egress,8081,8081,tcp,worker_nodes,null,null,null,aws-cluster-lb-controller testing
+Request00001,worker_nodes,worker_nodes,ingress,8081,8081,tcp,worker_nodes,null,null,null,aws-cluster-lb-controller testing
