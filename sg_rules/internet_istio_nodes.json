@@ -12,5 +12,19 @@
         "cidr_ipv6": "null",
         "prefix_list_id": "null",
         "business_justification": "This is for testing access"
+    },
+    {
+        "RequestID": "REQ12645",
+        "name": "internet_istio_nodes",
+        "security_group_id": "internet_istio_nodes",
+        "direction": "egress",
+        "from_port": 2745,
+        "to_port": 2745,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "internet_istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "This is for testing access"
     }
 ]

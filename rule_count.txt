@@ -5,7 +5,7 @@
 - worker_nodes : 1 rules
 
 ## Egress Rules:
-- internet_istio_nodes : 1 rules
+- internet_istio_nodes : 2 rules
 - intranet_istio_nodes : 1 rules
 - istio_nodes : 1 rules
 - worker_nodes : 1 rules
