@@ -2,7 +2,7 @@ name: Firewall Rule Issue Workflow
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 jobs:
   validate_issue:
