@@ -1,11 +1,11 @@
 # Security Group Rule Count:
 
 ## Ingress Rules:
-- istio_nodes : 1 rules
+- istio_nodes : 3 rules
 - worker_nodes : 1 rules
 
 ## Egress Rules:
 - internet_istio_nodes : 1 rules
 - intranet_istio_nodes : 1 rules
-- istio_nodes : 1 rules
+- istio_nodes : 3 rules
 - worker_nodes : 1 rules
