@@ -1,5 +1,33 @@
 [
     {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods "
+    },
+    {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "egress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "udp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods "
+    },
+    {
         "RequestID": "Request00001",
         "name": "istio_nodes",
         "security_group_id": "istio_nodes",
@@ -12,6 +40,34 @@
         "cidr_ipv6": "null",
         "prefix_list_id": "null",
         "business_justification": "The AWS Load Balancer Controller manages AWS Elastic Load Balancers for a Kubernetes cluster. istio_nodes requires bi-directional access between other eks nodes on port 8081 to support aws-lb-controller controller connectivity required for istio ingress gateways. "
+    },
+    {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods"
+    },
+    {
+        "RequestID": "Request00006",
+        "name": "istio_nodes",
+        "security_group_id": "istio_nodes",
+        "direction": "ingress",
+        "from_port": 53,
+        "to_port": 53,
+        "ip_protocol": "udp",
+        "referenced_security_group_id": "istio_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "overlay dns connectivity between pods "
     },
     {
         "RequestID": "Request00001",
