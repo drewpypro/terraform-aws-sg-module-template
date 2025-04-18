@@ -5,3 +5,7 @@ Request00001,worker_nodes,worker_nodes,egress,8081,8081,tcp,worker_nodes,null,nu
 Request00001,worker_nodes,worker_nodes,ingress,8081,8081,tcp,worker_nodes,null,null,null,The AWS Load Balancer Controller manages AWS Elastic Load Balancers for a Kubernetes cluster. worker_nodes requires bi-directional access between other eks nodes on port 8081 to support aws-lb-controller controller connectivity required for istio ingress gateways. 
 REQXXXXXX,internet_istio_nodes,internet_istio_nodes,egress,1234,1234,tcp,internet_istio_nodes,null,null,null,This is for testing access
 REQXXXXXX,intranet_istio_nodes,intranet_istio_nodes,egress,1234,1234,tcp,intranet_istio_nodes,null,null,null,This is for testing access
+Request00007,poo_nodes,poo_nodes,egress,69,69,udp,istio_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
+Request00007,poo_nodes,poo_nodes,egress,69,69,tcp,istio_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
+Request00007,pee_nodes,pee_nodes,ingress,69,69,udp,istio_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
+Request00007,pee_nodes,pee_nodes,ingress,69,69,tcp,istio_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
