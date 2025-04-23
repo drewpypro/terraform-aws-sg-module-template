@@ -1,0 +1,30 @@
+[
+    {
+        "RequestID": "Request00009",
+        "name": "app_nodes",
+        "security_group_id": "app_nodes",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "10.0.10.0/24",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Application nodes need HTTPS access to internal load balancer for APIs."
+    },
+    {
+        "RequestID": "Request00009",
+        "name": "app_nodes",
+        "security_group_id": "app_nodes",
+        "direction": "ingress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "10.0.20.0/24",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Internal load balancer requires ingress access for HTTPS responses to app nodes."
+    }
+]
