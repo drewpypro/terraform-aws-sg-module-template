@@ -73,9 +73,9 @@ jobs:
           
           set -xeuo pipefail
 
-          echo "$ISSUE_BODY" | sed -n '/RequestID,name,security_group_id/,$p' \
+          echo "$ISSUE_BODY" \
             | sed '/^\s*$/d' \
-            | tail -n +2 > original_issue.csv
+            | grep -v '^RequestID,name,security_group_id' > original_issue.csv
           echo "📄 Contents of original_issue.csv:"
           cat original_issue.csv
           python3 drewpy-ai-actions/ai-rule-review/ai-rule-review.py --input-file original_issue.csv | tee ai_output.txt
