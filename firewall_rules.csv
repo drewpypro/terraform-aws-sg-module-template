@@ -3,3 +3,5 @@ Request00001,istio_nodes,istio_nodes,egress,0,0,icmp,istio_nodes,null,null,null,
 Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,istio_nodes,null,null,null,Allow Type 0 Code 0 (echo-Reply) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
 Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on egress for troubleshooting connectivity.
 Request00001,istio_nodes,istio_nodes,ingress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
+Request00009,app_nodes,app_nodes,egress,443,443,tcp,null,10.0.10.0/24,null,null,Application nodes need HTTPS access to internal load balancer for APIs.
+Request00009,app_nodes,app_nodes,ingress,443,443,tcp,null,10.0.20.0/24,null,null,Internal load balancer requires ingress access for HTTPS responses to app nodes.
