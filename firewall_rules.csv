@@ -1,1 +1,5 @@
 RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,prefix_list_id,business_justification
+Request00001,istio_nodes,istio_nodes,egress,0,0,icmp,istio_nodes,null,null,null,Allow Type 0 Code 0 (echo-Reply) from istio_nodes to other istio_nodes on egress for troubleshooting connectivity.
+Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,istio_nodes,null,null,null,Allow Type 0 Code 0 (echo-Reply) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
+Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on egress for troubleshooting connectivity.
+Request00001,istio_nodes,istio_nodes,ingress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
