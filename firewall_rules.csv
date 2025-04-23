@@ -1,1 +1,5 @@
 RequestID,name,security_group_id,direction,from_port,to_port,ip_protocol,referenced_security_group_id,cidr_ipv4,cidr_ipv6,prefix_list_id,business_justification
+Request00007,poo_nodes,poo_nodes,egress,69,69,udp,pee_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
+Request00007,poo_nodes,poo_nodes,egress,69,69,tcp,pee_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
+Request00007,pee_nodes,pee_nodes,ingress,69,69,udp,poo_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
+Request00007,pee_nodes,pee_nodes,ingress,69,69,tcp,poo_nodes,null,null,null,pee is stored in the balls and poo needs to access pee
