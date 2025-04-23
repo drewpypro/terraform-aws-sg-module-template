@@ -4,4 +4,5 @@
 - istio_nodes : 2 rules
 
 ## Egress Rules:
+- app_nodes : 1 rules
 - istio_nodes : 2 rules
