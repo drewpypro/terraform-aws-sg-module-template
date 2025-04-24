@@ -3,3 +3,5 @@ Request00001,istio_nodes,istio_nodes,egress,0,0,icmp,istio_nodes,null,null,null,
 Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,istio_nodes,null,null,null,Allow Type 0 Code 0 (echo-Reply) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
 Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on egress for troubleshooting connectivity.
 Request00001,istio_nodes,istio_nodes,ingress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
+Request00014,worker_nodes,worker_nodes,egress,443,443,tcp,vpce_ssm,null,null,null,EKS workloads require HTTPS egress to AWS SSM API via VPC endpoint for node management and patch automation.
+Request00014,vpce_ssm,vpce_ssm,ingress,443,443,tcp,worker_nodes,null,null,null,Allow inbound HTTPS from EKS worker nodes for managed API calls via the SSM VPC endpoint.
