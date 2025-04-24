@@ -1,0 +1,16 @@
+[
+    {
+        "RequestID": "Request00013",
+        "name": "app_nodes",
+        "security_group_id": "app_nodes",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "api_gateway",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "App nodes need HTTPS egress to API Gateway in same VPC."
+    }
+]
