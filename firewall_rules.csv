@@ -4,3 +4,6 @@ Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,istio_nodes,null,null,null
 Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on egress for troubleshooting connectivity.
 Request00001,istio_nodes,istio_nodes,ingress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
 Request00015,worker_nodes,worker_nodes,egress,443,443,tcp,vpce_ssm,null,null,null,EKS worker nodes require outbound HTTPS to AWS SSM API using the VPC Endpoint for patching and command execution.
+Request00016,app_nodes,app_nodes,egress,443,443,tcp,api_gateway,null,null,null,Application pods need to initiate HTTPS requests to internal API Gateway for service communication within the VPC.
+Request00016,api_gateway,api_gateway,egress,443,443,tcp,lambda_bird_app,null,null,null,Internal API Gateway invokes Lambda-based services over HTTPS for business logic execution.
+Request00016,lambda_bird_app,lambda_bird_app,egress,443,443,tcp,api_gateway,null,null,null,Allow response traffic from Lambda back to API Gateway over HTTPS to complete the request cycle.

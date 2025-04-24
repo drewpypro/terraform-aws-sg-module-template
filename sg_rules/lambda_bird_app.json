@@ -1,0 +1,16 @@
+[
+    {
+        "RequestID": "Request00016",
+        "name": "lambda_bird_app",
+        "security_group_id": "lambda_bird_app",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "api_gateway",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Allow response traffic from Lambda back to API Gateway over HTTPS to complete the request cycle."
+    }
+]
