@@ -1,0 +1,16 @@
+[
+    {
+        "RequestID": "Request00016",
+        "name": "api_gateway",
+        "security_group_id": "api_gateway",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "lambda_bird_app",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Internal API Gateway invokes Lambda-based services over HTTPS for business logic execution."
+    }
+]
