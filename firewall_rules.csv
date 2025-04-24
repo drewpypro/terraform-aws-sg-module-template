@@ -3,3 +3,5 @@ Request00001,istio_nodes,istio_nodes,egress,0,0,icmp,istio_nodes,null,null,null,
 Request00001,istio_nodes,istio_nodes,ingress,0,0,icmp,istio_nodes,null,null,null,Allow Type 0 Code 0 (echo-Reply) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
 Request00001,istio_nodes,istio_nodes,egress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on egress for troubleshooting connectivity.
 Request00001,istio_nodes,istio_nodes,ingress,8,0,icmp,istio_nodes,null,null,null,Allow Type 8 Code 0 (echo) from istio_nodes to other istio_nodes on ingress for troubleshooting connectivity.
+Request00011,app_nodes,app_nodes,egress,443,443,tcp,null,10.0.5.20/32,null,null,App nodes need HTTPS egress to API Gateway at 10.0.5.20 for internal service calls.
+Request00011,api_gateway,api_gateway,ingress,443,443,tcp,null,10.0.5.10/32,null,null,API Gateway must accept HTTPS ingress from app nodes at 10.0.5.10 for internal service responses.
