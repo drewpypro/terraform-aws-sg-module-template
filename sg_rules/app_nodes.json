@@ -1,0 +1,16 @@
+[
+    {
+        "RequestID": "Request00011",
+        "name": "app_nodes",
+        "security_group_id": "app_nodes",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "10.0.5.20/32",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "App nodes need HTTPS egress to API Gateway at 10.0.5.20 for internal service calls."
+    }
+]

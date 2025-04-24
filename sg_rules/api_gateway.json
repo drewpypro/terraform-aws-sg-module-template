@@ -1,0 +1,16 @@
+[
+    {
+        "RequestID": "Request00011",
+        "name": "api_gateway",
+        "security_group_id": "api_gateway",
+        "direction": "ingress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "null",
+        "cidr_ipv4": "10.0.5.10/32",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "API Gateway must accept HTTPS ingress from app nodes at 10.0.5.10 for internal service responses."
+    }
+]
