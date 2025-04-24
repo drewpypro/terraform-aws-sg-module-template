@@ -5,3 +5,4 @@
 
 ## Egress Rules:
 - istio_nodes : 2 rules
+- worker_nodes : 1 rules
