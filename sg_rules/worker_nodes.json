@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "RequestID": "Request00014",
+        "name": "worker_nodes",
+        "security_group_id": "worker_nodes",
+        "direction": "egress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "vpce_ssm",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "EKS workloads require HTTPS egress to AWS SSM API via VPC endpoint for node management and patch automation."
+    }
+]

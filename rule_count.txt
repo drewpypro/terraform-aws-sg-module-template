@@ -2,6 +2,8 @@
 
 ## Ingress Rules:
 - istio_nodes : 2 rules
+- vpce_ssm : 1 rules
 
 ## Egress Rules:
 - istio_nodes : 2 rules
+- worker_nodes : 1 rules

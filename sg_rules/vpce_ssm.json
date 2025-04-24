@@ -1,0 +1,16 @@
+[
+    {
+        "RequestID": "Request00014",
+        "name": "vpce_ssm",
+        "security_group_id": "vpce_ssm",
+        "direction": "ingress",
+        "from_port": 443,
+        "to_port": 443,
+        "ip_protocol": "tcp",
+        "referenced_security_group_id": "worker_nodes",
+        "cidr_ipv4": "null",
+        "cidr_ipv6": "null",
+        "prefix_list_id": "null",
+        "business_justification": "Allow inbound HTTPS from EKS worker nodes for managed API calls via the SSM VPC endpoint."
+    }
+]
